@@ -22,4 +22,83 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
+  assets:
+    - assets/images/
+    - assets/videos/
+  fonts:
+    - family: GothamRounded
+      fonts:
+        - asset: fonts/gotham-rounded/GothamRoundedBold_21016.ttf
+          weight: 700
+        - asset: fonts/gotham-rounded/GothamRounded-BoldItalic.otf
+          weight: 700
+          style: italic
+        - asset: fonts/gotham-rounded/GothamRounded-Book.otf
+          weight: 400
+        - asset: fonts/gotham-rounded/GothamRoundedBook_21018.ttf
+          weight: 400
+        - asset: fonts/gotham-rounded/GothamRounded-BookItalic.otf
+          weight: 400
+          style: italic
+        - asset: fonts/gotham-rounded/GothamRounded-Light.otf
+          weight: 300
+        - asset: fonts/gotham-rounded/GothamRoundedLight_21020.ttf
+          weight: 300
+        - asset: fonts/gotham-rounded/GothamRounded-LightItalic.otf
+          weight: 300
+          style: italic
+        - asset: fonts/gotham-rounded/GothamRounded-Medium.otf
+          weight: 500
+        - asset: fonts/gotham-rounded/GothamRoundedMedium_21022.ttf
+          weight: 500
+        - asset: fonts/gotham-rounded/GothamRounded-MediumItalic.otf
+          weight: 500
+          style: italic
+    - family: SFProDisplay
+      fonts:
+        - asset: fonts/sf-pro-display/SF-Pro-Display-UltralightItalic.otf
+          weight: 100
+          style: italic
+        - asset: fonts/sf-pro-display/SF-Pro-Display-Black.otf
+          weight: 900
+        - asset: fonts/sf-pro-display/SF-Pro-Display-BlackItalic.otf
+          weight: 900
+          style: italic
+        - asset: fonts/sf-pro-display/SF-Pro-Display-Bold.otf
+          weight: 700
+        - asset: fonts/sf-pro-display/SF-Pro-Display-BoldItalic.otf
+          weight: 700
+          style: italic
+        - asset: fonts/sf-pro-display/SF-Pro-Display-Heavy.otf
+          weight: 800
+        - asset: fonts/sf-pro-display/SF-Pro-Display-HeavyItalic.otf
+          weight: 800
+          style: italic
+        - asset: fonts/sf-pro-display/SF-Pro-Display-Light.otf
+          weight: 300
+        - asset: fonts/sf-pro-display/SF-Pro-Display-LightItalic.otf
+          weight: 300
+          style: italic
+        - asset: fonts/sf-pro-display/SF-Pro-Display-Medium.otf
+          weight: 500
+        - asset: fonts/sf-pro-display/SF-Pro-Display-MediumItalic.otf
+          weight: 500
+          style: italic
+        - asset: fonts/sf-pro-display/SF-Pro-Display-Regular.otf
+          weight: 400
+        - asset: fonts/sf-pro-display/SF-Pro-Display-RegularItalic.otf
+          weight: 400
+          style: italic
+        - asset: fonts/sf-pro-display/SF-Pro-Display-Semibold.otf
+          weight: 600
+        - asset: fonts/sf-pro-display/SF-Pro-Display-SemiboldItalic.otf
+          weight: 600
+          style: italic
+        - asset: fonts/sf-pro-display/SF-Pro-Display-Thin.otf
+          weight: 200
+        - asset: fonts/sf-pro-display/SF-Pro-Display-ThinItalic.otf
+          weight: 200
+          style: italic
+        - asset: fonts/sf-pro-display/SF-Pro-Display-Ultralight.otf
+          weight: 100
   uses-material-design: true
