@@ -4,7 +4,7 @@ import 'package:wabu/features/authentication/presentation/screens/terms_screen.d
 import 'package:wabu/features/authentication/presentation/screens/update_info_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
-import 'package:wabu/features/teachers/presentation/screens/teacher_profile_screen.dart';
+// import 'package:wabu/features/teachers/presentation/screens/teacher_profile_screen.dart';
 
 final appRouter = GoRouter(
   initialLocation: SplashScreen.route,
@@ -47,12 +47,12 @@ final appRouter = GoRouter(
         return const HomeScreen();
       },
     ),
-    GoRoute(
-      name: TeacherProfileScreen.name,
-      path: TeacherProfileScreen.route,
-      builder: (context, state) {
-        return const TeacherProfileScreen();
-      },
-    ),
+    // GoRoute(
+    //   name: TeacherProfileScreen.name,
+    //   path: TeacherProfileScreen.route,
+    //   builder: (context, state) {
+    //     return const TeacherProfileScreen();
+    //   },
+    // ),
   ],
 );
