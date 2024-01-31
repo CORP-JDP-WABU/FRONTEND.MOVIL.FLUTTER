@@ -1,0 +1,1 @@
+enum FormStatus { empty, invalid, valid, validating, posting }

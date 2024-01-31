@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gif_view/gif_view.dart';
+import 'package:flutter_gif/flutter_gif.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
 import 'package:wabu/features/authentication/presentation/widgets/video_background.dart';
 
@@ -15,28 +16,21 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
-  late GifController gifController;
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late FlutterGifController controller;
 
   @override
   void initState() {
     super.initState();
 
-    gifController = GifController(
-      onStart: () {
-        Future.delayed(const Duration(seconds: 6), () {
-          context.go(WelcomeScreen.route);
-        });
-      },
-    );
-
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-  }
-
-  @override
-  void dispose() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-    super.dispose();
+    // gifController = GifController(
+    //   onStart: () {
+    Future.delayed(const Duration(seconds: 8), () {
+      context.go(WelcomeScreen.route);
+    });
+    //   },
+    // );
   }
 
   @override
@@ -51,11 +45,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             fit: BoxFit.cover,
           ),
           const VideoBackground(),
-          GifView.asset(
-            'assets/images/splash.gif',
-            frameRate: 36,
-            controller: gifController,
-          ),
+          // Lottie.asset('assets/images/splash.json')
+          Image.asset('assets/images/splash.gif'),
         ],
       ),
     );
