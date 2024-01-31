@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wabu/features/authentication/domain/models/update_info_form_result/nested_update_info_form_result.dart';
+// import 'package:wabu/features/authentication/domain/models/update_info_form_result/nested_update_info_form_result.dart';
 
 part 'update_info_form_result.freezed.dart';
 part 'update_info_form_result.g.dart';
