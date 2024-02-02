@@ -9,6 +9,7 @@ class CustomFilledButton extends StatelessWidget {
     this.minimumWidth,
     this.backgroundColor,
     this.linearGradient,
+    this.verticalPadding = 16,
   });
 
   final void Function()? onPressed;
@@ -17,6 +18,7 @@ class CustomFilledButton extends StatelessWidget {
   final double? minimumWidth;
   final Color? backgroundColor;
   final LinearGradient? linearGradient;
+  final double verticalPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class CustomFilledButton extends StatelessWidget {
           minimumWidth: minimumWidth,
           text: text,
           textColor: textColor,
+          verticalPadding: verticalPadding,
         ),
       ),
     );
@@ -45,11 +48,13 @@ class _CustomButtonContent extends StatelessWidget {
     this.minimumWidth,
     required this.text,
     required this.textColor,
+    required this.verticalPadding,
   });
 
   final double? minimumWidth;
   final String text;
   final Color textColor;
+  final double verticalPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -74,10 +79,11 @@ class _CustomButtonContent extends StatelessWidget {
 
     return Container(
       constraints: (minimumWidth != null)
-          ? BoxConstraints(minWidth: minimumWidth!, minHeight: 48)
+          ? BoxConstraints(minWidth: minimumWidth!, minHeight: 24)
           : null,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        padding:
+            EdgeInsets.symmetric(horizontal: 32, vertical: verticalPadding),
         child: Text(
           text,
           overflow: TextOverflow.ellipsis,

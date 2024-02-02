@@ -320,7 +320,7 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
                                   height: 14 / 12,
                                   fontWeight: FontWeight.w400,
                                 ),
-                                onChanged: (Globals.isFirstLogin == false)
+                                onChanged: (Globals.isFirstLogin == true)
                                     ? null
                                     : (String? value) {
                                         setState(() {

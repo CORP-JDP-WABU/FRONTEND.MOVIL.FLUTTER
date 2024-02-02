@@ -5,6 +5,7 @@ import 'package:wabu/common/widgets/custom_filled_button.dart';
 import 'package:wabu/common/widgets/gradient_text.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
+import 'package:wabu/features/home/presentation/views/home_view.dart';
 
 class WelcomeDialog extends StatelessWidget {
   const WelcomeDialog({super.key});
@@ -232,7 +233,7 @@ class WelcomeDialog extends StatelessWidget {
                   end: Alignment.bottomCenter,
                   stops: [0.0, 1.0],
                 ),
-                onPressed: () => context.go(HomeScreen.route),
+                onPressed: () => context.go(HomeView.route),
               ),
             ],
           )),

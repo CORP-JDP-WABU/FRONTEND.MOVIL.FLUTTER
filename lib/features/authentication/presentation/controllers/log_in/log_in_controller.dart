@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:formz/formz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wabu/common/data/failure/failure.dart';
 import 'package:wabu/common/enums/form_status.dart';
 import 'package:wabu/common/inputs/email.dart';
@@ -97,11 +98,16 @@ class LogInController extends _$LogInController {
                 setPageError();
                 break;
             }
-          }, (Token token) {
+          }, (Token token) async {
+            final prefs = await SharedPreferences.getInstance();
+
             Globals.studentId = token.idStudent;
             Globals.universityId = token.idUniversity;
             Globals.isFirstLogin = token.isFirstLogin;
             Globals.updateInfoMode = UpdateInfoMode.logIn;
+            Globals.token = token.token;
+            await prefs.setString('token', token.token);
+            print("TOKEN: " + token.token);
 
             state = state.copyWith(
               formStatus: FormStatus.valid,

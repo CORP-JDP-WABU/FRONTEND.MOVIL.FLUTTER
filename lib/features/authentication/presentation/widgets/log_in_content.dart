@@ -7,10 +7,13 @@ import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/authentication/presentation/controllers/log_in/log_in_controller.dart';
 import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_controller.dart';
 import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_state.dart';
+import 'package:wabu/features/authentication/presentation/screens/splash_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/update_info_screen.dart';
 import 'package:wabu/features/authentication/presentation/widgets/dialogs/auth_alert_dialog.dart';
 import 'package:wabu/features/authentication/presentation/widgets/welcome_bottom_sheet_content.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
+import 'package:wabu/features/home/presentation/views/home_view.dart';
+import 'package:wabu/features/teachers/presentation/screens/teacher_profile_view.dart';
 
 class LogInContent extends ConsumerWidget {
   const LogInContent({super.key});
@@ -37,11 +40,13 @@ class LogInContent extends ConsumerWidget {
     final password = logInState.password;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (Globals.isFirstLogin == false) {
-        context.go(HomeScreen.route);
+      if (Globals.isFirstLogin == true) {
+        context.go(HomeView.route);
+        // context.go(TeacherProfileView.route);
       }
 
-      if (Globals.isFirstLogin == true && logInState.formStatus == FormStatus.valid) {
+      if (Globals.isFirstLogin == false &&
+          logInState.formStatus == FormStatus.valid) {
         openDialog(context);
       }
 
