@@ -1,32 +1,25 @@
 import 'package:flutter/material.dart';
 
 class CustomFilledButton extends StatelessWidget {
-  const CustomFilledButton(
-      {super.key,
-      this.onPressed,
-      required this.text,
-      this.textColor,
-      required this.minimumWidth,
-      this.maximumWidthMargins = 0,
-      this.backgroundColor,
-      this.overlayColor,
-      this.fontSize = 16,
-      this.linearGradient});
+  const CustomFilledButton({
+    super.key,
+    this.onPressed,
+    required this.text,
+    required this.textColor,
+    this.minimumWidth,
+    this.backgroundColor,
+    this.linearGradient,
+  });
 
   final void Function()? onPressed;
   final String text;
-  final Color? textColor;
-  final double minimumWidth;
-  final double maximumWidthMargins;
+  final Color textColor;
+  final double? minimumWidth;
   final Color? backgroundColor;
   final LinearGradient? linearGradient;
-  final Color? overlayColor;
-  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
     return MaterialButton(
       onPressed: onPressed,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
@@ -39,11 +32,8 @@ class CustomFilledButton extends StatelessWidget {
         ),
         child: _CustomButtonContent(
           minimumWidth: minimumWidth,
-          screenWidth: screenWidth,
-          maximumWidthMargins: maximumWidthMargins,
           text: text,
           textColor: textColor,
-          fontSize: fontSize,
         ),
       ),
     );
@@ -52,38 +42,52 @@ class CustomFilledButton extends StatelessWidget {
 
 class _CustomButtonContent extends StatelessWidget {
   const _CustomButtonContent({
-    required this.minimumWidth,
-    required this.screenWidth,
-    required this.maximumWidthMargins,
+    this.minimumWidth,
     required this.text,
     required this.textColor,
-    required this.fontSize,
   });
 
-  final double minimumWidth;
-  final double screenWidth;
-  final double maximumWidthMargins;
+  final double? minimumWidth;
   final String text;
-  final Color? textColor;
-  final double fontSize;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
+    // return Wrap(
+    //   children: [
+    //     Padding(
+    //       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+    //       child: Text(
+    //         text,
+    //         overflow: TextOverflow.ellipsis,
+    //         textAlign: TextAlign.center,
+    //         style: TextStyle(
+    //           color: textColor,
+    //           fontSize: 16,
+    //           fontWeight: FontWeight.w700,
+    //           height: 19 / 16,
+    //         ),
+    //       ),
+    //     ),
+    //   ],
+    // );
+
     return Container(
-      constraints: BoxConstraints(
-        minWidth: minimumWidth,
-        minHeight: 48,
-        maxWidth: screenWidth - maximumWidthMargins,
-      ),
-      alignment: Alignment.center,
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: textColor,
-          fontSize: fontSize,
-          fontWeight: FontWeight.w700,
-          height: 19 / fontSize,
+      constraints: (minimumWidth != null)
+          ? BoxConstraints(minWidth: minimumWidth!, minHeight: 48)
+          : null,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        child: Text(
+          text,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: textColor,
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+            height: 19 / 16,
+          ),
         ),
       ),
     );

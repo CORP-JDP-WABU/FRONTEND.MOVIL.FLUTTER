@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wabu/common/widgets/custom_filled_button.dart';
+import 'package:wabu/common/widgets/loader_transparent.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_controller.dart';
+import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_state.dart';
 import 'package:wabu/features/authentication/presentation/widgets/video_background.dart';
 import 'package:wabu/features/authentication/presentation/widgets/welcome_bottom_sheet.dart';
 
@@ -22,14 +24,22 @@ class WelcomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      key: scaffoldKey,
-      body: Stack(
-        children: [
-          const VideoBackground(),
-          _WelcomeScreenContent(showBottomSheet: _showBottomSheet),
-        ],
-      ),
+    final welcomePageState = ref.watch(welcomePageControllerProvider);
+
+    return Stack(
+      children: [
+        Scaffold(
+          key: scaffoldKey,
+          body: Stack(
+            children: [
+              const VideoBackground(),
+              _WelcomeScreenContent(showBottomSheet: _showBottomSheet),
+            ],
+          ),
+        ),
+        if (welcomePageState.status == WelcomeStatus.posting)
+          const LoaderTransparent(),
+      ],
     );
   }
 }
@@ -43,6 +53,8 @@ class _WelcomeScreenContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,8 +63,8 @@ class _WelcomeScreenContent extends ConsumerWidget {
           child: Center(
             child: Image.asset(
               'assets/images/logo.png',
-              height: 220,
-              width: 220,
+              height: 0.6 * screenWidth,
+              width: 0.6 * screenWidth,
               fit: BoxFit.contain,
             ),
           ),
@@ -68,33 +80,33 @@ class _WelcomeScreenContent extends ConsumerWidget {
             fontWeight: FontWeight.w400,
           ),
         ),
-        const SizedBox(height: 65),
+        const SizedBox(height: 60),
         CustomFilledButton(
           onPressed: () {
-            ref.read(welcomePageControllerProvider.notifier).addPage(WelcomePage.logIn);
+            ref
+                .read(welcomePageControllerProvider.notifier)
+                .addPage(WelcomePage.logIn);
             showBottomSheet();
           },
           text: 'INICIAR SESIÓN',
-          minimumWidth: 300,
+          minimumWidth: 0.8 * screenWidth,
           textColor: AppTheme.primaryText,
           backgroundColor: Colors.white,
-          overlayColor: Colors.black12,
-          maximumWidthMargins: 44,
         ),
-        const SizedBox(height: 40),
+        const SizedBox(height: 36),
         CustomFilledButton(
           onPressed: () {
-            ref.read(welcomePageControllerProvider.notifier).addPage(WelcomePage.signUp);
+            ref
+                .read(welcomePageControllerProvider.notifier)
+                .addPage(WelcomePage.signUp);
             showBottomSheet();
           },
           text: 'CREAR UNA CUENTA',
-          minimumWidth: 300,
+          minimumWidth: 0.8 * screenWidth,
           textColor: AppTheme.primaryText,
           backgroundColor: Colors.white,
-          overlayColor: Colors.black12,
-          maximumWidthMargins: 44,
         ),
-        const SizedBox(height: 116)
+        const SizedBox(height: 72)
       ],
     );
   }
