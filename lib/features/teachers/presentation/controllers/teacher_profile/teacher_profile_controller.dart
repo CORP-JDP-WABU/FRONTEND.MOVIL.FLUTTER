@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wabu/common/data/failure/failure.dart';
 import 'package:wabu/features/teachers/data/providers.dart';
-import 'package:wabu/features/teachers/domain/teacher.dart';
+import 'package:wabu/features/teachers/domain/entities.dart';
 import 'package:wabu/features/teachers/presentation/controllers/teacher_profile/teacher_profile_state.dart';
 
 part 'teacher_profile_controller.g.dart';

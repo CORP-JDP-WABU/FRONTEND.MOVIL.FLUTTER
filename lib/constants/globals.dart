@@ -12,4 +12,5 @@ class Globals {
   static bool? isFirstLogin;
   static UpdateInfoMode? updateInfoMode;
   static String? token;
+  static const int maxQualificationValue = 5;
 }

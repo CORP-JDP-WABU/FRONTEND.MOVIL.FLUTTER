@@ -5,7 +5,8 @@ import 'package:wabu/features/authentication/presentation/screens/update_info_sc
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
-import 'package:wabu/features/teachers/presentation/screens/teacher_profile_view.dart';
+import 'package:wabu/features/teachers/presentation/presentation.dart';
+import 'package:wabu/features/teachers/presentation/views/teacher_course_profile_view.dart';
 
 final appRouter = GoRouter(
   initialLocation: SplashScreen.route,
@@ -59,6 +60,13 @@ final appRouter = GoRouter(
           },
         ),
       ],
+    ),
+    GoRoute(
+      name: TeacherCourseComments.name,
+      path: TeacherCourseComments.route,
+      builder: (context, state) {
+        return const TeacherCourseComments();
+      },
     ),
   ],
 );
