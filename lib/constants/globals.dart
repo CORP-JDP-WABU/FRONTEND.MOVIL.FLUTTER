@@ -11,4 +11,5 @@ class Globals {
   static String? universityId;
   static bool? isFirstLogin;
   static UpdateInfoMode? updateInfoMode;
+  static String? token;
 }

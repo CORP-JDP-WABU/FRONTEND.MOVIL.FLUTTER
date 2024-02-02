@@ -4,7 +4,8 @@ import 'package:wabu/features/authentication/presentation/screens/terms_screen.d
 import 'package:wabu/features/authentication/presentation/screens/update_info_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
-// import 'package:wabu/features/teachers/presentation/screens/teacher_profile_screen.dart';
+import 'package:wabu/features/home/presentation/views/home_view.dart';
+import 'package:wabu/features/teachers/presentation/screens/teacher_profile_view.dart';
 
 final appRouter = GoRouter(
   initialLocation: SplashScreen.route,
@@ -40,19 +41,24 @@ final appRouter = GoRouter(
         return const TermsScreen();
       },
     ),
-    GoRoute(
-      name: HomeScreen.name,
-      path: HomeScreen.route,
-      builder: (context, state) {
-        return const HomeScreen();
-      },
+    ShellRoute(
+      builder: (context, state, child) => HomeScreen(childView: child),
+      routes: [
+        GoRoute(
+          name: HomeView.name,
+          path: HomeView.route,
+          builder: (context, state) {
+            return const HomeView();
+          },
+        ),
+        GoRoute(
+          name: TeacherProfileView.name,
+          path: TeacherProfileView.route,
+          builder: (context, state) {
+            return const TeacherProfileView();
+          },
+        ),
+      ],
     ),
-    // GoRoute(
-    //   name: TeacherProfileScreen.name,
-    //   path: TeacherProfileScreen.route,
-    //   builder: (context, state) {
-    //     return const TeacherProfileScreen();
-    //   },
-    // ),
   ],
 );

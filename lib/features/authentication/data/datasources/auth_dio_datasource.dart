@@ -49,7 +49,6 @@ class AuthDioDatasource extends AuthRemoteDatasource {
       data: encryptedForm.toJson(),
     );
 
-    print(response);
     if (response.statusCode != 201) {
       final failureResponse = Failure.fromJson(response.data);
 

@@ -33,6 +33,14 @@ class AppTheme {
   static const Color tertiaryStatsColor = Color(0xFF44D9D3);
   static const Color commentsColor = Color(0xFF1760B0);
   static const Color statsColor = Color(0xFF8812D1);
+  static const Color greyBackgroundColor = Color(0xFFEAEAEA);
+  static const Color secondary1Color = Color(0xFF8812D1);
+  static const Color secondary2Color = Color(0xFFB67DD8);
+  static const Color secondary3Color = Color(0xFFD084FF);
+  static const Color progressBarBackgroundColor = Color(0xFFEFEFEF);
+  static const Color linearGradientProgressBarDark = Color(0xC79730D6);
+  static const Color linearGradientProgressBarLight = Color(0xC7F2ABA0);
+  static const Color noQualificationsTextColor = Color(0xFFBFBFBF);
 
   ThemeData getTheme() => ThemeData(
         useMaterial3: true,

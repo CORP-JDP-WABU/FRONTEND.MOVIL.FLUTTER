@@ -22,6 +22,7 @@ dependencies:
   pin_code_fields: ^8.0.1
   riverpod: ^2.4.9
   riverpod_annotation: ^2.3.3
+  shared_preferences: ^2.2.2
   video_player: ^2.8.2
 
 dev_dependencies:
@@ -38,6 +39,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    - assets/images/svgs/
     - assets/videos/
   fonts:
     - family: GothamRounded

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wabu/common/data/failure/failure.dart';
 import 'package:wabu/common/enums/form_status.dart';
 import 'package:wabu/constants/globals.dart';
@@ -106,14 +107,14 @@ class CodeValidationController extends _$CodeValidationController {
                   .addPage(WelcomePage.newPassword);
             } else {
               // await login();
-            Globals.updateInfoMode = UpdateInfoMode.signUp;
+              Globals.updateInfoMode = UpdateInfoMode.signUp;
 
-            state = state.copyWith(
-              formStatus: FormStatus.valid,
-            );
+              state = state.copyWith(
+                formStatus: FormStatus.valid,
+              );
 
-            setPageIdle();
-          }
+              setPageIdle();
+            }
             setPageIdle();
           });
         });
@@ -125,50 +126,54 @@ class CodeValidationController extends _$CodeValidationController {
 
   Future<void> login() async {
     try {
-        final authRepository = ref.watch(authRepositoryProvider);
-        final getKeysResult = await authRepository.getKeys();
+      final authRepository = ref.watch(authRepositoryProvider);
+      final getKeysResult = await authRepository.getKeys();
 
-        getKeysResult.fold((Failure failure) {
-          setPageError();
-        }, (AuthKeys authKeys) async {
-          final encryptedLoginForm = _encryptLoginForm(authKeys);
-          final logInResult = await authRepository.logIn(encryptedLoginForm);
-
-          logInResult.fold((Failure failure) {
-            switch (failure.errorCode) {
-              case "LOGIN_EMAIL_FAILED":
-                state = state.copyWith(
-                  formStatus: FormStatus.invalid,
-                );
-
-                ref
-                    .read(welcomePageControllerProvider.notifier)
-                    .addPage(WelcomePage.signUp);
-                setPageIdle();
-                break;
-              case "LOGIN_PASSWORD_FAILED":
-                setPageIdle();
-                break;
-              default:
-                setPageError();
-                break;
-            }
-          }, (Token token) {
-            Globals.studentId = token.idStudent;
-            Globals.universityId = token.idUniversity;
-            Globals.isFirstLogin = token.isFirstLogin;
-            Globals.updateInfoMode = UpdateInfoMode.logIn;
-
-            state = state.copyWith(
-              formStatus: FormStatus.valid,
-            );
-
-            setPageIdle();
-          });
-        });
-      } catch (error) {
+      getKeysResult.fold((Failure failure) {
         setPageError();
-      }
+      }, (AuthKeys authKeys) async {
+        final encryptedLoginForm = _encryptLoginForm(authKeys);
+        final logInResult = await authRepository.logIn(encryptedLoginForm);
+
+        logInResult.fold((Failure failure) {
+          switch (failure.errorCode) {
+            case "LOGIN_EMAIL_FAILED":
+              state = state.copyWith(
+                formStatus: FormStatus.invalid,
+              );
+
+              ref
+                  .read(welcomePageControllerProvider.notifier)
+                  .addPage(WelcomePage.signUp);
+              setPageIdle();
+              break;
+            case "LOGIN_PASSWORD_FAILED":
+              setPageIdle();
+              break;
+            default:
+              setPageError();
+              break;
+          }
+        }, (Token token) async {
+          final prefs = await SharedPreferences.getInstance();
+
+          Globals.studentId = token.idStudent;
+          Globals.universityId = token.idUniversity;
+          Globals.isFirstLogin = token.isFirstLogin;
+          Globals.updateInfoMode = UpdateInfoMode.logIn;
+          Globals.token = token.token;
+          await prefs.setString('token', token.token);
+
+          state = state.copyWith(
+            formStatus: FormStatus.valid,
+          );
+
+          setPageIdle();
+        });
+      });
+    } catch (error) {
+      setPageError();
+    }
   }
 
   EncryptedForm _encryptForm(AuthKeys authKeys) {

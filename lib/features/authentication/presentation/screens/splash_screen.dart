@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:lottie/lottie.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
 import 'package:wabu/features/authentication/presentation/widgets/video_background.dart';
+import 'package:wabu/features/home/presentation/screens/home_screen.dart';
+import 'package:wabu/features/home/presentation/views/home_view.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,15 +19,25 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-
   @override
   void initState() {
     super.initState();
 
     // gifController = GifController(
     //   onStart: () {
-    Future.delayed(const Duration(seconds: 8), () {
-      context.go(WelcomeScreen.route);
+    Future.delayed(const Duration(seconds: 8), () async {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('token');
+
+      if (!context.mounted) return;
+
+      if (token == null) {
+        context.go(WelcomeScreen.route);
+        return;
+      }
+
+      print(token);
+      context.go(HomeView.route);
     });
     //   },
     // );
