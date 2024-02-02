@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
-import 'package:wabu/features/teachers/presentation/screens/teacher_profile_view.dart';
+import 'package:wabu/features/teachers/presentation/views/teacher_course_profile_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({

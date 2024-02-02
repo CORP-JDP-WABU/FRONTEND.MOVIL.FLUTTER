@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wabu/features/teachers/domain/teacher.dart';
+import 'package:wabu/features/teachers/domain/entities.dart';
 
 part 'teacher_profile_state.freezed.dart';
 
