@@ -164,6 +164,10 @@ class CodeValidationController extends _$CodeValidationController {
           Globals.token = token.token;
           await prefs.setString('token', token.token);
 
+          await prefs.setString('token', token.token);
+          await prefs.setString('studentId', token.idStudent);
+          await prefs.setString('universityId', token.idUniversity);
+
           state = state.copyWith(
             formStatus: FormStatus.valid,
           );

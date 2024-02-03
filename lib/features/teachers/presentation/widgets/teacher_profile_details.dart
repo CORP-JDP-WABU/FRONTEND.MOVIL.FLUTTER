@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wabu/common/widgets/custom_filled_button.dart';
-import 'package:wabu/common/widgets/gradients/button_linear_gradient.dart';
 import 'package:wabu/features/teachers/domain/entities.dart';
 
 class TeacherProfileDetails extends StatelessWidget {
@@ -38,12 +36,12 @@ class TeacherProfileDetails extends StatelessWidget {
               height: 14 / 12,
             ),
           ),
-          const CustomFilledButton(
-            text: 'Sugerir editar',
-            textColor: Colors.white,
-            verticalPadding: 8,
-            linearGradient: primaryButtonLinearGradient,
-          ),
+          // const CustomFilledButton(
+          //   text: 'Sugerir editar',
+          //   textColor: Colors.white,
+          //   verticalPadding: 8,
+          //   linearGradient: primaryButtonLinearGradient,
+          // ),
         ],
       ),
     );

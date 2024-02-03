@@ -5,10 +5,10 @@ import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/teachers/presentation/controllers/controllers.dart';
 import 'package:wabu/features/teachers/presentation/widgets/widgets.dart';
 
-class TeacherProfileView extends ConsumerWidget {
-  const TeacherProfileView({super.key});
+class TeacherCourseProfileScreen extends ConsumerWidget {
+  const TeacherCourseProfileScreen({super.key});
 
-  static const String name = "teacher_profile_view";
+  static const String name = "teacher_course_profile";
   static const String route = "/$name";
 
   @override
@@ -17,7 +17,7 @@ class TeacherProfileView extends ConsumerWidget {
     final teacher = state.teacher;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (state.pageStatus == Status.error) {
+      if (state.pageStatus == TeacherCourseProfileStatus.error) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content:
@@ -40,7 +40,8 @@ class TeacherProfileView extends ConsumerWidget {
               ],
             ),
           ),
-          if (state.pageStatus == Status.loading) const LoaderTransparent(),
+          if (state.pageStatus == TeacherCourseProfileStatus.loading)
+            const LoaderTransparent(),
         ],
       ),
     );

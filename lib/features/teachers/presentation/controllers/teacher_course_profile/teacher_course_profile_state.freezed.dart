@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'teacher_profile_state.dart';
+part of 'teacher_course_profile_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,20 +15,20 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$TeacherProfileState {
+mixin _$TeacherCourseProfileState {
   Teacher? get teacher => throw _privateConstructorUsedError;
   dynamic get pageStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $TeacherProfileStateCopyWith<TeacherProfileState> get copyWith =>
+  $TeacherCourseProfileStateCopyWith<TeacherCourseProfileState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TeacherProfileStateCopyWith<$Res> {
-  factory $TeacherProfileStateCopyWith(
-          TeacherProfileState value, $Res Function(TeacherProfileState) then) =
-      _$TeacherProfileStateCopyWithImpl<$Res, TeacherProfileState>;
+abstract class $TeacherCourseProfileStateCopyWith<$Res> {
+  factory $TeacherCourseProfileStateCopyWith(TeacherCourseProfileState value,
+          $Res Function(TeacherCourseProfileState) then) =
+      _$TeacherCourseProfileStateCopyWithImpl<$Res, TeacherCourseProfileState>;
   @useResult
   $Res call({Teacher? teacher, dynamic pageStatus});
 
@@ -36,9 +36,10 @@ abstract class $TeacherProfileStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TeacherProfileStateCopyWithImpl<$Res, $Val extends TeacherProfileState>
-    implements $TeacherProfileStateCopyWith<$Res> {
-  _$TeacherProfileStateCopyWithImpl(this._value, this._then);
+class _$TeacherCourseProfileStateCopyWithImpl<$Res,
+        $Val extends TeacherCourseProfileState>
+    implements $TeacherCourseProfileStateCopyWith<$Res> {
+  _$TeacherCourseProfileStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -77,11 +78,12 @@ class _$TeacherProfileStateCopyWithImpl<$Res, $Val extends TeacherProfileState>
 }
 
 /// @nodoc
-abstract class _$$TeacherProfileStateImplCopyWith<$Res>
-    implements $TeacherProfileStateCopyWith<$Res> {
-  factory _$$TeacherProfileStateImplCopyWith(_$TeacherProfileStateImpl value,
-          $Res Function(_$TeacherProfileStateImpl) then) =
-      __$$TeacherProfileStateImplCopyWithImpl<$Res>;
+abstract class _$$TeacherCourseProfileStateImplCopyWith<$Res>
+    implements $TeacherCourseProfileStateCopyWith<$Res> {
+  factory _$$TeacherCourseProfileStateImplCopyWith(
+          _$TeacherCourseProfileStateImpl value,
+          $Res Function(_$TeacherCourseProfileStateImpl) then) =
+      __$$TeacherCourseProfileStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Teacher? teacher, dynamic pageStatus});
@@ -91,11 +93,13 @@ abstract class _$$TeacherProfileStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$TeacherProfileStateImplCopyWithImpl<$Res>
-    extends _$TeacherProfileStateCopyWithImpl<$Res, _$TeacherProfileStateImpl>
-    implements _$$TeacherProfileStateImplCopyWith<$Res> {
-  __$$TeacherProfileStateImplCopyWithImpl(_$TeacherProfileStateImpl _value,
-      $Res Function(_$TeacherProfileStateImpl) _then)
+class __$$TeacherCourseProfileStateImplCopyWithImpl<$Res>
+    extends _$TeacherCourseProfileStateCopyWithImpl<$Res,
+        _$TeacherCourseProfileStateImpl>
+    implements _$$TeacherCourseProfileStateImplCopyWith<$Res> {
+  __$$TeacherCourseProfileStateImplCopyWithImpl(
+      _$TeacherCourseProfileStateImpl _value,
+      $Res Function(_$TeacherCourseProfileStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -104,7 +108,7 @@ class __$$TeacherProfileStateImplCopyWithImpl<$Res>
     Object? teacher = freezed,
     Object? pageStatus = freezed,
   }) {
-    return _then(_$TeacherProfileStateImpl(
+    return _then(_$TeacherCourseProfileStateImpl(
       teacher: freezed == teacher
           ? _value.teacher
           : teacher // ignore: cast_nullable_to_non_nullable
@@ -116,9 +120,9 @@ class __$$TeacherProfileStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TeacherProfileStateImpl implements _TeacherProfileState {
-  const _$TeacherProfileStateImpl(
-      {this.teacher, this.pageStatus = Status.loading});
+class _$TeacherCourseProfileStateImpl implements _TeacherCourseProfileState {
+  const _$TeacherCourseProfileStateImpl(
+      {this.teacher, this.pageStatus = TeacherCourseProfileStatus.loading});
 
   @override
   final Teacher? teacher;
@@ -128,14 +132,14 @@ class _$TeacherProfileStateImpl implements _TeacherProfileState {
 
   @override
   String toString() {
-    return 'TeacherProfileState(teacher: $teacher, pageStatus: $pageStatus)';
+    return 'TeacherCourseProfileState(teacher: $teacher, pageStatus: $pageStatus)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TeacherProfileStateImpl &&
+            other is _$TeacherCourseProfileStateImpl &&
             (identical(other.teacher, teacher) || other.teacher == teacher) &&
             const DeepCollectionEquality()
                 .equals(other.pageStatus, pageStatus));
@@ -148,15 +152,15 @@ class _$TeacherProfileStateImpl implements _TeacherProfileState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TeacherProfileStateImplCopyWith<_$TeacherProfileStateImpl> get copyWith =>
-      __$$TeacherProfileStateImplCopyWithImpl<_$TeacherProfileStateImpl>(
-          this, _$identity);
+  _$$TeacherCourseProfileStateImplCopyWith<_$TeacherCourseProfileStateImpl>
+      get copyWith => __$$TeacherCourseProfileStateImplCopyWithImpl<
+          _$TeacherCourseProfileStateImpl>(this, _$identity);
 }
 
-abstract class _TeacherProfileState implements TeacherProfileState {
-  const factory _TeacherProfileState(
+abstract class _TeacherCourseProfileState implements TeacherCourseProfileState {
+  const factory _TeacherCourseProfileState(
       {final Teacher? teacher,
-      final dynamic pageStatus}) = _$TeacherProfileStateImpl;
+      final dynamic pageStatus}) = _$TeacherCourseProfileStateImpl;
 
   @override
   Teacher? get teacher;
@@ -164,6 +168,6 @@ abstract class _TeacherProfileState implements TeacherProfileState {
   dynamic get pageStatus;
   @override
   @JsonKey(ignore: true)
-  _$$TeacherProfileStateImplCopyWith<_$TeacherProfileStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$TeacherCourseProfileStateImplCopyWith<_$TeacherCourseProfileStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

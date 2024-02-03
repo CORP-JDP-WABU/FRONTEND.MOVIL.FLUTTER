@@ -1,3 +1,5 @@
+export 'package:wabu/features/teachers/presentation/widgets/teacher_comment_item.dart';
+export 'package:wabu/features/teachers/presentation/widgets/teacher_course_comments_body.dart';
 export 'package:wabu/features/teachers/presentation/widgets/teacher_course_profile_body.dart';
 export 'package:wabu/features/teachers/presentation/widgets/teacher_profile_details.dart';
 export 'package:wabu/features/teachers/presentation/widgets/teacher_profile_comments.dart';

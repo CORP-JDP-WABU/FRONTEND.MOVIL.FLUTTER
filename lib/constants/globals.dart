@@ -9,8 +9,11 @@ class Globals {
   static String? password;
   static VerificationCodeMode? verificationCodeMode;
   static String? universityId;
+  static String? careerId;
   static bool? isFirstLogin;
   static UpdateInfoMode? updateInfoMode;
   static String? token;
   static const int maxQualificationValue = 5;
+  static String? teacherId;
+  static String? courseId;
 }

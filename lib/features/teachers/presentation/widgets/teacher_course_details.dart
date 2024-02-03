@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/teachers/domain/entities.dart';
@@ -29,11 +30,16 @@ class TeacherCourseDetails extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            for (int i = 0; i < 5; i++)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                child: SvgPicture.asset('assets/images/svgs/star.svg'),
+            RatingBarIndicator(
+              rating: teacher?.course?.manyAverageQualifications ?? 0,
+              itemBuilder: (context, _) => const Icon(
+                Icons.star_rounded,
+                color: AppTheme.starColor,
               ),
+              itemCount: 5,
+              itemSize: 24,
+              direction: Axis.horizontal,
+            ),
             const SizedBox(width: 28),
             Text(
               '${teacher?.course?.manyQualifications ?? 0}',

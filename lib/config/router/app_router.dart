@@ -9,7 +9,7 @@ import 'package:wabu/features/home/presentation/views/home_view.dart';
 import 'package:wabu/features/home/presentation/views/smash_view.dart';
 import 'package:wabu/features/smash/presentation/screens/teachers_tinder_screen.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
-import 'package:wabu/features/teachers/presentation/views/teacher_course_profile_view.dart';
+import 'package:wabu/features/teachers/presentation/views/temporal_teachers_view.dart';
 
 final appRouter = GoRouter(
   initialLocation: SplashScreen.route,
@@ -53,10 +53,10 @@ final appRouter = GoRouter(
           },
         ),
         GoRoute(
-          name: TeacherProfileView.name,
-          path: TeacherProfileView.route,
+          name: TemporalTeachersView.name,
+          path: TemporalTeachersView.route,
           builder: (context, state) {
-            return const TeacherProfileView();
+            return const TemporalTeachersView();
           },
         ),
         GoRoute(
@@ -69,10 +69,17 @@ final appRouter = GoRouter(
       ],
     ),
     GoRoute(
-      name: TeacherCourseComments.name,
-      path: TeacherCourseComments.route,
+      name: TeacherCourseProfileScreen.name,
+      path: TeacherCourseProfileScreen.route,
       builder: (context, state) {
-        return const TeacherCourseComments();
+        return const TeacherCourseProfileScreen();
+      },
+    ),
+    GoRoute(
+      name: TeacherCourseCommentsScreen.name,
+      path: TeacherCourseCommentsScreen.route,
+      builder: (context, state) {
+        return const TeacherCourseCommentsScreen();
       },
     ),
     GoRoute(
