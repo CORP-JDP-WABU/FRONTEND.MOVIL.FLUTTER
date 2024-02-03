@@ -11,7 +11,6 @@ import 'package:wabu/features/authentication/presentation/screens/update_info_sc
 import 'package:wabu/features/authentication/presentation/widgets/dialogs/auth_alert_dialog.dart';
 import 'package:wabu/features/authentication/presentation/widgets/welcome_bottom_sheet_content.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
-import 'package:wabu/features/teachers/presentation/views/teacher_course_profile_view.dart';
 
 class LogInContent extends ConsumerWidget {
   const LogInContent({super.key});

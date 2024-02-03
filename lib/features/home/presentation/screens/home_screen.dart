@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 import 'package:wabu/features/home/presentation/views/smash_view.dart';
-import 'package:wabu/features/teachers/presentation/screens/teacher_profile_view.dart';
 import 'package:wabu/features/teachers/presentation/views/teacher_course_profile_view.dart';
 
 class HomeScreen extends StatelessWidget {
