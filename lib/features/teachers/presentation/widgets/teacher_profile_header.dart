@@ -66,7 +66,10 @@ class _TeacherProfileHeaderContent extends StatelessWidget {
           const SizedBox(height: 16),
           Material(
             shape: const CircleBorder(
-              side: BorderSide(color: Colors.white, width: 3),
+              side: BorderSide(
+                color: Colors.white,
+                width: 3,
+              ),
             ),
             child: CircleAvatar(
               radius: 72,

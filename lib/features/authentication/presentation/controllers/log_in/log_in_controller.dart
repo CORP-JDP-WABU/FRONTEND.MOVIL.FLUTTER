@@ -107,6 +107,8 @@ class LogInController extends _$LogInController {
             Globals.updateInfoMode = UpdateInfoMode.logIn;
             Globals.token = token.token;
             await prefs.setString('token', token.token);
+            await prefs.setString('studentId', token.idStudent);
+            await prefs.setString('universityId', token.idUniversity);
             print("TOKEN: " + token.token);
 
             state = state.copyWith(

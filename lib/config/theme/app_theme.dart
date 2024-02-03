@@ -43,6 +43,10 @@ class AppTheme {
   static const Color bottomNavigationIconColor = Color(0xFFF705D6);
   static const Color smashButtonBackgroundColor = Color(0xFF46E3FF);
   static const Color compareButtonBackgroundColor = Color(0xFFDC80FF);
+  static const Color teacherCommentTitleColor = Color(0xFF064B96);
+  static const Color teacherCommentBodyColor = Color(0xFF6B6A6A);
+  static const Color teacheCommentLikeColor = Color(0xFF17A100);
+  static const Color teacheCommentDislikeColor = Color(0xFFA10000);
 
   ThemeData getTheme() => ThemeData(
         useMaterial3: true,

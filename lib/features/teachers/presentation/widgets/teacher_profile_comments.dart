@@ -23,7 +23,7 @@ class TeacherProfileComments extends StatelessWidget {
 
           if (commentsQuantity <= 0) return;
 
-          context.pushNamed(TeacherCourseComments.name);
+          context.pushNamed(TeacherCourseCommentsScreen.name);
         },
         child: Material(
           color: Colors.white,
