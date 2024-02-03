@@ -3,16 +3,16 @@ import 'package:wabu/features/authentication/presentation/screens/splash_screen.
 import 'package:wabu/features/authentication/presentation/screens/terms_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/update_info_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
+import 'package:wabu/features/compare/presentation/screens/compare_teachers_screen.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
+import 'package:wabu/features/home/presentation/views/smash_view.dart';
+import 'package:wabu/features/smash/presentation/screens/teachers_tinder_screen.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
 import 'package:wabu/features/teachers/presentation/views/teacher_course_profile_view.dart';
 
 final appRouter = GoRouter(
   initialLocation: SplashScreen.route,
-  // initialLocation: UpdateInfoScreen.route,
-  // initialLocation: TermsScreen.route,
-  // initialLocation: TeacherProfileScreen.route,
   routes: [
     GoRoute(
       name: SplashScreen.name,
@@ -59,6 +59,13 @@ final appRouter = GoRouter(
             return const TeacherProfileView();
           },
         ),
+        GoRoute(
+          name: SmashView.name,
+          path: SmashView.route,
+          builder: (context, state) {
+            return const SmashView();
+          },
+        ),
       ],
     ),
     GoRoute(
@@ -66,6 +73,20 @@ final appRouter = GoRouter(
       path: TeacherCourseComments.route,
       builder: (context, state) {
         return const TeacherCourseComments();
+      },
+    ),
+    GoRoute(
+      name: CompareTeachersScreen.name,
+      path: CompareTeachersScreen.route,
+      builder: (context, state) {
+        return const CompareTeachersScreen();
+      },
+    ),
+    GoRoute(
+      name: TeachersTinderScreen.name,
+      path: TeachersTinderScreen.route,
+      builder: (context, state) {
+        return const TeachersTinderScreen();
       },
     ),
   ],
