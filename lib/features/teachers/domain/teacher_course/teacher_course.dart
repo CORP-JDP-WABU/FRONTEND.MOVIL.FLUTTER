@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wabu/features/teachers/domain/teacher_course_qualification.dart';
+import 'package:wabu/features/teachers/domain/entities.dart';
 
 part 'teacher_course.freezed.dart';
 part 'teacher_course.g.dart';
@@ -12,8 +12,8 @@ class TeacherCourse with _$TeacherCourse {
     int? manyQualifications,
     double? manyAverageQualifications,
     int? manyComments,
-    List<TeacherCourseQualification>? optionalQualifications,
-    List<TeacherCourseQualification>? requiredQualifications,
+    List<TeacherCourseQualificationOptional>? optionalQualifications,
+    List<TeacherCourseQualificationRequired>? requiredQualifications,
 
   }) = _TeacherCourse;
 

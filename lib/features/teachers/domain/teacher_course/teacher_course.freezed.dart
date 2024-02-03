@@ -25,9 +25,9 @@ mixin _$TeacherCourse {
   int? get manyQualifications => throw _privateConstructorUsedError;
   double? get manyAverageQualifications => throw _privateConstructorUsedError;
   int? get manyComments => throw _privateConstructorUsedError;
-  List<TeacherCourseQualification>? get optionalQualifications =>
+  List<TeacherCourseQualificationOptional>? get optionalQualifications =>
       throw _privateConstructorUsedError;
-  List<TeacherCourseQualification>? get requiredQualifications =>
+  List<TeacherCourseQualificationRequired>? get requiredQualifications =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,8 +48,8 @@ abstract class $TeacherCourseCopyWith<$Res> {
       int? manyQualifications,
       double? manyAverageQualifications,
       int? manyComments,
-      List<TeacherCourseQualification>? optionalQualifications,
-      List<TeacherCourseQualification>? requiredQualifications});
+      List<TeacherCourseQualificationOptional>? optionalQualifications,
+      List<TeacherCourseQualificationRequired>? requiredQualifications});
 }
 
 /// @nodoc
@@ -97,11 +97,11 @@ class _$TeacherCourseCopyWithImpl<$Res, $Val extends TeacherCourse>
       optionalQualifications: freezed == optionalQualifications
           ? _value.optionalQualifications
           : optionalQualifications // ignore: cast_nullable_to_non_nullable
-              as List<TeacherCourseQualification>?,
+              as List<TeacherCourseQualificationOptional>?,
       requiredQualifications: freezed == requiredQualifications
           ? _value.requiredQualifications
           : requiredQualifications // ignore: cast_nullable_to_non_nullable
-              as List<TeacherCourseQualification>?,
+              as List<TeacherCourseQualificationRequired>?,
     ) as $Val);
   }
 }
@@ -120,8 +120,8 @@ abstract class _$$TeacherCourseImplCopyWith<$Res>
       int? manyQualifications,
       double? manyAverageQualifications,
       int? manyComments,
-      List<TeacherCourseQualification>? optionalQualifications,
-      List<TeacherCourseQualification>? requiredQualifications});
+      List<TeacherCourseQualificationOptional>? optionalQualifications,
+      List<TeacherCourseQualificationRequired>? requiredQualifications});
 }
 
 /// @nodoc
@@ -167,11 +167,11 @@ class __$$TeacherCourseImplCopyWithImpl<$Res>
       optionalQualifications: freezed == optionalQualifications
           ? _value._optionalQualifications
           : optionalQualifications // ignore: cast_nullable_to_non_nullable
-              as List<TeacherCourseQualification>?,
+              as List<TeacherCourseQualificationOptional>?,
       requiredQualifications: freezed == requiredQualifications
           ? _value._requiredQualifications
           : requiredQualifications // ignore: cast_nullable_to_non_nullable
-              as List<TeacherCourseQualification>?,
+              as List<TeacherCourseQualificationRequired>?,
     ));
   }
 }
@@ -185,8 +185,8 @@ class _$TeacherCourseImpl implements _TeacherCourse {
       this.manyQualifications,
       this.manyAverageQualifications,
       this.manyComments,
-      final List<TeacherCourseQualification>? optionalQualifications,
-      final List<TeacherCourseQualification>? requiredQualifications})
+      final List<TeacherCourseQualificationOptional>? optionalQualifications,
+      final List<TeacherCourseQualificationRequired>? requiredQualifications})
       : _optionalQualifications = optionalQualifications,
         _requiredQualifications = requiredQualifications;
 
@@ -203,9 +203,9 @@ class _$TeacherCourseImpl implements _TeacherCourse {
   final double? manyAverageQualifications;
   @override
   final int? manyComments;
-  final List<TeacherCourseQualification>? _optionalQualifications;
+  final List<TeacherCourseQualificationOptional>? _optionalQualifications;
   @override
-  List<TeacherCourseQualification>? get optionalQualifications {
+  List<TeacherCourseQualificationOptional>? get optionalQualifications {
     final value = _optionalQualifications;
     if (value == null) return null;
     if (_optionalQualifications is EqualUnmodifiableListView)
@@ -214,9 +214,9 @@ class _$TeacherCourseImpl implements _TeacherCourse {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<TeacherCourseQualification>? _requiredQualifications;
+  final List<TeacherCourseQualificationRequired>? _requiredQualifications;
   @override
-  List<TeacherCourseQualification>? get requiredQualifications {
+  List<TeacherCourseQualificationRequired>? get requiredQualifications {
     final value = _requiredQualifications;
     if (value == null) return null;
     if (_requiredQualifications is EqualUnmodifiableListView)
@@ -279,14 +279,14 @@ class _$TeacherCourseImpl implements _TeacherCourse {
 
 abstract class _TeacherCourse implements TeacherCourse {
   const factory _TeacherCourse(
-          {final String? idCourse,
-          final String? name,
-          final int? manyQualifications,
-          final double? manyAverageQualifications,
-          final int? manyComments,
-          final List<TeacherCourseQualification>? optionalQualifications,
-          final List<TeacherCourseQualification>? requiredQualifications}) =
-      _$TeacherCourseImpl;
+      {final String? idCourse,
+      final String? name,
+      final int? manyQualifications,
+      final double? manyAverageQualifications,
+      final int? manyComments,
+      final List<TeacherCourseQualificationOptional>? optionalQualifications,
+      final List<TeacherCourseQualificationRequired>?
+          requiredQualifications}) = _$TeacherCourseImpl;
 
   factory _TeacherCourse.fromJson(Map<String, dynamic> json) =
       _$TeacherCourseImpl.fromJson;
@@ -302,9 +302,9 @@ abstract class _TeacherCourse implements TeacherCourse {
   @override
   int? get manyComments;
   @override
-  List<TeacherCourseQualification>? get optionalQualifications;
+  List<TeacherCourseQualificationOptional>? get optionalQualifications;
   @override
-  List<TeacherCourseQualification>? get requiredQualifications;
+  List<TeacherCourseQualificationRequired>? get requiredQualifications;
   @override
   @JsonKey(ignore: true)
   _$$TeacherCourseImplCopyWith<_$TeacherCourseImpl> get copyWith =>

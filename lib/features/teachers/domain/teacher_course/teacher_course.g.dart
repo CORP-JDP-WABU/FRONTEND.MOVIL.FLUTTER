@@ -15,12 +15,12 @@ _$TeacherCourseImpl _$$TeacherCourseImplFromJson(Map<String, dynamic> json) =>
           (json['manyAverageQualifications'] as num?)?.toDouble(),
       manyComments: json['manyComments'] as int?,
       optionalQualifications: (json['optionalQualifications'] as List<dynamic>?)
-          ?.map((e) =>
-              TeacherCourseQualification.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => TeacherCourseQualificationOptional.fromJson(
+              e as Map<String, dynamic>))
           .toList(),
       requiredQualifications: (json['requiredQualifications'] as List<dynamic>?)
-          ?.map((e) =>
-              TeacherCourseQualification.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => TeacherCourseQualificationRequired.fromJson(
+              e as Map<String, dynamic>))
           .toList(),
     );
 

@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wabu/common/data/failure/failure.dart';
 import 'package:wabu/common/data/response/response_dto.dart';
 import 'package:wabu/features/teachers/data/datasources/teachers_remote_datasource.dart';
-import 'package:wabu/features/teachers/domain/teacher.dart';
+import 'package:wabu/features/teachers/domain/entities.dart';
 
 class TeachersDioDatasource extends TeachersRemoteDatasource {
   final dio = Dio(
@@ -44,8 +44,6 @@ class TeachersDioDatasource extends TeachersRemoteDatasource {
       ),
     );
 
-    print(response.statusCode);
-    print(response);
     if (response.statusCode != 200) {
       final failureResponse = Failure.fromJson(response.data);
 
