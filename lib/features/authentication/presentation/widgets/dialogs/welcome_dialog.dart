@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/custom_filled_button.dart';
 import 'package:wabu/common/widgets/gradient_text.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 
 class WelcomeDialog extends StatelessWidget {

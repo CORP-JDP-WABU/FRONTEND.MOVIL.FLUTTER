@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:lottie/lottie.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
 import 'package:wabu/features/authentication/presentation/widgets/video_background.dart';
-import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 
 class SplashScreen extends StatefulWidget {

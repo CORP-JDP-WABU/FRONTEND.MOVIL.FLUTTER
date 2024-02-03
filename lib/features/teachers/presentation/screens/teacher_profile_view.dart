@@ -562,7 +562,7 @@ class _NoQualifications extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SvgPicture.asset('assets/images/svgs/emoji-sad.svg'),
+          SvgPicture.asset('assets/images/svgs/emoji_sad.svg'),
           const SizedBox(height: 16),
           const Text(
             'Este profesor todavía no tiene calificaciones',
