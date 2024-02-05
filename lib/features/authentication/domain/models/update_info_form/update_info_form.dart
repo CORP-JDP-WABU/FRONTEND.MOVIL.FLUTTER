@@ -14,7 +14,8 @@ class UpdateInfoForm with _$UpdateInfoForm {
     @Default('') String idUniversity,
     @Default('') String idCareer,
     @Default('') String cicleName,
-    @Default(true) bool isAcceptedTermCoditions
+    @Default(true) bool isAcceptedTermCoditions,
+    @Default(true) bool isRegisterNewAccount,
   }) = _UpdateInfoForm;
 
   factory UpdateInfoForm.fromJson(Map<String, dynamic> json) =>

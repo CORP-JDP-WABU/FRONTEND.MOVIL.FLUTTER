@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wabu/common/data/failure/failure.dart';
 import 'package:wabu/common/enums/form_status.dart';
 import 'package:wabu/constants/globals.dart';
@@ -9,7 +8,6 @@ import 'package:wabu/features/authentication/domain/models/auth_keys/auth_keys.d
 import 'package:wabu/features/authentication/domain/models/code_validation_result/code_validation_result.dart';
 import 'package:wabu/features/authentication/domain/models/encrypted_form/encrypted_form.dart';
 import 'package:wabu/features/authentication/domain/models/student/student.dart';
-import 'package:wabu/features/authentication/domain/models/token/token.dart';
 import 'package:wabu/features/authentication/presentation/controllers/code_validation/code_validation_state.dart';
 import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_controller.dart';
 import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_state.dart';
@@ -124,62 +122,6 @@ class CodeValidationController extends _$CodeValidationController {
     }
   }
 
-  Future<void> login() async {
-    try {
-      final authRepository = ref.watch(authRepositoryProvider);
-      final getKeysResult = await authRepository.getKeys();
-
-      getKeysResult.fold((Failure failure) {
-        setPageError();
-      }, (AuthKeys authKeys) async {
-        final encryptedLoginForm = _encryptLoginForm(authKeys);
-        final logInResult = await authRepository.logIn(encryptedLoginForm);
-
-        logInResult.fold((Failure failure) {
-          switch (failure.errorCode) {
-            case "LOGIN_EMAIL_FAILED":
-              state = state.copyWith(
-                formStatus: FormStatus.invalid,
-              );
-
-              ref
-                  .read(welcomePageControllerProvider.notifier)
-                  .addPage(WelcomePage.signUp);
-              setPageIdle();
-              break;
-            case "LOGIN_PASSWORD_FAILED":
-              setPageIdle();
-              break;
-            default:
-              setPageError();
-              break;
-          }
-        }, (Token token) async {
-          final prefs = await SharedPreferences.getInstance();
-
-          Globals.studentId = token.idStudent;
-          Globals.universityId = token.idUniversity;
-          Globals.isFirstLogin = token.isFirstLogin;
-          Globals.updateInfoMode = UpdateInfoMode.logIn;
-          Globals.token = token.token;
-          await prefs.setString('token', token.token);
-
-          await prefs.setString('token', token.token);
-          await prefs.setString('studentId', token.idStudent);
-          await prefs.setString('universityId', token.idUniversity);
-
-          state = state.copyWith(
-            formStatus: FormStatus.valid,
-          );
-
-          setPageIdle();
-        });
-      });
-    } catch (error) {
-      setPageError();
-    }
-  }
-
   EncryptedForm _encryptForm(AuthKeys authKeys) {
     final encryptedEmail =
         Cipher.encrypt(Globals.newEmail!, base64.decode(authKeys.keys.x1));
@@ -194,25 +136,6 @@ class CodeValidationController extends _$CodeValidationController {
     return EncryptedForm(
       hash: authKeys.hash,
       data: encryptedCodeValidationMap,
-    );
-  }
-
-  EncryptedForm _encryptLoginForm(AuthKeys authKeys) {
-    final encryptedEmail =
-        Cipher.encrypt(Globals.newEmail!, base64.decode(authKeys.keys.x1));
-    final encryptedPassword =
-        Cipher.encrypt(Globals.password!, base64.decode(authKeys.keys.x2));
-
-    final loginMap = {
-      'email': encryptedEmail,
-      'password': encryptedPassword,
-    };
-
-    final encryptedLoginMap = Cipher.encryptMapWithBaseKey(loginMap);
-
-    return EncryptedForm(
-      hash: authKeys.hash,
-      data: encryptedLoginMap,
     );
   }
 
