@@ -33,16 +33,14 @@ class TeacherCourseCommentsScreen extends ConsumerWidget {
       backgroundColor: AppTheme.greyBackgroundColor,
       body: Stack(
         children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                TeacherProfileHeader(teacher: teacher),
-                TeacherCourseCommentsBody(
-                  teacher: teacher,
-                  teacherCourseComments: teacherCourseComments,
-                ),
-              ],
-            ),
+          CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(child: TeacherProfileHeader(teacher: teacher)),
+              TeacherCourseCommentsBody(
+                teacher: teacher,
+                teacherCourseComments: teacherCourseComments,
+              ),
+            ],
           ),
           if (state.pageStatus == TeacherCourseCommentsStatus.loading)
             const LoaderTransparent(),

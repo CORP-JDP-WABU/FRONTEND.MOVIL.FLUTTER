@@ -48,6 +48,11 @@ class TemporalTeachersView extends ConsumerWidget {
             );
           },
         ),
+        if (state.pageStatus != CareerTeachersStatus.loading &&
+            careerTeacherCourses.isEmpty)
+          const Center(
+            child: Text('No hay datos'),
+          ),
         if (state.pageStatus == CareerTeachersStatus.loading)
           const LoaderTransparent(),
       ],

@@ -16,27 +16,27 @@ class TeacherCourseCommentsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final comments = teacherCourseComments?.students ?? [];
 
-    return Padding(
+    return SliverPadding(
       padding: const EdgeInsets.only(
         left: 16,
         right: 16,
         bottom: 32,
       ),
-      child: Container(
+      sliver: DecoratedSliver(
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(25),
           ),
         ),
-        child: Padding(
+        sliver: SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: Column(
-            children: [
-              TeacherCourseDetails(teacher: teacher),
-              const SizedBox(height: 20),
+          sliver: SliverMainAxisGroup(
+            slivers: [
+              SliverToBoxAdapter(child: TeacherCourseDetails(teacher: teacher)),
+              const SliverToBoxAdapter(child: SizedBox(height: 20)),
               _TeacherCourseCommentList(comments: comments),
-              const SizedBox(height: 28),
+              const SliverToBoxAdapter(child: SizedBox(height: 28)),
             ],
           ),
         ),
@@ -54,12 +54,8 @@ class _TeacherCourseCommentList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: EdgeInsets.zero,
+    return SliverList.builder(
       itemCount: comments.length,
-      controller: null,
-      physics: null,
-      shrinkWrap: true,
       itemBuilder: (context, index) {
         final comment = comments[index];
 
