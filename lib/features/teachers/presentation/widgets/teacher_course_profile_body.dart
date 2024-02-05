@@ -45,7 +45,9 @@ class TeacherProfileBody extends StatelessWidget {
             TeacherProfileDetails(teacher: teacher),
             TeacherCourseDetails(teacher: teacher),
             const SizedBox(height: 20),
-            RequiredQualifications(teacher: teacher),
+            ((teacher?.course?.manyQualifications ?? 0) > 0)
+                ? RequiredQualifications(teacher: teacher)
+                : const NoQualificationsFoundWidget(),
             TeacherProfileComments(teacher: teacher),
             hasOptionalQualifications(teacher)
                 ? OptionalQualifications(teacher: teacher)
