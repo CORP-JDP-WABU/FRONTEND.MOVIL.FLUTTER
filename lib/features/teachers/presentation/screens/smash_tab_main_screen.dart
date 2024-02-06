@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:wabu/features/teachers/presentation/screens/compare_teacher_%20main_screen.dart';
 import 'package:wabu/features/teachers/presentation/screens/tinder_view_rating_teacher.dart';
 
@@ -54,12 +55,7 @@ class SmashTabMainScreen extends ConsumerWidget {
               )),
         ),
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => TinderViewRatingTeacher(),
-            ),
-          );
+          context.pushNamed(TinderViewRatingTeacher.name);
         },
       ),
       InkWell(
