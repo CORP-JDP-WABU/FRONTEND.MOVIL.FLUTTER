@@ -47,6 +47,8 @@ class AppTheme {
   static const Color teacherCommentBodyColor = Color(0xFF6B6A6A);
   static const Color teacheCommentLikeColor = Color(0xFF17A100);
   static const Color teacheCommentDislikeColor = Color(0xFFA10000);
+  static const Color wabuersDashboardColor = Color(0xFF0AB99A);
+  static const Color qualificationsDashboardColor = Color(0xFFDD52AB);
 
   ThemeData getTheme() => ThemeData(
         useMaterial3: true,

@@ -31,7 +31,10 @@ class HomeViewController extends _$HomeViewController {
       }, (Student student) {
         Globals.universityId = student.idUniversity;
         Globals.careerId = student.idCareer;
-        
+
+        state = state.copyWith(
+          student: student,
+        );
         setPageLoaded();
       });
     } catch (e) {

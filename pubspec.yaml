@@ -43,6 +43,7 @@ flutter:
     - assets/images/
     - assets/images/svgs/
     - assets/videos/
+    - assets/lotties/
   fonts:
     - family: GothamRounded
       fonts:

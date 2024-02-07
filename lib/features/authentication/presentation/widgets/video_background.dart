@@ -14,10 +14,11 @@ class _VideoBackgroundState extends State<VideoBackground> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset('assets/videos/welcome_background.mp4')
-      ..setVolume(0)
-      ..setLooping(true)
-      ..play();
+    _controller =
+        VideoPlayerController.asset('assets/videos/welcome_background.mp4')
+          ..setVolume(0)
+          ..setLooping(true)
+          ..play();
   }
 
   @override
@@ -26,8 +27,9 @@ class _VideoBackgroundState extends State<VideoBackground> {
         future: _controller.initialize(),
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
-            return Expanded(
-              child: Image.asset('assets/images/static_background.png', fit: BoxFit.cover),
+            return Image.asset(
+              'assets/images/static_background.png',
+              fit: BoxFit.cover,
             );
           }
 
