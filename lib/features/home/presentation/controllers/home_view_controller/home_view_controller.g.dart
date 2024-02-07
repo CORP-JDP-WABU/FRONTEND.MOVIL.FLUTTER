@@ -7,7 +7,7 @@ part of 'home_view_controller.dart';
 // **************************************************************************
 
 String _$homeViewControllerHash() =>
-    r'5df0c672bb94fd2f202e09d00407387a33ea7a4a';
+    r'cad430bc376e6adc44f6de250df171083ab861c2';
 
 /// See also [HomeViewController].
 @ProviderFor(HomeViewController)
