@@ -6,10 +6,10 @@ import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/teachers/presentation/controllers/controllers.dart';
 import 'package:wabu/features/teachers/presentation/screens/teacher_course_profile_screen.dart';
 
-class TemporalTeachersView extends ConsumerWidget {
-  const TemporalTeachersView({super.key});
+class SearchView extends ConsumerWidget {
+  const SearchView({super.key});
 
-  static const String name = "temporal_teachers_view";
+  static const String name = "search_view";
   static const String route = "/$name";
 
   @override

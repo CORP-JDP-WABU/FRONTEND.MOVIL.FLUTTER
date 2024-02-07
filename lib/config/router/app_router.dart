@@ -10,7 +10,7 @@ import 'package:wabu/features/smash/presentation/views/smash_view.dart';
 import 'package:wabu/features/smash/presentation/screens/teachers_tinder_screen.dart';
 import 'package:wabu/features/smash/presentation/screens/teacher_comment.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
-import 'package:wabu/features/teachers/presentation/views/temporal_teachers_view.dart';
+import 'package:wabu/features/search/presentation/views/search_view.dart';
 import 'package:wabu/features/smash/presentation/screens/teacher_rating_step2.dart';
 
 final appRouter = GoRouter(
@@ -55,10 +55,10 @@ final appRouter = GoRouter(
           },
         ),
         GoRoute(
-          name: TemporalTeachersView.name,
-          path: TemporalTeachersView.route,
+          name: SearchView.name,
+          path: SearchView.route,
           builder: (context, state) {
-            return const TemporalTeachersView();
+            return const SearchView();
           },
         ),
         GoRoute(
