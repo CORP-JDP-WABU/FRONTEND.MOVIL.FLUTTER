@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wabu/features/teachers/data/datasources/card_data.dart';
-import 'package:wabu/features/teachers/presentation/screens/tinder_view_rating_teacher.dart';
+import 'package:wabu/features/smash/presentation/controllers/card_data.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 enum CardStatus {like, dislike}
 

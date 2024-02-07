@@ -7,8 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/custom_back_button.dart';
 import 'package:wabu/common/widgets/custom_filled_button.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/teachers/presentation/screens/compare_teacher_%20main_screen.dart';
-import 'package:wabu/features/teachers/presentation/screens/teacher_comment.dart';
+import 'package:wabu/features/smash/presentation/screens/teacher_comment.dart';
 
 class TeacherRaitingStep2Screen extends ConsumerWidget {
   const TeacherRaitingStep2Screen({super.key});

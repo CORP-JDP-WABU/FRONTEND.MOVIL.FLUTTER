@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wabu/features/teachers/data/datasources/card_data.dart';
+import 'package:wabu/features/smash/presentation/controllers/card_data.dart';
 
 class CardView extends StatelessWidget {
   final CardData candidate;
@@ -12,7 +12,6 @@ class CardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     var size = MediaQuery.of(context).size;
     return Container(
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(

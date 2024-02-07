@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/custom_back_button.dart';
 import 'package:wabu/common/widgets/custom_filled_button.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/teachers/presentation/screens/compare_teacher_%20main_screen.dart';
 
 class TeacherComment extends ConsumerWidget {
   const TeacherComment({super.key});
