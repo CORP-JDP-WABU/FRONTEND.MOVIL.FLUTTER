@@ -6,10 +6,12 @@ import 'package:wabu/features/authentication/presentation/screens/welcome_screen
 import 'package:wabu/features/compare/presentation/screens/compare_teachers_screen.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
-import 'package:wabu/features/home/presentation/views/smash_view.dart';
+import 'package:wabu/features/smash/presentation/views/smash_view.dart';
 import 'package:wabu/features/smash/presentation/screens/teachers_tinder_screen.dart';
+import 'package:wabu/features/smash/presentation/screens/teacher_comment.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
 import 'package:wabu/features/teachers/presentation/views/temporal_teachers_view.dart';
+import 'package:wabu/features/smash/presentation/screens/teacher_rating_step2.dart';
 
 final appRouter = GoRouter(
   initialLocation: SplashScreen.route,
@@ -67,6 +69,20 @@ final appRouter = GoRouter(
           },
         ),
       ],
+    ),
+    GoRoute(
+      name: TeacherRaitingStep2Screen.name,
+      path: TeacherRaitingStep2Screen.route,
+      builder: (context, state) {
+        return const TeacherRaitingStep2Screen();
+      },
+    ),
+    GoRoute(
+      name: TeacherComment.name,
+      path: TeacherComment.route,
+      builder: (context, state) {
+        return const TeacherComment();
+      },
     ),
     GoRoute(
       name: TeacherCourseProfileScreen.name,
