@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeViewState {
   Student get student => throw _privateConstructorUsedError;
+  HomeDashboard get homeDashboard => throw _privateConstructorUsedError;
   HomeViewStatus get pageStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,9 +31,13 @@ abstract class $HomeViewStateCopyWith<$Res> {
           HomeViewState value, $Res Function(HomeViewState) then) =
       _$HomeViewStateCopyWithImpl<$Res, HomeViewState>;
   @useResult
-  $Res call({Student student, HomeViewStatus pageStatus});
+  $Res call(
+      {Student student,
+      HomeDashboard homeDashboard,
+      HomeViewStatus pageStatus});
 
   $StudentCopyWith<$Res> get student;
+  $HomeDashboardCopyWith<$Res> get homeDashboard;
 }
 
 /// @nodoc
@@ -49,6 +54,7 @@ class _$HomeViewStateCopyWithImpl<$Res, $Val extends HomeViewState>
   @override
   $Res call({
     Object? student = null,
+    Object? homeDashboard = null,
     Object? pageStatus = null,
   }) {
     return _then(_value.copyWith(
@@ -56,6 +62,10 @@ class _$HomeViewStateCopyWithImpl<$Res, $Val extends HomeViewState>
           ? _value.student
           : student // ignore: cast_nullable_to_non_nullable
               as Student,
+      homeDashboard: null == homeDashboard
+          ? _value.homeDashboard
+          : homeDashboard // ignore: cast_nullable_to_non_nullable
+              as HomeDashboard,
       pageStatus: null == pageStatus
           ? _value.pageStatus
           : pageStatus // ignore: cast_nullable_to_non_nullable
@@ -70,6 +80,14 @@ class _$HomeViewStateCopyWithImpl<$Res, $Val extends HomeViewState>
       return _then(_value.copyWith(student: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $HomeDashboardCopyWith<$Res> get homeDashboard {
+    return $HomeDashboardCopyWith<$Res>(_value.homeDashboard, (value) {
+      return _then(_value.copyWith(homeDashboard: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -80,10 +98,15 @@ abstract class _$$HomeViewStateImplCopyWith<$Res>
       __$$HomeViewStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Student student, HomeViewStatus pageStatus});
+  $Res call(
+      {Student student,
+      HomeDashboard homeDashboard,
+      HomeViewStatus pageStatus});
 
   @override
   $StudentCopyWith<$Res> get student;
+  @override
+  $HomeDashboardCopyWith<$Res> get homeDashboard;
 }
 
 /// @nodoc
@@ -98,6 +121,7 @@ class __$$HomeViewStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? student = null,
+    Object? homeDashboard = null,
     Object? pageStatus = null,
   }) {
     return _then(_$HomeViewStateImpl(
@@ -105,6 +129,10 @@ class __$$HomeViewStateImplCopyWithImpl<$Res>
           ? _value.student
           : student // ignore: cast_nullable_to_non_nullable
               as Student,
+      homeDashboard: null == homeDashboard
+          ? _value.homeDashboard
+          : homeDashboard // ignore: cast_nullable_to_non_nullable
+              as HomeDashboard,
       pageStatus: null == pageStatus
           ? _value.pageStatus
           : pageStatus // ignore: cast_nullable_to_non_nullable
@@ -118,6 +146,7 @@ class __$$HomeViewStateImplCopyWithImpl<$Res>
 class _$HomeViewStateImpl implements _HomeViewState {
   const _$HomeViewStateImpl(
       {this.student = const Student(),
+      this.homeDashboard = const HomeDashboard(),
       this.pageStatus = HomeViewStatus.loading});
 
   @override
@@ -125,11 +154,14 @@ class _$HomeViewStateImpl implements _HomeViewState {
   final Student student;
   @override
   @JsonKey()
+  final HomeDashboard homeDashboard;
+  @override
+  @JsonKey()
   final HomeViewStatus pageStatus;
 
   @override
   String toString() {
-    return 'HomeViewState(student: $student, pageStatus: $pageStatus)';
+    return 'HomeViewState(student: $student, homeDashboard: $homeDashboard, pageStatus: $pageStatus)';
   }
 
   @override
@@ -138,12 +170,15 @@ class _$HomeViewStateImpl implements _HomeViewState {
         (other.runtimeType == runtimeType &&
             other is _$HomeViewStateImpl &&
             (identical(other.student, student) || other.student == student) &&
+            (identical(other.homeDashboard, homeDashboard) ||
+                other.homeDashboard == homeDashboard) &&
             (identical(other.pageStatus, pageStatus) ||
                 other.pageStatus == pageStatus));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, student, pageStatus);
+  int get hashCode =>
+      Object.hash(runtimeType, student, homeDashboard, pageStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -155,10 +190,13 @@ class _$HomeViewStateImpl implements _HomeViewState {
 abstract class _HomeViewState implements HomeViewState {
   const factory _HomeViewState(
       {final Student student,
+      final HomeDashboard homeDashboard,
       final HomeViewStatus pageStatus}) = _$HomeViewStateImpl;
 
   @override
   Student get student;
+  @override
+  HomeDashboard get homeDashboard;
   @override
   HomeViewStatus get pageStatus;
   @override

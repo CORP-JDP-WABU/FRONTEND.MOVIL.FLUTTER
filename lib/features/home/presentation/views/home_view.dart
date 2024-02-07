@@ -1,15 +1,13 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lottie/lottie.dart';
-import 'package:wabu/common/widgets/gradient_circle_avatar.dart';
 import 'package:wabu/common/widgets/loader_transparent.dart';
 import 'package:wabu/common/widgets/solid_circle_avatar.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/authentication/presentation/widgets/video_background.dart';
-import 'package:wabu/features/home/presentation/controllers/home_view_controller.dart';
-import 'package:wabu/features/home/presentation/controllers/home_view_state.dart';
+import 'package:wabu/features/home/domain/domain.dart';
+import 'package:wabu/features/home/presentation/controllers/controllers.dart';
+import 'package:wabu/features/home/presentation/widgets/home_dashboard_item.dart';
 import 'package:wabu/features/student/domain/domain.dart';
 
 class HomeView extends ConsumerWidget {
@@ -22,11 +20,15 @@ class HomeView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(homeViewControllerProvider);
     final student = state.student;
+    final homeDashboard = state.homeDashboard;
 
     return Stack(
       children: [
         const VideoBackground(),
-        _HomeViewBody(student: student),
+        _HomeViewBody(
+          student: student,
+          homeDashboard: homeDashboard,
+        ),
         if (state.pageStatus == HomeViewStatus.loading)
           const LoaderTransparent(),
       ],
@@ -35,9 +37,13 @@ class HomeView extends ConsumerWidget {
 }
 
 class _HomeViewBody extends StatelessWidget {
-  const _HomeViewBody({required this.student});
+  const _HomeViewBody({
+    required this.student,
+    required this.homeDashboard,
+  });
 
   final Student student;
+  final HomeDashboard homeDashboard;
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +56,18 @@ class _HomeViewBody extends StatelessWidget {
           children: [
             _HomeViewContent(student: student),
             const SizedBox(height: 24),
-            const HomeDashboardItem(
+            HomeDashboardItem(
+              iconAsset: 'assets/images/svgs/wabuers_dashboard.svg',
+              lottieAsset: 'assets/lotties/wabuers_dashboard.json',
               color: AppTheme.wabuersDashboardColor,
-              value: 5,
+              value: homeDashboard.kpis?.manyStudentConnected ?? 0,
               text: 'WABUERS ONLINE',
             ),
-            const HomeDashboardItem(
+            HomeDashboardItem(
+              iconAsset: 'assets/images/svgs/qualifications_dashboard.svg',
+              lottieAsset: 'assets/lotties/qualifications_dashboard.json',
               color: AppTheme.qualificationsDashboardColor,
-              value: 5,
+              value: homeDashboard.kpis?.manyQualificationTeacher ?? 0,
               text: 'CALIFICACIONES A PROFESORES',
             ),
           ],
@@ -142,111 +152,6 @@ class _HomeViewContent extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
-}
-
-class HomeDashboardItem extends StatelessWidget {
-  const HomeDashboardItem({
-    super.key,
-    required this.color,
-    required this.value,
-    required this.text,
-  });
-
-  final Color color;
-  final int value;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: LayoutBuilder(builder: (context, contraints) {
-        final maxHeight = contraints.maxHeight;
-        final maxWidth = contraints.maxWidth;
-
-        return Padding(
-          padding: EdgeInsets.symmetric(horizontal: maxWidth * 0.05),
-          child: Stack(
-            clipBehavior: Clip.none,
-            alignment: Alignment.centerLeft,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(width: 48),
-                  Expanded(
-                    child: Material(
-                      borderRadius: BorderRadius.circular(25),
-                      elevation: 5,
-                      child: Container(
-                        height: min(maxHeight * 0.65, 80),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 52,
-                          ),
-                          child: Center(
-                            child: Text(
-                              text,
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: color,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Positioned(
-                left: -36,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
-                      height: min(maxHeight * 0.8, 98),
-                      width: min(maxHeight * 0.8, 98),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius:
-                            BorderRadius.circular(min(maxHeight * 0.4, 49) + 0),
-                        border: Border.all(
-                          width: 0,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                      child: Center(
-                        child: SvgPicture.asset(
-                            'assets/images/svgs/wabuers_dashboard.svg'),
-                      ),
-                    ),
-                    Lottie.asset(
-                      'assets/lotties/wabuers_dashboard.json',
-                      height: min(maxHeight * 0.9, 198),
-                      width: min(maxHeight * 0.9, 198),
-                    ),
-                  ],
-                ),
-              )
-              // SolidCircleAvatar(
-              //   borderWidth: 0,
-              //   radius: min(maxHeight * 0.4, 49),
-              //   imageProvider: SvgPicture.asset('assetName'),
-              // ),
-            ],
-          ),
-        );
-      }),
     );
   }
 }
