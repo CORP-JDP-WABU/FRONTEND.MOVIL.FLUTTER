@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
-import 'package:wabu/features/teachers/presentation/screens/smash_tab_main_screen.dart';
-import 'package:wabu/features/teachers/presentation/screens/teacher_profile_view.dart';
+import 'package:wabu/features/home/presentation/views/smash_view.dart';
+import 'package:wabu/features/teachers/presentation/screens/teacher_course_profile_screen.dart';
+import 'package:wabu/features/teachers/presentation/views/temporal_teachers_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -17,8 +19,8 @@ class HomeScreen extends StatelessWidget {
   final Widget childView;
 
   final viewRoutes = const <Widget>[
-    TeacherProfileView(),
-    SmashTabMainScreen(),
+    TeacherCourseProfileScreen(),
+    SmashView(),
     SizedBox(),
   ];
 
@@ -40,9 +42,9 @@ class _CustomNavigationBar extends StatelessWidget {
     switch (location) {
       case HomeView.route:
         return 0;
-      case TeacherProfileView.route:
+      case TemporalTeachersView.route:
         return 1;
-      case SmashTabMainScreen.route:
+      case SmashView.route:
         return 2;
       default:
         return 0;
@@ -55,11 +57,14 @@ class _CustomNavigationBar extends StatelessWidget {
         context.go(HomeView.route);
         break;
       case 1:
-        context.go(TeacherProfileView.route);
+        context.go(TemporalTeachersView.route);
         break;
       case 2:
-        context.go(SmashTabMainScreen.route);
-        break; 
+        context.go(SmashView.route);
+        break;
+      default:
+        context.go(HomeView.route);
+        break;
     }
   }
 
@@ -67,34 +72,64 @@ class _CustomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: const Color.fromARGB(255, 247, 5, 214),
+      selectedItemColor: AppTheme.bottomNavigationIconColor,
       showSelectedLabels: true,
       currentIndex: getCurrentIndex(context),
       onTap: (value) => onItemTapped(context, value),
-      items:  [
+      items: [
         BottomNavigationBarItem(
-          icon:  SvgPicture.asset('assets/images/svgs/Home.svg'),
-          activeIcon: SvgPicture.asset('assets/images/svgs/Home.svg', color:const Color.fromARGB(255, 247, 5, 214) ),
+          icon: SvgPicture.asset('assets/images/svgs/home_bottom_bar.svg'),
+          activeIcon: SvgPicture.asset(
+            'assets/images/svgs/home_bottom_bar.svg',
+            colorFilter: const ColorFilter.mode(
+              AppTheme.bottomNavigationIconColor,
+              BlendMode.srcIn,
+            ),
+          ),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset('assets/images/svgs/Find.svg'),
-          activeIcon: SvgPicture.asset('assets/images/svgs/Find.svg', color:const Color.fromARGB(255, 247, 5, 214) ),
+          icon: SvgPicture.asset('assets/images/svgs/find.svg'),
+          activeIcon: SvgPicture.asset(
+            'assets/images/svgs/find.svg',
+            colorFilter: const ColorFilter.mode(
+              AppTheme.bottomNavigationIconColor,
+              BlendMode.srcIn,
+            ),
+          ),
           label: 'Buscar',
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset('assets/images/svgs/Smash.svg'),
-          activeIcon: SvgPicture.asset('assets/images/svgs/Smash.svg', color:const Color.fromARGB(255, 247, 5, 214) ),
+          icon: SvgPicture.asset('assets/images/svgs/smash_bottom_bar.svg'),
+          activeIcon: SvgPicture.asset(
+            'assets/images/svgs/smash_bottom_bar.svg',
+            colorFilter: const ColorFilter.mode(
+              AppTheme.bottomNavigationIconColor,
+              BlendMode.srcIn,
+            ),
+          ),
           label: 'Smash',
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset('assets/images/svgs/Messages.svg'),
-          activeIcon: SvgPicture.asset('assets/images/svgs/Messages.svg', color:const Color.fromARGB(255, 247, 5, 214) ),
+          icon: SvgPicture.asset('assets/images/svgs/chat_bottom_bar.svg'),
+          activeIcon: SvgPicture.asset(
+            'assets/images/svgs/chat_bottom_bar.svg',
+            colorFilter: const ColorFilter.mode(
+              AppTheme.bottomNavigationIconColor,
+              BlendMode.srcIn,
+            ),
+          ),
           label: 'Chat',
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset('assets/images/svgs/Perfil.svg'),
-          activeIcon: SvgPicture.asset('assets/images/svgs/Perfil.svg', color:const Color.fromARGB(255, 247, 5, 214) ),
+          icon: SvgPicture.asset('assets/images/svgs/profile_bottom_bar.svg'),
+          activeIcon: SvgPicture.asset(
+            'assets/images/svgs/profile_bottom_bar.svg',
+            colorFilter: const ColorFilter.mode(
+              AppTheme.bottomNavigationIconColor,
+              BlendMode.srcIn,
+            ),
+          ),
           label: 'Perfil',
         ),
       ],

@@ -17,6 +17,7 @@ _$UpdateInfoFormImpl _$$UpdateInfoFormImplFromJson(Map<String, dynamic> json) =>
       idCareer: json['idCareer'] as String? ?? '',
       cicleName: json['cicleName'] as String? ?? '',
       isAcceptedTermCoditions: json['isAcceptedTermCoditions'] as bool? ?? true,
+      isRegisterNewAccount: json['isRegisterNewAccount'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$$UpdateInfoFormImplToJson(
@@ -31,4 +32,5 @@ Map<String, dynamic> _$$UpdateInfoFormImplToJson(
       'idCareer': instance.idCareer,
       'cicleName': instance.cicleName,
       'isAcceptedTermCoditions': instance.isAcceptedTermCoditions,
+      'isRegisterNewAccount': instance.isRegisterNewAccount,
     };

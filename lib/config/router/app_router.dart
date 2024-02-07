@@ -3,19 +3,20 @@ import 'package:wabu/features/authentication/presentation/screens/splash_screen.
 import 'package:wabu/features/authentication/presentation/screens/terms_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/update_info_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
+import 'package:wabu/features/compare/presentation/screens/compare_teachers_screen.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
+import 'package:wabu/features/home/presentation/views/smash_view.dart';
+import 'package:wabu/features/smash/presentation/screens/teachers_tinder_screen.dart';
 import 'package:wabu/features/teachers/presentation/screens/compare_teacher_%20main_screen.dart';
 import 'package:wabu/features/teachers/presentation/screens/teacher_comment.dart';
-import 'package:wabu/features/teachers/presentation/screens/teacher_profile_view.dart';
-import 'package:wabu/features/teachers/presentation/screens/smash_tab_main_screen.dart';
+import 'package:wabu/features/teachers/presentation/presentation.dart';
+import 'package:wabu/features/teachers/presentation/views/temporal_teachers_view.dart';
+
 import 'package:wabu/features/teachers/presentation/screens/teacher_rating_step2.dart';
 import 'package:wabu/features/teachers/presentation/screens/tinder_view_rating_teacher.dart';
 final appRouter = GoRouter(
   initialLocation: SplashScreen.route,
-  // initialLocation: UpdateInfoScreen.route,
-  // initialLocation: TermsScreen.route,
-  // initialLocation: TeacherProfileScreen.route,
   routes: [
     GoRoute(
       name: SplashScreen.name,
@@ -56,17 +57,17 @@ final appRouter = GoRouter(
           },
         ),
         GoRoute(
-          name: TeacherProfileView.name,
-          path: TeacherProfileView.route,
+          name: TemporalTeachersView.name,
+          path: TemporalTeachersView.route,
           builder: (context, state) {
-            return const TeacherProfileView();
+            return const TemporalTeachersView();
           },
         ),
-          GoRoute(
-          name: SmashTabMainScreen.name,
-          path: SmashTabMainScreen.route,
+        GoRoute(
+          name: SmashView.name,
+          path: SmashView.route,
           builder: (context, state) {
-            return const SmashTabMainScreen();
+            return const SmashView();
           },
         ),
       ],
@@ -102,5 +103,33 @@ final appRouter = GoRouter(
             return const TeacherComment();
           },
         ),
+    GoRoute(
+      name: TeacherCourseProfileScreen.name,
+      path: TeacherCourseProfileScreen.route,
+      builder: (context, state) {
+        return const TeacherCourseProfileScreen();
+      },
+    ),
+    GoRoute(
+      name: TeacherCourseCommentsScreen.name,
+      path: TeacherCourseCommentsScreen.route,
+      builder: (context, state) {
+        return const TeacherCourseCommentsScreen();
+      },
+    ),
+    GoRoute(
+      name: CompareTeachersScreen.name,
+      path: CompareTeachersScreen.route,
+      builder: (context, state) {
+        return const CompareTeachersScreen();
+      },
+    ),
+    GoRoute(
+      name: TeachersTinderScreen.name,
+      path: TeachersTinderScreen.route,
+      builder: (context, state) {
+        return const TeachersTinderScreen();
+      },
+    ),
   ],
 );

@@ -29,6 +29,7 @@ mixin _$UpdateInfoForm {
   String get idCareer => throw _privateConstructorUsedError;
   String get cicleName => throw _privateConstructorUsedError;
   bool get isAcceptedTermCoditions => throw _privateConstructorUsedError;
+  bool get isRegisterNewAccount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +52,8 @@ abstract class $UpdateInfoFormCopyWith<$Res> {
       String idUniversity,
       String idCareer,
       String cicleName,
-      bool isAcceptedTermCoditions});
+      bool isAcceptedTermCoditions,
+      bool isRegisterNewAccount});
 }
 
 /// @nodoc
@@ -76,6 +78,7 @@ class _$UpdateInfoFormCopyWithImpl<$Res, $Val extends UpdateInfoForm>
     Object? idCareer = null,
     Object? cicleName = null,
     Object? isAcceptedTermCoditions = null,
+    Object? isRegisterNewAccount = null,
   }) {
     return _then(_value.copyWith(
       idStudent: null == idStudent
@@ -114,6 +117,10 @@ class _$UpdateInfoFormCopyWithImpl<$Res, $Val extends UpdateInfoForm>
           ? _value.isAcceptedTermCoditions
           : isAcceptedTermCoditions // ignore: cast_nullable_to_non_nullable
               as bool,
+      isRegisterNewAccount: null == isRegisterNewAccount
+          ? _value.isRegisterNewAccount
+          : isRegisterNewAccount // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -135,7 +142,8 @@ abstract class _$$UpdateInfoFormImplCopyWith<$Res>
       String idUniversity,
       String idCareer,
       String cicleName,
-      bool isAcceptedTermCoditions});
+      bool isAcceptedTermCoditions,
+      bool isRegisterNewAccount});
 }
 
 /// @nodoc
@@ -158,6 +166,7 @@ class __$$UpdateInfoFormImplCopyWithImpl<$Res>
     Object? idCareer = null,
     Object? cicleName = null,
     Object? isAcceptedTermCoditions = null,
+    Object? isRegisterNewAccount = null,
   }) {
     return _then(_$UpdateInfoFormImpl(
       idStudent: null == idStudent
@@ -196,6 +205,10 @@ class __$$UpdateInfoFormImplCopyWithImpl<$Res>
           ? _value.isAcceptedTermCoditions
           : isAcceptedTermCoditions // ignore: cast_nullable_to_non_nullable
               as bool,
+      isRegisterNewAccount: null == isRegisterNewAccount
+          ? _value.isRegisterNewAccount
+          : isRegisterNewAccount // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -212,7 +225,8 @@ class _$UpdateInfoFormImpl implements _UpdateInfoForm {
       this.idUniversity = '',
       this.idCareer = '',
       this.cicleName = '',
-      this.isAcceptedTermCoditions = true});
+      this.isAcceptedTermCoditions = true,
+      this.isRegisterNewAccount = true});
 
   factory _$UpdateInfoFormImpl.fromJson(Map<String, dynamic> json) =>
       _$$UpdateInfoFormImplFromJson(json);
@@ -244,10 +258,13 @@ class _$UpdateInfoFormImpl implements _UpdateInfoForm {
   @override
   @JsonKey()
   final bool isAcceptedTermCoditions;
+  @override
+  @JsonKey()
+  final bool isRegisterNewAccount;
 
   @override
   String toString() {
-    return 'UpdateInfoForm(idStudent: $idStudent, profileUrl: $profileUrl, firstName: $firstName, lastName: $lastName, information: $information, idUniversity: $idUniversity, idCareer: $idCareer, cicleName: $cicleName, isAcceptedTermCoditions: $isAcceptedTermCoditions)';
+    return 'UpdateInfoForm(idStudent: $idStudent, profileUrl: $profileUrl, firstName: $firstName, lastName: $lastName, information: $information, idUniversity: $idUniversity, idCareer: $idCareer, cicleName: $cicleName, isAcceptedTermCoditions: $isAcceptedTermCoditions, isRegisterNewAccount: $isRegisterNewAccount)';
   }
 
   @override
@@ -273,7 +290,9 @@ class _$UpdateInfoFormImpl implements _UpdateInfoForm {
                 other.cicleName == cicleName) &&
             (identical(
                     other.isAcceptedTermCoditions, isAcceptedTermCoditions) ||
-                other.isAcceptedTermCoditions == isAcceptedTermCoditions));
+                other.isAcceptedTermCoditions == isAcceptedTermCoditions) &&
+            (identical(other.isRegisterNewAccount, isRegisterNewAccount) ||
+                other.isRegisterNewAccount == isRegisterNewAccount));
   }
 
   @JsonKey(ignore: true)
@@ -288,7 +307,8 @@ class _$UpdateInfoFormImpl implements _UpdateInfoForm {
       idUniversity,
       idCareer,
       cicleName,
-      isAcceptedTermCoditions);
+      isAcceptedTermCoditions,
+      isRegisterNewAccount);
 
   @JsonKey(ignore: true)
   @override
@@ -315,7 +335,8 @@ abstract class _UpdateInfoForm implements UpdateInfoForm {
       final String idUniversity,
       final String idCareer,
       final String cicleName,
-      final bool isAcceptedTermCoditions}) = _$UpdateInfoFormImpl;
+      final bool isAcceptedTermCoditions,
+      final bool isRegisterNewAccount}) = _$UpdateInfoFormImpl;
 
   factory _UpdateInfoForm.fromJson(Map<String, dynamic> json) =
       _$UpdateInfoFormImpl.fromJson;
@@ -338,6 +359,8 @@ abstract class _UpdateInfoForm implements UpdateInfoForm {
   String get cicleName;
   @override
   bool get isAcceptedTermCoditions;
+  @override
+  bool get isRegisterNewAccount;
   @override
   @JsonKey(ignore: true)
   _$$UpdateInfoFormImplCopyWith<_$UpdateInfoFormImpl> get copyWith =>

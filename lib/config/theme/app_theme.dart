@@ -25,7 +25,6 @@ class AppTheme {
   static const Color headerBackgroundColor = Color(0xFF29B8FD);
   static const Color greenIconsColor = Color(0xFF2BD47F);
   static const Color checkboxColor = Color(0xFF374FC7);
-
   static const Color courseNameColor = Color(0xFF02336A);
   static const Color starColor = Color(0xFFFFC32A);
   static const Color primaryStatsColor = Color(0xFF4EA2FF);
@@ -41,6 +40,13 @@ class AppTheme {
   static const Color linearGradientProgressBarDark = Color(0xC79730D6);
   static const Color linearGradientProgressBarLight = Color(0xC7F2ABA0);
   static const Color noQualificationsTextColor = Color(0xFFBFBFBF);
+  static const Color bottomNavigationIconColor = Color(0xFFF705D6);
+  static const Color smashButtonBackgroundColor = Color(0xFF46E3FF);
+  static const Color compareButtonBackgroundColor = Color(0xFFDC80FF);
+  static const Color teacherCommentTitleColor = Color(0xFF064B96);
+  static const Color teacherCommentBodyColor = Color(0xFF6B6A6A);
+  static const Color teacheCommentLikeColor = Color(0xFF17A100);
+  static const Color teacheCommentDislikeColor = Color(0xFFA10000);
 
   ThemeData getTheme() => ThemeData(
         useMaterial3: true,

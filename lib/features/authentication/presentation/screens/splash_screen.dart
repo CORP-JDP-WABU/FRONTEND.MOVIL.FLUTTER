@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wabu/constants/globals.dart';
 // import 'package:lottie/lottie.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
 import 'package:wabu/features/authentication/presentation/widgets/video_background.dart';
-import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -28,6 +28,8 @@ class _SplashScreenState extends State<SplashScreen>
     Future.delayed(const Duration(seconds: 8), () async {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token');
+      final studentId = prefs.getString('studentId');
+      final universityId = prefs.getString('universityId');
 
       if (!context.mounted) return;
 
@@ -37,6 +39,10 @@ class _SplashScreenState extends State<SplashScreen>
       }
 
       print(token);
+      Globals.token = token;
+      Globals.studentId = studentId;
+      Globals.universityId = universityId;
+
       context.go(HomeView.route);
     });
     //   },

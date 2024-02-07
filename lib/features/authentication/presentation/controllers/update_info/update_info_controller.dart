@@ -1,10 +1,14 @@
+import 'dart:convert';
 import 'dart:math';
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wabu/common/data/failure/failure.dart';
 import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/authentication/data/providers.dart';
+import 'package:wabu/features/authentication/domain/models/auth_keys/auth_keys.dart';
 import 'package:wabu/features/authentication/domain/models/career/career.dart';
+import 'package:wabu/features/authentication/domain/models/encrypted_form/encrypted_form.dart';
+import 'package:wabu/features/authentication/domain/models/token/token.dart';
 import 'package:wabu/features/authentication/domain/models/university/university.dart';
 import 'package:wabu/features/authentication/domain/models/update_info_form/update_info_form.dart';
 import 'package:wabu/features/authentication/domain/models/update_info_form_result/update_info_form_result.dart';
@@ -13,6 +17,8 @@ import 'package:wabu/features/authentication/presentation/controllers/welcome_pa
 import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_state.dart';
 import 'package:wabu/features/student/data/repositories/providers.dart';
 import 'package:wabu/features/student/domain/student/student.dart';
+import 'package:wabu/utils/cipher.dart';
+import 'package:wabu/utils/logger.dart';
 
 part 'update_info_controller.g.dart';
 
@@ -225,7 +231,10 @@ class UpdateInfoController extends _$UpdateInfoController {
         idCareer: state.career!,
         cicleName: state.cycle!,
         isAcceptedTermCoditions: state.isTermsAccepted,
+        isRegisterNewAccount: Globals.updateInfoMode == UpdateInfoMode.signUp,
       );
+
+      logger.d(form);
 
       final updateRegistrationInfoResult =
           await repository.updateRegistrationInfo(form);
@@ -234,6 +243,10 @@ class UpdateInfoController extends _$UpdateInfoController {
         setPageError();
       }, (UpdateInfoFormResult result) async {
         if (result.isUpdate == true) {
+          if (Globals.updateInfoMode == UpdateInfoMode.signUp) {
+            await login();
+          }
+
           setPageIdle();
           state = state.copyWith(status: Status.valid);
         }
@@ -241,6 +254,80 @@ class UpdateInfoController extends _$UpdateInfoController {
     } catch (error) {
       setPageError();
     }
+  }
+
+  Future<void> login() async {
+    try {
+      final authRepository = ref.watch(authRepositoryProvider);
+      final getKeysResult = await authRepository.getKeys();
+
+      getKeysResult.fold((Failure failure) {
+        setPageError();
+      }, (AuthKeys authKeys) async {
+        final encryptedLoginForm = _encryptLoginForm(authKeys);
+        logger.d(encryptedLoginForm);
+        final logInResult = await authRepository.logIn(encryptedLoginForm);
+        logger.d(logInResult);
+
+        logInResult.fold((Failure failure) {
+          switch (failure.errorCode) {
+            case "LOGIN_EMAIL_FAILED":
+              state = state.copyWith(
+                status: Status.loaded,
+              );
+
+              ref
+                  .read(welcomePageControllerProvider.notifier)
+                  .addPage(WelcomePage.signUp);
+              setPageIdle();
+              break;
+            case "LOGIN_PASSWORD_FAILED":
+              setPageIdle();
+              break;
+            default:
+              setPageError();
+              break;
+          }
+        }, (Token token) async {
+          final prefs = await SharedPreferences.getInstance();
+
+          Globals.studentId = token.idStudent;
+          Globals.universityId = token.idUniversity;
+          Globals.isFirstLogin = token.isFirstLogin;
+          Globals.token = token.token;
+          await prefs.setString('token', token.token);
+          await prefs.setString('studentId', token.idStudent);
+          await prefs.setString('universityId', token.idUniversity);
+
+          state = state.copyWith(
+            status: Status.valid,
+          );
+
+          setPageIdle();
+        });
+      });
+    } catch (error) {
+      setPageError();
+    }
+  }
+
+  EncryptedForm _encryptLoginForm(AuthKeys authKeys) {
+    final encryptedEmail =
+        Cipher.encrypt(Globals.newEmail!, base64.decode(authKeys.keys.x1));
+    final encryptedPassword =
+        Cipher.encrypt(Globals.password!, base64.decode(authKeys.keys.x2));
+
+    final loginMap = {
+      'email': encryptedEmail,
+      'password': encryptedPassword,
+    };
+
+    final encryptedLoginMap = Cipher.encryptMapWithBaseKey(loginMap);
+
+    return EncryptedForm(
+      hash: authKeys.hash,
+      data: encryptedLoginMap,
+    );
   }
 
   void setPageIdle() {

@@ -7,7 +7,7 @@ part of 'code_validation_controller.dart';
 // **************************************************************************
 
 String _$codeValidationControllerHash() =>
-    r'1e26e5fbd7d7e86402af3fa8eb1db1748733184c';
+    r'cf2d1fa1d6e59c92eb6db504b2ebaa60ccfff38e';
 
 /// See also [CodeValidationController].
 @ProviderFor(CodeValidationController)
