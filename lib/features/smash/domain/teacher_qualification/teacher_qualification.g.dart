@@ -10,11 +10,11 @@ _$TeacherQualificationImpl _$$TeacherQualificationImplFromJson(
         Map<String, dynamic> json) =>
     _$TeacherQualificationImpl(
       teacherQualificationRequired: json['teacherQualificationRequired'] == null
-          ? null
+          ? const TeacherQualificationRequired()
           : TeacherQualificationRequired.fromJson(
               json['teacherQualificationRequired'] as Map<String, dynamic>),
       teacherQualificationOptional: json['teacherQualificationOptional'] == null
-          ? null
+          ? const TeacherQualificationOptional()
           : TeacherQualificationOptional.fromJson(
               json['teacherQualificationOptional'] as Map<String, dynamic>),
     );

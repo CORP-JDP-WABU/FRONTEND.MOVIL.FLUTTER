@@ -7,7 +7,7 @@ part of 'teacher_course_profile_controller.dart';
 // **************************************************************************
 
 String _$teacherProfileControllerHash() =>
-    r'8b4b3fa95b4b22e945e29cbee55ff18e179a4151';
+    r'77875a6e5e4400ec085b83065dce9c10a688a59b';
 
 /// See also [TeacherProfileController].
 @ProviderFor(TeacherProfileController)
