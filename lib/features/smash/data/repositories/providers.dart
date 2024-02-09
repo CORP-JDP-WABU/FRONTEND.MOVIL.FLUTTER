@@ -6,3 +6,9 @@ final smashRepositoryProvider = Provider((ref) {
     smashRemoteDatasource: SmashDioDatasource(),
   );
 });
+
+final smashOperationsRepositoryProvider = Provider((ref) {
+  return SmashOperationsDioRepository(
+    smashOperationsRemoteDatasource: SmashOperationsDioDatasource(),
+  );
+});

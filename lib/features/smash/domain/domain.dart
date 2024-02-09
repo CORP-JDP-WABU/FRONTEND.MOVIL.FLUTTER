@@ -1,3 +1,4 @@
+export 'ignore_teacher_response/ignore_teacher_response.dart';
 export 'smash_suggestion_course/smash_suggestion_course.dart';
 export 'smash_suggestion_teacher/smash_suggestion_teacher.dart';
 export 'smash_suggestion/smash_suggestion.dart';

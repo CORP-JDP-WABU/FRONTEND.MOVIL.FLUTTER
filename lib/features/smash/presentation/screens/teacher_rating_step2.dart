@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,9 +18,9 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
     return Scaffold(
       body: SingleChildScrollView(
           child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: const [
+            colors: [
               Color.fromRGBO(130, 55, 243, 1.000),
               Color.fromRGBO(226, 83, 166, 1.000),
               Color.fromRGBO(251, 225, 155, 1.000),
@@ -35,7 +33,7 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -51,8 +49,8 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: 16),
-              Material(
-                shape: const CircleBorder(
+              const Material(
+                shape: CircleBorder(
                     side: BorderSide(color: Colors.white, width: 3)),
                 child: CircleAvatar(
                   radius: 72,
@@ -70,8 +68,8 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                           BorderRadius.vertical(top: Radius.circular(25), bottom: Radius.circular(25))),
                   child: Column(children: [
               const SizedBox(height: 16),
-              SizedBox(height: 10),
-              Text(
+              const SizedBox(height: 10),
+              const Text(
                 'Pardo Robles',
                 style: TextStyle(
                   color: Color.fromRGBO(2, 51, 106, 1.000),
@@ -81,7 +79,7 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
+              const Text(
                 'Liliana Maria',
                 style: TextStyle(
                   color: Color.fromRGBO(2, 51, 106, 1.000),
@@ -91,7 +89,7 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(16),
                 child: Text(
                   'Comunicacion I',
@@ -104,8 +102,8 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                   ),
                 ),
               ),
-                    Column(
-                      children: const [
+                    const Column(
+                      children: [
                         Text(
                           'LLENA LOS DATOS SI LOS RECUERDAS',
                           textAlign: TextAlign.center,
@@ -119,7 +117,7 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    Column(
+                    const Column(
                       children: [
                         ContinuousQualification(
                           asset: 'clip',
@@ -160,14 +158,14 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                         text: 'CONTINUAR',
                         textColor: Colors.white,
                         verticalPadding: 8,
-                        linearGradient: LinearGradient(
+                        linearGradient: const LinearGradient(
                           colors: [
                             AppTheme.linearGradientLight,
                             AppTheme.linearGradientDark
                           ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
-                          stops: const [0.0, 1.0],
+                          stops: [0.0, 1.0],
                         ),
                         onPressed: () {
                          context.pushNamed(TeacherComment.name);
@@ -275,7 +273,7 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                           // Cambia el color de fondo basado en el estado del botón
                           isSelected[i]
                               ? widget.color
-                              : Color.fromRGBO(245, 245, 246, 1.000),
+                              : const Color.fromRGBO(245, 245, 246, 1.000),
                         ),
                       ),
                       child: Text(
@@ -293,27 +291,5 @@ class _ContinuousQualification extends State<ContinuousQualification> {
             }))
           ],
         ));
-  }
-}
-
-
-class BezzierClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var height = size.height;
-    var width = size.width;
-    var heightOffset = height * 0.2;
-    Path path = Path();
-    path.lineTo(0, height - heightOffset);
-    path.quadraticBezierTo(
-        width * 0.5, height * 1.2, width, height - heightOffset);
-    path.lineTo(width, 0);
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
   }
 }

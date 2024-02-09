@@ -49,6 +49,10 @@ class AppTheme {
   static const Color teacheCommentDislikeColor = Color(0xFFA10000);
   static const Color wabuersDashboardColor = Color(0xFF0AB99A);
   static const Color qualificationsDashboardColor = Color(0xFFDD52AB);
+  static const Color smashTeacherBackgroundButton = Color(0xFF04C6FF);
+  static const Color primarySmashBackgroundColor = Color(0xFF8237F3);
+  static const Color secondarySmashBackgroundColor = Color(0xFFE253A6);
+  static const Color tertiarySmashBackgroundColor = Color(0xFFFBE19B);
 
   ThemeData getTheme() => ThemeData(
         useMaterial3: true,

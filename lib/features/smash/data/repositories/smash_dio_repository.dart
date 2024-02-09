@@ -4,9 +4,9 @@ import 'package:wabu/features/smash/data/data.dart';
 import 'package:wabu/features/smash/domain/domain.dart';
 
 class SmashDioRepository extends SmashRepository {
-  final SmashRemoteDatasource smashRemoteDatasource;
-
   SmashDioRepository({required this.smashRemoteDatasource});
+
+  final SmashRemoteDatasource smashRemoteDatasource;
 
   @override
   Future<Either<Failure, List<SmashSuggestion>>> getSmashSuggestions(

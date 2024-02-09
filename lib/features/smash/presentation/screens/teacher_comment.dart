@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,9 +19,9 @@ class TeacherComment extends ConsumerWidget {
     return Scaffold(
       body: SingleChildScrollView(
           child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: const [
+            colors: [
               Color.fromRGBO(130, 55, 243, 1.000),
               Color.fromRGBO(226, 83, 166, 1.000),
               Color.fromRGBO(251, 225, 155, 1.000),
@@ -36,7 +34,7 @@ class TeacherComment extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -52,8 +50,8 @@ class TeacherComment extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: 16),
-              Material(
-                shape: const CircleBorder(
+              const Material(
+                shape: CircleBorder(
                     side: BorderSide(color: Colors.white, width: 3)),
                 child: CircleAvatar(
                   radius: 72,
@@ -72,8 +70,8 @@ class TeacherComment extends ConsumerWidget {
                           bottom: Radius.circular(25))),
                   child: Column(children: [
                     const SizedBox(height: 16),
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Pardo Robles',
                       style: TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
@@ -83,7 +81,7 @@ class TeacherComment extends ConsumerWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Liliana Maria',
                       style: TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
@@ -93,7 +91,7 @@ class TeacherComment extends ConsumerWidget {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.all(16),
                       child: Text(
                         'Comunicacion I',
@@ -106,8 +104,8 @@ class TeacherComment extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    Column(
-                      children: const [
+                    const Column(
+                      children: [
                         Text(
                           'INGRESA UN COMENTARIO',
                           textAlign: TextAlign.center,
@@ -120,17 +118,17 @@ class TeacherComment extends ConsumerWidget {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.all(22.0),
+                      padding: const EdgeInsets.all(22.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Card(
                               child: Padding(
-                            padding: EdgeInsets.all(12.0),
+                            padding: const EdgeInsets.all(12.0),
                             child: TextField(
                               controller: _commentController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 hintText: 'Deja tu comentario aquí',
                               ),
                               maxLines: 7,
@@ -139,7 +137,7 @@ class TeacherComment extends ConsumerWidget {
                                   MaxLengthEnforcement.enforced,
                             ),
                           )),
-                          SizedBox(height: 6.0),
+                          const SizedBox(height: 6.0),
                         ],
                       ),
                     ),
@@ -149,14 +147,14 @@ class TeacherComment extends ConsumerWidget {
                         text: 'PUBLICAR',
                         textColor: Colors.white,
                         verticalPadding: 8,
-                        linearGradient: LinearGradient(
+                        linearGradient: const LinearGradient(
                           colors: [
                             AppTheme.linearGradientLight,
                             AppTheme.linearGradientDark
                           ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
-                          stops: const [0.0, 1.0],
+                          stops: [0.0, 1.0],
                         ),
                         onPressed: () {
                           if (_commentController.text.length >= 20) {
@@ -186,8 +184,8 @@ class TeacherComment extends ConsumerWidget {
               Image.asset(
                 'assets/images/check.gif',
               ),
-              SizedBox(height: 10),
-              Text(
+              const SizedBox(height: 10),
+              const Text(
                 'Tu calificación ha sido confirmada',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -203,26 +201,5 @@ class TeacherComment extends ConsumerWidget {
         );
       },
     );
-  }
-}
-
-class BezzierClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var height = size.height;
-    var width = size.width;
-    var heightOffset = height * 0.2;
-    Path path = Path();
-    path.lineTo(0, height - heightOffset);
-    path.quadraticBezierTo(
-        width * 0.5, height * 1.2, width, height - heightOffset);
-    path.lineTo(width, 0);
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
   }
 }

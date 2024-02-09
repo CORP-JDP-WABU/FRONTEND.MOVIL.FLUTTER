@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/custom_back_button.dart';
 import 'package:wabu/common/widgets/custom_filled_button.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/smash/presentation/screens/teacher_rating_step2.dart';
+import 'package:wabu/features/smash/presentation/screens/screens.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class CompareTeachersScreen extends ConsumerWidget {

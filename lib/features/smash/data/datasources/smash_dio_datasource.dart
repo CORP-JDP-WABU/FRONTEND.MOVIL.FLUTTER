@@ -4,6 +4,7 @@ import 'package:wabu/common/data/data.dart';
 import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/smash/data/data.dart';
 import 'package:wabu/features/smash/domain/domain.dart';
+import 'package:wabu/utils/logger.dart';
 
 class SmashDioDatasource extends SmashRemoteDatasource {
   final dio = Dio(
@@ -37,6 +38,8 @@ class SmashDioDatasource extends SmashRemoteDatasource {
         },
       ),
     );
+
+    logger.d(response);
 
     if (response.statusCode != 200) {
       final failureResponse = Failure.fromJson(response.data);

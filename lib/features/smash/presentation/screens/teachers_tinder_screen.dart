@@ -1,32 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wabu/common/widgets/custom_back_button.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:wabu/features/compare/presentation/screens/compare_teachers_screen.dart';
-import 'package:wabu/features/smash/presentation/widgets/card_view.dart';
-import 'package:wabu/features/smash/presentation/controllers/card_data.dart';
+import 'package:wabu/common/widgets/gradients/tinder_linear_gradient.dart';
+import 'package:wabu/common/widgets/loader_transparent.dart';
+import 'package:wabu/features/smash/presentation/screens/screens.dart';
+import 'package:wabu/features/smash/domain/domain.dart';
+import 'package:wabu/features/smash/presentation/controllers/controllers.dart';
+import 'package:wabu/features/smash/presentation/widgets/widgets.dart';
 
-class TeachersTinderScreen extends StatefulWidget {
+class TeachersTinderScreen extends ConsumerWidget {
+  const TeachersTinderScreen({super.key});
+
   static const String name = "teachers_tinder";
   static const String route = "/$name";
 
-  const TeachersTinderScreen({
-    Key? key,
-  }) : super(key: key);
-
   @override
-  State<TeachersTinderScreen> createState() => _TeachersTinderScreen();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(teachersTinderControllerProvider);
+    final isLoading = state.pageStatus == TeachersTinderStatus.loading;
+
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(gradient: tinderLinearGradient),
+          ),
+          TeachersTinderWrapper(
+            content: _TeachersTinderScreenContent(
+              state: state,
+              isLoading: isLoading,
+            ),
+          ),
+          if (isLoading) const LoaderTransparent()
+        ],
+      ),
+    );
+  }
 }
 
-class _TeachersTinderScreen extends State<TeachersTinderScreen> {
-  final CardSwiperController controller = CardSwiperController();
+class _TeachersTinderScreenContent extends ConsumerStatefulWidget {
+  const _TeachersTinderScreenContent({
+    required this.state,
+    required this.isLoading,
+  });
 
-  final cards = candidates.map(CardView.new).toList();
+  final TeachersTinderState state;
+  final bool isLoading;
+
+  @override
+  ConsumerState<_TeachersTinderScreenContent> createState() =>
+      _TeacheresTinderScreenContentState();
+}
+
+class _TeacheresTinderScreenContentState
+    extends ConsumerState<_TeachersTinderScreenContent> {
+  final CardSwiperController controller = CardSwiperController();
 
   @override
   void initState() {
     super.initState();
+    ref.read(teachersTinderControllerProvider.notifier).fetchData();
   }
 
   @override
@@ -35,110 +69,93 @@ class _TeachersTinderScreen extends State<TeachersTinderScreen> {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: const [
-              Color.fromRGBO(130, 55, 243, 1.000),
-              Color.fromRGBO(226, 83, 166, 1.000),
-              Color.fromRGBO(251, 225, 155, 1.000),
-            ], // Cambia los colores según tu preferencia
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 50),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomBackButton(
-                    color: Colors.white,
-                    onTap: () => context.pop(),
-                  ),
-                  IconButton(
-                    icon: SvgPicture.asset('assets/images/svgs/menu.svg'),
-                    color: Colors.white,
-                    onPressed: () => {},
-                  ),
-                ],
-              ),
-              const SizedBox(height: 25),
-              SizedBox(
-                height: 550,
-                child: CardSwiper(
-                  controller: controller,
-                  cardsCount: cards.length,
-                  onSwipe: _onSwipe,
-                  onUndo: _onUndo,
-                  numberOfCardsDisplayed: 3,
-                  backCardOffset: const Offset(40, 40),
-                  padding: const EdgeInsets.all(24.0),
-                  cardBuilder: (
-                    context,
-                    index,
-                    horizontalThresholdPercentage,
-                    verticalThresholdPercentage,
-                  ) =>
-                      cards[index],
-                ),
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    icon: SvgPicture.asset('assets/images/svgs/X.svg'),
-                    onPressed: () {
-                      // Acciones al presionar el botón de X
-
-                      controller.swipe(CardSwiperDirection.left);
-                    },
-                  ),
-                  IconButton(
-                    icon: SvgPicture.asset(
-                      'assets/images/svgs/Smash Blue.svg',
-                    ),
-                    onPressed: () {
-                      controller.swipe(CardSwiperDirection.right);
-                      context.pushNamed(CompareTeachersScreen.name);
-                    },
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
-    ));
-  }
-
   bool _onSwipe(
     int previousIndex,
     int? currentIndex,
     CardSwiperDirection direction,
   ) {
-    debugPrint(
-      'The card $previousIndex was swiped to the ${direction.name}. Now the card $currentIndex is on top',
-    );
+    switch (direction) {
+      case CardSwiperDirection.left:
+        final teacherSuggestion = widget.state.smashSuggestions?[previousIndex];
+        final courseId = teacherSuggestion?.course?.idCourse ?? '';
+        final teacherId = teacherSuggestion?.teacher?.idTeacher ?? '';
+
+        ref
+            .read(teachersTinderControllerProvider.notifier)
+            .ignoreTeacher(courseId, teacherId);
+        break;
+      case CardSwiperDirection.right:
+        context.pushNamed(CompareTeachersScreen.name);
+        break;
+      default:
+        break;
+    }
+
+    if (direction == CardSwiperDirection.right) {}
     return true;
   }
 
-  bool _onUndo(
-    int? previousIndex,
-    int currentIndex,
-    CardSwiperDirection direction,
-  ) {
-    debugPrint(
-      'The card $currentIndex was undod from the ${direction.name}',
+  Future<void> _onEnd() {
+    ref.read(teachersTinderControllerProvider.notifier).fetchMoreSuggestions();
+    return Future.value();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final smashSuggestions = widget.state.smashSuggestions ?? [];
+
+    return Column(
+      children: [
+        Expanded(
+          child: (smashSuggestions.isNotEmpty)
+              ? TeachersCardSwiper(
+                  controller: controller,
+                  smashSuggestions: smashSuggestions,
+                  onSwipe: _onSwipe,
+                  onEnd: _onEnd,
+                )
+              : (widget.isLoading)
+                  ? Container()
+                  : Container(),
+        ),
+        const SizedBox(height: 16),
+        TeachersTinderButtons(controller: controller),
+      ],
     );
-    return true;
+  }
+}
+
+class TeachersCardSwiper extends StatelessWidget {
+  const TeachersCardSwiper({
+    super.key,
+    required this.controller,
+    required this.smashSuggestions,
+    required this.onSwipe,
+    required this.onEnd,
+  });
+
+  final CardSwiperController controller;
+  final List<SmashSuggestion> smashSuggestions;
+  final bool Function(int, int?, CardSwiperDirection) onSwipe;
+  final Future<void> Function() onEnd;
+
+  @override
+  Widget build(BuildContext context) {
+    return CardSwiper(
+      allowedSwipeDirection: const AllowedSwipeDirection.symmetric(
+        horizontal: true,
+      ),
+      controller: controller,
+      cardsCount: smashSuggestions.length,
+      isLoop: false,
+      onEnd: onEnd,
+      onSwipe: onSwipe,
+      scale: 1,
+      backCardOffset: const Offset(16, 16),
+      cardBuilder: (_, index, __, ___) {
+        final smashSuggestion = smashSuggestions[index];
+        return CardView(smashSuggestion: smashSuggestion);
+      },
+    );
   }
 }

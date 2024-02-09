@@ -10,12 +10,9 @@ part 'teachers_tinder_controller.g.dart';
 @riverpod
 class TeachersTinderController extends _$TeachersTinderController {
   @override
-  TeachersTinderState build() {
-    fetchData();
-    return const TeachersTinderState();
-  }
+  TeachersTinderState build() => const TeachersTinderState();
 
-  void fetchData() async {
+  Future<void> fetchData() async {
     try {
       String careerId = Globals.careerId ?? '';
 
@@ -33,6 +30,39 @@ class TeachersTinderController extends _$TeachersTinderController {
         state = state.copyWith(
           smashSuggestions: smashSuggestions,
         );
+        setPageLoaded();
+      });
+    } catch (e) {
+      setPageError();
+    }
+  }
+
+  Future<void> fetchMoreSuggestions() async {
+    state = state.copyWith(
+      pageStatus: TeachersTinderStatus.loading,
+      smashSuggestions: [],
+    );
+    await fetchData();
+  }
+
+  Future<void> ignoreTeacher(String courseId, String teacherId) async {
+    try {
+      final response = await ref
+          .watch(smashOperationsRepositoryProvider)
+          .ignoreTeacher(courseId, teacherId);
+
+      response.fold((Failure failure) {
+        switch (failure.errorCode) {
+          default:
+            setPageError();
+            break;
+        }
+      }, (IgnoreTeacherResponse ignoreTeacherResponse) {
+        if (ignoreTeacherResponse.isRemoveTeacherToList != true) {
+          setPageError();
+          return;
+        }
+        
         setPageLoaded();
       });
     } catch (e) {
