@@ -3,12 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wabu/common/widgets/custom_back_button.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:wabu/features/compare/presentation/screens/compare_teachers_screen.dart';
 import 'package:wabu/features/search/presentation/views/search_result.dart';
-import 'package:wabu/features/smash/presentation/widgets/card_view.dart';
-import 'package:wabu/features/smash/presentation/controllers/card_data.dart';
+import 'package:wabu/features/search/presentation/widgets/card_view.dart';
+import 'package:wabu/features/search/presentation/controllers/card_data.dart';
 
 class SearchScreen extends StatefulWidget {
   static const String name = "search_screen";

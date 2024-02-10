@@ -6,7 +6,6 @@ import 'package:wabu/features/home/presentation/views/home_view.dart';
 import 'package:wabu/features/search/presentation/views/search_screen.dart';
 import 'package:wabu/features/smash/presentation/views/smash_view.dart';
 import 'package:wabu/features/teachers/presentation/screens/teacher_course_profile_screen.dart';
-import 'package:wabu/features/search/presentation/views/search_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({

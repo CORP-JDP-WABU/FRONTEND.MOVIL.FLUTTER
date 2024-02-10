@@ -72,6 +72,12 @@ class _TeacheresTinderScreenContentState
         ref
             .read(teachersTinderControllerProvider.notifier)
             .ignoreTeacher(courseId, teacherId);
+
+        if (currentIndex == null) {
+          ref
+              .read(teachersTinderControllerProvider.notifier)
+              .fetchMoreSuggestions();
+        }
         break;
       case CardSwiperDirection.right:
         ref
@@ -83,13 +89,7 @@ class _TeacheresTinderScreenContentState
         break;
     }
 
-    if (direction == CardSwiperDirection.right) {}
     return true;
-  }
-
-  Future<void> _onEnd() {
-    ref.read(teachersTinderControllerProvider.notifier).fetchMoreSuggestions();
-    return Future.value();
   }
 
   @override
@@ -104,7 +104,6 @@ class _TeacheresTinderScreenContentState
                   controller: controller,
                   smashSuggestions: smashSuggestions,
                   onSwipe: _onSwipe,
-                  onEnd: _onEnd,
                 )
               : (widget.isLoading)
                   ? Container()
@@ -123,13 +122,11 @@ class TeachersCardSwiper extends StatelessWidget {
     required this.controller,
     required this.smashSuggestions,
     required this.onSwipe,
-    required this.onEnd,
   });
 
   final CardSwiperController controller;
   final List<SmashSuggestion> smashSuggestions;
   final bool Function(int, int?, CardSwiperDirection) onSwipe;
-  final Future<void> Function() onEnd;
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +137,6 @@ class TeachersCardSwiper extends StatelessWidget {
       controller: controller,
       cardsCount: smashSuggestions.length,
       isLoop: false,
-      onEnd: onEnd,
       onSwipe: onSwipe,
       scale: 1,
       backCardOffset: const Offset(16, 16),
