@@ -8,7 +8,7 @@ class TeacherQualificationOptional with _$TeacherQualificationOptional {
   const factory TeacherQualificationOptional({
     @Default(0) int worked,
     @Default(0) int late,
-    @Default(0) int assitance,
+    @Default(0) int assistance,
   }) = _TeacherQualificationOptional;
 
   factory TeacherQualificationOptional.fromJson(Map<String, dynamic> json) =>

@@ -11,7 +11,7 @@ _$TeacherQualificationOptionalImpl _$$TeacherQualificationOptionalImplFromJson(
     _$TeacherQualificationOptionalImpl(
       worked: json['worked'] as int? ?? 0,
       late: json['late'] as int? ?? 0,
-      assitance: json['assitance'] as int? ?? 0,
+      assistance: json['assistance'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$TeacherQualificationOptionalImplToJson(
@@ -19,5 +19,5 @@ Map<String, dynamic> _$$TeacherQualificationOptionalImplToJson(
     <String, dynamic>{
       'worked': instance.worked,
       'late': instance.late,
-      'assitance': instance.assitance,
+      'assistance': instance.assistance,
     };

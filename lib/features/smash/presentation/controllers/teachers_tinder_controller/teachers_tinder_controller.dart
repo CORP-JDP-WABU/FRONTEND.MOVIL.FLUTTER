@@ -93,6 +93,21 @@ class TeachersTinderController extends _$TeachersTinderController {
         .teacherQualificationRequired(goodPeople: value.round());
   }
 
+  void setWorked(int value) {
+    state = state.copyWith.teacherQualification
+        .teacherQualificationOptional(worked: value);
+  }
+
+  void setLate(int value) {
+    state = state.copyWith.teacherQualification
+        .teacherQualificationOptional(late: value);
+  }
+
+  void setAssistance(int value) {
+    state = state.copyWith.teacherQualification
+        .teacherQualificationOptional(assistance: value);
+  }
+
   void setPageLoaded() {
     state = state.copyWith(
       pageStatus: TeachersTinderStatus.loaded,

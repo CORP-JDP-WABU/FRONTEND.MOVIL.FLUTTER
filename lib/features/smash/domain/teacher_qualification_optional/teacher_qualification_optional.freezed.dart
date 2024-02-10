@@ -23,7 +23,7 @@ TeacherQualificationOptional _$TeacherQualificationOptionalFromJson(
 mixin _$TeacherQualificationOptional {
   int get worked => throw _privateConstructorUsedError;
   int get late => throw _privateConstructorUsedError;
-  int get assitance => throw _privateConstructorUsedError;
+  int get assistance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +39,7 @@ abstract class $TeacherQualificationOptionalCopyWith<$Res> {
       _$TeacherQualificationOptionalCopyWithImpl<$Res,
           TeacherQualificationOptional>;
   @useResult
-  $Res call({int worked, int late, int assitance});
+  $Res call({int worked, int late, int assistance});
 }
 
 /// @nodoc
@@ -58,7 +58,7 @@ class _$TeacherQualificationOptionalCopyWithImpl<$Res,
   $Res call({
     Object? worked = null,
     Object? late = null,
-    Object? assitance = null,
+    Object? assistance = null,
   }) {
     return _then(_value.copyWith(
       worked: null == worked
@@ -69,9 +69,9 @@ class _$TeacherQualificationOptionalCopyWithImpl<$Res,
           ? _value.late
           : late // ignore: cast_nullable_to_non_nullable
               as int,
-      assitance: null == assitance
-          ? _value.assitance
-          : assitance // ignore: cast_nullable_to_non_nullable
+      assistance: null == assistance
+          ? _value.assistance
+          : assistance // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -86,7 +86,7 @@ abstract class _$$TeacherQualificationOptionalImplCopyWith<$Res>
       __$$TeacherQualificationOptionalImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int worked, int late, int assitance});
+  $Res call({int worked, int late, int assistance});
 }
 
 /// @nodoc
@@ -104,7 +104,7 @@ class __$$TeacherQualificationOptionalImplCopyWithImpl<$Res>
   $Res call({
     Object? worked = null,
     Object? late = null,
-    Object? assitance = null,
+    Object? assistance = null,
   }) {
     return _then(_$TeacherQualificationOptionalImpl(
       worked: null == worked
@@ -115,9 +115,9 @@ class __$$TeacherQualificationOptionalImplCopyWithImpl<$Res>
           ? _value.late
           : late // ignore: cast_nullable_to_non_nullable
               as int,
-      assitance: null == assitance
-          ? _value.assitance
-          : assitance // ignore: cast_nullable_to_non_nullable
+      assistance: null == assistance
+          ? _value.assistance
+          : assistance // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -128,7 +128,7 @@ class __$$TeacherQualificationOptionalImplCopyWithImpl<$Res>
 class _$TeacherQualificationOptionalImpl
     implements _TeacherQualificationOptional {
   const _$TeacherQualificationOptionalImpl(
-      {this.worked = 0, this.late = 0, this.assitance = 0});
+      {this.worked = 0, this.late = 0, this.assistance = 0});
 
   factory _$TeacherQualificationOptionalImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -142,11 +142,11 @@ class _$TeacherQualificationOptionalImpl
   final int late;
   @override
   @JsonKey()
-  final int assitance;
+  final int assistance;
 
   @override
   String toString() {
-    return 'TeacherQualificationOptional(worked: $worked, late: $late, assitance: $assitance)';
+    return 'TeacherQualificationOptional(worked: $worked, late: $late, assistance: $assistance)';
   }
 
   @override
@@ -156,13 +156,13 @@ class _$TeacherQualificationOptionalImpl
             other is _$TeacherQualificationOptionalImpl &&
             (identical(other.worked, worked) || other.worked == worked) &&
             (identical(other.late, late) || other.late == late) &&
-            (identical(other.assitance, assitance) ||
-                other.assitance == assitance));
+            (identical(other.assistance, assistance) ||
+                other.assistance == assistance));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, worked, late, assitance);
+  int get hashCode => Object.hash(runtimeType, worked, late, assistance);
 
   @JsonKey(ignore: true)
   @override
@@ -185,7 +185,7 @@ abstract class _TeacherQualificationOptional
   const factory _TeacherQualificationOptional(
       {final int worked,
       final int late,
-      final int assitance}) = _$TeacherQualificationOptionalImpl;
+      final int assistance}) = _$TeacherQualificationOptionalImpl;
 
   factory _TeacherQualificationOptional.fromJson(Map<String, dynamic> json) =
       _$TeacherQualificationOptionalImpl.fromJson;
@@ -195,7 +195,7 @@ abstract class _TeacherQualificationOptional
   @override
   int get late;
   @override
-  int get assitance;
+  int get assistance;
   @override
   @JsonKey(ignore: true)
   _$$TeacherQualificationOptionalImplCopyWith<

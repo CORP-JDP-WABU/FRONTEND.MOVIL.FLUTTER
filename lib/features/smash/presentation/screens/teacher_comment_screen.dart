@@ -7,8 +7,8 @@ import 'package:wabu/common/widgets/custom_back_button.dart';
 import 'package:wabu/common/widgets/custom_filled_button.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 
-class TeacherComment extends ConsumerWidget {
-  const TeacherComment({super.key});
+class TeacherCommentScreen extends ConsumerWidget {
+  const TeacherCommentScreen({super.key});
 
   static const String name = "teacher_comment";
   static const String route = "/$name";
