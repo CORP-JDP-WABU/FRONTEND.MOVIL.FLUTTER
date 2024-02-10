@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static const Color primaryText = Color(0xFF041440);
   static const Color skyblue = Color(0xFF3DC9E8);
+  static const Color disabledButtonColor = Color(0xFF9E9E9E);
   static const Color bodyTextColor = Color(0xFF9E9E9E);
   static const Color inputBackgroundColor = Color(0xFFF2F2F7);
   static const Color boldSkyBlue = Color(0xFF26ADCB);

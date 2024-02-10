@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/smash/presentation/screens/compare_teachers_screen.dart';
+import 'package:wabu/features/smash/presentation/screens/teacher_required_rating_screen.dart';
 import 'package:wabu/features/smash/presentation/screens/teachers_tinder_screen.dart';
 
 class SmashView extends ConsumerWidget {
@@ -23,7 +23,7 @@ class SmashView extends ConsumerWidget {
           text: 'SMASH',
         ),
         _SmashCard(
-          onTap: () => context.push(CompareTeachersScreen.route),
+          onTap: () => context.push(TeacherRequiredRatingScreen.route),
           color: AppTheme.compareButtonBackgroundColor,
           asset: 'assets/images/svgs/compare.svg',
           text: 'COMPARAR',

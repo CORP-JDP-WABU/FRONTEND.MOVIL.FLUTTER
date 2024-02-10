@@ -62,12 +62,35 @@ class TeachersTinderController extends _$TeachersTinderController {
           setPageError();
           return;
         }
-        
+
         setPageLoaded();
       });
     } catch (e) {
       setPageError();
     }
+  }
+
+  void selectSmashSuggestion(int index) {
+    state = state.copyWith(
+      selectedSmashSuggestion: state.smashSuggestions?[index],
+      teacherQualification: const TeacherQualification(),
+      teacherComment: const TeacherComment(),
+    );
+  }
+
+  void setLearn(double value) {
+    state = state.copyWith.teacherQualification
+        .teacherQualificationRequired(learn: value.round());
+  }
+
+  void setHight(double value) {
+    state = state.copyWith.teacherQualification
+        .teacherQualificationRequired(hight: value.round());
+  }
+
+  void setGoodPeople(double value) {
+    state = state.copyWith.teacherQualification
+        .teacherQualificationRequired(goodPeople: value.round());
   }
 
   void setPageLoaded() {
@@ -79,12 +102,6 @@ class TeachersTinderController extends _$TeachersTinderController {
   void setPageError() {
     state = state.copyWith(
       pageStatus: TeachersTinderStatus.error,
-    );
-  }
-
-  void setPageIdle() {
-    state = state.copyWith(
-      pageStatus: TeachersTinderStatus.idle,
     );
   }
 }

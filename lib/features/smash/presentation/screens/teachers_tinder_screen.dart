@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:wabu/common/widgets/gradients/tinder_linear_gradient.dart';
-import 'package:wabu/common/widgets/loader_transparent.dart';
 import 'package:wabu/features/smash/presentation/screens/screens.dart';
 import 'package:wabu/features/smash/domain/domain.dart';
 import 'package:wabu/features/smash/presentation/controllers/controllers.dart';
@@ -20,20 +18,11 @@ class TeachersTinderScreen extends ConsumerWidget {
     final state = ref.watch(teachersTinderControllerProvider);
     final isLoading = state.pageStatus == TeachersTinderStatus.loading;
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(gradient: tinderLinearGradient),
-          ),
-          TeachersTinderWrapper(
-            content: _TeachersTinderScreenContent(
-              state: state,
-              isLoading: isLoading,
-            ),
-          ),
-          if (isLoading) const LoaderTransparent()
-        ],
+    return TeachersTinderWrapper(
+      isLoading: isLoading,
+      content: _TeachersTinderScreenContent(
+        state: state,
+        isLoading: isLoading,
       ),
     );
   }
@@ -85,7 +74,10 @@ class _TeacheresTinderScreenContentState
             .ignoreTeacher(courseId, teacherId);
         break;
       case CardSwiperDirection.right:
-        context.pushNamed(CompareTeachersScreen.name);
+        ref
+            .read(teachersTinderControllerProvider.notifier)
+            .selectSmashSuggestion(previousIndex);
+        context.pushNamed(TeacherRequiredRatingScreen.name);
         break;
       default:
         break;

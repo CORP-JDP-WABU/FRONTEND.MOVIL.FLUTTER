@@ -3,7 +3,7 @@ import 'package:wabu/features/authentication/presentation/screens/splash_screen.
 import 'package:wabu/features/authentication/presentation/screens/terms_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/update_info_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
-import 'package:wabu/features/smash/presentation/screens/compare_teachers_screen.dart';
+import 'package:wabu/features/smash/presentation/screens/teacher_required_rating_screen.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 import 'package:wabu/features/smash/presentation/views/smash_view.dart';
@@ -99,10 +99,10 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      name: CompareTeachersScreen.name,
-      path: CompareTeachersScreen.route,
+      name: TeacherRequiredRatingScreen.name,
+      path: TeacherRequiredRatingScreen.route,
       builder: (context, state) {
-        return const CompareTeachersScreen();
+        return const TeacherRequiredRatingScreen();
       },
     ),
     GoRoute(
