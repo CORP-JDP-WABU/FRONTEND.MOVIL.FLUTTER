@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wabu/features/smash/presentation/controllers/card_data.dart';
+import 'package:wabu/features/smash/domain/domain.dart';
 
 class CardView extends StatelessWidget {
-  final CardData candidate;
-
-  const CardView(
-    this.candidate, {
+  const CardView({
     super.key,
+    required this.smashSuggestion,
   });
+
+  final SmashSuggestion smashSuggestion;
 
   @override
   Widget build(BuildContext context) {
@@ -27,62 +26,59 @@ class CardView extends StatelessWidget {
         ],
       ),
       alignment: Alignment.center,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        //'assets/images/svgs/person.svg',
-                         candidate.imageAsset,
-                        width: 308,
-                        height: 333,
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        // 'Pardo Robles',
-                        candidate.apellido,
-                        style: TextStyle(
-                          color: Color.fromRGBO(2, 51, 106, 1.000),
-                          fontFamily: 'SFProDisplay',
-                          fontSize: 20,
-                          height: 31 / 23,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        //'Liliana Maria',
-                         candidate.nombre,
-                        style: TextStyle(
-                          color: Color.fromRGBO(2, 51, 106, 1.000),
-                          fontFamily: 'SFProDisplay',
-                          fontSize: 20,
-                          height: 31 / 23,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Text(
-                          candidate.curso,
-                          style: TextStyle(
-                            color: Color.fromRGBO(2, 51, 106, 1.000),
-                            fontFamily: 'SFProDisplay',
-                            fontSize: 17,
-                            height: 31 / 23,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-          ),
-
-        
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Image.network(smashSuggestion.teacher?.photoUrl ?? ''),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              smashSuggestion.teacher?.lastName ?? '',
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: Color.fromRGBO(2, 51, 106, 1.000),
+                fontFamily: 'SFProDisplay',
+                fontSize: 20,
+                height: 31 / 23,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              smashSuggestion.teacher?.firstName ?? '',
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: Color.fromRGBO(2, 51, 106, 1.000),
+                fontFamily: 'SFProDisplay',
+                fontSize: 20,
+                height: 31 / 23,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(
+                smashSuggestion.course?.name ?? '',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Color.fromRGBO(2, 51, 106, 1.000),
+                  fontFamily: 'SFProDisplay',
+                  fontSize: 17,
+                  height: 31 / 23,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
