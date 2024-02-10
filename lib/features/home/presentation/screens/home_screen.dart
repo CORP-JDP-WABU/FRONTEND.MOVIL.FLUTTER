@@ -3,9 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
+import 'package:wabu/features/search/presentation/views/search_screen.dart';
 import 'package:wabu/features/smash/presentation/views/smash_view.dart';
 import 'package:wabu/features/teachers/presentation/screens/teacher_course_profile_screen.dart';
-import 'package:wabu/features/teachers/presentation/views/temporal_teachers_view.dart';
+import 'package:wabu/features/search/presentation/views/search_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -42,7 +43,7 @@ class _CustomNavigationBar extends StatelessWidget {
     switch (location) {
       case HomeView.route:
         return 0;
-      case TemporalTeachersView.route:
+      case SearchScreen.route:
         return 1;
       case SmashView.route:
         return 2;
@@ -57,7 +58,7 @@ class _CustomNavigationBar extends StatelessWidget {
         context.go(HomeView.route);
         break;
       case 1:
-        context.go(TemporalTeachersView.route);
+        context.go(SearchScreen.route);
         break;
       case 2:
         context.go(SmashView.route);

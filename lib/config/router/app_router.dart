@@ -6,11 +6,13 @@ import 'package:wabu/features/authentication/presentation/screens/welcome_screen
 import 'package:wabu/features/smash/presentation/screens/teacher_required_rating_screen.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
+import 'package:wabu/features/search/presentation/views/search_result.dart';
+import 'package:wabu/features/search/presentation/views/search_screen.dart';
 import 'package:wabu/features/smash/presentation/views/smash_view.dart';
 import 'package:wabu/features/smash/presentation/screens/teachers_tinder_screen.dart';
 import 'package:wabu/features/smash/presentation/screens/teacher_comment_screen.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
-import 'package:wabu/features/teachers/presentation/views/temporal_teachers_view.dart';
+import 'package:wabu/features/search/presentation/views/search_view.dart';
 import 'package:wabu/features/smash/presentation/screens/teacher_rating_step2.dart';
 
 final appRouter = GoRouter(
@@ -55,10 +57,17 @@ final appRouter = GoRouter(
           },
         ),
         GoRoute(
-          name: TemporalTeachersView.name,
-          path: TemporalTeachersView.route,
+          name: SearchScreen.name,
+          path: SearchScreen.route,
           builder: (context, state) {
-            return const TemporalTeachersView();
+            return const SearchScreen();
+          },
+        ),
+        GoRoute(
+          name: SearchResult.name,
+          path: SearchResult.route,
+          builder: (context, state) {
+            return const SearchResult();
           },
         ),
         GoRoute(
