@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -136,6 +137,7 @@ class TeachersCardSwiper extends StatelessWidget {
       ),
       controller: controller,
       cardsCount: smashSuggestions.length,
+      numberOfCardsDisplayed: min(2, smashSuggestions.length),
       isLoop: false,
       onSwipe: onSwipe,
       scale: 1,
