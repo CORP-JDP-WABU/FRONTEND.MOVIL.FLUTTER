@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,9 +6,10 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/custom_back_button.dart';
 import 'package:wabu/common/widgets/custom_filled_button.dart';
 import 'package:wabu/config/theme/app_theme.dart';
+import 'package:wabu/features/smash/presentation/controllers/controllers.dart';
 
-class TeacherComment extends ConsumerWidget {
-  const TeacherComment({super.key});
+class TeacherCommentScreen extends ConsumerWidget {
+  const TeacherCommentScreen({super.key});
 
   static const String name = "teacher_comment";
   static const String route = "/$name";
@@ -18,12 +17,21 @@ class TeacherComment extends ConsumerWidget {
       TextEditingController();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(teachersTinderControllerProvider);
+    final smashSuggestion = state.selectedSmashSuggestion;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (state.qualificationStatus == TeacherQualificationStatus.loaded) {
+        showConfirmationDialog(context);
+      }
+    });
+
     return Scaffold(
       body: SingleChildScrollView(
           child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: const [
+            colors: [
               Color.fromRGBO(130, 55, 243, 1.000),
               Color.fromRGBO(226, 83, 166, 1.000),
               Color.fromRGBO(251, 225, 155, 1.000),
@@ -36,7 +44,7 @@ class TeacherComment extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -58,7 +66,7 @@ class TeacherComment extends ConsumerWidget {
                 child: CircleAvatar(
                   radius: 72,
                   backgroundImage: NetworkImage(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrggIP1tphFNHqBURDu-6QY1TiSJVXQy0Uuw&usqp=CAU',
+                      smashSuggestion?.teacher?.photoUrl ?? '',
                       scale: 144),
                 ),
               ),
@@ -72,10 +80,10 @@ class TeacherComment extends ConsumerWidget {
                           bottom: Radius.circular(25))),
                   child: Column(children: [
                     const SizedBox(height: 16),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
-                      'Pardo Robles',
-                      style: TextStyle(
+                      smashSuggestion?.teacher?.lastName ?? '',
+                      style: const TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
                         fontSize: 20,
@@ -84,8 +92,8 @@ class TeacherComment extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      'Liliana Maria',
-                      style: TextStyle(
+                      smashSuggestion?.teacher?.firstName ?? '',
+                      style: const TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
                         fontSize: 20,
@@ -94,10 +102,10 @@ class TeacherComment extends ConsumerWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       child: Text(
-                        'Comunicacion I',
-                        style: TextStyle(
+                        smashSuggestion?.course?.name ?? '',
+                        style: const TextStyle(
                           color: Color.fromRGBO(2, 51, 106, 1.000),
                           fontFamily: 'SFProDisplay',
                           fontSize: 17,
@@ -106,8 +114,8 @@ class TeacherComment extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    Column(
-                      children: const [
+                    const Column(
+                      children: [
                         Text(
                           'INGRESA UN COMENTARIO',
                           textAlign: TextAlign.center,
@@ -120,26 +128,32 @@ class TeacherComment extends ConsumerWidget {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.all(22.0),
+                      padding: const EdgeInsets.all(22.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Card(
                               child: Padding(
-                            padding: EdgeInsets.all(12.0),
+                            padding: const EdgeInsets.all(12.0),
                             child: TextField(
                               controller: _commentController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 hintText: 'Deja tu comentario aquí',
                               ),
                               maxLines: 7,
                               maxLength: 280,
                               maxLengthEnforcement:
                                   MaxLengthEnforcement.enforced,
+                              onChanged: (value) {
+                                ref
+                                    .read(teachersTinderControllerProvider
+                                        .notifier)
+                                    .setComment(value);
+                              },
                             ),
                           )),
-                          SizedBox(height: 6.0),
+                          const SizedBox(height: 6.0),
                         ],
                       ),
                     ),
@@ -149,19 +163,24 @@ class TeacherComment extends ConsumerWidget {
                         text: 'PUBLICAR',
                         textColor: Colors.white,
                         verticalPadding: 8,
-                        linearGradient: LinearGradient(
+                        linearGradient: const LinearGradient(
                           colors: [
                             AppTheme.linearGradientLight,
                             AppTheme.linearGradientDark
                           ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
-                          stops: const [0.0, 1.0],
+                          stops: [0.0, 1.0],
                         ),
                         onPressed: () {
-                          if (_commentController.text.length >= 20) {
-                            showConfirmationDialog(context);
-                          } else {}
+                          ref
+                              .read(teachersTinderControllerProvider.notifier)
+                              .submitQualification();
+
+                          // TODO: ESTA LOGICA VA SOBRE EL WIDGET DE TEXTO
+                          // final text = _commentController.text;
+                          // if (text.isEmpty || text.length >= 20) {
+                          // } else {}
                         },
                       ),
                     )
@@ -178,6 +197,7 @@ class TeacherComment extends ConsumerWidget {
   void showConfirmationDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           content: Column(
@@ -186,8 +206,8 @@ class TeacherComment extends ConsumerWidget {
               Image.asset(
                 'assets/images/check.gif',
               ),
-              SizedBox(height: 10),
-              Text(
+              const SizedBox(height: 10),
+              const Text(
                 'Tu calificación ha sido confirmada',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -203,26 +223,5 @@ class TeacherComment extends ConsumerWidget {
         );
       },
     );
-  }
-}
-
-class BezzierClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var height = size.height;
-    var width = size.width;
-    var heightOffset = height * 0.2;
-    Path path = Path();
-    path.lineTo(0, height - heightOffset);
-    path.quadraticBezierTo(
-        width * 0.5, height * 1.2, width, height - heightOffset);
-    path.lineTo(width, 0);
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
   }
 }

@@ -5,6 +5,7 @@ import 'package:wabu/common/data/response/response_dto.dart';
 import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/teachers/data/datasources/teachers_remote_datasource.dart';
 import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/utils/logger.dart';
 
 class TeachersDioDatasource extends TeachersRemoteDatasource {
   final dio = Dio(
@@ -87,6 +88,9 @@ class TeachersDioDatasource extends TeachersRemoteDatasource {
       String careerId) async {
     final token = Globals.token;
 
+    logger.d(token);
+    logger.d(careerId);
+
     final response = await dio.get(
       'career/$careerId',
       options: Options(
@@ -96,6 +100,8 @@ class TeachersDioDatasource extends TeachersRemoteDatasource {
         },
       ),
     );
+
+    logger.d(response);
 
     if (response.statusCode != 200) {
       final failureResponse = Failure.fromJson(response.data);

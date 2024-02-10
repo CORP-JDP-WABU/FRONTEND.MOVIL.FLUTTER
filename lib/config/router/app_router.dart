@@ -3,12 +3,12 @@ import 'package:wabu/features/authentication/presentation/screens/splash_screen.
 import 'package:wabu/features/authentication/presentation/screens/terms_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/update_info_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
-import 'package:wabu/features/compare/presentation/screens/compare_teachers_screen.dart';
+import 'package:wabu/features/smash/presentation/screens/teacher_required_rating_screen.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 import 'package:wabu/features/smash/presentation/views/smash_view.dart';
 import 'package:wabu/features/smash/presentation/screens/teachers_tinder_screen.dart';
-import 'package:wabu/features/smash/presentation/screens/teacher_comment.dart';
+import 'package:wabu/features/smash/presentation/screens/teacher_comment_screen.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
 import 'package:wabu/features/teachers/presentation/views/temporal_teachers_view.dart';
 import 'package:wabu/features/smash/presentation/screens/teacher_rating_step2.dart';
@@ -78,10 +78,10 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      name: TeacherComment.name,
-      path: TeacherComment.route,
+      name: TeacherCommentScreen.name,
+      path: TeacherCommentScreen.route,
       builder: (context, state) {
-        return const TeacherComment();
+        return const TeacherCommentScreen();
       },
     ),
     GoRoute(
@@ -99,10 +99,10 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      name: CompareTeachersScreen.name,
-      path: CompareTeachersScreen.route,
+      name: TeacherRequiredRatingScreen.name,
+      path: TeacherRequiredRatingScreen.route,
       builder: (context, state) {
-        return const CompareTeachersScreen();
+        return const TeacherRequiredRatingScreen();
       },
     ),
     GoRoute(
