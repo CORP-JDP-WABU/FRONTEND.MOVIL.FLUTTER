@@ -55,4 +55,73 @@ class SmashOperationsDioDatasource extends SmashOperationsRemoteDatasource {
 
     return Right(ignoreTeacherResponse.data);
   }
+
+  @override
+  Future<Either<Failure, IgnoreTeacherResponse>> qualifyTeacher(String courseId, String teacherId,
+      TeacherQualification teacherQualification) async {
+    final token = Globals.token;
+
+    logger.d(token);
+    logger.d(teacherQualification.toJson());
+
+    final response = await dio.patch(
+      'course/$courseId/teacher/$teacherId',
+      data: teacherQualification.toJson(),
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $token"
+        },
+      ),
+    );
+
+    logger.d(response);
+
+    if (response.statusCode != 200) {
+      final failureResponse = Failure.fromJson(response.data);
+
+      return Left(failureResponse);
+    }
+
+    final ignoreTeacherResponse = ResponseDto.fromJson(
+      response.data,
+      (json) => IgnoreTeacherResponse.fromJson(json as Map<String, dynamic>),
+    );
+
+    return Right(ignoreTeacherResponse.data);
+  }
+  
+  @override
+  Future<Either<Failure, IgnoreTeacherResponse>> commentTeacher(String courseId, String teacherId, TeacherComment teacherComment) async {
+    final token = Globals.token;
+
+    logger.d(token);
+    logger.d(teacherComment.toJson());
+
+    final response = await dio.patch(
+      'course/$courseId/teacher/$teacherId',
+      data: teacherComment.toJson(),
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $token"
+        },
+      ),
+    );
+
+    logger.d(response);
+
+    if (response.statusCode != 200) {
+      final failureResponse = Failure.fromJson(response.data);
+
+      return Left(failureResponse);
+    }
+
+    final ignoreTeacherResponse = ResponseDto.fromJson(
+      response.data,
+      (json) => IgnoreTeacherResponse.fromJson(json as Map<String, dynamic>),
+    );
+
+    return Right(ignoreTeacherResponse.data);
+  }
 }

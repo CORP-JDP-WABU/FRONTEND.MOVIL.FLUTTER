@@ -23,7 +23,9 @@ mixin _$TeachersTinderState {
   TeacherQualification get teacherQualification =>
       throw _privateConstructorUsedError;
   TeacherComment get teacherComment => throw _privateConstructorUsedError;
-  dynamic get pageStatus => throw _privateConstructorUsedError;
+  TeachersTinderStatus get pageStatus => throw _privateConstructorUsedError;
+  TeacherQualificationStatus get qualificationStatus =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TeachersTinderStateCopyWith<TeachersTinderState> get copyWith =>
@@ -41,7 +43,8 @@ abstract class $TeachersTinderStateCopyWith<$Res> {
       SmashSuggestion? selectedSmashSuggestion,
       TeacherQualification teacherQualification,
       TeacherComment teacherComment,
-      dynamic pageStatus});
+      TeachersTinderStatus pageStatus,
+      TeacherQualificationStatus qualificationStatus});
 
   $SmashSuggestionCopyWith<$Res>? get selectedSmashSuggestion;
   $TeacherQualificationCopyWith<$Res> get teacherQualification;
@@ -65,7 +68,8 @@ class _$TeachersTinderStateCopyWithImpl<$Res, $Val extends TeachersTinderState>
     Object? selectedSmashSuggestion = freezed,
     Object? teacherQualification = null,
     Object? teacherComment = null,
-    Object? pageStatus = freezed,
+    Object? pageStatus = null,
+    Object? qualificationStatus = null,
   }) {
     return _then(_value.copyWith(
       smashSuggestions: freezed == smashSuggestions
@@ -84,10 +88,14 @@ class _$TeachersTinderStateCopyWithImpl<$Res, $Val extends TeachersTinderState>
           ? _value.teacherComment
           : teacherComment // ignore: cast_nullable_to_non_nullable
               as TeacherComment,
-      pageStatus: freezed == pageStatus
+      pageStatus: null == pageStatus
           ? _value.pageStatus
           : pageStatus // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as TeachersTinderStatus,
+      qualificationStatus: null == qualificationStatus
+          ? _value.qualificationStatus
+          : qualificationStatus // ignore: cast_nullable_to_non_nullable
+              as TeacherQualificationStatus,
     ) as $Val);
   }
 
@@ -135,7 +143,8 @@ abstract class _$$TeachersTinderStateImplCopyWith<$Res>
       SmashSuggestion? selectedSmashSuggestion,
       TeacherQualification teacherQualification,
       TeacherComment teacherComment,
-      dynamic pageStatus});
+      TeachersTinderStatus pageStatus,
+      TeacherQualificationStatus qualificationStatus});
 
   @override
   $SmashSuggestionCopyWith<$Res>? get selectedSmashSuggestion;
@@ -160,7 +169,8 @@ class __$$TeachersTinderStateImplCopyWithImpl<$Res>
     Object? selectedSmashSuggestion = freezed,
     Object? teacherQualification = null,
     Object? teacherComment = null,
-    Object? pageStatus = freezed,
+    Object? pageStatus = null,
+    Object? qualificationStatus = null,
   }) {
     return _then(_$TeachersTinderStateImpl(
       smashSuggestions: freezed == smashSuggestions
@@ -179,7 +189,14 @@ class __$$TeachersTinderStateImplCopyWithImpl<$Res>
           ? _value.teacherComment
           : teacherComment // ignore: cast_nullable_to_non_nullable
               as TeacherComment,
-      pageStatus: freezed == pageStatus ? _value.pageStatus! : pageStatus,
+      pageStatus: null == pageStatus
+          ? _value.pageStatus
+          : pageStatus // ignore: cast_nullable_to_non_nullable
+              as TeachersTinderStatus,
+      qualificationStatus: null == qualificationStatus
+          ? _value.qualificationStatus
+          : qualificationStatus // ignore: cast_nullable_to_non_nullable
+              as TeacherQualificationStatus,
     ));
   }
 }
@@ -192,7 +209,8 @@ class _$TeachersTinderStateImpl implements _TeachersTinderState {
       this.selectedSmashSuggestion,
       this.teacherQualification = const TeacherQualification(),
       this.teacherComment = const TeacherComment(),
-      this.pageStatus = TeachersTinderStatus.loading})
+      this.pageStatus = TeachersTinderStatus.loading,
+      this.qualificationStatus = TeacherQualificationStatus.idle})
       : _smashSuggestions = smashSuggestions;
 
   final List<SmashSuggestion>? _smashSuggestions;
@@ -216,11 +234,14 @@ class _$TeachersTinderStateImpl implements _TeachersTinderState {
   final TeacherComment teacherComment;
   @override
   @JsonKey()
-  final dynamic pageStatus;
+  final TeachersTinderStatus pageStatus;
+  @override
+  @JsonKey()
+  final TeacherQualificationStatus qualificationStatus;
 
   @override
   String toString() {
-    return 'TeachersTinderState(smashSuggestions: $smashSuggestions, selectedSmashSuggestion: $selectedSmashSuggestion, teacherQualification: $teacherQualification, teacherComment: $teacherComment, pageStatus: $pageStatus)';
+    return 'TeachersTinderState(smashSuggestions: $smashSuggestions, selectedSmashSuggestion: $selectedSmashSuggestion, teacherQualification: $teacherQualification, teacherComment: $teacherComment, pageStatus: $pageStatus, qualificationStatus: $qualificationStatus)';
   }
 
   @override
@@ -237,8 +258,10 @@ class _$TeachersTinderStateImpl implements _TeachersTinderState {
                 other.teacherQualification == teacherQualification) &&
             (identical(other.teacherComment, teacherComment) ||
                 other.teacherComment == teacherComment) &&
-            const DeepCollectionEquality()
-                .equals(other.pageStatus, pageStatus));
+            (identical(other.pageStatus, pageStatus) ||
+                other.pageStatus == pageStatus) &&
+            (identical(other.qualificationStatus, qualificationStatus) ||
+                other.qualificationStatus == qualificationStatus));
   }
 
   @override
@@ -248,7 +271,8 @@ class _$TeachersTinderStateImpl implements _TeachersTinderState {
       selectedSmashSuggestion,
       teacherQualification,
       teacherComment,
-      const DeepCollectionEquality().hash(pageStatus));
+      pageStatus,
+      qualificationStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -260,11 +284,13 @@ class _$TeachersTinderStateImpl implements _TeachersTinderState {
 
 abstract class _TeachersTinderState implements TeachersTinderState {
   const factory _TeachersTinderState(
-      {final List<SmashSuggestion>? smashSuggestions,
-      final SmashSuggestion? selectedSmashSuggestion,
-      final TeacherQualification teacherQualification,
-      final TeacherComment teacherComment,
-      final dynamic pageStatus}) = _$TeachersTinderStateImpl;
+          {final List<SmashSuggestion>? smashSuggestions,
+          final SmashSuggestion? selectedSmashSuggestion,
+          final TeacherQualification teacherQualification,
+          final TeacherComment teacherComment,
+          final TeachersTinderStatus pageStatus,
+          final TeacherQualificationStatus qualificationStatus}) =
+      _$TeachersTinderStateImpl;
 
   @override
   List<SmashSuggestion>? get smashSuggestions;
@@ -275,7 +301,9 @@ abstract class _TeachersTinderState implements TeachersTinderState {
   @override
   TeacherComment get teacherComment;
   @override
-  dynamic get pageStatus;
+  TeachersTinderStatus get pageStatus;
+  @override
+  TeacherQualificationStatus get qualificationStatus;
   @override
   @JsonKey(ignore: true)
   _$$TeachersTinderStateImplCopyWith<_$TeachersTinderStateImpl> get copyWith =>

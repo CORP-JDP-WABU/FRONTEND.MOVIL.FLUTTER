@@ -9,19 +9,19 @@ part of 'teacher_qualification.dart';
 _$TeacherQualificationImpl _$$TeacherQualificationImplFromJson(
         Map<String, dynamic> json) =>
     _$TeacherQualificationImpl(
-      teacherQualificationRequired: json['teacherQualificationRequired'] == null
+      required: json['required'] == null
           ? const TeacherQualificationRequired()
           : TeacherQualificationRequired.fromJson(
-              json['teacherQualificationRequired'] as Map<String, dynamic>),
-      teacherQualificationOptional: json['teacherQualificationOptional'] == null
+              json['required'] as Map<String, dynamic>),
+      optional: json['optional'] == null
           ? const TeacherQualificationOptional()
           : TeacherQualificationOptional.fromJson(
-              json['teacherQualificationOptional'] as Map<String, dynamic>),
+              json['optional'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TeacherQualificationImplToJson(
         _$TeacherQualificationImpl instance) =>
     <String, dynamic>{
-      'teacherQualificationRequired': instance.teacherQualificationRequired,
-      'teacherQualificationOptional': instance.teacherQualificationOptional,
+      'required': instance.required.toJson(),
+      'optional': instance.optional.toJson(),
     };

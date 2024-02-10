@@ -21,10 +21,10 @@ class TeacherRequiredRatingScreen extends ConsumerWidget {
 
     return TeachersTinderWrapper(
       isLoading: isLoading,
-      content: _TeacherRequiredRatingContent(),
+      content: const _TeacherRequiredRatingContent(),
     );
   }
-}
+} 
 
 class _TeacherRequiredRatingContent extends ConsumerWidget {
   const _TeacherRequiredRatingContent();
@@ -40,8 +40,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(teachersTinderControllerProvider);
     final smashSuggestion = state.selectedSmashSuggestion;
-    final teacherQualificationRequired =
-        state.teacherQualification.teacherQualificationRequired;
+    final teacherQualificationRequired = state.teacherQualification.required;
     final isButtonActive = hasAllRequired(teacherQualificationRequired);
 
     return LayoutBuilder(

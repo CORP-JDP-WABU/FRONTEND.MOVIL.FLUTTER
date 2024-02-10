@@ -6,11 +6,12 @@ part 'teacher_qualification.g.dart';
 
 @freezed
 class TeacherQualification with _$TeacherQualification {
+  @JsonSerializable(explicitToJson: true)
   const factory TeacherQualification({
     @Default(TeacherQualificationRequired())
-    TeacherQualificationRequired teacherQualificationRequired,
+    TeacherQualificationRequired required,
     @Default(TeacherQualificationOptional())
-    TeacherQualificationOptional teacherQualificationOptional,
+    TeacherQualificationOptional optional,
   }) = _TeacherQualification;
 
   factory TeacherQualification.fromJson(Map<String, dynamic> json) =>

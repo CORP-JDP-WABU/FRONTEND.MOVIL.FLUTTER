@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/custom_back_button.dart';
 import 'package:wabu/common/widgets/custom_filled_button.dart';
 import 'package:wabu/config/theme/app_theme.dart';
+import 'package:wabu/features/smash/presentation/controllers/controllers.dart';
 
 class TeacherCommentScreen extends ConsumerWidget {
   const TeacherCommentScreen({super.key});
@@ -16,6 +17,15 @@ class TeacherCommentScreen extends ConsumerWidget {
       TextEditingController();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(teachersTinderControllerProvider);
+    final smashSuggestion = state.selectedSmashSuggestion;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (state.qualificationStatus == TeacherQualificationStatus.loaded) {
+        showConfirmationDialog(context);
+      }
+    });
+
     return Scaffold(
       body: SingleChildScrollView(
           child: Container(
@@ -50,13 +60,13 @@ class TeacherCommentScreen extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: 16),
-              const Material(
-                shape: CircleBorder(
+              Material(
+                shape: const CircleBorder(
                     side: BorderSide(color: Colors.white, width: 3)),
                 child: CircleAvatar(
                   radius: 72,
                   backgroundImage: NetworkImage(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrggIP1tphFNHqBURDu-6QY1TiSJVXQy0Uuw&usqp=CAU',
+                      smashSuggestion?.teacher?.photoUrl ?? '',
                       scale: 144),
                 ),
               ),
@@ -71,9 +81,9 @@ class TeacherCommentScreen extends ConsumerWidget {
                   child: Column(children: [
                     const SizedBox(height: 16),
                     const SizedBox(height: 10),
-                    const Text(
-                      'Pardo Robles',
-                      style: TextStyle(
+                    Text(
+                      smashSuggestion?.teacher?.lastName ?? '',
+                      style: const TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
                         fontSize: 20,
@@ -81,9 +91,9 @@ class TeacherCommentScreen extends ConsumerWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const Text(
-                      'Liliana Maria',
-                      style: TextStyle(
+                    Text(
+                      smashSuggestion?.teacher?.firstName ?? '',
+                      style: const TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
                         fontSize: 20,
@@ -91,11 +101,11 @@ class TeacherCommentScreen extends ConsumerWidget {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(16),
+                    Padding(
+                      padding: const EdgeInsets.all(16),
                       child: Text(
-                        'Comunicacion I',
-                        style: TextStyle(
+                        smashSuggestion?.course?.name ?? '',
+                        style: const TextStyle(
                           color: Color.fromRGBO(2, 51, 106, 1.000),
                           fontFamily: 'SFProDisplay',
                           fontSize: 17,
@@ -135,6 +145,12 @@ class TeacherCommentScreen extends ConsumerWidget {
                               maxLength: 280,
                               maxLengthEnforcement:
                                   MaxLengthEnforcement.enforced,
+                              onChanged: (value) {
+                                ref
+                                    .read(teachersTinderControllerProvider
+                                        .notifier)
+                                    .setComment(value);
+                              },
                             ),
                           )),
                           const SizedBox(height: 6.0),
@@ -157,9 +173,14 @@ class TeacherCommentScreen extends ConsumerWidget {
                           stops: [0.0, 1.0],
                         ),
                         onPressed: () {
-                          if (_commentController.text.length >= 20) {
-                            showConfirmationDialog(context);
-                          } else {}
+                          ref
+                              .read(teachersTinderControllerProvider.notifier)
+                              .submitQualification();
+
+                          // TODO: ESTA LOGICA VA SOBRE EL WIDGET DE TEXTO
+                          // final text = _commentController.text;
+                          // if (text.isEmpty || text.length >= 20) {
+                          // } else {}
                         },
                       ),
                     )
@@ -176,6 +197,7 @@ class TeacherCommentScreen extends ConsumerWidget {
   void showConfirmationDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           content: Column(

@@ -15,4 +15,18 @@ class SmashOperationsDioRepository extends SmashOperationsRepository {
       String courseId, String teacherId) {
     return smashOperationsRemoteDatasource.ignoreTeacher(courseId, teacherId);
   }
+
+  @override
+  Future<Either<Failure, IgnoreTeacherResponse>> qualifyTeacher(String courseId,
+      String teacherId, TeacherQualification teacherQualification) {
+    return smashOperationsRemoteDatasource.qualifyTeacher(
+        courseId, teacherId, teacherQualification);
+  }
+
+  @override
+  Future<Either<Failure, IgnoreTeacherResponse>> commentTeacher(
+      String courseId, String teacherId, TeacherComment teacherComment) {
+    return smashOperationsRemoteDatasource.commentTeacher(
+        courseId, teacherId, teacherComment);
+  }
 }

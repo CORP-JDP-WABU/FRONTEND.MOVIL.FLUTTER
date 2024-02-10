@@ -128,3 +128,10 @@ flutter:
         - asset: fonts/sf-pro-display/SF-Pro-Display-Ultralight.otf
           weight: 100
   uses-material-design: true
+
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          explicit_to_json: true

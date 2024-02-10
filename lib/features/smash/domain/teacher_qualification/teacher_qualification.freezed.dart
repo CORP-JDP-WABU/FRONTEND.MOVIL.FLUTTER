@@ -20,9 +20,9 @@ TeacherQualification _$TeacherQualificationFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TeacherQualification {
-  TeacherQualificationRequired get teacherQualificationRequired =>
+  TeacherQualificationRequired get required =>
       throw _privateConstructorUsedError;
-  TeacherQualificationOptional get teacherQualificationOptional =>
+  TeacherQualificationOptional get optional =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,11 +38,11 @@ abstract class $TeacherQualificationCopyWith<$Res> {
       _$TeacherQualificationCopyWithImpl<$Res, TeacherQualification>;
   @useResult
   $Res call(
-      {TeacherQualificationRequired teacherQualificationRequired,
-      TeacherQualificationOptional teacherQualificationOptional});
+      {TeacherQualificationRequired required,
+      TeacherQualificationOptional optional});
 
-  $TeacherQualificationRequiredCopyWith<$Res> get teacherQualificationRequired;
-  $TeacherQualificationOptionalCopyWith<$Res> get teacherQualificationOptional;
+  $TeacherQualificationRequiredCopyWith<$Res> get required;
+  $TeacherQualificationOptionalCopyWith<$Res> get optional;
 }
 
 /// @nodoc
@@ -59,38 +59,36 @@ class _$TeacherQualificationCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? teacherQualificationRequired = null,
-    Object? teacherQualificationOptional = null,
+    Object? required = null,
+    Object? optional = null,
   }) {
     return _then(_value.copyWith(
-      teacherQualificationRequired: null == teacherQualificationRequired
-          ? _value.teacherQualificationRequired
-          : teacherQualificationRequired // ignore: cast_nullable_to_non_nullable
+      required: null == required
+          ? _value.required
+          : required // ignore: cast_nullable_to_non_nullable
               as TeacherQualificationRequired,
-      teacherQualificationOptional: null == teacherQualificationOptional
-          ? _value.teacherQualificationOptional
-          : teacherQualificationOptional // ignore: cast_nullable_to_non_nullable
+      optional: null == optional
+          ? _value.optional
+          : optional // ignore: cast_nullable_to_non_nullable
               as TeacherQualificationOptional,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TeacherQualificationRequiredCopyWith<$Res> get teacherQualificationRequired {
-    return $TeacherQualificationRequiredCopyWith<$Res>(
-        _value.teacherQualificationRequired, (value) {
-      return _then(
-          _value.copyWith(teacherQualificationRequired: value) as $Val);
+  $TeacherQualificationRequiredCopyWith<$Res> get required {
+    return $TeacherQualificationRequiredCopyWith<$Res>(_value.required,
+        (value) {
+      return _then(_value.copyWith(required: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TeacherQualificationOptionalCopyWith<$Res> get teacherQualificationOptional {
-    return $TeacherQualificationOptionalCopyWith<$Res>(
-        _value.teacherQualificationOptional, (value) {
-      return _then(
-          _value.copyWith(teacherQualificationOptional: value) as $Val);
+  $TeacherQualificationOptionalCopyWith<$Res> get optional {
+    return $TeacherQualificationOptionalCopyWith<$Res>(_value.optional,
+        (value) {
+      return _then(_value.copyWith(optional: value) as $Val);
     });
   }
 }
@@ -104,13 +102,13 @@ abstract class _$$TeacherQualificationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {TeacherQualificationRequired teacherQualificationRequired,
-      TeacherQualificationOptional teacherQualificationOptional});
+      {TeacherQualificationRequired required,
+      TeacherQualificationOptional optional});
 
   @override
-  $TeacherQualificationRequiredCopyWith<$Res> get teacherQualificationRequired;
+  $TeacherQualificationRequiredCopyWith<$Res> get required;
   @override
-  $TeacherQualificationOptionalCopyWith<$Res> get teacherQualificationOptional;
+  $TeacherQualificationOptionalCopyWith<$Res> get optional;
 }
 
 /// @nodoc
@@ -124,43 +122,43 @@ class __$$TeacherQualificationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? teacherQualificationRequired = null,
-    Object? teacherQualificationOptional = null,
+    Object? required = null,
+    Object? optional = null,
   }) {
     return _then(_$TeacherQualificationImpl(
-      teacherQualificationRequired: null == teacherQualificationRequired
-          ? _value.teacherQualificationRequired
-          : teacherQualificationRequired // ignore: cast_nullable_to_non_nullable
+      required: null == required
+          ? _value.required
+          : required // ignore: cast_nullable_to_non_nullable
               as TeacherQualificationRequired,
-      teacherQualificationOptional: null == teacherQualificationOptional
-          ? _value.teacherQualificationOptional
-          : teacherQualificationOptional // ignore: cast_nullable_to_non_nullable
+      optional: null == optional
+          ? _value.optional
+          : optional // ignore: cast_nullable_to_non_nullable
               as TeacherQualificationOptional,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$TeacherQualificationImpl implements _TeacherQualification {
   const _$TeacherQualificationImpl(
-      {this.teacherQualificationRequired = const TeacherQualificationRequired(),
-      this.teacherQualificationOptional =
-          const TeacherQualificationOptional()});
+      {this.required = const TeacherQualificationRequired(),
+      this.optional = const TeacherQualificationOptional()});
 
   factory _$TeacherQualificationImpl.fromJson(Map<String, dynamic> json) =>
       _$$TeacherQualificationImplFromJson(json);
 
   @override
   @JsonKey()
-  final TeacherQualificationRequired teacherQualificationRequired;
+  final TeacherQualificationRequired required;
   @override
   @JsonKey()
-  final TeacherQualificationOptional teacherQualificationOptional;
+  final TeacherQualificationOptional optional;
 
   @override
   String toString() {
-    return 'TeacherQualification(teacherQualificationRequired: $teacherQualificationRequired, teacherQualificationOptional: $teacherQualificationOptional)';
+    return 'TeacherQualification(required: $required, optional: $optional)';
   }
 
   @override
@@ -168,20 +166,15 @@ class _$TeacherQualificationImpl implements _TeacherQualification {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TeacherQualificationImpl &&
-            (identical(other.teacherQualificationRequired,
-                    teacherQualificationRequired) ||
-                other.teacherQualificationRequired ==
-                    teacherQualificationRequired) &&
-            (identical(other.teacherQualificationOptional,
-                    teacherQualificationOptional) ||
-                other.teacherQualificationOptional ==
-                    teacherQualificationOptional));
+            (identical(other.required, required) ||
+                other.required == required) &&
+            (identical(other.optional, optional) ||
+                other.optional == optional));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, teacherQualificationRequired, teacherQualificationOptional);
+  int get hashCode => Object.hash(runtimeType, required, optional);
 
   @JsonKey(ignore: true)
   @override
@@ -201,17 +194,17 @@ class _$TeacherQualificationImpl implements _TeacherQualification {
 
 abstract class _TeacherQualification implements TeacherQualification {
   const factory _TeacherQualification(
-          {final TeacherQualificationRequired teacherQualificationRequired,
-          final TeacherQualificationOptional teacherQualificationOptional}) =
+          {final TeacherQualificationRequired required,
+          final TeacherQualificationOptional optional}) =
       _$TeacherQualificationImpl;
 
   factory _TeacherQualification.fromJson(Map<String, dynamic> json) =
       _$TeacherQualificationImpl.fromJson;
 
   @override
-  TeacherQualificationRequired get teacherQualificationRequired;
+  TeacherQualificationRequired get required;
   @override
-  TeacherQualificationOptional get teacherQualificationOptional;
+  TeacherQualificationOptional get optional;
   @override
   @JsonKey(ignore: true)
   _$$TeacherQualificationImplCopyWith<_$TeacherQualificationImpl>

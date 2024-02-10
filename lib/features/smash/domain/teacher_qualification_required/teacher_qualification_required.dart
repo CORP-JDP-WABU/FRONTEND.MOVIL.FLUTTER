@@ -5,6 +5,7 @@ part 'teacher_qualification_required.g.dart';
 
 @freezed
 class TeacherQualificationRequired with _$TeacherQualificationRequired {
+  @JsonSerializable(explicitToJson: true)
   const factory TeacherQualificationRequired({
     @Default(0) int learn,
     @Default(0) int hight,

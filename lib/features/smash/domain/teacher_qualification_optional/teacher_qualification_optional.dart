@@ -5,6 +5,7 @@ part 'teacher_qualification_optional.g.dart';
 
 @freezed
 class TeacherQualificationOptional with _$TeacherQualificationOptional {
+  @JsonSerializable(explicitToJson: true)
   const factory TeacherQualificationOptional({
     @Default(0) int worked,
     @Default(0) int late,
