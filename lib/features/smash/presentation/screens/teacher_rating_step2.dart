@@ -138,7 +138,7 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                           onSelected: (index) {
                             ref
                                 .read(teachersTinderControllerProvider.notifier)
-                                .setWorked(index);
+                                .setWorked(index + 1);
                           },
                         ),
                         ContinuousQualification(
@@ -155,7 +155,7 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                           onSelected: (index) {
                             ref
                                 .read(teachersTinderControllerProvider.notifier)
-                                .setLate(index);
+                                .setLate(index + 1);
                           },
                         ),
                         ContinuousQualification(
@@ -172,7 +172,7 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                           onSelected: (index) {
                             ref
                                 .read(teachersTinderControllerProvider.notifier)
-                                .setAssistance(index);
+                                .setAssistance(index + 1);
                           },
                         ),
                       ],
