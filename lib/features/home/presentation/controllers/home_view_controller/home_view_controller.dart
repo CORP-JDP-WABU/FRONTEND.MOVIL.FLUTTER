@@ -54,8 +54,6 @@ class HomeViewController extends _$HomeViewController {
       String studentId = student.idStudent;
       String universityId = student.idUniversity;
 
-      throw Exception();
-
       final response = await ref
           .watch(dashboardRepositoryProvider)
           .getStudentDashboard(universityId, studentId);
