@@ -11,7 +11,7 @@ _$HomeDashboardKpisImpl _$$HomeDashboardKpisImplFromJson(
     _$HomeDashboardKpisImpl(
       manyStudentConnected: json['manyStudentConnected'] as int?,
       manyQualificationTeacher: json['manyQualificationTeacher'] as int?,
-      manyShareDocument: json['manyShareDocument'] as int?,
+      manySharedDocument: json['manySharedDocument'] as int?,
     );
 
 Map<String, dynamic> _$$HomeDashboardKpisImplToJson(
@@ -19,5 +19,5 @@ Map<String, dynamic> _$$HomeDashboardKpisImplToJson(
     <String, dynamic>{
       'manyStudentConnected': instance.manyStudentConnected,
       'manyQualificationTeacher': instance.manyQualificationTeacher,
-      'manyShareDocument': instance.manyShareDocument,
+      'manySharedDocument': instance.manySharedDocument,
     };

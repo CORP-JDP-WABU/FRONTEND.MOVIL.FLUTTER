@@ -1,12 +1,11 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:wabu/common/data/failure/failure.dart';
+import 'package:wabu/common/data/data.dart';
 import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/home/data/data.dart';
 import 'package:wabu/features/home/domain/domain.dart';
-import 'package:wabu/features/home/presentation/controllers/controllers.dart';
-import 'package:wabu/features/student/domain/student/student.dart';
+import 'package:wabu/features/home/presentation/presentation.dart';
+import 'package:wabu/features/student/domain/domain.dart';
 import 'package:wabu/features/student/data/repositories/providers.dart';
-import 'package:wabu/utils/logger.dart';
 
 part 'home_view_controller.g.dart';
 
@@ -18,22 +17,22 @@ class HomeViewController extends _$HomeViewController {
     return const HomeViewState();
   }
 
-  void fetchData() async {
+  Future<void> fetchData() async {
     try {
       String studentId = Globals.studentId ?? '';
 
-      final getStudentResponse =
+      final response =
           await ref.watch(studentRepositoryProvider).getStudent(studentId);
 
-      logger.d(getStudentResponse);
-
-      getStudentResponse.fold((Failure failure) {
+      response.fold((Failure failure) {
         switch (failure.errorCode) {
           default:
-            setPageError();
+            state = state.copyWith(
+              homeStatus: HomeStatus.error,
+            );
             break;
         }
-      }, (Student student) {
+      }, (Student student) async {
         Globals.universityId = student.idUniversity;
         Globals.careerId = student.idCareer;
 
@@ -41,59 +40,44 @@ class HomeViewController extends _$HomeViewController {
           student: student,
         );
 
-        fetchDashboardData();
+        await fetchDashboardData(student);
       });
     } catch (e) {
-      setPageError();
+      state = state.copyWith(
+        homeStatus: HomeStatus.error,
+      );
     }
   }
 
-  void fetchDashboardData() async {
-    String studentId = Globals.studentId ?? '';
-    String universityId = Globals.universityId ?? '';
+  Future<void> fetchDashboardData(Student student) async {
+    try {
+      String studentId = student.idStudent;
+      String universityId = student.idUniversity;
 
-    final dashboardResponse = await ref
-        .watch(dashboardRepositoryProvider)
-        .getStudentDashboard(universityId, studentId);
+      throw Exception();
 
-    logger.d(dashboardResponse);
+      final response = await ref
+          .watch(dashboardRepositoryProvider)
+          .getStudentDashboard(universityId, studentId);
 
-    dashboardResponse.fold((Failure failure) {
-      switch (failure.errorCode) {
-        default:
-          setPageError();
-          break;
-      }
-    }, (HomeDashboard homeDashboard) {
+      response.fold((Failure failure) {
+        switch (failure.errorCode) {
+          default:
+            state = state.copyWith(
+              homeStatus: HomeStatus.error,
+            );
+            break;
+        }
+      }, (HomeDashboard homeDashboard) {
+        state = state.copyWith(
+          homeDashboard: homeDashboard,
+          homeStatus: HomeStatus.loaded,
+        );
+      });
+    } catch (e) {
       state = state.copyWith(
-        homeDashboard: homeDashboard,
+        homeStatus: HomeStatus.error,
       );
-
-      setPageLoaded();
-    });
-  }
-
-  void setPageLoading() {
-    state = state.copyWith(
-      pageStatus: HomeViewStatus.loading,
-    );
-  }
-
-  void setPageLoaded() {
-    state = state.copyWith(
-      pageStatus: HomeViewStatus.loaded,
-    );
-  }
-
-  void setPageError() {
-    state = state.copyWith(
-      pageStatus: HomeViewStatus.error,
-    );
-  }
-
-  void setPageIdle() {
-    state = state.copyWith(
-      pageStatus: HomeViewStatus.idle,
-    );
+    }
   }
 }

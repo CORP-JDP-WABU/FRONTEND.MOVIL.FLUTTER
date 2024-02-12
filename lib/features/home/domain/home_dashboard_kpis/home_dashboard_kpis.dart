@@ -8,7 +8,7 @@ class HomeDashboardKpis with _$HomeDashboardKpis {
   const factory HomeDashboardKpis({
     int? manyStudentConnected,
     int? manyQualificationTeacher,
-    int? manyShareDocument,
+    int? manySharedDocument,
   }) = _HomeDashboardKpis;
 
   factory HomeDashboardKpis.fromJson(Map<String, dynamic> json) =>
