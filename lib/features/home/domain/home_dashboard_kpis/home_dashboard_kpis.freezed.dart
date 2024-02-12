@@ -22,7 +22,7 @@ HomeDashboardKpis _$HomeDashboardKpisFromJson(Map<String, dynamic> json) {
 mixin _$HomeDashboardKpis {
   int? get manyStudentConnected => throw _privateConstructorUsedError;
   int? get manyQualificationTeacher => throw _privateConstructorUsedError;
-  int? get manyShareDocument => throw _privateConstructorUsedError;
+  int? get manySharedDocument => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +39,7 @@ abstract class $HomeDashboardKpisCopyWith<$Res> {
   $Res call(
       {int? manyStudentConnected,
       int? manyQualificationTeacher,
-      int? manyShareDocument});
+      int? manySharedDocument});
 }
 
 /// @nodoc
@@ -57,7 +57,7 @@ class _$HomeDashboardKpisCopyWithImpl<$Res, $Val extends HomeDashboardKpis>
   $Res call({
     Object? manyStudentConnected = freezed,
     Object? manyQualificationTeacher = freezed,
-    Object? manyShareDocument = freezed,
+    Object? manySharedDocument = freezed,
   }) {
     return _then(_value.copyWith(
       manyStudentConnected: freezed == manyStudentConnected
@@ -68,9 +68,9 @@ class _$HomeDashboardKpisCopyWithImpl<$Res, $Val extends HomeDashboardKpis>
           ? _value.manyQualificationTeacher
           : manyQualificationTeacher // ignore: cast_nullable_to_non_nullable
               as int?,
-      manyShareDocument: freezed == manyShareDocument
-          ? _value.manyShareDocument
-          : manyShareDocument // ignore: cast_nullable_to_non_nullable
+      manySharedDocument: freezed == manySharedDocument
+          ? _value.manySharedDocument
+          : manySharedDocument // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
   }
@@ -87,7 +87,7 @@ abstract class _$$HomeDashboardKpisImplCopyWith<$Res>
   $Res call(
       {int? manyStudentConnected,
       int? manyQualificationTeacher,
-      int? manyShareDocument});
+      int? manySharedDocument});
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ class __$$HomeDashboardKpisImplCopyWithImpl<$Res>
   $Res call({
     Object? manyStudentConnected = freezed,
     Object? manyQualificationTeacher = freezed,
-    Object? manyShareDocument = freezed,
+    Object? manySharedDocument = freezed,
   }) {
     return _then(_$HomeDashboardKpisImpl(
       manyStudentConnected: freezed == manyStudentConnected
@@ -114,9 +114,9 @@ class __$$HomeDashboardKpisImplCopyWithImpl<$Res>
           ? _value.manyQualificationTeacher
           : manyQualificationTeacher // ignore: cast_nullable_to_non_nullable
               as int?,
-      manyShareDocument: freezed == manyShareDocument
-          ? _value.manyShareDocument
-          : manyShareDocument // ignore: cast_nullable_to_non_nullable
+      manySharedDocument: freezed == manySharedDocument
+          ? _value.manySharedDocument
+          : manySharedDocument // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -128,7 +128,7 @@ class _$HomeDashboardKpisImpl implements _HomeDashboardKpis {
   const _$HomeDashboardKpisImpl(
       {this.manyStudentConnected,
       this.manyQualificationTeacher,
-      this.manyShareDocument});
+      this.manySharedDocument});
 
   factory _$HomeDashboardKpisImpl.fromJson(Map<String, dynamic> json) =>
       _$$HomeDashboardKpisImplFromJson(json);
@@ -138,11 +138,11 @@ class _$HomeDashboardKpisImpl implements _HomeDashboardKpis {
   @override
   final int? manyQualificationTeacher;
   @override
-  final int? manyShareDocument;
+  final int? manySharedDocument;
 
   @override
   String toString() {
-    return 'HomeDashboardKpis(manyStudentConnected: $manyStudentConnected, manyQualificationTeacher: $manyQualificationTeacher, manyShareDocument: $manyShareDocument)';
+    return 'HomeDashboardKpis(manyStudentConnected: $manyStudentConnected, manyQualificationTeacher: $manyQualificationTeacher, manySharedDocument: $manySharedDocument)';
   }
 
   @override
@@ -155,14 +155,14 @@ class _$HomeDashboardKpisImpl implements _HomeDashboardKpis {
             (identical(
                     other.manyQualificationTeacher, manyQualificationTeacher) ||
                 other.manyQualificationTeacher == manyQualificationTeacher) &&
-            (identical(other.manyShareDocument, manyShareDocument) ||
-                other.manyShareDocument == manyShareDocument));
+            (identical(other.manySharedDocument, manySharedDocument) ||
+                other.manySharedDocument == manySharedDocument));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, manyStudentConnected,
-      manyQualificationTeacher, manyShareDocument);
+      manyQualificationTeacher, manySharedDocument);
 
   @JsonKey(ignore: true)
   @override
@@ -183,7 +183,7 @@ abstract class _HomeDashboardKpis implements HomeDashboardKpis {
   const factory _HomeDashboardKpis(
       {final int? manyStudentConnected,
       final int? manyQualificationTeacher,
-      final int? manyShareDocument}) = _$HomeDashboardKpisImpl;
+      final int? manySharedDocument}) = _$HomeDashboardKpisImpl;
 
   factory _HomeDashboardKpis.fromJson(Map<String, dynamic> json) =
       _$HomeDashboardKpisImpl.fromJson;
@@ -193,7 +193,7 @@ abstract class _HomeDashboardKpis implements HomeDashboardKpis {
   @override
   int? get manyQualificationTeacher;
   @override
-  int? get manyShareDocument;
+  int? get manySharedDocument;
   @override
   @JsonKey(ignore: true)
   _$$HomeDashboardKpisImplCopyWith<_$HomeDashboardKpisImpl> get copyWith =>

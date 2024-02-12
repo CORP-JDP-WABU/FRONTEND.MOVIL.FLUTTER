@@ -4,13 +4,13 @@ import 'package:wabu/features/student/domain/domain.dart';
 
 part 'home_view_state.freezed.dart';
 
-enum HomeViewStatus { loading, loaded, error, idle }
+enum HomeStatus { loading, loaded, error }
 
 @freezed
 class HomeViewState with _$HomeViewState {
   const factory HomeViewState({
     @Default(Student()) Student student,
     @Default(HomeDashboard()) HomeDashboard homeDashboard,
-    @Default(HomeViewStatus.loading) HomeViewStatus pageStatus,
+    @Default(HomeStatus.loading) HomeStatus homeStatus,
   }) = _HomeViewState;
 }

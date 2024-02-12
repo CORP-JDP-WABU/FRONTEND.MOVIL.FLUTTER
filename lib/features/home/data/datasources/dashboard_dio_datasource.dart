@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:wabu/common/data/failure/failure.dart';
-import 'package:wabu/common/data/response/response_dto.dart';
+import 'package:wabu/common/data/data.dart';
 import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/home/data/data.dart';
 import 'package:wabu/features/home/domain/domain.dart';
+import 'package:wabu/utils/logger.dart';
 
 class DashboardDioDatasource extends DashboardRemoteDatasource {
   final dio = Dio(
@@ -38,6 +38,8 @@ class DashboardDioDatasource extends DashboardRemoteDatasource {
         },
       ),
     );
+
+    logger.d(response);
 
     if (response.statusCode != 200) {
       final failureResponse = Failure.fromJson(response.data);
