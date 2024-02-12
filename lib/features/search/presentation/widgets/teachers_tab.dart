@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wabu/features/search/teachers_tab_container.dart';
+import 'package:wabu/features/search/presentation/widgets/teachers_tab_container.dart';
 import 'package:wabu/features/teachers/domain/teacher/teacher.dart';
 
 class TeachersTab extends StatefulWidget {
