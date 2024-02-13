@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:wabu/features/smash/presentation/screens/screens.dart';
 import 'package:wabu/features/smash/domain/domain.dart';
-import 'package:wabu/features/smash/presentation/controllers/controllers.dart';
-import 'package:wabu/features/smash/presentation/widgets/widgets.dart';
+import 'package:wabu/features/smash/presentation/presentation.dart';
 
 class TeachersTinderScreen extends ConsumerWidget {
   const TeachersTinderScreen({super.key});

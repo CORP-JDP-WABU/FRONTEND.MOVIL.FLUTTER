@@ -1,9 +1,9 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:wabu/common/data/failure/failure.dart';
+import 'package:wabu/common/data/data.dart';
 import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/smash/data/data.dart';
 import 'package:wabu/features/smash/domain/domain.dart';
-import 'package:wabu/features/smash/presentation/controllers/controllers.dart';
+import 'package:wabu/features/smash/presentation/presentation.dart';
 
 part 'teachers_tinder_controller.g.dart';
 
@@ -125,8 +125,8 @@ class TeachersTinderController extends _$TeachersTinderController {
             setQualificationError();
             break;
         }
-      }, (IgnoreTeacherResponse ignoreTeacherResponse) {
-        if (ignoreTeacherResponse.isRemoveTeacherToList != true) {
+      }, (QualifyTeacherResponse qualifyTeacherResponse) {
+        if (qualifyTeacherResponse.isRemoveTeacherToList != true) {
           setQualificationError();
           return;
         }
@@ -159,8 +159,8 @@ class TeachersTinderController extends _$TeachersTinderController {
             setQualificationError();
             break;
         }
-      }, (IgnoreTeacherResponse ignoreTeacherResponse) {
-        if (ignoreTeacherResponse.isRemoveTeacherToList != true) {
+      }, (CommentTeacherResponse commentTeacherResponse) {
+        if (commentTeacherResponse.isCommentCreate != false) {
           setQualificationError();
           return;
         }

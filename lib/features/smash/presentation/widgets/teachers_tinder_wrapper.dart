@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wabu/common/widgets/widgets.dart';
-import 'package:wabu/features/smash/presentation/widgets/widgets.dart';
+import 'package:wabu/features/smash/presentation/presentation.dart';
 
 class TeachersTinderWrapper extends StatelessWidget {
   const TeachersTinderWrapper({

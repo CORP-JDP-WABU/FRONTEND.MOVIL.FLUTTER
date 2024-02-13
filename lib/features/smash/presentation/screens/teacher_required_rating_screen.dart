@@ -4,9 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/smash/domain/domain.dart';
-import 'package:wabu/features/smash/presentation/controllers/controllers.dart';
-import 'package:wabu/features/smash/presentation/screens/screens.dart';
-import 'package:wabu/features/smash/presentation/widgets/widgets.dart';
+import 'package:wabu/features/smash/presentation/presentation.dart';
 
 class TeacherRequiredRatingScreen extends ConsumerWidget {
   const TeacherRequiredRatingScreen({super.key});
@@ -24,7 +22,7 @@ class TeacherRequiredRatingScreen extends ConsumerWidget {
       content: const _TeacherRequiredRatingContent(),
     );
   }
-} 
+}
 
 class _TeacherRequiredRatingContent extends ConsumerWidget {
   const _TeacherRequiredRatingContent();
