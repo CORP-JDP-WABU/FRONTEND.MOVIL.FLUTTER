@@ -110,7 +110,7 @@ class _CustomNavigationBar extends StatelessWidget {
           ),
           label: 'Smash',
         ),
-        BottomNavigationBarItem(
+       /* BottomNavigationBarItem(
           icon: SvgPicture.asset('assets/images/svgs/chat_bottom_bar.svg'),
           activeIcon: SvgPicture.asset(
             'assets/images/svgs/chat_bottom_bar.svg',
@@ -131,7 +131,7 @@ class _CustomNavigationBar extends StatelessWidget {
             ),
           ),
           label: 'Perfil',
-        ),
+        ),*/
       ],
     );
   }
