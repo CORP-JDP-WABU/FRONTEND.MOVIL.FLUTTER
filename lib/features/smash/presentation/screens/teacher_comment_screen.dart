@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wabu/common/widgets/custom_back_button.dart';
-import 'package:wabu/common/widgets/custom_filled_button.dart';
+import 'package:lottie/lottie.dart';
+import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/smash/presentation/controllers/controllers.dart';
+import 'package:wabu/features/smash/presentation/presentation.dart';
 
 class TeacherCommentScreen extends ConsumerWidget {
   const TeacherCommentScreen({super.key});
@@ -203,8 +203,10 @@ class TeacherCommentScreen extends ConsumerWidget {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(
-                'assets/images/check.gif',
+              Lottie.asset(
+                'assets/lotties/data_sent.json',
+                height: 150,
+                width: 150,
               ),
               const SizedBox(height: 10),
               const Text(
