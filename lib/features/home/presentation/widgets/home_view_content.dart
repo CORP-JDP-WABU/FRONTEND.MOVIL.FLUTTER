@@ -13,9 +13,9 @@ class HomeViewContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Column(
+    return  Column(
       children: [
+        SizedBox(height: 40,),
         const Text(
           '¡Bienvenido!',
           textAlign: TextAlign.center,
@@ -91,15 +91,15 @@ class HomeViewContent extends StatelessWidget {
             onPressed: () {},
           ),
         ),
-        const SizedBox(height: 38),
+        const SizedBox(height: 5),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SvgPicture.asset(
               'assets/images/svgs/university.svg',
-              width: 32,
-              height: 32,
+              width: 16,
+              height: 16,
             ),
             const Flexible(
               child: Text(
@@ -109,7 +109,7 @@ class HomeViewContent extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 12,
+                  fontSize: 10,
                   fontFamily: 'GothamRounded',
                 ),
               ),
@@ -117,6 +117,6 @@ class HomeViewContent extends StatelessWidget {
           ],
         ),
       ],
-    ));
+    );
   }
 }
