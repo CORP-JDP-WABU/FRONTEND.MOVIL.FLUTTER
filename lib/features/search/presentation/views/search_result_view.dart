@@ -60,9 +60,7 @@ class _SearchResultViewState extends ConsumerState<SearchResultView>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Card(
-                    elevation: 4.0,
-                    child: Container(
+                  Container(
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
                       height: 65,
                       width: 343,
@@ -117,7 +115,6 @@ class _SearchResultViewState extends ConsumerState<SearchResultView>
                         ],
                       ),
                     ),
-                  ),
                   const SizedBox(width: 10),
                 ],
               ),
