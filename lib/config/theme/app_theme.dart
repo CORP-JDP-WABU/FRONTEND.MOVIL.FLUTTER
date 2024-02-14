@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static const Color primaryText = Color(0xFF041440);
   static const Color skyblue = Color(0xFF3DC9E8);
+  static const Color disabledButtonColor = Color(0xFF9E9E9E);
   static const Color bodyTextColor = Color(0xFF9E9E9E);
   static const Color inputBackgroundColor = Color(0xFFF2F2F7);
   static const Color boldSkyBlue = Color(0xFF26ADCB);
@@ -47,6 +48,12 @@ class AppTheme {
   static const Color teacherCommentBodyColor = Color(0xFF6B6A6A);
   static const Color teacheCommentLikeColor = Color(0xFF17A100);
   static const Color teacheCommentDislikeColor = Color(0xFFA10000);
+  static const Color wabuersDashboardColor = Color(0xFF0AB99A);
+  static const Color qualificationsDashboardColor = Color(0xFFDD52AB);
+  static const Color smashTeacherBackgroundButton = Color(0xFF04C6FF);
+  static const Color primarySmashBackgroundColor = Color(0xFF8237F3);
+  static const Color secondarySmashBackgroundColor = Color(0xFFE253A6);
+  static const Color tertiarySmashBackgroundColor = Color(0xFFFBE19B);
 
   ThemeData getTheme() => ThemeData(
         useMaterial3: true,

@@ -30,6 +30,7 @@ class AuthDioDatasource extends AuthRemoteDatasource {
   Future<Either<Failure, AuthKeys>> getKeys() async {
     final response = await dio.get('keys');
 
+    print('KEYS');
     print(response);
 
     if (response.statusCode != 200) {
@@ -51,6 +52,7 @@ class AuthDioDatasource extends AuthRemoteDatasource {
       data: encryptedForm.toJson(),
     );
 
+    print(encryptedForm);
     print(response);
 
     if (response.statusCode != 201) {

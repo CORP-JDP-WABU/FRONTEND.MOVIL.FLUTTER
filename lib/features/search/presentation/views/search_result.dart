@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/search/presentation/course_tab.dart';
-import 'package:wabu/features/search/presentation/teachers_tab.dart';
+import 'package:wabu/features/search/presentation/widgets/course_tab.dart';
+import 'package:wabu/features/search/presentation/widgets/teachers_tab.dart';
 
 class SearchResult extends StatefulWidget {
   const SearchResult({super.key});
