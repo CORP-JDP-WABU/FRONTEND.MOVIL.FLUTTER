@@ -1,74 +1,40 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wabu/features/search/domain/teachers_search_result/teachers_search_result.dart';
+import 'package:wabu/features/search/presentation/controllers/controllers.dart';
 import 'package:wabu/features/search/presentation/widgets/teachers_tab_container.dart';
-import 'package:wabu/features/teachers/domain/teacher/teacher.dart';
 
-class TeachersTab extends StatefulWidget {
+class TeachersTab extends ConsumerStatefulWidget {
+  const TeachersTab({super.key, required this.teachersSearchResults});
+
+  final List<TeachersSearchResult> teachersSearchResults;
+
   @override
-  _TeachersTabState createState() => _TeachersTabState();
+  TeachersTabState createState() => TeachersTabState();
 }
 
-class _TeachersTabState extends State<TeachersTab> {
-  List<Teacher> resultTeachers = [
-    Teacher(
-        firstName: 'Juan',
-        lastName: 'Pérez',
-        profileUrl:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrggIP1tphFNHqBURDu-6QY1TiSJVXQy0Uuw&usqp=CAU',
-        information: '4.5'),
-    Teacher(
-        firstName: 'María',
-        lastName: ' Gómez',
-        profileUrl:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrggIP1tphFNHqBURDu-6QY1TiSJVXQy0Uuw&usqp=CAU',
-        information: '4.2'),
-    Teacher(
-        firstName: 'Carlos',
-        lastName: ' Rodríguez',
-        profileUrl:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrggIP1tphFNHqBURDu-6QY1TiSJVXQy0Uuw&usqp=CAU',
-        information: '4.8'),
-    Teacher(
-        firstName: 'Ana',
-        lastName: ' Martínez',
-        profileUrl:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrggIP1tphFNHqBURDu-6QY1TiSJVXQy0Uuw&usqp=CAU',
-        information: '4.1'),
-  ];
-  // int pagina = 100;
-  // String? _searchTerm;
+class TeachersTabState extends ConsumerState<TeachersTab> {
   @override
   void initState() {
-    //_getClientes();
     super.initState();
   }
 
-  bool _ordenAscendente = false;
-
-  void _ordenarLista() {
-    setState(() {
-      _ordenAscendente = !_ordenAscendente;
-      if (_ordenAscendente) {
-        resultTeachers.sort((a, b) => a.firstName!.compareTo(b.firstName ?? ''));
-      } else {
-        resultTeachers.sort((a, b) => b.firstName!.compareTo(a.firstName ?? ''));
-      }
-    });
-  }
-
   void mejorCalificados() {
-    setState(() {   
-        resultTeachers.sort((a, b) => b.information!.compareTo(a.information ?? ''));     
-    });
+    // setState(() {
+    //   widget.teachersSearchResults.sort((a, b) =>
+    //       (b.manyQualifications ?? 0).compareTo(a.manyQualifications ?? 0));
+    // });
   }
 
-   final MaterialStateProperty<Icon?> thumbIcon =
+  final MaterialStateProperty<Icon?> thumbIcon =
       MaterialStateProperty.resolveWith<Icon?>(
     (Set<MaterialState> states) {
       if (states.contains(MaterialState.selected)) {
-        return const Icon(Icons.sort_by_alpha,color: Color.fromRGBO(41,146,244,1.000),);
+        return const Icon(
+          Icons.sort_by_alpha,
+          color: Color.fromRGBO(41, 146, 244, 1.000),
+        );
       }
       return const Icon(Icons.sort_by_alpha_sharp);
     },
@@ -76,98 +42,106 @@ class _TeachersTabState extends State<TeachersTab> {
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(searchControllerProvider);
+    final teachersSearchResult = widget.teachersSearchResults;
+
     return Container(
-        child: resultTeachers.isNotEmpty
-            ? Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ElevatedButton(
-                            onPressed: mejorCalificados,
-                            child: Row(
-                              children: [
-                                Text('Mejor Calificados'),
-                                SvgPicture.asset('assets/images/svgs/star.svg',
-                                    color: Color.fromRGBO(255, 195, 42, 1.000))
-                              ],
-                            )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Switch(
-                          thumbIcon: thumbIcon,
-                          value: _ordenAscendente,
-                          onChanged: (bool value) {
-                            _ordenarLista();
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10.0,
-                        mainAxisSpacing: 10.0,
-                      ),
-                      itemCount: resultTeachers.length,
-                      itemBuilder: (context, index) {
-                        return TeachersTabContainer(
-                            teacher: resultTeachers[index]);
-                      },
-                    ),
-                  ),
-                ],
-              )
-            : Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+      child: widget.teachersSearchResults.isNotEmpty
+          ? Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                     Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child:
-                          SvgPicture.asset(
-                              'assets/images/svgs/emoji_sad_missing.svg',                        
-                            ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            ref
+                                .read(searchControllerProvider.notifier)
+                                .orderTeachersListByQualification();
+                          },
+                          child: Row(
+                            children: [
+                              const Text('Mejor Calificados'),
+                              SvgPicture.asset('assets/images/svgs/star.svg',
+                                  color:
+                                      const Color.fromRGBO(255, 195, 42, 1.000))
+                            ],
+                          )),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child:
-                          Text('No se encontraron \n profesores con tu \n búsqueda',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                  color: Color.fromRGBO(191,191,191,1.000),
-                                  fontFamily: 'Gotham Rounded',
-                                  fontSize: 24,
-                                  height: 30 / 26,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Switch(
+                        thumbIcon: thumbIcon,
+                        value: state.isLexicographicallyOrdered,
+                        onChanged: (bool value) {
+                          ref
+                              .read(searchControllerProvider.notifier)
+                              .orderLexicographicallyTeachersList();
+                        },
+                      ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Text('Intenta buscando con \n menos caracteres',
-                        textAlign: TextAlign.center,
-                            style: TextStyle(
-                                  color: Color.fromRGBO(191,191,191,1.000),
-                                  fontFamily: 'Gotham Rounded',
-                                  fontSize: 24,
-                                  height: 30 / 26,
-                                  fontWeight: FontWeight.bold,
-                                ),),
-                    )
                   ],
                 ),
-              ));
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10.0,
+                      mainAxisSpacing: 10.0,
+                    ),
+                    itemCount: teachersSearchResult.length,
+                    itemBuilder: (context, index) {
+                      // print(index);
+                      return TeachersTabContainer(
+                          teacher: teachersSearchResult[index]);
+                    },
+                  ),
+                ),
+              ],
+            )
+          : Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: SvgPicture.asset(
+                      'assets/images/svgs/emoji_sad_missing.svg',
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'No se encontraron \n profesores con tu \n búsqueda',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color.fromRGBO(191, 191, 191, 1.000),
+                        fontFamily: 'Gotham Rounded',
+                        fontSize: 24,
+                        height: 30 / 26,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'Intenta buscando con \n menos caracteres',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color.fromRGBO(191, 191, 191, 1.000),
+                        fontFamily: 'Gotham Rounded',
+                        fontSize: 24,
+                        height: 30 / 26,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+    );
   }
 }
-  /*  
-  void _updateSearchTerm(String searchTerm) {
-    _searchTerm = searchTerm;
-    _pagingController.refresh();
-  }*/
-

@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -5,7 +6,7 @@ import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/features/home/domain/domain.dart';
 import 'package:wabu/features/search/presentation/presentation.dart';
 
-class SearchViewContent extends StatelessWidget {
+class SearchViewContent extends ConsumerWidget {
   const SearchViewContent({
     super.key,
     required this.controller,
@@ -16,7 +17,7 @@ class SearchViewContent extends StatelessWidget {
   final HomeDashboard dashboard;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -76,7 +77,10 @@ class SearchViewContent extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () {
-                            context.pushNamed(SearchResult.name);
+                            ref
+                                  .read(searchControllerProvider.notifier)
+                                  .search(controller.text, 0);
+                            context.pushNamed(SearchResultView.name);
                           },
                           icon:
                               SvgPicture.asset('assets/images/svgs/search.svg'),

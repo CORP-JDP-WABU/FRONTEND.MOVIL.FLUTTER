@@ -17,7 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SearchState {
   HomeDashboard get homeDashboard => throw _privateConstructorUsedError;
+  SearchResult get searchResult => throw _privateConstructorUsedError;
   SearchStatus get searchStatus => throw _privateConstructorUsedError;
+  SearchResultStatus get searchResultStatus =>
+      throw _privateConstructorUsedError;
+  bool get isLexicographicallyOrdered => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchStateCopyWith<SearchState> get copyWith =>
@@ -30,9 +34,15 @@ abstract class $SearchStateCopyWith<$Res> {
           SearchState value, $Res Function(SearchState) then) =
       _$SearchStateCopyWithImpl<$Res, SearchState>;
   @useResult
-  $Res call({HomeDashboard homeDashboard, SearchStatus searchStatus});
+  $Res call(
+      {HomeDashboard homeDashboard,
+      SearchResult searchResult,
+      SearchStatus searchStatus,
+      SearchResultStatus searchResultStatus,
+      bool isLexicographicallyOrdered});
 
   $HomeDashboardCopyWith<$Res> get homeDashboard;
+  $SearchResultCopyWith<$Res> get searchResult;
 }
 
 /// @nodoc
@@ -49,17 +59,32 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
   @override
   $Res call({
     Object? homeDashboard = null,
+    Object? searchResult = null,
     Object? searchStatus = null,
+    Object? searchResultStatus = null,
+    Object? isLexicographicallyOrdered = null,
   }) {
     return _then(_value.copyWith(
       homeDashboard: null == homeDashboard
           ? _value.homeDashboard
           : homeDashboard // ignore: cast_nullable_to_non_nullable
               as HomeDashboard,
+      searchResult: null == searchResult
+          ? _value.searchResult
+          : searchResult // ignore: cast_nullable_to_non_nullable
+              as SearchResult,
       searchStatus: null == searchStatus
           ? _value.searchStatus
           : searchStatus // ignore: cast_nullable_to_non_nullable
               as SearchStatus,
+      searchResultStatus: null == searchResultStatus
+          ? _value.searchResultStatus
+          : searchResultStatus // ignore: cast_nullable_to_non_nullable
+              as SearchResultStatus,
+      isLexicographicallyOrdered: null == isLexicographicallyOrdered
+          ? _value.isLexicographicallyOrdered
+          : isLexicographicallyOrdered // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -68,6 +93,14 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
   $HomeDashboardCopyWith<$Res> get homeDashboard {
     return $HomeDashboardCopyWith<$Res>(_value.homeDashboard, (value) {
       return _then(_value.copyWith(homeDashboard: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SearchResultCopyWith<$Res> get searchResult {
+    return $SearchResultCopyWith<$Res>(_value.searchResult, (value) {
+      return _then(_value.copyWith(searchResult: value) as $Val);
     });
   }
 }
@@ -80,10 +113,17 @@ abstract class _$$SearchStateImplCopyWith<$Res>
       __$$SearchStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({HomeDashboard homeDashboard, SearchStatus searchStatus});
+  $Res call(
+      {HomeDashboard homeDashboard,
+      SearchResult searchResult,
+      SearchStatus searchStatus,
+      SearchResultStatus searchResultStatus,
+      bool isLexicographicallyOrdered});
 
   @override
   $HomeDashboardCopyWith<$Res> get homeDashboard;
+  @override
+  $SearchResultCopyWith<$Res> get searchResult;
 }
 
 /// @nodoc
@@ -98,17 +138,32 @@ class __$$SearchStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? homeDashboard = null,
+    Object? searchResult = null,
     Object? searchStatus = null,
+    Object? searchResultStatus = null,
+    Object? isLexicographicallyOrdered = null,
   }) {
     return _then(_$SearchStateImpl(
       homeDashboard: null == homeDashboard
           ? _value.homeDashboard
           : homeDashboard // ignore: cast_nullable_to_non_nullable
               as HomeDashboard,
+      searchResult: null == searchResult
+          ? _value.searchResult
+          : searchResult // ignore: cast_nullable_to_non_nullable
+              as SearchResult,
       searchStatus: null == searchStatus
           ? _value.searchStatus
           : searchStatus // ignore: cast_nullable_to_non_nullable
               as SearchStatus,
+      searchResultStatus: null == searchResultStatus
+          ? _value.searchResultStatus
+          : searchResultStatus // ignore: cast_nullable_to_non_nullable
+              as SearchResultStatus,
+      isLexicographicallyOrdered: null == isLexicographicallyOrdered
+          ? _value.isLexicographicallyOrdered
+          : isLexicographicallyOrdered // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -118,18 +173,30 @@ class __$$SearchStateImplCopyWithImpl<$Res>
 class _$SearchStateImpl implements _SearchState {
   const _$SearchStateImpl(
       {this.homeDashboard = const HomeDashboard(),
-      this.searchStatus = SearchStatus.loading});
+      this.searchResult = const SearchResult(),
+      this.searchStatus = SearchStatus.loading,
+      this.searchResultStatus = SearchResultStatus.loading,
+      this.isLexicographicallyOrdered = false});
 
   @override
   @JsonKey()
   final HomeDashboard homeDashboard;
   @override
   @JsonKey()
+  final SearchResult searchResult;
+  @override
+  @JsonKey()
   final SearchStatus searchStatus;
+  @override
+  @JsonKey()
+  final SearchResultStatus searchResultStatus;
+  @override
+  @JsonKey()
+  final bool isLexicographicallyOrdered;
 
   @override
   String toString() {
-    return 'SearchState(homeDashboard: $homeDashboard, searchStatus: $searchStatus)';
+    return 'SearchState(homeDashboard: $homeDashboard, searchResult: $searchResult, searchStatus: $searchStatus, searchResultStatus: $searchResultStatus, isLexicographicallyOrdered: $isLexicographicallyOrdered)';
   }
 
   @override
@@ -139,12 +206,21 @@ class _$SearchStateImpl implements _SearchState {
             other is _$SearchStateImpl &&
             (identical(other.homeDashboard, homeDashboard) ||
                 other.homeDashboard == homeDashboard) &&
+            (identical(other.searchResult, searchResult) ||
+                other.searchResult == searchResult) &&
             (identical(other.searchStatus, searchStatus) ||
-                other.searchStatus == searchStatus));
+                other.searchStatus == searchStatus) &&
+            (identical(other.searchResultStatus, searchResultStatus) ||
+                other.searchResultStatus == searchResultStatus) &&
+            (identical(other.isLexicographicallyOrdered,
+                    isLexicographicallyOrdered) ||
+                other.isLexicographicallyOrdered ==
+                    isLexicographicallyOrdered));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, homeDashboard, searchStatus);
+  int get hashCode => Object.hash(runtimeType, homeDashboard, searchResult,
+      searchStatus, searchResultStatus, isLexicographicallyOrdered);
 
   @JsonKey(ignore: true)
   @override
@@ -156,12 +232,21 @@ class _$SearchStateImpl implements _SearchState {
 abstract class _SearchState implements SearchState {
   const factory _SearchState(
       {final HomeDashboard homeDashboard,
-      final SearchStatus searchStatus}) = _$SearchStateImpl;
+      final SearchResult searchResult,
+      final SearchStatus searchStatus,
+      final SearchResultStatus searchResultStatus,
+      final bool isLexicographicallyOrdered}) = _$SearchStateImpl;
 
   @override
   HomeDashboard get homeDashboard;
   @override
+  SearchResult get searchResult;
+  @override
   SearchStatus get searchStatus;
+  @override
+  SearchResultStatus get searchResultStatus;
+  @override
+  bool get isLexicographicallyOrdered;
   @override
   @JsonKey(ignore: true)
   _$$SearchStateImplCopyWith<_$SearchStateImpl> get copyWith =>

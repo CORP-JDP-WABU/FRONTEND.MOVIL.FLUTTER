@@ -6,7 +6,7 @@ part of 'search_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$searchControllerHash() => r'3b966f6da585d3eaf5eafe15f3e4bfbdcf54bbe9';
+String _$searchControllerHash() => r'3e63378f486a033b0edc81152e3dc4cd6ac419c3';
 
 /// See also [SearchController].
 @ProviderFor(SearchController)

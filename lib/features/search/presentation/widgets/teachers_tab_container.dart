@@ -3,114 +3,108 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/features/search/domain/teachers_search_result/teachers_search_result.dart';
 
 class TeachersTabContainer extends StatelessWidget {
-  final Teacher teacher;
-
-    TeachersTabContainer({
-    Key? key,
+  const TeachersTabContainer({
+    super.key,
     required this.teacher,
-  }) : super(key: key);
+  });
+
+  final TeachersSearchResult teacher;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: Card(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.network(
-                        teacher.profileUrl??'',
-                      
-                      ),  
-                      SizedBox(height: 8,),
-                      Text('${teacher.firstName} ${teacher.lastName}',
-                        style: TextStyle(
-                                  color: AppTheme.courseNameColor,
-                                  fontFamily: 'SFProDisplay',
-                                  fontSize: 17,
-                                  height: 20 / 17,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                      ),
-                          SizedBox(height: 8,),
-                      Row(children: [
-                         Padding(
-                            padding: EdgeInsets.only(left: 4.0, right: 2.0),
-                            child: Text(
-                              (teacher.information ?? 0)
-                                  .toString(),
-                            style: TextStyle(
-                                  color: Color.fromRGBO(255,195,42,1.000),
-                                  fontFamily: 'SFProDisplay',
-                                  fontSize: 17,
-                                  height: 20 / 17,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                          ),
-                        Padding(
-                            padding: EdgeInsets.only(left: 2.0, right: 4.0),
-                            child: SvgPicture.asset(
-                              'assets/images/svgs/star.svg',
-                              color:Color.fromRGBO(255,195,42,1.000)
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 4.0, right: 2.0),
-                            child: Text(
-                              (teacher.information ?? 0)
-                                  .toString(),
-                            style: TextStyle(
-                                  color: Color.fromRGBO(42,203,255,1.000),
-                                  fontFamily: 'SFProDisplay',
-                                  fontSize: 17,
-                                  height: 20 / 17,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 2.0, right: 4.0),
-                            child: SvgPicture.asset(
-                              'assets/images/svgs/message.svg',
-                              color: Color.fromRGBO(42, 203, 255, 1.000),
-                            ),
-                          ),
-                       Padding(
-                            padding: EdgeInsets.only(left: 4.0, right: 2.0),
-                            child: Text(
-                              (teacher.information ?? 0)
-                                  .toString(),
-                            style: TextStyle(
-                                  color: AppTheme.student,
-                                  fontFamily: 'SFProDisplay',
-                                  fontSize: 17,
-                                  height: 20 / 17,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 2.0, right: 4.0),
-                            child: SvgPicture.asset(
-                              'assets/images/svgs/person.svg',
-                              color: AppTheme.student,
-                            ),
-                          ),
-                    
-                      ],)
-                    ],
-                  ),
-                ),
-      onTap: () {
-        /*Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => TeachersTabDetail(
-              clients: this.clients,
+    return Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.network(
+            teacher.photoUrl ?? '',
+            height: 100,
+            fit: BoxFit.contain,
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Text(
+            '${teacher.firstName} ${teacher.lastName}',
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: AppTheme.courseNameColor,
+              fontFamily: 'SFProDisplay',
+              fontSize: 17,
+              height: 20 / 17,
+              fontWeight: FontWeight.bold,
             ),
           ),
-        );*/
-      },
+          SizedBox(
+            height: 8,
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 4.0, right: 2.0),
+                child: Text(
+                  ((teacher.manyQualifications ?? 0) != 0)
+                      ? (teacher.manyAverageQualifications ?? 0)
+                          .toStringAsFixed(2)
+                      : 'N/A',
+                  style: TextStyle(
+                    color: Color.fromRGBO(255, 195, 42, 1.000),
+                    fontFamily: 'SFProDisplay',
+                    fontSize: 17,
+                    height: 20 / 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 2.0, right: 4.0),
+                child: SvgPicture.asset('assets/images/svgs/star.svg',
+                    color: Color.fromRGBO(255, 195, 42, 1.000)),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 4.0, right: 2.0),
+                child: Text((teacher.manyComments ?? 0).toString(),
+                    style: TextStyle(
+                      color: Color.fromRGBO(42, 203, 255, 1.000),
+                      fontFamily: 'SFProDisplay',
+                      fontSize: 17,
+                      height: 20 / 17,
+                      fontWeight: FontWeight.bold,
+                    )),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 2.0, right: 4.0),
+                child: SvgPicture.asset(
+                  'assets/images/svgs/message.svg',
+                  color: Color.fromRGBO(42, 203, 255, 1.000),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 4.0, right: 2.0),
+                child: Text((teacher.manyQualifications ?? 0).toString(),
+                    style: TextStyle(
+                      color: AppTheme.student,
+                      fontFamily: 'SFProDisplay',
+                      fontSize: 17,
+                      height: 20 / 17,
+                      fontWeight: FontWeight.bold,
+                    )),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 2.0, right: 4.0),
+                child: SvgPicture.asset(
+                  'assets/images/svgs/person.svg',
+                  color: AppTheme.student,
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

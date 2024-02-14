@@ -1,26 +1,25 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wabu/common/widgets/loader_transparent.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/search/presentation/widgets/course_tab.dart';
-import 'package:wabu/features/search/presentation/widgets/teachers_tab.dart';
+import 'package:wabu/features/search/presentation/presentation.dart';
 
-class SearchResult extends StatefulWidget {
-  const SearchResult({super.key});
+class SearchResultView extends ConsumerStatefulWidget {
+  const SearchResultView({super.key});
 
-  static const String name = "search_result";
-  static const String route = "/$name";
+  static const String name = "search_result_view";
+  static const String route = name;
+
   @override
-  _SearchResult createState() => _SearchResult();
+  ConsumerState<SearchResultView> createState() => _SearchResultViewState();
 }
 
-class _SearchResult extends State<SearchResult>
+class _SearchResultViewState extends ConsumerState<SearchResultView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  List recordsListEvaluaciones = [];
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
@@ -30,9 +29,17 @@ class _SearchResult extends State<SearchResult>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Column(
+    final state = ref.watch(searchControllerProvider);
+    final searchResult = state.searchResult;
+
+    if ((searchResult.teacher?.isEmpty ?? true) &&
+        (searchResult.course?.isNotEmpty ?? false)) {
+      _tabController.index = 1;
+    }
+
+    return Stack(
+      children: [
+        Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -61,7 +68,7 @@ class _SearchResult extends State<SearchResult>
                       width: 343,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.vertical(
+                        borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(25),
                             bottom: Radius.circular(25)),
                         boxShadow: [
@@ -69,7 +76,7 @@ class _SearchResult extends State<SearchResult>
                             color: Colors.grey.withOpacity(0.3),
                             spreadRadius: 2,
                             blurRadius: 2,
-                            offset: Offset(0, 2),
+                            offset: const Offset(0, 2),
                           ),
                         ],
                       ),
@@ -78,10 +85,10 @@ class _SearchResult extends State<SearchResult>
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsets.only(right: 65),
+                              padding: const EdgeInsets.only(right: 65),
                               child: TextField(
                                 controller: _controller,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: 'Busca un curso o profesor...',
                                   hintStyle: TextStyle(
                                     color: Color.fromRGBO(191, 191, 191, 1.000),
@@ -99,7 +106,10 @@ class _SearchResult extends State<SearchResult>
                           ),
                           IconButton(
                             onPressed: () {
-                              context.pushNamed(SearchResult.name);
+                              context.pushNamed(SearchResultView.name);
+                              ref
+                                  .read(searchControllerProvider.notifier)
+                                  .search(_controller.text, 0);
                             },
                             icon: SvgPicture.asset(
                                 'assets/images/svgs/search.svg'),
@@ -108,49 +118,51 @@ class _SearchResult extends State<SearchResult>
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                 ],
               ),
             ),
             Align(
-              alignment: Alignment(0, 0),
+              alignment: const Alignment(0, 0),
               child: TabBar(
-                labelColor: Color.fromRGBO(41, 146, 244, 1.000),
+                labelColor: const Color.fromRGBO(41, 146, 244, 1.000),
                 unselectedLabelColor: AppTheme.student,
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                     fontFamily: 'SFProDisplay', fontWeight: FontWeight.bold),
-                unselectedLabelStyle: TextStyle(
+                unselectedLabelStyle: const TextStyle(
                     fontFamily: 'SFProDisplay', fontWeight: FontWeight.normal),
-                indicatorColor: Color.fromRGBO(41, 146, 244, 1.000),
-                padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                indicatorColor: const Color.fromRGBO(41, 146, 244, 1.000),
+                padding: const EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
                 tabs: [
                   Tab(
-                    text: 'Profesores (15)',
+                    text: 'Profesores (${searchResult.totalTeacher ?? 0})',
                   ),
                   Tab(
-                    text: 'Cursos (26)',
+                    text: 'Cursos (${searchResult.totalCourse ?? 0})',
                   ),
                 ],
                 controller: _tabController,
               ),
             ),
             Expanded(
-              flex: 1,
               child: TabBarView(
                 controller: _tabController,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  // Contenido de la pestaña 'Lista Clientes'
-                  TeachersTab(),
-
-                  CourseTab(),
-                  // Contenido de la pestaña 'Mapa'
+                  TeachersTab(
+                    teachersSearchResults: searchResult.teacher ?? [],
+                  ),
+                  CourseTab(
+                    coursesSearchResults: searchResult.course ?? [],
+                  ),
                 ],
               ),
             ),
           ],
         ),
-      ),
+        if (state.searchResultStatus == SearchResultStatus.loading)
+          const LoaderTransparent(),
+      ],
     );
   }
 }
