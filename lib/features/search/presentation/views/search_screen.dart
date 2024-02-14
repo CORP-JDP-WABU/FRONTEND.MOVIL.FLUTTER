@@ -3,12 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wabu/common/widgets/custom_back_button.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:wabu/features/compare/presentation/screens/compare_teachers_screen.dart';
 import 'package:wabu/features/search/presentation/views/search_result.dart';
-import 'package:wabu/features/smash/presentation/widgets/card_view.dart';
-import 'package:wabu/features/smash/presentation/controllers/card_data.dart';
+
+
 
 class SearchScreen extends StatefulWidget {
   static const String name = "search_screen";
@@ -25,7 +23,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreen extends State<SearchScreen> {
   final CardSwiperController controller = CardSwiperController();
   TextEditingController _controller = TextEditingController();
-  final cards = candidates.map(CardView.new).toList();
+  
 
   @override
   void initState() {
@@ -304,25 +302,5 @@ class _SearchScreen extends State<SearchScreen> {
     ));
   }
 
-  bool _onSwipe(
-    int previousIndex,
-    int? currentIndex,
-    CardSwiperDirection direction,
-  ) {
-    debugPrint(
-      'The card $previousIndex was swiped to the ${direction.name}. Now the card $currentIndex is on top',
-    );
-    return true;
-  }
-
-  bool _onUndo(
-    int? previousIndex,
-    int currentIndex,
-    CardSwiperDirection direction,
-  ) {
-    debugPrint(
-      'The card $currentIndex was undod from the ${direction.name}',
-    );
-    return true;
-  }
+  
 }
