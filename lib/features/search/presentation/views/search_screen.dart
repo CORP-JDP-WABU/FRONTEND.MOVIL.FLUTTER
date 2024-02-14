@@ -57,9 +57,9 @@ class _SearchScreen extends State<SearchScreen> {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 50),
-              const SizedBox(height: 25),
+              const SizedBox(height: 150),
               Center(
                 child: Text(
                   '¡Comienza',
@@ -67,7 +67,6 @@ class _SearchScreen extends State<SearchScreen> {
                     color: Colors.white,
                     fontFamily: 'Gotham Rounded',
                     fontSize: 38,
-                    height: 31 / 23,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -79,21 +78,37 @@ class _SearchScreen extends State<SearchScreen> {
                     color: Colors.white,
                     fontFamily: 'Gotham Rounded',
                     fontSize: 38,
-                    height: 31 / 23,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
               const SizedBox(height: 40),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Card(
-                  elevation: 4.0,
+                Container(
+                  padding: EdgeInsets.all(10),
+                  height: 93,
+                  width: 358,
+                  decoration: BoxDecoration(
+                      color: Color.fromRGBO(255, 255, 255, 0.21),
+                      border: Border.all(color: Colors.blue),
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(25),
+                          bottom: Radius.circular(25))),
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 5.0),
                     height: 65,
                     width: 343,
                     decoration: BoxDecoration(
                         color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black,
+                            spreadRadius:
+                                -30, // Establece un valor negativo para que la sombra se expanda hacia dentro del contenedor
+                            blurRadius: 60,
+                            offset: Offset(0, 0), // Sin desplazamiento
+                          ),
+                        ],
                         borderRadius: BorderRadius.vertical(
                             top: Radius.circular(25),
                             bottom: Radius.circular(25))),
@@ -102,22 +117,21 @@ class _SearchScreen extends State<SearchScreen> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsets.only(right: 65),
+                            padding: EdgeInsets.only(right: 15),
                             child: TextField(
                               controller: _controller,
                               decoration: InputDecoration(
-                                hintText: 'Busca un curso o profesor...',
-                                hintStyle: TextStyle(
-                                  color: Color.fromRGBO(191, 191, 191, 1.000),
-                                  fontFamily: 'Gotham Rounded',
-                                  fontSize: 16,
-                                  height: 20 / 17,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                border: InputBorder.none,
-                                filled: true,
-                                fillColor: Colors.white,
-                              ),
+                                  hintText: 'Busca un curso o profesor',
+                                  hintStyle: TextStyle(
+                                    color: Color.fromRGBO(191, 191, 191, 1.000),
+                                    fontFamily: 'SF Pro Display',
+                                    fontSize: 17,
+                                    height: 20 / 17,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  border: InputBorder.none,
+                                  filled: true,
+                                  fillColor: Colors.white),
                             ),
                           ),
                         ),
@@ -131,7 +145,7 @@ class _SearchScreen extends State<SearchScreen> {
                       ],
                     ),
                   ),
-                ),
+                )
               ]),
               const SizedBox(height: 40),
               Row(
@@ -140,6 +154,8 @@ class _SearchScreen extends State<SearchScreen> {
                   Card(
                       elevation: 4.0,
                       child: Container(
+                          width: 180,
+                          height: 100,
                           padding: const EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 5.0),
                           decoration: BoxDecoration(
@@ -158,8 +174,8 @@ class _SearchScreen extends State<SearchScreen> {
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontFamily: 'SFProDisplay',
-                                          fontSize: 17,
-                                          height: 20 / 17,
+                                          fontSize: 13,
+                                          height: 17 / 13,
                                           fontWeight: FontWeight.bold,
                                         )),
                                     Padding(
@@ -173,21 +189,18 @@ class _SearchScreen extends State<SearchScreen> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 18,
-                                ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Padding(
                                         padding: EdgeInsets.only(
                                             left: 7.0, right: 2.0),
-                                        child: Text('1821',
+                                        child: Text('1,821',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontFamily: 'SFProDisplay',
                                               fontSize: 36,
-                                              height: 40 / 36,
+                                              height: 40 / 33,
                                               fontWeight: FontWeight.bold,
                                             )))
                                   ],
@@ -196,6 +209,8 @@ class _SearchScreen extends State<SearchScreen> {
                   Card(
                       elevation: 4.0,
                       child: Container(
+                          width: 180,
+                          height: 100,
                           padding: const EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 5.0),
                           decoration: BoxDecoration(
@@ -221,8 +236,8 @@ class _SearchScreen extends State<SearchScreen> {
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontFamily: 'SFProDisplay',
-                                          fontSize: 17,
-                                          height: 20 / 17,
+                                          fontSize: 13,
+                                          height: 17 / 13,
                                           fontWeight: FontWeight.bold,
                                         )),
                                     Padding(
@@ -236,9 +251,6 @@ class _SearchScreen extends State<SearchScreen> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 18,
-                                ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -250,7 +262,7 @@ class _SearchScreen extends State<SearchScreen> {
                                               color: Colors.white,
                                               fontFamily: 'SFProDisplay',
                                               fontSize: 36,
-                                              height: 40 / 36,
+                                              height: 40 / 33,
                                               fontWeight: FontWeight.bold,
                                             )))
                                   ],

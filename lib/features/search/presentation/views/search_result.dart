@@ -53,9 +53,7 @@ class _SearchResult extends State<SearchResult>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Card(
-                    elevation: 4.0,
-                    child: Container(
+                  Container(
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
                       height: 65,
                       width: 343,
@@ -107,7 +105,7 @@ class _SearchResult extends State<SearchResult>
                         ],
                       ),
                     ),
-                  ),
+                  
                   SizedBox(width: 10),
                 ],
               ),
