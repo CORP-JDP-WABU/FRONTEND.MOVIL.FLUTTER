@@ -16,7 +16,7 @@ class SmashView extends ConsumerWidget {
     return Column(
       children: [
         _SmashCard(
-          onTap: () => context.push(TeachersTinderScreen.route),
+          onTap: () => context.push(TeacherRaitingStep2Screen.route),
           color: AppTheme.smashButtonBackgroundColor,
           asset: 'assets/images/svgs/smash.svg',
           text: 'SMASH',
