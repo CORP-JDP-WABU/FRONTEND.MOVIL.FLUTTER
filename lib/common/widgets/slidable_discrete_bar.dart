@@ -62,7 +62,7 @@ class SlidableDiscreteBar extends StatelessWidget {
                       allowHalfRating: false,
                       unratedColor: AppTheme.progressBarBackgroundColor,
                       itemCount: itemCount,
-                      itemSize: itemMaxWidth - 4,
+                      itemSize: itemMaxWidth - 5,
                       itemPadding:
                           const EdgeInsets.symmetric(horizontal: itemPadding),
                       itemBuilder: (context, _) => Container(

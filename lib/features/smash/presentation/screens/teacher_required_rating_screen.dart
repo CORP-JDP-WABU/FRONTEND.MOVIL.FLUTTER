@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/config/theme/app_theme.dart';
@@ -101,15 +102,23 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'CALIFICA A TU PROFESOR',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                        color: AppTheme.courseNameColor,
-                      ),
+                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset('assets/images/svgs/Vector 13.svg'),
+                        const Text(
+                          '  CALIFICA A TU PROFESOR  ',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: AppTheme.courseNameColor,
+                          ),
+                        ),
+                         SvgPicture.asset('assets/images/svgs/Vector 13.svg'),
+                      ],
                     ),
+                     const SizedBox(height: 16),
                     Expanded(child: Container()),
                     Column(
                       children: [

@@ -69,7 +69,9 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                       borderRadius: BorderRadius.vertical(
                           top: Radius.circular(25),
                           bottom: Radius.circular(25))),
-                  child: Column(children: [
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
                     const SizedBox(height: 16),
                     const SizedBox(height: 10),
                     Text(
@@ -105,20 +107,22 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    const Column(
+                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'LLENA LOS DATOS SI LOS RECUERDAS',
+                        SvgPicture.asset('assets/images/svgs/Vector 15.svg'),
+                        const Text(
+                          '  LLENA LOS DATOS SI LOS RECUERDAS  ',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 18,
-                              height: 48 / 18,
-                              fontWeight: FontWeight.w700,
-                              color: AppTheme.courseNameColor),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: AppTheme.courseNameColor,
+                          ),
                         ),
-                        SizedBox(height: 8),
+                         SvgPicture.asset('assets/images/svgs/Vector 15.svg'),
                       ],
-                    ),
+                    ),                    
                     const SizedBox(height: 20),
                     Column(
                       children: [
@@ -142,7 +146,7 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                         ContinuousQualification(
                           asset: 'clock',
                           text: '¿Permite llegar tarde?',
-                          color: AppTheme.secondary2Color,
+                          color: AppTheme.secondary1Color,
                           selectedRating: const [
                             'No sé',
                             'Nunca',
@@ -165,7 +169,7 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                             'A veces',
                             'Siempre'
                           ],
-                          color: AppTheme.secondary3Color,
+                          color: AppTheme.secondary1Color,
                           value: 0,
                           onSelected: (index) {
                             ref
@@ -194,7 +198,8 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
                           context.pushNamed(TeacherCommentScreen.name);
                         },
                       ),
-                    )
+                    ),
+                    const SizedBox(height: 30),
                   ]),
                 ),
               ),
@@ -295,6 +300,7 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                           widget.onSelected(i);
                         },
                         style: ButtonStyle(
+                           minimumSize: MaterialStateProperty.all(const Size(62 , 24)),
                           backgroundColor: MaterialStateProperty.all(
                             // Cambia el color de fondo basado en el estado del botón
                             isSelected[i]
@@ -304,8 +310,9 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                         ),
                         child: Text(
                           widget.selectedRating[i],
+                          maxLines: 1,
                           style: TextStyle(
-                            fontSize: 10,
+                            fontSize: 9,
                             fontFamily: 'Inter',
                             color: isSelected[i] ? Colors.white : Colors.black,
                           ),
