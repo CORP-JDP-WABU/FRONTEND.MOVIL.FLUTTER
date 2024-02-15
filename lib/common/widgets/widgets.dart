@@ -8,6 +8,8 @@ export 'elevated_circle_button.dart';
 export 'gradient_circle_avatar.dart';
 export 'gradient_text.dart';
 export 'gradients/button_linear_gradient.dart';
+export 'gradients/documents_dashboard_linear_gradient.dart';
+export 'gradients/teachers_dashboard_linear_gradient.dart';
 export 'gradients/tinder_linear_gradient.dart';
 export 'loader_transparent.dart';
 export 'no_qualifications_found_widget.dart';
