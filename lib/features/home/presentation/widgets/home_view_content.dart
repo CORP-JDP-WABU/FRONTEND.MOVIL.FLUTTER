@@ -13,9 +13,11 @@ class HomeViewContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
-        SizedBox(height: 40,),
+        const SizedBox(
+          height: 40,
+        ),
         const Text(
           '¡Bienvenido!',
           textAlign: TextAlign.center,
@@ -36,22 +38,20 @@ class HomeViewContent extends StatelessWidget {
               : null,
         ),
         const SizedBox(height: 8),
-        const Text(
-          'Marcos Aliaga',
-          // '${student.firstName} ${student.lastName}',
+        Text(
+          '${student.firstName} ${student.lastName}',
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 30,
             fontFamily: 'GothamRounded',
           ),
         ),
-        const Text(
-          'Comunicación y Plublicidad',
-          //student.career,
+        Text(
+          student.career,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.normal,
             fontSize: 14,
@@ -60,7 +60,7 @@ class HomeViewContent extends StatelessWidget {
         Center(
           child: ElevatedButton(
             style: ButtonStyle(
-              minimumSize: MaterialStateProperty.all(Size(84, 27)),
+              minimumSize: MaterialStateProperty.all(const Size(84, 27)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
             ),
             child: Row(
@@ -76,15 +76,15 @@ class HomeViewContent extends StatelessWidget {
                         Color.fromRGBO(47, 163, 240, 1.000),
                         Color.fromRGBO(38, 137, 245, 1.000),
                       ],
-                         begin: Alignment.topCenter,
-                         end: Alignment.bottomCenter,
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
                       stops: [0.0, 0.3, 1.0],
                     ),
                     style: TextStyle(
-                        fontFamily: 'SFProDisplay',
-                    fontSize: 17,
-                    height: 31 / 23,
-                    fontWeight: FontWeight.bold,
+                      fontFamily: 'SFProDisplay',
+                      fontSize: 17,
+                      height: 31 / 23,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ]),
