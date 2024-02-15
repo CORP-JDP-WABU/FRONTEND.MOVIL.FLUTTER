@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/search/domain/courses_search_result/courses_search_result.dart';
 import 'package:wabu/features/search/presentation/views/course_carrousel.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
 
 class CourseTabContainer extends StatelessWidget {
   const CourseTabContainer({
@@ -84,11 +83,7 @@ class CourseTabContainer extends StatelessWidget {
                         ],
                       )
                     ],
-<<<<<<< HEAD:lib/features/search/presentation/widgets/course_tab_container.dart
                   ),
-=======
-                  ),        
->>>>>>> origin/AU-361:lib/features/search/course_tab_container.dart
                 ],
               )
             ],
@@ -96,7 +91,7 @@ class CourseTabContainer extends StatelessWidget {
         ),
       ),
       onTap: () {
-      context.pushNamed(CourseCarrousel .name);
+        context.pushNamed(CourseCarrousel.name);
       },
     );
   }
