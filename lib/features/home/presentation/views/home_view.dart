@@ -77,6 +77,13 @@ class _HomeViewBody extends StatelessWidget {
               value: homeDashboard.kpis?.manyQualificationTeacher ?? 0,
               text: 'CALIFICACIONES A PROFESORES',
             ),
+            /* HomeDashboardItem(
+              iconAsset: 'assets/images/svgs/document_dashboard.svg',
+              lottieAsset: 'assets/lotties/qualifications_dashboard.json',
+              color: AppTheme.secondaryStatsColor,
+              value: homeDashboard.kpis?.manyQualificationTeacher ?? 0,
+              text: 'DOCUMENTOS COMPARTIDOS',
+            ),*/
           ],
         ),
       ),

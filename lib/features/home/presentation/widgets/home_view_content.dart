@@ -15,6 +15,9 @@ class HomeViewContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(
+          height: 40,
+        ),
         const Text(
           '¡Bienvenido!',
           textAlign: TextAlign.center,
@@ -54,26 +57,59 @@ class HomeViewContent extends StatelessWidget {
             fontSize: 14,
           ),
         ),
-        const SizedBox(height: 24),
+        Center(
+          child: ElevatedButton(
+            style: ButtonStyle(
+              minimumSize: MaterialStateProperty.all(const Size(84, 27)),
+              backgroundColor: MaterialStateProperty.all(Colors.white),
+            ),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset('assets/images/coin.png'),
+                  const GradientText(
+                    text: '1925',
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromRGBO(54, 181, 236, 1.000),
+                        Color.fromRGBO(47, 163, 240, 1.000),
+                        Color.fromRGBO(38, 137, 245, 1.000),
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: [0.0, 0.3, 1.0],
+                    ),
+                    style: TextStyle(
+                      fontFamily: 'SFProDisplay',
+                      fontSize: 17,
+                      height: 31 / 23,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ]),
+            onPressed: () {},
+          ),
+        ),
+        const SizedBox(height: 5),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SvgPicture.asset(
               'assets/images/svgs/university.svg',
-              width: 32,
-              height: 32,
+              width: 16,
+              height: 16,
             ),
-            const SizedBox(width: 8),
             const Flexible(
               child: Text(
-                '¿QUÉ ESTÁ PASANDO EN TU UNIVERSIDAD?',
+                'TODO EL CONTENIDO QUE TENEMOS EN TU UNIVERSIDAD:',
                 textAlign: TextAlign.center,
                 softWrap: true,
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 12,
+                  fontSize: 10,
                   fontFamily: 'GothamRounded',
                 ),
               ),
