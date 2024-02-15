@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wabu/common/widgets/custom_back_button.dart';
+import 'package:wabu/common/widgets/widgets.dart';
 
 class TeachersTinderHeaderButtons extends StatelessWidget {
   const TeachersTinderHeaderButtons({super.key});
