@@ -51,7 +51,7 @@ class _SearchResultViewState extends ConsumerState<SearchResultView>
                       Color.fromRGBO(54, 181, 236, 1.000),
                       Color.fromRGBO(47, 163, 240, 1.000),
                       Color.fromRGBO(38, 137, 245, 1.000),
-                    ], // Cambia los colores según tu preferencia
+                    ],
                     begin: Alignment.topRight,
                     end: Alignment.topLeft,
                   ),
@@ -60,7 +60,9 @@ class _SearchResultViewState extends ConsumerState<SearchResultView>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  Card(
+                    elevation: 4.0,
+                    child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
                       height: 65,
                       width: 343,
@@ -115,6 +117,7 @@ class _SearchResultViewState extends ConsumerState<SearchResultView>
                         ],
                       ),
                     ),
+                  ),
                   const SizedBox(width: 10),
                 ],
               ),

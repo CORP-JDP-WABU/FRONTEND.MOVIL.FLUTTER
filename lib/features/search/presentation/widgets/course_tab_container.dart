@@ -82,31 +82,6 @@ class CourseTabContainer extends StatelessWidget {
                       )
                     ],
                   ),
-
-                  /*Container(
-                    padding: EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      color: this.clients
-                          ? AppConfig.cBlue002
-                          : AppConfig.cOrange001,
-                    ),
-                    child: this.clients.isRead
-                        ? Text(
-                            'Encuestado',
-                            style: TextStyle(
-                              color: AppConfig.cWhite001,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        : Text(
-                            'Nuevo',
-                            style: TextStyle(
-                              color: AppConfig.cWhite001,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                  )*/
                 ],
               )
             ],

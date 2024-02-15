@@ -25,7 +25,7 @@ class SearchViewContent extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 32),
+            const SizedBox(height: 150),
             const Text(
               '¡Comienza\nTu Búsqueda!',
               textAlign: TextAlign.center,
@@ -40,31 +40,51 @@ class SearchViewContent extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Card(
-                  elevation: 4.0,
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  height: 93,
+                  width: 358,
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(255, 255, 255, 0.21),
+                    border: Border.all(color: Colors.blue),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(25),
+                      bottom: Radius.circular(25),
+                    ),
+                  ),
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 5.0),
                     height: 65,
                     width: 343,
                     decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(25),
-                            bottom: Radius.circular(25))),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black,
+                          spreadRadius: -30,
+                          blurRadius: 60,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(25),
+                        bottom: Radius.circular(25),
+                      ),
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.only(right: 65),
+                            padding: const EdgeInsets.only(right: 15),
                             child: TextField(
                               controller: controller,
                               decoration: const InputDecoration(
-                                hintText: 'Busca un curso o profesor...',
+                                hintText: 'Busca un curso o profesor',
                                 hintStyle: TextStyle(
                                   color: Color.fromRGBO(191, 191, 191, 1.000),
-                                  fontFamily: 'Gotham Rounded',
-                                  fontSize: 16,
+                                  fontFamily: 'SF Pro Display',
+                                  fontSize: 17,
                                   height: 20 / 17,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -78,8 +98,8 @@ class SearchViewContent extends ConsumerWidget {
                         IconButton(
                           onPressed: () {
                             ref
-                                  .read(searchControllerProvider.notifier)
-                                  .search(controller.text, 0);
+                                .read(searchControllerProvider.notifier)
+                                .search(controller.text, 0);
                             context.pushNamed(SearchResultView.name);
                           },
                           icon:
@@ -88,7 +108,7 @@ class SearchViewContent extends ConsumerWidget {
                       ],
                     ),
                   ),
-                ),
+                )
               ],
             ),
             const SizedBox(height: 32),
