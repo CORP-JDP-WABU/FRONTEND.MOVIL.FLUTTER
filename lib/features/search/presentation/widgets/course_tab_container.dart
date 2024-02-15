@@ -1,17 +1,15 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/features/search/domain/courses_search_result/courses_search_result.dart';
 
 class CourseTabContainer extends StatelessWidget {
-  final TeacherCourse teacherCourse;
+  const CourseTabContainer({
+    super.key,
+    required this.course,
+  });
 
-  CourseTabContainer({
-    Key? key,
-    required this.teacherCourse,
-  }) : super(key: key);
+  final CoursesSearchResult course;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class CourseTabContainer extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
           height: 50,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(5))),
           child: Column(
@@ -34,18 +32,18 @@ class CourseTabContainer extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        (teacherCourse.name ?? 0).toString(),
-                        style: TextStyle(
+                        course.name ?? '',
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 14),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 2.0, right: 7.0),
-                            child: Text(
-                                (teacherCourse.manyComments ?? 0).toString(),
-                                style: TextStyle(
+                            padding:
+                                const EdgeInsets.only(left: 2.0, right: 7.0),
+                            child: Text((course.countTeachers ?? 0).toString(),
+                                style: const TextStyle(
                                   color: AppTheme.courseNameColor,
                                   fontFamily: 'SFProDisplay',
                                   fontSize: 17,
@@ -54,19 +52,18 @@ class CourseTabContainer extends StatelessWidget {
                                 )),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 7.0, right: 20.0),
+                            padding:
+                                const EdgeInsets.only(left: 7.0, right: 20.0),
                             child: SvgPicture.asset(
-                              'assets/images/svgs/teacher_icon.svg',
-                              color:AppTheme.courseNameColor
-                            ),
+                                'assets/images/svgs/teacher_icon.svg',
+                                color: AppTheme.courseNameColor),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 20.0, right: 7.0),
-                            child: Text(
-                              (teacherCourse.manyQualifications ?? 0)
-                                  .toString(),
-                            style: TextStyle(
-                                  color: Color.fromRGBO(41,146,244,1.000),
+                            padding:
+                                const EdgeInsets.only(left: 20.0, right: 7.0),
+                            child: Text((course.countComment ?? 0).toString(),
+                                style: const TextStyle(
+                                  color: Color.fromRGBO(41, 146, 244, 1.000),
                                   fontFamily: 'SFProDisplay',
                                   fontSize: 17,
                                   height: 20 / 17,
@@ -74,41 +71,17 @@ class CourseTabContainer extends StatelessWidget {
                                 )),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 7.0, right: 2.0),
+                            padding:
+                                const EdgeInsets.only(left: 7.0, right: 2.0),
                             child: SvgPicture.asset(
                               'assets/images/svgs/file_icon.svg',
-                              color: Color.fromRGBO(41, 146, 244, 1.000),
+                              color: const Color.fromRGBO(41, 146, 244, 1.000),
                             ),
                           ),
                         ],
                       )
                     ],
                   ),
-
-                  /*Container(
-                    padding: EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      color: this.clients
-                          ? AppConfig.cBlue002
-                          : AppConfig.cOrange001,
-                    ),
-                    child: this.clients.isRead
-                        ? Text(
-                            'Encuestado',
-                            style: TextStyle(
-                              color: AppConfig.cWhite001,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        : Text(
-                            'Nuevo',
-                            style: TextStyle(
-                              color: AppConfig.cWhite001,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                  )*/
                 ],
               )
             ],

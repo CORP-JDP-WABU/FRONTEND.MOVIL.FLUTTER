@@ -12,7 +12,6 @@ class CardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     var size = MediaQuery.of(context).size;
     return Container(
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
