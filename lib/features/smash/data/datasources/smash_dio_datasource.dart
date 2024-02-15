@@ -13,7 +13,28 @@ class SmashDioDatasource extends SmashRemoteDatasource {
     ),
   )..interceptors.add(
       InterceptorsWrapper(
+        onRequest: (options, handler) {
+          logger.i('''
+            Path:
+            ${options.path}
+            Headers:
+            ${options.headers}
+            Query:
+            ${options.queryParameters}
+            Data:
+            ${options.data}
+          ''');
+
+          return handler.next(options);
+        },
+        onResponse: (response, handler) {
+          logger.i(response);
+
+          return handler.next(response);
+        },
         onError: (error, handler) {
+          logger.e(error);
+
           if (error.type == DioExceptionType.badResponse &&
               error.response != null) {
             return handler.resolve(error.response!);
@@ -38,8 +59,6 @@ class SmashDioDatasource extends SmashRemoteDatasource {
         },
       ),
     );
-
-    logger.d(response);
 
     if (response.statusCode != 200) {
       final failureResponse = Failure.fromJson(response.data);
