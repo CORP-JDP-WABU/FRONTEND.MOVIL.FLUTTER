@@ -8,8 +8,6 @@ import 'package:wabu/features/home/presentation/views/home_view.dart';
 import 'package:wabu/features/search/presentation/presentation.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
-import 'package:wabu/features/search/presentation/views/search_view.dart';
-import 'package:wabu/features/smash/presentation/screens/teacher_rating_step2.dart';
 
 final appRouter = GoRouter(
   initialLocation: SplashScreen.route,
