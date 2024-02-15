@@ -5,6 +5,7 @@ import 'package:wabu/features/authentication/presentation/screens/update_info_sc
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
+import 'package:wabu/features/search/presentation/views/course_carrousel.dart';
 import 'package:wabu/features/search/presentation/presentation.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
@@ -115,6 +116,13 @@ final appRouter = GoRouter(
       path: TeachersTinderScreen.route,
       builder: (context, state) {
         return const TeachersTinderScreen();
+      },
+    ), 
+    GoRoute(
+      name: CourseCarrousel.name,
+      path: CourseCarrousel.route,
+      builder: (context, state) {
+        return const CourseCarrousel();
       },
     ),
   ],
