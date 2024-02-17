@@ -13,8 +13,10 @@ class SearchState with _$SearchState {
   const factory SearchState({
     @Default(HomeDashboard()) HomeDashboard homeDashboard,
     @Default(SearchResult()) SearchResult searchResult,
+    @Default('') String searchText,
     @Default(SearchStatus.loading) SearchStatus searchStatus,
     @Default(SearchResultStatus.loading) SearchResultStatus searchResultStatus,
     @Default(false) bool isLexicographicallyOrdered,
+    @Default(1) int page,
   }) = _SearchState;
 }

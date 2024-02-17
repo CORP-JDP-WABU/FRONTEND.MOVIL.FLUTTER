@@ -35,6 +35,8 @@ class _SearchResultViewState extends ConsumerState<SearchResultView>
     if ((searchResult.teacher?.isEmpty ?? true) &&
         (searchResult.course?.isNotEmpty ?? false)) {
       _tabController.index = 1;
+    } else {
+      _tabController.index = 0;
     }
 
     return Stack(
@@ -109,7 +111,7 @@ class _SearchResultViewState extends ConsumerState<SearchResultView>
                               context.pushNamed(SearchResultView.name);
                               ref
                                   .read(searchControllerProvider.notifier)
-                                  .search(_controller.text, 0);
+                                  .search(_controller.text);
                             },
                             icon: SvgPicture.asset(
                                 'assets/images/svgs/search.svg'),
@@ -151,9 +153,19 @@ class _SearchResultViewState extends ConsumerState<SearchResultView>
                 children: [
                   TeachersTab(
                     teachersSearchResults: searchResult.teacher ?? [],
+                    loadNextPage: () {
+                      ref
+                          .read(searchControllerProvider.notifier)
+                          .loadNextPage();
+                    },
                   ),
                   CourseTab(
                     coursesSearchResults: searchResult.course ?? [],
+                    loadNextPage: () {
+                      ref
+                          .read(searchControllerProvider.notifier)
+                          .loadNextPage();
+                    },
                   ),
                 ],
               ),

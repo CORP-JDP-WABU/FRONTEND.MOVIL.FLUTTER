@@ -99,7 +99,7 @@ class SearchViewContent extends ConsumerWidget {
                           onPressed: () {
                             ref
                                 .read(searchControllerProvider.notifier)
-                                .search(controller.text, 0);
+                                .search(controller.text);
                             context.pushNamed(SearchResultView.name);
                           },
                           icon:
