@@ -7,34 +7,53 @@ class CourseTab extends StatefulWidget {
   const CourseTab({
     super.key,
     required this.coursesSearchResults,
+    required this.loadNextPage,
   });
 
   final List<CoursesSearchResult> coursesSearchResults;
+  final VoidCallback loadNextPage;
 
   @override
   CourseTabState createState() => CourseTabState();
 }
 
 class CourseTabState extends State<CourseTab> {
+  final scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    scrollController.addListener(() {
+      if (scrollController.position.pixels >=
+          scrollController.position.maxScrollExtent) {
+        widget.loadNextPage();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final coursesSearchResult = widget.coursesSearchResults;
 
     return Container(
         child: widget.coursesSearchResults.isNotEmpty
-            ? Column(children: [
-                Expanded(
-                  child: ListView.builder(
-                    padding: const EdgeInsets.all(5.0),
-                    itemCount: coursesSearchResult.length,
-                    itemBuilder: (context, index) {
-                      return CourseTabContainer(
-                        course: coursesSearchResult[index],
-                      );
-                    },
-                  ),
-                )
-              ])
+            ? Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      controller: scrollController,
+                      padding: const EdgeInsets.all(5.0),
+                      itemCount: coursesSearchResult.length,
+                      itemBuilder: (context, index) {
+                        return CourseTabContainer(
+                          course: coursesSearchResult[index],
+                        );
+                      },
+                    ),
+                  )
+                ],
+              )
             : Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

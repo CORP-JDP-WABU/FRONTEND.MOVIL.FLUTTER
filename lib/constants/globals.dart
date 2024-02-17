@@ -17,3 +17,9 @@ class Globals {
   static String? teacherId;
   static String? courseId;
 }
+
+
+// 1 - No se
+// 2 - Poco
+// 3 - Masomenos
+// 4 - Siempre

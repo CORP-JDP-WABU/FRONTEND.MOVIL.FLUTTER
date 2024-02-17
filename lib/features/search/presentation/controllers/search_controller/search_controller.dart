@@ -47,9 +47,11 @@ class SearchController extends _$SearchController {
     }
   }
 
-  Future<void> search(String searchText, int page) async {
+  Future<void> search(String searchText) async {
     try {
       state = state.copyWith(
+        searchText: searchText,
+        page: 1,
         searchResultStatus: SearchResultStatus.loading,
       );
 
@@ -57,7 +59,7 @@ class SearchController extends _$SearchController {
 
       final response = await ref
           .watch(searchRepositoryProvider)
-          .getSearchResults(universityId, page, searchText);
+          .getSearchResults(universityId, state.page, state.searchText);
 
       response.fold((Failure failure) {
         switch (failure.errorCode) {
@@ -71,6 +73,52 @@ class SearchController extends _$SearchController {
         state = state.copyWith(
           searchResult: searchResult,
           searchResultStatus: SearchResultStatus.loaded,
+          page: state.page + 1,
+        );
+      });
+    } catch (e) {
+      state = state.copyWith(
+        searchResultStatus: SearchResultStatus.error,
+      );
+    }
+  }
+
+  Future<void> loadNextPage() async {
+    try {
+      if ((state.searchResult.totalTeacher ?? 0) !=
+              (state.searchResult.teacher?.length ?? 0) ||
+          (state.searchResult.totalCourse ?? 0) !=
+              (state.searchResult.course?.length ?? 0)) {
+        state = state.copyWith(
+          searchResultStatus: SearchResultStatus.loading,
+        );
+      }
+
+      String universityId = Globals.universityId ?? '';
+
+      final response = await ref
+          .watch(searchRepositoryProvider)
+          .getSearchResults(universityId, state.page, state.searchText);
+
+      response.fold((Failure failure) {
+        switch (failure.errorCode) {
+          default:
+            state = state.copyWith(
+              searchResultStatus: SearchResultStatus.error,
+            );
+            break;
+        }
+      }, (SearchResult searchResult) {
+        final courses = state.searchResult.course?.toList();
+        courses?.addAll(searchResult.course ?? []);
+        final teachers = state.searchResult.teacher?.toList();
+        teachers?.addAll(searchResult.teacher ?? []);
+
+        state = state.copyWith(
+          searchResult:
+              state.searchResult.copyWith(course: courses, teacher: teachers),
+          searchResultStatus: SearchResultStatus.loaded,
+          page: state.page + 1,
         );
       });
     } catch (e) {
