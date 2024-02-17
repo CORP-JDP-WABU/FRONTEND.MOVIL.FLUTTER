@@ -206,7 +206,6 @@ class UpdateInfoController extends _$UpdateInfoController {
     return state.photo.isNotEmpty &&
         state.firstName.isNotEmpty &&
         state.lastName.isNotEmpty &&
-        state.aboutMe.isNotEmpty &&
         state.univeristy != null &&
         state.career != null &&
         state.cycle != null &&
