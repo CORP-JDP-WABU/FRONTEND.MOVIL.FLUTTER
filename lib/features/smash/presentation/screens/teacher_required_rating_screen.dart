@@ -46,7 +46,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
       builder: (context, contraints) {
         final maxHeight = contraints.maxHeight;
         final maxWidth = contraints.maxWidth;
-
+      
         return Stack(
           alignment: Alignment.topCenter,
           clipBehavior: Clip.none,
@@ -72,8 +72,8 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       style: const TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
-                        fontSize: 20,
-                        height: 31 / 23,
+                        fontSize: 15,
+       
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -85,8 +85,8 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       style: const TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
-                        fontSize: 20,
-                        height: 31 / 23,
+                        fontSize: 15,
+  
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -98,7 +98,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       style: const TextStyle(
                         color: Color(0xFF5A5A5A),
                         fontFamily: 'SFProDisplay',
-                        fontSize: 17,
+                        fontSize: 13,
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -110,7 +110,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                           '  CALIFICA A TU PROFESOR  ',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.w700,
                             color: AppTheme.courseNameColor,
                           ),
@@ -118,7 +118,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                          SvgPicture.asset('assets/images/svgs/Vector 13.svg'),
                       ],
                     ),
-                     const SizedBox(height: 16),
+                     const SizedBox(height: 20),
                     Expanded(child: Container()),
                     Column(
                       children: [
@@ -164,7 +164,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                     CustomFilledButton(
                       text: 'CONTINUAR',
                       textColor: Colors.white,
-                      verticalPadding: 8,
+                      verticalPadding: 7,
                       backgroundColor:
                           isButtonActive ? null : AppTheme.disabledButtonColor,
                       linearGradient:
@@ -175,7 +175,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         context.pushNamed(TeacherRaitingStep2Screen.name);
                       },
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),

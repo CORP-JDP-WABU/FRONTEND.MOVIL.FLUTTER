@@ -70,13 +70,12 @@ class _WelcomeScreenContent extends ConsumerWidget {
           ),
         ),
         const Text(
-          '“Potenciando tu\nexperiencia universitaria”',
+          'Potenciando tu\nexperiencia universitaria',
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'GothamRounded',
-            fontSize: 23,
-            height: 31 / 23,
+            fontSize: 18,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -91,7 +90,21 @@ class _WelcomeScreenContent extends ConsumerWidget {
           text: 'INICIAR SESIÓN',
           minimumWidth: 0.8 * screenWidth,
           textColor: AppTheme.primaryText,
-          backgroundColor: Colors.white,
+          backgroundColor: Color.fromRGBO(255, 255, 255, 0.9),
+          boxShadow:  [
+            BoxShadow(
+              color: Colors.black,
+              spreadRadius: -30,
+              blurRadius: 60,
+              offset: Offset(0, 0),
+            ),
+            BoxShadow(
+                 color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 3,
+            blurRadius: 7,
+            offset: const Offset(0, 3),
+            )
+          ],
         ),
         const SizedBox(height: 36),
         CustomFilledButton(
@@ -103,8 +116,15 @@ class _WelcomeScreenContent extends ConsumerWidget {
           },
           text: 'CREAR UNA CUENTA',
           minimumWidth: 0.8 * screenWidth,
-          textColor: AppTheme.primaryText,
-          backgroundColor: Colors.white,
+          textColor: Colors.white,
+          linearGradient: const LinearGradient(
+            colors: [
+              AppTheme.linearGradientDark,
+              AppTheme.statsColor,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
         ),
         const SizedBox(height: 72)
       ],
