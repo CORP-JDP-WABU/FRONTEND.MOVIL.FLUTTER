@@ -124,8 +124,7 @@ class __$$TeacherQualificationRequiredImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$TeacherQualificationRequiredImpl
     implements _TeacherQualificationRequired {
   const _$TeacherQualificationRequiredImpl(

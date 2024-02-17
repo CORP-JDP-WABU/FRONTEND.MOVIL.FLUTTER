@@ -10,15 +10,12 @@ part 'teacher_course_profile_controller.g.dart';
 @riverpod
 class TeacherProfileController extends _$TeacherProfileController {
   @override
-  TeacherCourseProfileState build() {
-    fetchData();
-    return const TeacherCourseProfileState();
-  }
+  TeacherCourseProfileState build() => const TeacherCourseProfileState();
 
-  void fetchData() async {
+  void fetchData(String teacherId, String courseId) async {
     try {
-      String teacherId = Globals.teacherId ?? '';
-      String courseId = Globals.courseId ?? '';
+      Globals.teacherId = teacherId;
+      Globals.courseId = courseId;
 
       final getTeacherCourseResponse = await ref
           .watch(teachersRepositoryProvider)

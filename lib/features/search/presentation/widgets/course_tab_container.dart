@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/search/domain/courses_search_result/courses_search_result.dart';
-import 'package:wabu/features/search/presentation/views/course_carrousel.dart';
+import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
 
 class CourseTabContainer extends StatelessWidget {
   const CourseTabContainer({
@@ -91,7 +91,10 @@ class CourseTabContainer extends StatelessWidget {
         ),
       ),
       onTap: () {
-        context.pushNamed(CourseCarrousel.name);
+        context.pushNamed(
+          CourseCarrousel.name,
+          extra: course.idCourse,
+        );
       },
     );
   }

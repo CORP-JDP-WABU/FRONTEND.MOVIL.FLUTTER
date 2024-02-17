@@ -5,7 +5,6 @@ import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/home/presentation/presentation.dart';
 import 'package:wabu/features/search/presentation/views/search_view.dart';
 import 'package:wabu/features/smash/presentation/views/smash_view.dart';
-import 'package:wabu/features/teachers/presentation/screens/teacher_course_profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -15,14 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   static const String name = 'home_screen';
   static const String route = '/$name';
-
   final Widget childView;
-
-  final viewRoutes = const <Widget>[
-    TeacherCourseProfileScreen(),
-    SmashView(),
-    SizedBox(),
-  ];
 
   @override
   Widget build(BuildContext context) {
