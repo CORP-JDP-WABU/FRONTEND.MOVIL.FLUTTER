@@ -42,6 +42,8 @@ class ForgotPasswordController extends _$ForgotPasswordController {
     );
 
     if (state.isValid) {
+      Globals.email = state.email.value;
+
       state = state.copyWith(formStatus: FormStatus.posting);
       ref
           .read(welcomePageControllerProvider.notifier)

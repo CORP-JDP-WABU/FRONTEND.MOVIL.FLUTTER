@@ -148,8 +148,7 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
                           child: Stack(
                             children: [
                               CircleAvatar(
-                                backgroundImage:
-                                    AssetImage('assets/images/${state.photo}'),
+                                backgroundImage: NetworkImage(state.photo),
                                 radius: 64,
                               ),
                               Positioned(

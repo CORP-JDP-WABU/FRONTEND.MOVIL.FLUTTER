@@ -47,7 +47,7 @@ class UpdateInfoController extends _$UpdateInfoController {
       int newIndex = Random().nextInt(6) + 1;
 
       state = state.copyWith(
-        photo: 'profile-student-avatar-00$newIndex.png',
+        photo: 'https://wabu-development.s3.amazonaws.com/profile-student-avatar-00$newIndex.png',
         universities: universities,
       );
       state = state.copyWith(
@@ -72,7 +72,7 @@ class UpdateInfoController extends _$UpdateInfoController {
           state = state.copyWith(
             photo: (student.profileUrl.isNotEmpty)
                 ? student.profileUrl
-                : 'profile-student-avatar-00$newIndex.png',
+                : 'https://wabu-development.s3.amazonaws.com/profile-student-avatar-00$newIndex.png',
             firstName: student.firstName,
             lastName: student.lastName,
             aboutMe: student.information,
@@ -94,7 +94,7 @@ class UpdateInfoController extends _$UpdateInfoController {
 
   void onPhotoChanged(int value) {
     state = state.copyWith(
-      photo: 'profile-student-avatar-00$value.png',
+      photo: 'https://wabu-development.s3.amazonaws.com/profile-student-avatar-00$value.png',
     );
     state = state.copyWith(
       isInfoCompleted: validateInfoCompleted(),

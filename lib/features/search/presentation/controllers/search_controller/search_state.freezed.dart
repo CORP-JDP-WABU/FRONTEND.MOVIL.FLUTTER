@@ -204,7 +204,7 @@ class _$SearchStateImpl implements _SearchState {
       this.searchStatus = SearchStatus.loading,
       this.searchResultStatus = SearchResultStatus.loading,
       this.isLexicographicallyOrdered = false,
-      this.page = 0});
+      this.page = 1});
 
   @override
   @JsonKey()

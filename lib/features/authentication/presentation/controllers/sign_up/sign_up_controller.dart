@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:formz/formz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wabu/common/data/failure/failure.dart';

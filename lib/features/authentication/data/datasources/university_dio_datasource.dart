@@ -4,6 +4,7 @@ import 'package:wabu/common/data/failure/failure.dart';
 import 'package:wabu/common/data/response/response_dto.dart';
 import 'package:wabu/features/authentication/data/datasources/university_remote_datasource.dart';
 import 'package:wabu/features/authentication/domain/models/university/university.dart';
+import 'package:wabu/utils/logger.dart';
 
 class UniversityDioDatasource extends UniversityRemoteDatasource {
   final dio = Dio(
@@ -12,7 +13,28 @@ class UniversityDioDatasource extends UniversityRemoteDatasource {
     ),
   )..interceptors.add(
       InterceptorsWrapper(
+        onRequest: (options, handler) {
+          logger.i('''
+            Path:
+            ${options.path}
+            Headers:
+            ${options.headers}
+            Query:
+            ${options.queryParameters}
+            Data:
+            ${options.data}
+          ''');
+
+          return handler.next(options);
+        },
+        onResponse: (response, handler) {
+          logger.i(response);
+
+          return handler.next(response);
+        },
         onError: (error, handler) {
+          logger.e(error);
+
           if (error.type == DioExceptionType.badResponse &&
               error.response != null) {
             return handler.resolve(error.response!);

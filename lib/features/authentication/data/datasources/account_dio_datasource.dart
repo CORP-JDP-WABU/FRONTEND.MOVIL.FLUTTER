@@ -9,6 +9,7 @@ import 'package:wabu/features/authentication/domain/models/encrypted_form/encryp
 import 'package:wabu/features/authentication/domain/models/student/student.dart';
 import 'package:wabu/features/authentication/domain/models/update_info_form/update_info_form.dart';
 import 'package:wabu/features/authentication/domain/models/update_info_form_result/update_info_form_result.dart';
+import 'package:wabu/utils/utils.dart';
 
 class AccountDioDataSource extends AccountRemoteDatasource {
   final dio = Dio(
@@ -17,7 +18,28 @@ class AccountDioDataSource extends AccountRemoteDatasource {
     ),
   )..interceptors.add(
       InterceptorsWrapper(
+        onRequest: (options, handler) {
+          logger.i('''
+            Path:
+            ${options.path}
+            Headers:
+            ${options.headers}
+            Query:
+            ${options.queryParameters}
+            Data:
+            ${options.data}
+          ''');
+
+          return handler.next(options);
+        },
+        onResponse: (response, handler) {
+          logger.i(response);
+
+          return handler.next(response);
+        },
         onError: (error, handler) {
+          logger.e(error);
+
           if (error.type == DioExceptionType.badResponse &&
               error.response != null) {
             return handler.resolve(error.response!);
@@ -79,8 +101,6 @@ class AccountDioDataSource extends AccountRemoteDatasource {
       data: encryptedForm.toJson(),
     );
 
-    print(response.data);
-
     if (response.statusCode != StatusCode.success) {
       final failureResponse = Failure.fromJson(response.data);
 
@@ -96,19 +116,24 @@ class AccountDioDataSource extends AccountRemoteDatasource {
   }
 
   @override
-  Future<Either<Failure, int>> recover(EncryptedForm encryptedForm) async {
+  Future<Either<Failure, UpdateInfoFormResult>> recover(EncryptedForm encryptedForm) async {
     final response = await dio.patch(
       'recovery',
       data: encryptedForm.toJson(),
     );
 
-    if (response.statusCode != StatusCode.success) {
+    if (response.statusCode != 200) {
       final failureResponse = Failure.fromJson(response.data);
 
       return Left(failureResponse);
     }
 
-    return Right(0);
+    final recoverResponse = ResponseDto.fromJson(
+        response.data,
+        (json) => UpdateInfoFormResult.fromJson(
+            (json as Map<String, dynamic>)));
+
+    return Right(recoverResponse.data);
   }
 
   @override

@@ -34,7 +34,7 @@ class HomeViewContent extends StatelessWidget {
           borderWidth: 7,
           borderColor: Colors.white,
           imageProvider: (student.profileUrl.isNotEmpty)
-              ? AssetImage('assets/images/${student.profileUrl}')
+              ? NetworkImage(student.profileUrl)
               : null,
         ),
         const SizedBox(height: 8),

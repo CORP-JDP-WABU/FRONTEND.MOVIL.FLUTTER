@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:wabu/features/authentication/domain/models/auth_keys/auth_keys.dart';
 import 'package:wabu/features/authentication/domain/models/encrypted_form/encrypted_form.dart';
 import 'package:wabu/features/authentication/domain/models/token/token.dart';
+import 'package:wabu/utils/utils.dart';
 
 class AuthDioDatasource extends AuthRemoteDatasource {
   final dio = Dio(
@@ -15,7 +16,28 @@ class AuthDioDatasource extends AuthRemoteDatasource {
     ),
   )..interceptors.add(
       InterceptorsWrapper(
+        onRequest: (options, handler) {
+          logger.i('''
+            Path:
+            ${options.path}
+            Headers:
+            ${options.headers}
+            Query:
+            ${options.queryParameters}
+            Data:
+            ${options.data}
+          ''');
+
+          return handler.next(options);
+        },
+        onResponse: (response, handler) {
+          logger.i(response);
+
+          return handler.next(response);
+        },
         onError: (error, handler) {
+          logger.e(error);
+
           if (error.type == DioExceptionType.badResponse &&
               error.response != null) {
             return handler.resolve(error.response!);
@@ -30,8 +52,6 @@ class AuthDioDatasource extends AuthRemoteDatasource {
   Future<Either<Failure, AuthKeys>> getKeys() async {
     final response = await dio.get('keys');
 
-    print('KEYS');
-    print(response);
 
     if (response.statusCode != 200) {
       final failureResponse = Failure.fromJson(response.data);
@@ -51,9 +71,6 @@ class AuthDioDatasource extends AuthRemoteDatasource {
       'login',
       data: encryptedForm.toJson(),
     );
-
-    print(encryptedForm);
-    print(response);
 
     if (response.statusCode != 201) {
       final failureResponse = Failure.fromJson(response.data);

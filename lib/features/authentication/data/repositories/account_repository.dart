@@ -11,6 +11,6 @@ abstract class AccountRepository {
   Future<Either<Failure, UpdateInfoFormResult>> updateRegistrationInfo(UpdateInfoForm updateInfoForm);
   Future<Either<Failure, CodeValidationResult>> verifyRegistration(EncryptedForm encryptedForm);
   Future<Either<Failure, Student>> requestRecovery(EncryptedForm encryptedForm);
-  Future<Either<Failure, int>> recover(EncryptedForm encryptedForm);
+  Future<Either<Failure, UpdateInfoFormResult>> recover(EncryptedForm encryptedForm);
   Future<Either<Failure, CodeValidationResult>> verifyRecovery(EncryptedForm encryptedForm);
 }
