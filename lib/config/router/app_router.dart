@@ -3,6 +3,7 @@ import 'package:wabu/features/authentication/presentation/screens/splash_screen.
 import 'package:wabu/features/authentication/presentation/screens/terms_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/update_info_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
+import 'package:wabu/features/compare/presentation/presentation.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
@@ -130,6 +131,13 @@ final appRouter = GoRouter(
         return CourseCarrousel(
           courseId: courseId,
         );
+      },
+    ),
+    GoRoute(
+      name: CompareSearchScreen.name,
+      path: CompareSearchScreen.route,
+      builder: (context, state) {
+        return const CompareSearchScreen();
       },
     ),
   ],

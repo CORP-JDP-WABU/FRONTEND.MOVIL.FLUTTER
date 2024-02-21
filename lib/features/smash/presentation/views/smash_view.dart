@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
+import 'package:wabu/features/compare/presentation/presentation.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
 
 class SmashView extends ConsumerWidget {
@@ -16,13 +17,13 @@ class SmashView extends ConsumerWidget {
     return Column(
       children: [
         _SmashCard(
-          onTap: () => context.push(TeachersTinderScreen.route),
+          onTap: () => context.pushNamed(TeachersTinderScreen.name),
           color: AppTheme.smashButtonBackgroundColor,
           asset: 'assets/images/svgs/smash.svg',
           text: 'SMASH',
         ),
-        const _SmashCard(
-          // onTap: () => context.push(TeacherRequiredRatingScreen.route),
+        _SmashCard(
+          onTap: () => context.pushNamed(CompareSearchScreen.name),
           color: AppTheme.compareButtonBackgroundColor,
           asset: 'assets/images/svgs/compare.svg',
           text: 'COMPARAR',
