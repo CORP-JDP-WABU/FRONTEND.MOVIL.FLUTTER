@@ -1,3 +1,5 @@
+import 'package:wabu/constants/environment.dart';
+
 enum VerificationCodeMode { signUp, forgotPassword }
 
 enum UpdateInfoMode { signUp, logIn }
@@ -16,10 +18,5 @@ class Globals {
   static const int maxQualificationValue = 5;
   static String? teacherId;
   static String? courseId;
+  static Environment environment = Environment.dev;
 }
-
-
-// 1 - No se
-// 2 - Poco
-// 3 - Masomenos
-// 4 - Siempre

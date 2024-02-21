@@ -47,7 +47,8 @@ class UpdateInfoController extends _$UpdateInfoController {
       int newIndex = Random().nextInt(6) + 1;
 
       state = state.copyWith(
-        photo: 'https://wabu-development.s3.amazonaws.com/profile-student-avatar-00$newIndex.png',
+        photo:
+            'https://wabu-development.s3.amazonaws.com/profile-student-avatar-00$newIndex.png',
         universities: universities,
       );
       state = state.copyWith(
@@ -94,7 +95,8 @@ class UpdateInfoController extends _$UpdateInfoController {
 
   void onPhotoChanged(int value) {
     state = state.copyWith(
-      photo: 'https://wabu-development.s3.amazonaws.com/profile-student-avatar-00$value.png',
+      photo:
+          'https://wabu-development.s3.amazonaws.com/profile-student-avatar-00$value.png',
     );
     state = state.copyWith(
       isInfoCompleted: validateInfoCompleted(),
@@ -246,7 +248,6 @@ class UpdateInfoController extends _$UpdateInfoController {
             await login();
           }
 
-          setPageIdle();
           state = state.copyWith(status: Status.valid);
         }
       });
@@ -270,19 +271,6 @@ class UpdateInfoController extends _$UpdateInfoController {
 
         logInResult.fold((Failure failure) {
           switch (failure.errorCode) {
-            case "LOGIN_EMAIL_FAILED":
-              state = state.copyWith(
-                status: Status.loaded,
-              );
-
-              ref
-                  .read(welcomePageControllerProvider.notifier)
-                  .addPage(WelcomePage.signUp);
-              setPageIdle();
-              break;
-            case "LOGIN_PASSWORD_FAILED":
-              setPageIdle();
-              break;
             default:
               setPageError();
               break;
@@ -302,7 +290,7 @@ class UpdateInfoController extends _$UpdateInfoController {
             status: Status.valid,
           );
 
-          setPageIdle();
+          setPageLoaded();
         });
       });
     } catch (error) {
@@ -329,15 +317,15 @@ class UpdateInfoController extends _$UpdateInfoController {
     );
   }
 
-  void setPageIdle() {
-    ref
-        .read(welcomePageControllerProvider.notifier)
-        .setPageStatus(WelcomeStatus.idle);
+  void setPageLoaded() {
+    state = state.copyWith(
+      status: Status.loaded,
+    );
   }
 
   void setPageError() {
-    ref
-        .read(welcomePageControllerProvider.notifier)
-        .setPageStatus(WelcomeStatus.error);
+    state = state.copyWith(
+      status: Status.error,
+    );
   }
 }

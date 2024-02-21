@@ -1,53 +1,16 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:wabu/common/data/failure/failure.dart';
 import 'package:wabu/common/data/response/response_dto.dart';
+import 'package:wabu/config/api/api.dart';
 import 'package:wabu/features/authentication/data/datasources/university_remote_datasource.dart';
 import 'package:wabu/features/authentication/domain/models/university/university.dart';
-import 'package:wabu/utils/logger.dart';
 
 class UniversityDioDatasource extends UniversityRemoteDatasource {
-  final dio = Dio(
-    BaseOptions(
-      baseUrl: 'http://52.91.65.217:4002/api/university/v1.0',
-    ),
-  )..interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) {
-          logger.i('''
-            Path:
-            ${options.path}
-            Headers:
-            ${options.headers}
-            Query:
-            ${options.queryParameters}
-            Data:
-            ${options.data}
-          ''');
-
-          return handler.next(options);
-        },
-        onResponse: (response, handler) {
-          logger.i(response);
-
-          return handler.next(response);
-        },
-        onError: (error, handler) {
-          logger.e(error);
-
-          if (error.type == DioExceptionType.badResponse &&
-              error.response != null) {
-            return handler.resolve(error.response!);
-          }
-
-          return handler.next(error);
-        },
-      ),
-    );
+  final dio = ApiClientToken.instance.universityClient.dio;
 
   @override
   Future<Either<Failure, List<University>>> getUniversities() async {
-    final response = await dio.get('/');
+    final response = await dio.get('university/v1.0/');
 
     if (response.statusCode != 200) {
       final failureResponse = Failure.fromJson(response.data);
