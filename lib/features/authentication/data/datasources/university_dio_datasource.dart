@@ -6,7 +6,7 @@ import 'package:wabu/features/authentication/data/datasources/university_remote_
 import 'package:wabu/features/authentication/domain/models/university/university.dart';
 
 class UniversityDioDatasource extends UniversityRemoteDatasource {
-  final dio = ApiClientToken.instance.universityClient.dio;
+  final dio = ApiClient.instance.universityClient.dio;
 
   @override
   Future<Either<Failure, List<University>>> getUniversities() async {

@@ -6,7 +6,7 @@ import 'package:wabu/features/student/data/datasources/student_remote_datasource
 import 'package:wabu/features/student/domain/student/student.dart';
 
 class StudentDioDatasource extends StudentRemoteDatasource {
-  final dio = ApiClientToken.instance.studentClient.dio;
+  final dio = ApiClient.instance.studentClient.dio;
 
   @override
   Future<Either<Failure, Student>> getStudent(String studentId) async {

@@ -11,6 +11,8 @@ class ApiClient {
   static ApiClient get instance => _instance;
 
   late DioClient securityClient;
+  late DioClient studentClient;
+  late DioClient universityClient;
 
   void _init() {
     final environment = Globals.environment;
@@ -20,6 +22,8 @@ class ApiClient {
     };
 
     securityClient = DioClient(baseUrl: apiConfig.securityBaseUrl).._init();
+    studentClient = DioClient(baseUrl: apiConfig.studentBaseUrl).._init();
+    universityClient = DioClient(baseUrl: apiConfig.universityBaseUrl).._init();
   }
 }
 
