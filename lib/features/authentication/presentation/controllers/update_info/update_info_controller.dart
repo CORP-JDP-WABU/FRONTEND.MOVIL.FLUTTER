@@ -66,10 +66,6 @@ class UpdateInfoController extends _$UpdateInfoController {
             selectUniversity(student.idUniversity);
           }
 
-          if (student.idCareer.isNotEmpty) {
-            selectCareer(student.idCareer);
-          }
-
           state = state.copyWith(
             photo: (student.profileUrl.isNotEmpty)
                 ? student.profileUrl
@@ -79,8 +75,6 @@ class UpdateInfoController extends _$UpdateInfoController {
             aboutMe: student.information,
             univeristy:
                 (student.idUniversity.isEmpty) ? null : student.idUniversity,
-            career: (student.idCareer.isEmpty) ? null : student.idCareer,
-            cycle: (student.cicle.isEmpty) ? null : student.cicle,
           );
         });
       }
