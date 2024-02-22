@@ -90,9 +90,8 @@ class _CustomButtonContent extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: textColor,
-            fontSize: 16,
+            fontSize: 15,
             fontWeight: FontWeight.w700,
-            height: 19 / 16,
           ),
         ),
       ),
