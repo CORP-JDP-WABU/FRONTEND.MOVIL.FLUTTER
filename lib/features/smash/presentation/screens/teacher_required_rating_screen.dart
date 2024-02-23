@@ -54,7 +54,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
             Positioned(
               top: 72,
               child: Container(
-                height: maxHeight - 72,
+                height: maxHeight*0.85  - 72,
                 width: maxWidth,
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 decoration: BoxDecoration(
@@ -126,7 +126,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                           asset: 'brain',
                           text: '¿QUÉ TANTO APRENDISTE?',
                           color: AppTheme.primaryStatsColor,
-                          value: 0,
+                          value: 1,
                           count: 5,
                           onRatingUpdate: (rating) {
                             ref
@@ -138,7 +138,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                           asset: 'parchment',
                           text: '¿QUÉ TAN ALTO CALIFICA?',
                           color: AppTheme.secondaryStatsColor,
-                          value: 0,
+                          value: 1,
                           count: 5,
                           onRatingUpdate: (rating) {
                             ref
@@ -150,7 +150,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                           asset: 'heart',
                           text: '¿QUÉ TAN BUENA GENTE ES?',
                           color: AppTheme.tertiaryStatsColor,
-                          value: 0,
+                          value: 1,
                           count: 5,
                           onRatingUpdate: (rating) {
                             ref
