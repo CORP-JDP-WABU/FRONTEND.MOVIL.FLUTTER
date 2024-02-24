@@ -29,7 +29,7 @@ class AccountDioRepository extends AccountRepository {
   }
   
   @override
-  Future<Either<Failure, int>> recover(EncryptedForm encryptedForm) {
+  Future<Either<Failure, UpdateInfoFormResult>> recover(EncryptedForm encryptedForm) {
     return accountRemoteDatasource.recover(encryptedForm);
   }
   

@@ -158,7 +158,7 @@ class CodeValidationController extends _$CodeValidationController {
             await accountRepository.requestRecovery(encryptedForm);
 
         requestRecoveryResult.fold((Failure failure) {
-          print(failure);
+          setPageError();
         }, (Student student) {
           student;
           Globals.studentId = student.id;

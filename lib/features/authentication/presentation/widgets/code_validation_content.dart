@@ -12,20 +12,6 @@ import 'package:wabu/features/authentication/presentation/widgets/welcome_bottom
 class CodeValidationContent extends ConsumerWidget {
   const CodeValidationContent({super.key});
 
-  // void openDialog(BuildContext context) {
-  //   showDialog(
-  //     context: context,
-  //     barrierDismissible: false,
-  //     builder: (context) => AuthAlertDialog(
-  //       title: 'Este correo no está registrado',
-  //       content: 'Puedes crear una cuenta con este correo',
-  //       onAccept: () {
-  //         context.pop();
-  //       },
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final codeValidationState = ref.watch(codeValidationControllerProvider);
@@ -85,9 +71,6 @@ class CodeValidationContent extends ConsumerWidget {
         button: 'Continuar',
         onButtonTap: () {
           ref.read(codeValidationControllerProvider.notifier).onSubmit();
-          // ref.read(forgotPasswordControllerProvider.notifier).onSubmit();
-          // submit Form
-          // ref.read(welcomePageControllerProvider.notifier).addPage(WelcomePage.codeValidation);
         });
   }
 }

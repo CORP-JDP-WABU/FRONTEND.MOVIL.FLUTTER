@@ -299,7 +299,6 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                             // Actualiza el estado al seleccionar un botón específico
                             for (int j = 0; j < isSelected.length; j++) {
                               isSelected[j] = (j == i);
-                              print('se seleccionó ${isSelected[j]}');
                             }
                           });
                           widget.onSelected(i);

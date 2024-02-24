@@ -6,25 +6,32 @@ import 'package:wabu/features/search/presentation/controllers/controllers.dart';
 import 'package:wabu/features/search/presentation/widgets/teachers_tab_container.dart';
 
 class TeachersTab extends ConsumerStatefulWidget {
-  const TeachersTab({super.key, required this.teachersSearchResults});
+  const TeachersTab({
+    super.key,
+    required this.teachersSearchResults,
+    required this.loadNextPage,
+  });
 
   final List<TeachersSearchResult> teachersSearchResults;
+  final VoidCallback loadNextPage;
 
   @override
   TeachersTabState createState() => TeachersTabState();
 }
 
 class TeachersTabState extends ConsumerState<TeachersTab> {
+  final scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
-  }
 
-  void mejorCalificados() {
-    // setState(() {
-    //   widget.teachersSearchResults.sort((a, b) =>
-    //       (b.manyQualifications ?? 0).compareTo(a.manyQualifications ?? 0));
-    // });
+    scrollController.addListener(() {
+      if (scrollController.position.pixels >=
+          scrollController.position.maxScrollExtent) {
+        widget.loadNextPage();
+      }
+    });
   }
 
   final MaterialStateProperty<Icon?> thumbIcon =
@@ -85,6 +92,7 @@ class TeachersTabState extends ConsumerState<TeachersTab> {
                 ),
                 Expanded(
                   child: GridView.builder(
+                    controller: scrollController,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
@@ -93,7 +101,6 @@ class TeachersTabState extends ConsumerState<TeachersTab> {
                     ),
                     itemCount: teachersSearchResult.length,
                     itemBuilder: (context, index) {
-                      // print(index);
                       return TeachersTabContainer(
                           teacher: teachersSearchResult[index]);
                     },

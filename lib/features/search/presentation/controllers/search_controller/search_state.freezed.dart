@@ -18,10 +18,12 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SearchState {
   HomeDashboard get homeDashboard => throw _privateConstructorUsedError;
   SearchResult get searchResult => throw _privateConstructorUsedError;
+  String get searchText => throw _privateConstructorUsedError;
   SearchStatus get searchStatus => throw _privateConstructorUsedError;
   SearchResultStatus get searchResultStatus =>
       throw _privateConstructorUsedError;
   bool get isLexicographicallyOrdered => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchStateCopyWith<SearchState> get copyWith =>
@@ -37,9 +39,11 @@ abstract class $SearchStateCopyWith<$Res> {
   $Res call(
       {HomeDashboard homeDashboard,
       SearchResult searchResult,
+      String searchText,
       SearchStatus searchStatus,
       SearchResultStatus searchResultStatus,
-      bool isLexicographicallyOrdered});
+      bool isLexicographicallyOrdered,
+      int page});
 
   $HomeDashboardCopyWith<$Res> get homeDashboard;
   $SearchResultCopyWith<$Res> get searchResult;
@@ -60,9 +64,11 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
   $Res call({
     Object? homeDashboard = null,
     Object? searchResult = null,
+    Object? searchText = null,
     Object? searchStatus = null,
     Object? searchResultStatus = null,
     Object? isLexicographicallyOrdered = null,
+    Object? page = null,
   }) {
     return _then(_value.copyWith(
       homeDashboard: null == homeDashboard
@@ -73,6 +79,10 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
           ? _value.searchResult
           : searchResult // ignore: cast_nullable_to_non_nullable
               as SearchResult,
+      searchText: null == searchText
+          ? _value.searchText
+          : searchText // ignore: cast_nullable_to_non_nullable
+              as String,
       searchStatus: null == searchStatus
           ? _value.searchStatus
           : searchStatus // ignore: cast_nullable_to_non_nullable
@@ -85,6 +95,10 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
           ? _value.isLexicographicallyOrdered
           : isLexicographicallyOrdered // ignore: cast_nullable_to_non_nullable
               as bool,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -116,9 +130,11 @@ abstract class _$$SearchStateImplCopyWith<$Res>
   $Res call(
       {HomeDashboard homeDashboard,
       SearchResult searchResult,
+      String searchText,
       SearchStatus searchStatus,
       SearchResultStatus searchResultStatus,
-      bool isLexicographicallyOrdered});
+      bool isLexicographicallyOrdered,
+      int page});
 
   @override
   $HomeDashboardCopyWith<$Res> get homeDashboard;
@@ -139,9 +155,11 @@ class __$$SearchStateImplCopyWithImpl<$Res>
   $Res call({
     Object? homeDashboard = null,
     Object? searchResult = null,
+    Object? searchText = null,
     Object? searchStatus = null,
     Object? searchResultStatus = null,
     Object? isLexicographicallyOrdered = null,
+    Object? page = null,
   }) {
     return _then(_$SearchStateImpl(
       homeDashboard: null == homeDashboard
@@ -152,6 +170,10 @@ class __$$SearchStateImplCopyWithImpl<$Res>
           ? _value.searchResult
           : searchResult // ignore: cast_nullable_to_non_nullable
               as SearchResult,
+      searchText: null == searchText
+          ? _value.searchText
+          : searchText // ignore: cast_nullable_to_non_nullable
+              as String,
       searchStatus: null == searchStatus
           ? _value.searchStatus
           : searchStatus // ignore: cast_nullable_to_non_nullable
@@ -164,6 +186,10 @@ class __$$SearchStateImplCopyWithImpl<$Res>
           ? _value.isLexicographicallyOrdered
           : isLexicographicallyOrdered // ignore: cast_nullable_to_non_nullable
               as bool,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -174,9 +200,11 @@ class _$SearchStateImpl implements _SearchState {
   const _$SearchStateImpl(
       {this.homeDashboard = const HomeDashboard(),
       this.searchResult = const SearchResult(),
+      this.searchText = '',
       this.searchStatus = SearchStatus.loading,
       this.searchResultStatus = SearchResultStatus.loading,
-      this.isLexicographicallyOrdered = false});
+      this.isLexicographicallyOrdered = false,
+      this.page = 1});
 
   @override
   @JsonKey()
@@ -186,6 +214,9 @@ class _$SearchStateImpl implements _SearchState {
   final SearchResult searchResult;
   @override
   @JsonKey()
+  final String searchText;
+  @override
+  @JsonKey()
   final SearchStatus searchStatus;
   @override
   @JsonKey()
@@ -193,10 +224,13 @@ class _$SearchStateImpl implements _SearchState {
   @override
   @JsonKey()
   final bool isLexicographicallyOrdered;
+  @override
+  @JsonKey()
+  final int page;
 
   @override
   String toString() {
-    return 'SearchState(homeDashboard: $homeDashboard, searchResult: $searchResult, searchStatus: $searchStatus, searchResultStatus: $searchResultStatus, isLexicographicallyOrdered: $isLexicographicallyOrdered)';
+    return 'SearchState(homeDashboard: $homeDashboard, searchResult: $searchResult, searchText: $searchText, searchStatus: $searchStatus, searchResultStatus: $searchResultStatus, isLexicographicallyOrdered: $isLexicographicallyOrdered, page: $page)';
   }
 
   @override
@@ -208,6 +242,8 @@ class _$SearchStateImpl implements _SearchState {
                 other.homeDashboard == homeDashboard) &&
             (identical(other.searchResult, searchResult) ||
                 other.searchResult == searchResult) &&
+            (identical(other.searchText, searchText) ||
+                other.searchText == searchText) &&
             (identical(other.searchStatus, searchStatus) ||
                 other.searchStatus == searchStatus) &&
             (identical(other.searchResultStatus, searchResultStatus) ||
@@ -215,12 +251,20 @@ class _$SearchStateImpl implements _SearchState {
             (identical(other.isLexicographicallyOrdered,
                     isLexicographicallyOrdered) ||
                 other.isLexicographicallyOrdered ==
-                    isLexicographicallyOrdered));
+                    isLexicographicallyOrdered) &&
+            (identical(other.page, page) || other.page == page));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, homeDashboard, searchResult,
-      searchStatus, searchResultStatus, isLexicographicallyOrdered);
+  int get hashCode => Object.hash(
+      runtimeType,
+      homeDashboard,
+      searchResult,
+      searchText,
+      searchStatus,
+      searchResultStatus,
+      isLexicographicallyOrdered,
+      page);
 
   @JsonKey(ignore: true)
   @override
@@ -233,20 +277,26 @@ abstract class _SearchState implements SearchState {
   const factory _SearchState(
       {final HomeDashboard homeDashboard,
       final SearchResult searchResult,
+      final String searchText,
       final SearchStatus searchStatus,
       final SearchResultStatus searchResultStatus,
-      final bool isLexicographicallyOrdered}) = _$SearchStateImpl;
+      final bool isLexicographicallyOrdered,
+      final int page}) = _$SearchStateImpl;
 
   @override
   HomeDashboard get homeDashboard;
   @override
   SearchResult get searchResult;
   @override
+  String get searchText;
+  @override
   SearchStatus get searchStatus;
   @override
   SearchResultStatus get searchResultStatus;
   @override
   bool get isLexicographicallyOrdered;
+  @override
+  int get page;
   @override
   @JsonKey(ignore: true)
   _$$SearchStateImplCopyWith<_$SearchStateImpl> get copyWith =>

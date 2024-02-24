@@ -5,8 +5,10 @@ import 'package:wabu/features/authentication/presentation/screens/update_info_sc
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
+import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
 import 'package:wabu/features/search/presentation/presentation.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
+import 'package:wabu/features/teachers/domain/teacher_course_extra/teacher_course_extra.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
 
 final appRouter = GoRouter(
@@ -93,7 +95,10 @@ final appRouter = GoRouter(
       name: TeacherCourseProfileScreen.name,
       path: TeacherCourseProfileScreen.route,
       builder: (context, state) {
-        return const TeacherCourseProfileScreen();
+        final teacherCourse = state.extra! as TeacherCourseExtra;
+        return TeacherCourseProfileScreen(
+          teacherCourse: teacherCourse,
+        );
       },
     ),
     GoRoute(
@@ -115,6 +120,16 @@ final appRouter = GoRouter(
       path: TeachersTinderScreen.route,
       builder: (context, state) {
         return const TeachersTinderScreen();
+      },
+    ),
+    GoRoute(
+      name: CourseCarrousel.name,
+      path: CourseCarrousel.route,
+      builder: (context, state) {
+        final courseId = state.extra! as String;
+        return CourseCarrousel(
+          courseId: courseId,
+        );
       },
     ),
   ],
