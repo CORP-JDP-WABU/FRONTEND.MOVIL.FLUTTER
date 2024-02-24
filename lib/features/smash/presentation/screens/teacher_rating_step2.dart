@@ -23,8 +23,8 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
       content: const _TeacherRequiredRatingContent(),
     );
   }
+}
 
-}  
 class _TeacherRequiredRatingContent extends ConsumerWidget {
   const _TeacherRequiredRatingContent();
 
@@ -34,7 +34,6 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
         teacherQualificationRequired.hight != 0 &&
         teacherQualificationRequired.goodPeople != 0;
   }
-
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -47,21 +46,18 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
       builder: (context, contraints) {
         final maxHeight = contraints.maxHeight;
         final maxWidth = contraints.maxWidth;
-      
+
         return Stack(
-          alignment: Alignment.topCenter,
+          alignment: Alignment.bottomCenter,
           clipBehavior: Clip.none,
           children: [
-            Positioned(
-              top: 72,
-              child: Container(
-                height: maxHeight - 72,
-                width: maxWidth,
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25)),
-                child: Column(
+            Container(
+              height: maxHeight - 72,
+              width: maxWidth,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(25)),
+              child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(height: 80),
@@ -74,7 +70,6 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
                         fontSize: 15,
-       
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -87,7 +82,6 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
                         fontSize: 15,
-  
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -103,7 +97,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-                      Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset('assets/images/svgs/Vector 15.svg'),
@@ -116,12 +110,12 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                             color: AppTheme.courseNameColor,
                           ),
                         ),
-                         SvgPicture.asset('assets/images/svgs/Vector 15.svg'),
+                        SvgPicture.asset('assets/images/svgs/Vector 15.svg'),
                       ],
-                    ),   
-                     const SizedBox(height: 12),
+                    ),
+                    const SizedBox(height: 12),
                     Expanded(child: Container()),
-             Column(
+                    Column(
                       children: [
                         ContinuousQualification(
                           asset: 'clip',
@@ -198,21 +192,22 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                     ),
                     const SizedBox(height: 12),
                   ]),
-              ),
             ),
-            SolidCircleAvatar(
-              radius: 72,
-              borderWidth: 3,
-              borderColor: Colors.white,
-              imageProvider:
-                  NetworkImage(smashSuggestion?.teacher?.photoUrl ?? ''),
+            Positioned(
+              top: 0,
+              child: SolidCircleAvatar(
+                radius: 72,
+                borderWidth: 3,
+                borderColor: Colors.white,
+                imageProvider:
+                    NetworkImage(smashSuggestion?.teacher?.photoUrl ?? ''),
+              ),
             ),
           ],
         );
       },
     );
   }
- 
 }
 
 class ContinuousQualification extends StatefulWidget {
@@ -259,7 +254,11 @@ class _ContinuousQualification extends State<ContinuousQualification> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SvgPicture.asset('assets/images/svgs/${widget.asset}.svg', height: 15, width: 15,),
+                SvgPicture.asset(
+                  'assets/images/svgs/${widget.asset}.svg',
+                  height: 15,
+                  width: 15,
+                ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
@@ -304,7 +303,8 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                           widget.onSelected(i);
                         },
                         style: ButtonStyle(
-                           minimumSize: MaterialStateProperty.all(const Size(62 , 24)),
+                          minimumSize:
+                              MaterialStateProperty.all(const Size(62, 24)),
                           backgroundColor: MaterialStateProperty.all(
                             // Cambia el color de fondo basado en el estado del botón
                             isSelected[i]
