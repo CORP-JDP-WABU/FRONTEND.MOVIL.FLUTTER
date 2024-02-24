@@ -23,7 +23,7 @@ class SmashView extends ConsumerWidget {
           text: 'SMASH',
         ),
         _SmashCard(
-          onTap: () => context.pushNamed(CompareSearchScreen.name),
+          onTap: () => context.pushNamed(CompareWelcomeScreen.name),
           color: AppTheme.compareButtonBackgroundColor,
           asset: 'assets/images/svgs/compare.svg',
           text: 'COMPARAR',

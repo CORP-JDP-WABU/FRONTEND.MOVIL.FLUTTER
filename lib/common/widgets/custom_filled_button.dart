@@ -6,6 +6,7 @@ class CustomFilledButton extends StatelessWidget {
     this.onPressed,
     required this.text,
     required this.textColor,
+    this.fontSize = 12,
     this.minimumWidth,
     this.backgroundColor,
     this.linearGradient,
@@ -16,11 +17,12 @@ class CustomFilledButton extends StatelessWidget {
   final void Function()? onPressed;
   final String text;
   final Color textColor;
+  final double fontSize;
   final double? minimumWidth;
   final Color? backgroundColor;
   final LinearGradient? linearGradient;
   final double verticalPadding;
-  final List<BoxShadow> ? boxShadow;
+  final List<BoxShadow>? boxShadow;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,7 @@ class CustomFilledButton extends StatelessWidget {
           minimumWidth: minimumWidth,
           text: text,
           textColor: textColor,
+          fontSize: fontSize,
           verticalPadding: verticalPadding,
         ),
       ),
@@ -51,35 +54,18 @@ class _CustomButtonContent extends StatelessWidget {
     this.minimumWidth,
     required this.text,
     required this.textColor,
+    required this.fontSize,
     required this.verticalPadding,
   });
 
   final double? minimumWidth;
   final String text;
   final Color textColor;
+  final double fontSize;
   final double verticalPadding;
 
   @override
   Widget build(BuildContext context) {
-    // return Wrap(
-    //   children: [
-    //     Padding(
-    //       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-    //       child: Text(
-    //         text,
-    //         overflow: TextOverflow.ellipsis,
-    //         textAlign: TextAlign.center,
-    //         style: TextStyle(
-    //           color: textColor,
-    //           fontSize: 16,
-    //           fontWeight: FontWeight.w700,
-    //           height: 19 / 16,
-    //         ),
-    //       ),
-    //     ),
-    //   ],
-    // );
-
     return Container(
       constraints: (minimumWidth != null)
           ? BoxConstraints(minWidth: minimumWidth!, minHeight: 24)
@@ -93,9 +79,8 @@ class _CustomButtonContent extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: textColor,
-            fontSize: 12,
+            fontSize: fontSize,
             fontWeight: FontWeight.w700,
-
           ),
         ),
       ),

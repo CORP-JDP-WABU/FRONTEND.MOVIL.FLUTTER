@@ -134,6 +134,13 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
+      name: CompareWelcomeScreen.name,
+      path: CompareWelcomeScreen.route,
+      builder: (context, state) {
+        return const CompareWelcomeScreen();
+      },
+    ),
+    GoRoute(
       name: CompareSearchScreen.name,
       path: CompareSearchScreen.route,
       builder: (context, state) {
