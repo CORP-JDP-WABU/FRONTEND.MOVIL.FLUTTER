@@ -1,7 +1,4 @@
-import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,7 +11,6 @@ import 'package:wabu/features/authentication/presentation/controllers/update_inf
 import 'package:wabu/features/authentication/presentation/controllers/update_info/update_info_state.dart';
 import 'package:wabu/features/authentication/presentation/screens/loader_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/terms_screen.dart';
-import 'package:wabu/features/authentication/presentation/widgets/btn_photo_component.dart';
 import 'package:wabu/features/authentication/presentation/widgets/dialogs/welcome_dialog.dart';
 
 class UpdateInfoScreen extends ConsumerStatefulWidget {
@@ -153,30 +149,14 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
                             children: [
                               CircleAvatar(
                                 backgroundImage:
-                                   //MemoryImage(base64Decode(photo),),
-                                  AssetImage('assets/images/${state.photo}'),
+                                    //MemoryImage(base64Decode(photo),),
+                                    AssetImage('assets/images/${state.photo}'),
                                 radius: 64,
                               ),
                               Positioned(
                                 bottom: 0,
                                 left: -8,
-                                child: 
-                                /*   ButtonPhotoComponent(
-                                    title: '',
-                                    disabled: false,
-                                    initialPath: '',
-                                    typeFile: 0,
-                                    inputHandler: (value)async {
-                                        var _fileBigImg = await File(value).create(recursive: true);
-                                         List<int> imageBytesBig = _fileBigImg.readAsBytesSync();
-                                        print(imageBytesBig);
-                                        String base64ImageBig = base64Encode(imageBytesBig);
-                                      setState(()  {
-                                       photo = base64ImageBig;
-                                      });
-                                    },
-                                  ),*/
-                                ElevatedButton(
+                                child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.white,
                                     shape: const CircleBorder(),
@@ -280,7 +260,7 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
                             ),
                           ],
                         ),
-                        TextFormField( 
+                        TextFormField(
                           focusNode: aboutMeNode,
                           maxLength: 300,
                           maxLines: null,

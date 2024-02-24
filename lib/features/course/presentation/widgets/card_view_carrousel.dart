@@ -281,7 +281,7 @@ class CardViewCarrousel extends StatelessWidget {
                                     color: Color.fromRGBO(97, 20, 144, 1.000),
                                     fontFamily: 'SFProDisplay',
                                     fontSize: 12,
-                                     height: 16/15,
+                                    height: 16 / 15,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ))
@@ -321,7 +321,7 @@ class CardViewCarrousel extends StatelessWidget {
                                   style: const TextStyle(
                                     color: Color.fromRGBO(97, 20, 144, 1.000),
                                     fontFamily: 'SFProDisplay',
-                                    height: 16/15,
+                                    height: 16 / 15,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400,
                                   ),
@@ -363,7 +363,7 @@ class CardViewCarrousel extends StatelessWidget {
                                       color: Color.fromRGBO(97, 20, 144, 1.000),
                                       fontFamily: 'SFProDisplay',
                                       fontSize: 12,
-                                      height: 16/15,
+                                      height: 16 / 15,
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ))
@@ -376,7 +376,6 @@ class CardViewCarrousel extends StatelessWidget {
             ),
           ),
         ),
-        
         Positioned(
           bottom: -16,
           child: CustomFilledButton(

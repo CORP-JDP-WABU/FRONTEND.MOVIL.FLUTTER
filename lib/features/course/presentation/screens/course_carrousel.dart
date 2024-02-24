@@ -50,7 +50,6 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
     final course = state.courseTeachersResponse.course;
     final teachers = state.courseTeachersResponse.teachers ?? [];
 
-    double screenWidth = MediaQuery.of(context).size.width;
     double screenHeigth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -312,11 +311,10 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
             onTap();
           },
           style: ElevatedButton.styleFrom(
-              shape: const CircleBorder(),
-              elevation: 4,
-              primary: isSelected ? color : Colors.white
-              // const Color.fromRGBO(191, 191, 191, 1.000),
-              ),
+            shape: const CircleBorder(),
+            elevation: 4,
+            primary: isSelected ? color : Colors.white,
+          ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SvgPicture.asset(
