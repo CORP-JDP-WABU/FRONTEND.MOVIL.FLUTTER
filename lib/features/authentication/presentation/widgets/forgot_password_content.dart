@@ -48,13 +48,9 @@ class ForgotPasswordContent extends ConsumerWidget {
           errorMessage: email.getErrorMessage(),
         ),
       ],
-      // help: '¿No puedes acceder a tu correo?',
-      // onHelpTap: () {},
       button: 'Continuar',
       onButtonTap: () {
         ref.read(forgotPasswordControllerProvider.notifier).onSubmit();
-        // submit Form
-        // ref.read(welcomePageControllerProvider.notifier).addPage(WelcomePage.codeValidation);
       },
     );
   }

@@ -109,8 +109,6 @@ class LogInController extends _$LogInController {
             await prefs.setString('token', token.token);
             await prefs.setString('studentId', token.idStudent);
             await prefs.setString('universityId', token.idUniversity);
-            print(token);
-            print("TOKEN: " + token.token);
 
             state = state.copyWith(
               formStatus: FormStatus.valid,

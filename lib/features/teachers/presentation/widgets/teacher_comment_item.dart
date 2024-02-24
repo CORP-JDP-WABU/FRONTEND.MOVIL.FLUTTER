@@ -25,7 +25,7 @@ class TeacherCommentItem extends StatelessWidget {
             borderWidth: 3,
             radius: 32,
             imageProvider:
-                AssetImage('assets/images/profile-student-avatar-001.png'),
+            NetworkImage('https://wabu-development.s3.amazonaws.com/profile-student-avatar-001.png'),
           ),
         ],
       ),

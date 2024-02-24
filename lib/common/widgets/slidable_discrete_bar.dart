@@ -30,7 +30,7 @@ class SlidableDiscreteBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset('assets/images/svgs/$asset.svg'),
-          const SizedBox(width: 16),
+          const SizedBox(width: 10),
           Expanded(
             child: LayoutBuilder(
               builder: (context, constraints) {
@@ -49,7 +49,7 @@ class SlidableDiscreteBar extends StatelessWidget {
                         textAlign: TextAlign.start,
                         style: TextStyle(
                           color: color,
-                          fontSize: 13,
+                          fontSize: 11,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -62,7 +62,7 @@ class SlidableDiscreteBar extends StatelessWidget {
                       allowHalfRating: false,
                       unratedColor: AppTheme.progressBarBackgroundColor,
                       itemCount: itemCount,
-                      itemSize: itemMaxWidth - 4,
+                      itemSize: itemMaxWidth - 5,
                       itemPadding:
                           const EdgeInsets.symmetric(horizontal: itemPadding),
                       itemBuilder: (context, _) => Container(
@@ -71,7 +71,7 @@ class SlidableDiscreteBar extends StatelessWidget {
                           color: color,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        height: 20,
+                        height: 12,
                         width: itemMaxWidth,
                       ),
                       onRatingUpdate: onRatingUpdate,

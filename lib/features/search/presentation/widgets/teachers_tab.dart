@@ -101,7 +101,6 @@ class TeachersTabState extends ConsumerState<TeachersTab> {
                     ),
                     itemCount: teachersSearchResult.length,
                     itemBuilder: (context, index) {
-                      // print(index);
                       return TeachersTabContainer(
                           teacher: teachersSearchResult[index]);
                     },

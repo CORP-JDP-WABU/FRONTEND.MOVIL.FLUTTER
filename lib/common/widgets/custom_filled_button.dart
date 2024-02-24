@@ -10,6 +10,7 @@ class CustomFilledButton extends StatelessWidget {
     this.backgroundColor,
     this.linearGradient,
     this.verticalPadding = 16,
+    this.boxShadow,
   });
 
   final void Function()? onPressed;
@@ -19,6 +20,7 @@ class CustomFilledButton extends StatelessWidget {
   final Color? backgroundColor;
   final LinearGradient? linearGradient;
   final double verticalPadding;
+  final List<BoxShadow> ? boxShadow;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class CustomFilledButton extends StatelessWidget {
           color: backgroundColor,
           gradient: linearGradient,
           borderRadius: BorderRadius.circular(25),
+          boxShadow: boxShadow,
         ),
         child: _CustomButtonContent(
           minimumWidth: minimumWidth,

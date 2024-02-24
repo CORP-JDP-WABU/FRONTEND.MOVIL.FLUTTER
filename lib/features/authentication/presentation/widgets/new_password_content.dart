@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wabu/common/widgets/custom_text_form_field.dart';
+import 'package:wabu/features/authentication/presentation/controllers/new_password/new_password_controller.dart';
 import 'package:wabu/features/authentication/presentation/widgets/welcome_bottom_sheet_content.dart';
 
 class NewPasswordContent extends ConsumerWidget {
@@ -8,45 +9,43 @@ class NewPasswordContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final newPasswordState = ref.watch(newPasswordControllerProvider);
-    // final email = newPasswordState.email;
+    final newPasswordState = ref.watch(newPasswordControllerProvider);
+    final newPassword = newPasswordState.newPassword;
+    final confirmNewPassword = newPasswordState.confirmNewPassword;
 
     return WelcomeBottomSheetContent(
-      title: '¿Olvidaste tu contraseña?',
-      body: '¡No te preocupes! Nos pasa a todos. Ingresa tu correo y te ayudaremos.',
+      title: 'Ingresa tu nueva contraseña',
       textForms: [
         CustomTextFormField(
-          obscureText: false,
-          hint: 'Correo Electrónico',
+          obscureText: true,
+          hint: 'Nueva contraseña',
           onChanged: (value) {
-            // ref.read(newPasswordControllerProvider.notifier).emailChanged(value);
+            ref
+                .read(newPasswordControllerProvider.notifier)
+                .newPasswordChanged(value);
           },
-          // errorMessage: email.getErrorMessage(),
+          errorMessage: newPassword.getErrorMessage(),
+        ),
+        CustomTextFormField(
+          obscureText: true,
+          hint: 'Repite la nueva contraseña',
+          onChanged: (value) {
+            ref
+                .read(newPasswordControllerProvider.notifier)
+                .confirmNewPasswordChanged(value);
+          },
+          errorMessage: confirmNewPassword.getErrorMessage(),
         ),
       ],
-      // help: '¿No puedes acceder a tu correo?',
-      // onHelpTap: () {},
-      button: 'Continuar',
+      utilError: (!newPassword.isPure &&
+              !confirmNewPassword.isPure &&
+              newPassword.value != confirmNewPassword.value)
+          ? 'Las constraseñas no coinciden'
+          : null,
+      button: 'Aceptar',
       onButtonTap: () {
-        // ref.read(newPasswordControllerProvider.notifier).onSubmit();
-        // submit Form
-        // ref.read(welcomePageControllerProvider.notifier).addPage(WelcomePage.codeValidation);
+        ref.read(newPasswordControllerProvider.notifier).onSubmit();
       },
     );
-
-    // const WelcomeBottomSheetContent(
-    //     title: 'Ingresa tu nueva contraseña',
-    //     textForms: [
-    //       // CustomTextFormField(
-    //       //   obscureText: true,
-    //       //   hint: 'Nueva contraseña',
-    //       // ),
-    //       // CustomTextFormField(
-    //       //   obscureText: true,
-    //       //   hint: 'Repite la nueva contraseña',
-    //       // ),
-    //     ],
-    //     button: 'Aceptar',
-    //   );
   }
 }

@@ -38,7 +38,6 @@ class _SplashScreenState extends State<SplashScreen>
         return;
       }
 
-      print(token);
       Globals.token = token;
       Globals.studentId = studentId;
       Globals.universityId = universityId;

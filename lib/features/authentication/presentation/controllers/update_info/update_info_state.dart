@@ -4,7 +4,8 @@ import 'package:wabu/features/authentication/domain/models/university/university
 
 part 'update_info_state.freezed.dart';
 
-enum Status { loading, loaded, valid }
+enum Status { loading, loaded, valid, error }
+
 
 @freezed
 class UpdateInfoState with _$UpdateInfoState {
