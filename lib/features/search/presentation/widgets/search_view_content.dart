@@ -25,7 +25,7 @@ class SearchViewContent extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 150),
+            const SizedBox(height: 100),
             const Text(
               '¡Comienza\nTu Búsqueda!',
               textAlign: TextAlign.center,
@@ -43,7 +43,7 @@ class SearchViewContent extends ConsumerWidget {
                 Container(
                   padding: const EdgeInsets.all(10),
                   height: 93,
-                  width: 358,
+                  width: 350,
                   decoration: BoxDecoration(
                     color: const Color.fromRGBO(255, 255, 255, 0.21),
                     border: Border.all(color: Colors.blue),
@@ -55,7 +55,7 @@ class SearchViewContent extends ConsumerWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 5.0),
                     height: 65,
-                    width: 343,
+                    width: 335,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       boxShadow: [
@@ -111,7 +111,7 @@ class SearchViewContent extends ConsumerWidget {
                 )
               ],
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 20),
             _SearchDashboard(dashboard: dashboard),
             const SizedBox(height: 20),
             Expanded(
