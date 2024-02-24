@@ -39,8 +39,6 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(teachersTinderControllerProvider);
     final smashSuggestion = state.selectedSmashSuggestion;
-    final teacherQualificationRequired = state.teacherQualification.required;
-    final isButtonActive = hasAllRequired(teacherQualificationRequired);
 
     return LayoutBuilder(
       builder: (context, contraints) {
@@ -238,9 +236,9 @@ class _ContinuousQualification extends State<ContinuousQualification> {
   @override
   void initState() {
     super.initState();
-    // Inicializa el estado de cada botón como no seleccionado
+
     isSelected = List.generate(widget.selectedRating.length, (index) => false);
-    // Establece el estado inicial basado en el valor proporcionado
+
     isSelected[widget.value] = true;
   }
 
@@ -294,8 +292,7 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                     for (int i = 0; i < widget.selectedRating.length; i++)
                       ElevatedButton(
                         onPressed: () {
-                          setState(() {
-                            // Actualiza el estado al seleccionar un botón específico
+                          setState(() {                           
                             for (int j = 0; j < isSelected.length; j++) {
                               isSelected[j] = (j == i);
                             }
@@ -305,8 +302,7 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                         style: ButtonStyle(
                           minimumSize:
                               MaterialStateProperty.all(const Size(62, 24)),
-                          backgroundColor: MaterialStateProperty.all(
-                            // Cambia el color de fondo basado en el estado del botón
+                          backgroundColor: MaterialStateProperty.all(                         
                             isSelected[i]
                                 ? widget.color
                                 : const Color.fromRGBO(245, 245, 246, 1.000),
