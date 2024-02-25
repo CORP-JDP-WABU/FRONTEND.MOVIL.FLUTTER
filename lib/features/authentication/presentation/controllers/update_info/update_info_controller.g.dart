@@ -7,7 +7,7 @@ part of 'update_info_controller.dart';
 // **************************************************************************
 
 String _$updateInfoControllerHash() =>
-    r'3d9cc1d08e920d2abde027fe2a507203ab007aa5';
+    r'a677e05d98e1f5a5246f33638caf6ee2746e8fe8';
 
 /// See also [UpdateInfoController].
 @ProviderFor(UpdateInfoController)
