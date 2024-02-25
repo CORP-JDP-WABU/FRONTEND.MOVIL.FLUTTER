@@ -90,9 +90,9 @@ class _WelcomeScreenContent extends ConsumerWidget {
           text: 'INICIAR SESIÓN',
           minimumWidth: 0.8 * screenWidth,
           textColor: AppTheme.primaryText,
-          backgroundColor: Color.fromRGBO(255, 255, 255, 0.9),
+          backgroundColor: const Color.fromRGBO(255, 255, 255, 0.9),
           boxShadow:  [
-            BoxShadow(
+            const BoxShadow(
               color: Colors.black,
               spreadRadius: -30,
               blurRadius: 60,

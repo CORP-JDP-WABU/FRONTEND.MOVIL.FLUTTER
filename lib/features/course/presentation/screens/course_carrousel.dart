@@ -313,7 +313,7 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
           style: ElevatedButton.styleFrom(
             shape: const CircleBorder(),
             elevation: 4,
-            primary: isSelected ? color : Colors.white,
+            backgroundColor: isSelected ? color : Colors.white,
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
