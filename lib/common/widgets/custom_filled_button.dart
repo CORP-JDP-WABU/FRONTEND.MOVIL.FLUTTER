@@ -6,7 +6,7 @@ class CustomFilledButton extends StatelessWidget {
     this.onPressed,
     required this.text,
     required this.textColor,
-    this.fontSize = 12,
+    this.fontSize = 16,
     this.minimumWidth,
     this.backgroundColor,
     this.linearGradient,

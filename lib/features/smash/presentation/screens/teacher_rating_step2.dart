@@ -23,8 +23,8 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
       content: const _TeacherRequiredRatingContent(),
     );
   }
+}
 
-}  
 class _TeacherRequiredRatingContent extends ConsumerWidget {
   const _TeacherRequiredRatingContent();
 
@@ -35,33 +35,27 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
         teacherQualificationRequired.goodPeople != 0;
   }
 
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(teachersTinderControllerProvider);
     final smashSuggestion = state.selectedSmashSuggestion;
-    final teacherQualificationRequired = state.teacherQualification.required;
-    final isButtonActive = hasAllRequired(teacherQualificationRequired);
 
     return LayoutBuilder(
       builder: (context, contraints) {
         final maxHeight = contraints.maxHeight;
         final maxWidth = contraints.maxWidth;
-      
+
         return Stack(
-          alignment: Alignment.topCenter,
+          alignment: Alignment.bottomCenter,
           clipBehavior: Clip.none,
           children: [
-            Positioned(
-              top: 72,
-              child: Container(
-                height: maxHeight - 72,
-                width: maxWidth,
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25)),
-                child: Column(
+            Container(
+              height: maxHeight - 72,
+              width: maxWidth,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(25)),
+              child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(height: 80),
@@ -74,7 +68,6 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
                         fontSize: 15,
-       
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -87,7 +80,6 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
                         fontSize: 15,
-  
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -103,7 +95,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-                      Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset('assets/images/svgs/Vector 15.svg'),
@@ -116,12 +108,12 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                             color: AppTheme.courseNameColor,
                           ),
                         ),
-                         SvgPicture.asset('assets/images/svgs/Vector 15.svg'),
+                        SvgPicture.asset('assets/images/svgs/Vector 15.svg'),
                       ],
-                    ),   
-                     const SizedBox(height: 12),
+                    ),
+                    const SizedBox(height: 12),
                     Expanded(child: Container()),
-             Column(
+                    Column(
                       children: [
                         ContinuousQualification(
                           asset: 'clip',
@@ -198,21 +190,22 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                     ),
                     const SizedBox(height: 12),
                   ]),
-              ),
             ),
-            SolidCircleAvatar(
-              radius: 72,
-              borderWidth: 3,
-              borderColor: Colors.white,
-              imageProvider:
-                  NetworkImage(smashSuggestion?.teacher?.photoUrl ?? ''),
+            Positioned(
+              top: 0,
+              child: SolidCircleAvatar(
+                radius: 72,
+                borderWidth: 3,
+                borderColor: Colors.white,
+                imageProvider:
+                    NetworkImage(smashSuggestion?.teacher?.photoUrl ?? ''),
+              ),
             ),
           ],
         );
       },
     );
   }
- 
 }
 
 class ContinuousQualification extends StatefulWidget {
@@ -243,23 +236,27 @@ class _ContinuousQualification extends State<ContinuousQualification> {
   @override
   void initState() {
     super.initState();
-    // Inicializa el estado de cada botón como no seleccionado
+
     isSelected = List.generate(widget.selectedRating.length, (index) => false);
-    // Establece el estado inicial basado en el valor proporcionado
+
     isSelected[widget.value] = true;
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SvgPicture.asset('assets/images/svgs/${widget.asset}.svg', height: 15, width: 15,),
+                SvgPicture.asset(
+                  'assets/images/svgs/${widget.asset}.svg',
+                  height: 15,
+                  width: 15,
+                ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
@@ -295,8 +292,7 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                     for (int i = 0; i < widget.selectedRating.length; i++)
                       ElevatedButton(
                         onPressed: () {
-                          setState(() {
-                            // Actualiza el estado al seleccionar un botón específico
+                          setState(() {                           
                             for (int j = 0; j < isSelected.length; j++) {
                               isSelected[j] = (j == i);
                             }
@@ -304,9 +300,9 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                           widget.onSelected(i);
                         },
                         style: ButtonStyle(
-                           minimumSize: MaterialStateProperty.all(const Size(62 , 24)),
-                          backgroundColor: MaterialStateProperty.all(
-                            // Cambia el color de fondo basado en el estado del botón
+                          minimumSize:
+                              MaterialStateProperty.all(const Size(62, 24)),
+                          backgroundColor: MaterialStateProperty.all(                         
                             isSelected[i]
                                 ? widget.color
                                 : const Color.fromRGBO(245, 245, 246, 1.000),

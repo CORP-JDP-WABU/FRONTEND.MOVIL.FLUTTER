@@ -1,57 +1,17 @@
 import 'package:dartz/dartz.dart';
-import 'package:wabu/common/data/failure/failure.dart';
-import 'package:wabu/common/data/response/response_dto.dart';
-// import 'package:wabu/constants/status_code.dart';
+import 'package:wabu/common/data/data.dart';
+import 'package:wabu/config/api/api.dart';
 import 'package:wabu/features/authentication/data/datasources/auth_remote_datasource.dart';
-import 'package:dio/dio.dart';
 import 'package:wabu/features/authentication/domain/models/auth_keys/auth_keys.dart';
 import 'package:wabu/features/authentication/domain/models/encrypted_form/encrypted_form.dart';
 import 'package:wabu/features/authentication/domain/models/token/token.dart';
-import 'package:wabu/utils/utils.dart';
 
 class AuthDioDatasource extends AuthRemoteDatasource {
-  final dio = Dio(
-    BaseOptions(
-      baseUrl: 'http://52.91.65.217:4000/api/auth/v1.0/',
-    ),
-  )..interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) {
-          logger.i('''
-            Path:
-            ${options.path}
-            Headers:
-            ${options.headers}
-            Query:
-            ${options.queryParameters}
-            Data:
-            ${options.data}
-          ''');
-
-          return handler.next(options);
-        },
-        onResponse: (response, handler) {
-          logger.i(response);
-
-          return handler.next(response);
-        },
-        onError: (error, handler) {
-          logger.e(error);
-
-          if (error.type == DioExceptionType.badResponse &&
-              error.response != null) {
-            return handler.resolve(error.response!);
-          }
-
-          return handler.next(error);
-        },
-      ),
-    );
+  final dio = ApiClient.instance.securityClient.dio;
 
   @override
   Future<Either<Failure, AuthKeys>> getKeys() async {
-    final response = await dio.get('keys');
-
+    final response = await dio.get('auth/v1.0/keys');
 
     if (response.statusCode != 200) {
       final failureResponse = Failure.fromJson(response.data);
@@ -68,7 +28,7 @@ class AuthDioDatasource extends AuthRemoteDatasource {
   @override
   Future<Either<Failure, Token>> logIn(EncryptedForm encryptedForm) async {
     final response = await dio.post(
-      'login',
+      'auth/v1.0/login',
       data: encryptedForm.toJson(),
     );
 

@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:wabu/features/smash/domain/domain.dart';
@@ -139,6 +140,41 @@ class TeachersCardSwiper extends StatelessWidget {
       isLoop: false,
       onSwipe: onSwipe,
       scale: 1,
+      onEnd: () {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: Center(
+              child: Column(  
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: SvgPicture.asset(
+                      'assets/images/svgs/emoji_sad_missing.svg',
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'No tenemos más \n sugerencias \n de profesores en este \n momento',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color.fromRGBO(191, 191, 191, 1.000),
+                        fontFamily: 'Gotham Rounded',
+                        fontSize: 24,
+                        height: 30 / 26,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  
+                ],
+              ),
+            ),
+          ),
+        );
+      },
       backCardOffset: const Offset(16, 16),
       cardBuilder: (_, index, __, ___) {
         final smashSuggestion = smashSuggestions[index];

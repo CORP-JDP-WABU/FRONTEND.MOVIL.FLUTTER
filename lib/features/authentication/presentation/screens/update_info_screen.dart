@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,6 +45,7 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
   String? cycleId;
   bool isTermsAccepted = false;
   int? photoIndex;
+  String photo = '';
 
   FocusNode firstNameNode = FocusNode();
   FocusNode lastNameNode = FocusNode();
@@ -177,7 +177,7 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
                                     });
                                   },
                                   child: const Icon(
-                                    Icons.refresh_rounded,
+                                    Icons.photo_camera,
                                     color: AppTheme.greenIconsColor,
                                   ),
                                 ),

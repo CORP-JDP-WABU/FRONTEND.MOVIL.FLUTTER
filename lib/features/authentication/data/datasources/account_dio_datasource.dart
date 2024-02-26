@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
-import 'package:wabu/common/data/failure/failure.dart';
-import 'package:wabu/common/data/response/response_dto.dart';
+import 'package:wabu/common/data/data.dart';
+import 'package:wabu/config/api/api.dart';
 import 'package:wabu/constants/status_code.dart';
 import 'package:wabu/features/authentication/data/datasources/account_remote_datasource.dart';
 import 'package:wabu/features/authentication/domain/models/code_validation_result/code_validation_result.dart';
@@ -9,51 +8,14 @@ import 'package:wabu/features/authentication/domain/models/encrypted_form/encryp
 import 'package:wabu/features/authentication/domain/models/student/student.dart';
 import 'package:wabu/features/authentication/domain/models/update_info_form/update_info_form.dart';
 import 'package:wabu/features/authentication/domain/models/update_info_form_result/update_info_form_result.dart';
-import 'package:wabu/utils/utils.dart';
 
 class AccountDioDataSource extends AccountRemoteDatasource {
-  final dio = Dio(
-    BaseOptions(
-      baseUrl: 'http://52.91.65.217:4000/api/account/v1.0/',
-    ),
-  )..interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) {
-          logger.i('''
-            Path:
-            ${options.path}
-            Headers:
-            ${options.headers}
-            Query:
-            ${options.queryParameters}
-            Data:
-            ${options.data}
-          ''');
-
-          return handler.next(options);
-        },
-        onResponse: (response, handler) {
-          logger.i(response);
-
-          return handler.next(response);
-        },
-        onError: (error, handler) {
-          logger.e(error);
-
-          if (error.type == DioExceptionType.badResponse &&
-              error.response != null) {
-            return handler.resolve(error.response!);
-          }
-
-          return handler.next(error);
-        },
-      ),
-    );
+  final dio = ApiClient.instance.securityClient.dio;
 
   @override
   Future<Either<Failure, Student>> register(EncryptedForm encryptedForm) async {
     final response = await dio.post(
-      'register',
+      'account/v1.0/register',
       data: encryptedForm.toJson(),
     );
 
@@ -75,7 +37,7 @@ class AccountDioDataSource extends AccountRemoteDatasource {
   Future<Either<Failure, UpdateInfoFormResult>> updateRegistrationInfo(
       UpdateInfoForm updateInfoForm) async {
     final response = await dio.patch(
-      'register',
+      'account/v1.0/register',
       data: updateInfoForm.toJson(),
     );
 
@@ -97,7 +59,7 @@ class AccountDioDataSource extends AccountRemoteDatasource {
   Future<Either<Failure, CodeValidationResult>> verifyRegistration(
       EncryptedForm encryptedForm) async {
     final response = await dio.post(
-      'register/verify',
+      'account/v1.0/register/verify',
       data: encryptedForm.toJson(),
     );
 
@@ -118,7 +80,7 @@ class AccountDioDataSource extends AccountRemoteDatasource {
   @override
   Future<Either<Failure, UpdateInfoFormResult>> recover(EncryptedForm encryptedForm) async {
     final response = await dio.patch(
-      'recovery',
+      'account/v1.0/recovery',
       data: encryptedForm.toJson(),
     );
 
@@ -140,7 +102,7 @@ class AccountDioDataSource extends AccountRemoteDatasource {
   Future<Either<Failure, Student>> requestRecovery(
       EncryptedForm encryptedForm) async {
     final response = await dio.post(
-      'recovery',
+      'account/v1.0/recovery',
       data: encryptedForm.toJson(),
     );
 
@@ -162,7 +124,7 @@ class AccountDioDataSource extends AccountRemoteDatasource {
   Future<Either<Failure, CodeValidationResult>> verifyRecovery(
       EncryptedForm encryptedForm) async {
     final response = await dio.post(
-      'recovery/verify',
+      'account/v1.0/recovery/verify',
       data: encryptedForm.toJson(),
     );
 

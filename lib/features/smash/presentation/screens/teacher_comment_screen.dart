@@ -55,158 +55,157 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
         final maxWidth = contraints.maxWidth;
 
         return Stack(
-          alignment: Alignment.topCenter,
+          alignment: Alignment.bottomCenter,
           clipBehavior: Clip.none,
           children: [
-            Positioned(
-              top: 72,
-              child: Container(
-                height: maxHeight - 72,
-                width: maxWidth,
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25)),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 80),
-                      Text(
-                        smashSuggestion?.teacher?.lastName ?? '',
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: Color.fromRGBO(2, 51, 106, 1.000),
-                          fontFamily: 'SFProDisplay',
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
+            Container(
+              height: maxHeight - 72,
+              width: maxWidth,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(25)),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 80),
+                    Text(
+                      smashSuggestion?.teacher?.lastName ?? '',
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Color.fromRGBO(2, 51, 106, 1.000),
+                        fontFamily: 'SFProDisplay',
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Text(
-                        smashSuggestion?.teacher?.firstName ?? '',
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: Color.fromRGBO(2, 51, 106, 1.000),
-                          fontFamily: 'SFProDisplay',
-                          fontSize: 15,
-                        ),
+                    ),
+                    Text(
+                      smashSuggestion?.teacher?.firstName ?? '',
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Color.fromRGBO(2, 51, 106, 1.000),
+                        fontFamily: 'SFProDisplay',
+                        fontSize: 15,
                       ),
-                      const SizedBox(height: 8),
-                      Text(
-                        smashSuggestion?.course?.name ?? '',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Color(0xFF5A5A5A),
-                          fontFamily: 'SFProDisplay',
-                          fontSize: 13,
-                        ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      smashSuggestion?.course?.name ?? '',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Color(0xFF5A5A5A),
+                        fontFamily: 'SFProDisplay',
+                        fontSize: 13,
                       ),
-                      const SizedBox(height: 12),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset('assets/images/svgs/Vector 13.svg'),
-                          const Text(
-                            '  INGRESA UN COMENTARIO  ',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700,
-                              color: AppTheme.courseNameColor,
-                            ),
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset('assets/images/svgs/Vector 13.svg'),
+                        const Text(
+                          '  INGRESA UN COMENTARIO  ',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: AppTheme.courseNameColor,
                           ),
-                          SvgPicture.asset('assets/images/svgs/Vector 13.svg'),
+                        ),
+                        SvgPicture.asset('assets/images/svgs/Vector 13.svg'),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Expanded(child: Container()),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Card(
+                              child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: TextField(
+                              style: const TextStyle(fontSize: 11),
+                              controller: commentController,
+                              decoration: const InputDecoration(
+                                hintText: 'Deja tu comentario aquí',
+                                hintStyle: TextStyle(fontSize: 11),
+                              ),
+                              maxLines: 7,
+                              maxLength: 280,
+                              maxLengthEnforcement:
+                                  MaxLengthEnforcement.enforced,
+                              onChanged: (value) {
+                                ref
+                                    .read(teachersTinderControllerProvider
+                                        .notifier)
+                                    .setComment(value);
+                              },
+                            ),
+                          )),
                         ],
                       ),
-                      const SizedBox(height: 12),
-                      Expanded(child: Container()),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: TextField(
-                                style: const TextStyle(fontSize: 11),
-                                controller: commentController,
-                                decoration: const InputDecoration(
-                                  hintText: 'Deja tu comentario aquí',
-                                  hintStyle: TextStyle(fontSize: 11),
-                                ),
-                                maxLines: 7,
-                                maxLength: 280,
-                                maxLengthEnforcement:
-                                    MaxLengthEnforcement.enforced,
-                                onChanged: (value) {
-                                  ref
-                                      .read(teachersTinderControllerProvider
-                                          .notifier)
-                                      .setComment(value);
-                                },
-                              ),
-                            )),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                InkWell(
-                                    child: const Text(
-                                      'SALIR SIN COMENTAR',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.grey,
-                                          decoration: TextDecoration.underline,
-                                          fontFamily: 'GothamRounded'),
-                                    ),
-                                    onTap: () {
-                                      ref
-                                          .read(teachersTinderControllerProvider
-                                              .notifier)
-                                          .submitQualification();
-                                    }),
-                                CustomFilledButton(
-                                  text: 'PUBLICAR',
-                                  textColor: Colors.white,
-                                  verticalPadding: 8,
-                                  linearGradient: const LinearGradient(
-                                    colors: [
-                                      AppTheme.linearGradientLight,
-                                      AppTheme.linearGradientDark
-                                    ],
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    stops: [0.0, 1.0],
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              InkWell(
+                                  child: const Text(
+                                    'SALIR SIN COMENTAR',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                        decoration: TextDecoration.underline,
+                                        fontFamily: 'GothamRounded'),
                                   ),
-                                  onPressed: () {
+                                  onTap: () {
                                     ref
                                         .read(teachersTinderControllerProvider
                                             .notifier)
                                         .submitQualification();
-                                  },
+                                  }),
+                              CustomFilledButton(
+                                text: 'PUBLICAR',
+                                textColor: Colors.white,
+                                verticalPadding: 8,
+                                linearGradient: const LinearGradient(
+                                  colors: [
+                                    AppTheme.linearGradientLight,
+                                    AppTheme.linearGradientDark
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  stops: [0.0, 1.0],
                                 ),
-                              ])),
-                      const SizedBox(height: 6),
-                    ]),
-              ),
+                                onPressed: () {
+                                  ref
+                                      .read(teachersTinderControllerProvider
+                                          .notifier)
+                                      .submitQualification();
+                                },
+                              ),
+                            ])),
+                    const SizedBox(height: 6),
+                  ]),
             ),
-            SolidCircleAvatar(
-              radius: 72,
-              borderWidth: 3,
-              borderColor: Colors.white,
-              imageProvider:
-                  NetworkImage(smashSuggestion?.teacher?.photoUrl ?? ''),
+            Positioned(
+              top: 0,
+              child: SolidCircleAvatar(
+                radius: 72,
+                borderWidth: 3,
+                borderColor: Colors.white,
+                imageProvider:
+                    NetworkImage(smashSuggestion?.teacher?.photoUrl ?? ''),
+              ),
             ),
           ],
         );
