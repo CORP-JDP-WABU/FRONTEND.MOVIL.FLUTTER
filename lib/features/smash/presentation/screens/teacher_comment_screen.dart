@@ -41,7 +41,6 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(teachersTinderControllerProvider);
     final smashSuggestion = state.selectedSmashSuggestion;
-    final commentController = TextEditingController();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (state.qualificationStatus == TeacherQualificationStatus.loaded) {
@@ -76,7 +75,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       style: const TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
-                        fontSize: 15,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -88,7 +87,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       style: const TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
-                        fontSize: 15,
+                        fontSize: 20,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -100,10 +99,10 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       style: const TextStyle(
                         color: Color(0xFF5A5A5A),
                         fontFamily: 'SFProDisplay',
-                        fontSize: 13,
+                        fontSize: 16,
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    Expanded(child: Container()),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -112,7 +111,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                           '  INGRESA UN COMENTARIO  ',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 16,
                             fontWeight: FontWeight.w700,
                             color: AppTheme.courseNameColor,
                           ),
@@ -120,25 +119,22 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         SvgPicture.asset('assets/images/svgs/Vector 13.svg'),
                       ],
                     ),
-                    const SizedBox(height: 12),
                     Expanded(child: Container()),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Card(
                               child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: TextField(
                               style: const TextStyle(fontSize: 11),
-                              controller: commentController,
                               decoration: const InputDecoration(
                                 hintText: 'Deja tu comentario aquí',
                                 hintStyle: TextStyle(fontSize: 11),
                               ),
-                              maxLines: 7,
+                              maxLines: 10,
                               maxLength: 280,
                               maxLengthEnforcement:
                                   MaxLengthEnforcement.enforced,

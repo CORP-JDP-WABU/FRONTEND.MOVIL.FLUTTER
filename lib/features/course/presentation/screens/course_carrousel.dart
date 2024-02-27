@@ -127,7 +127,6 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
                                               options: CarouselOptions(
                                                 clipBehavior: Clip.none,
                                                 height: screenHeigth * 1.2,
-                                                reverse: true,
                                                 onPageChanged: (index,
                                                         reason) =>
                                                     setState(() =>

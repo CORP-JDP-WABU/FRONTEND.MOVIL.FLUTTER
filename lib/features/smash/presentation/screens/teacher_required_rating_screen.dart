@@ -86,7 +86,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                   const SizedBox(height: 8),
                   Text(
                     smashSuggestion?.course?.name ?? '',
-                    maxLines: 2,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
