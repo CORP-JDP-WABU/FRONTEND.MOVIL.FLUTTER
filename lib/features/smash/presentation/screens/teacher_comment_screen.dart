@@ -118,13 +118,12 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         ),
                         SvgPicture.asset('assets/images/svgs/Vector 13.svg'),
                       ],
-                    ),               
+                    ),
                     Expanded(child: Container()),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Card(
                               child: Padding(
@@ -135,7 +134,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                                 hintText: 'Deja tu comentario aquí',
                                 hintStyle: TextStyle(fontSize: 11),
                               ),
-                              maxLines: 7,
+                              maxLines: 10,
                               maxLength: 280,
                               maxLengthEnforcement:
                                   MaxLengthEnforcement.enforced,
