@@ -41,7 +41,6 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(teachersTinderControllerProvider);
     final smashSuggestion = state.selectedSmashSuggestion;
-    final commentController = TextEditingController();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (state.qualificationStatus == TeacherQualificationStatus.loaded) {
@@ -133,7 +132,6 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                             padding: const EdgeInsets.all(10.0),
                             child: TextField(
                               style: const TextStyle(fontSize: 11),
-                              controller: commentController,
                               decoration: const InputDecoration(
                                 hintText: 'Deja tu comentario aquí',
                                 hintStyle: TextStyle(fontSize: 11),
