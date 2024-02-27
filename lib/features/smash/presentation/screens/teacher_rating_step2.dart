@@ -67,7 +67,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       style: const TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
-                        fontSize: 15,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -79,7 +79,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       style: const TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
-                        fontSize: 15,
+                        fontSize: 20,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -91,10 +91,10 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       style: const TextStyle(
                         color: Color(0xFF5A5A5A),
                         fontFamily: 'SFProDisplay',
-                        fontSize: 13,
+                        fontSize: 16,
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    Expanded(child: Container()),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -103,7 +103,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                           '  LLENA LOS DATOS SI LOS RECUERDAS  ',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 13,
+                            fontSize: 16,
                             fontWeight: FontWeight.w700,
                             color: AppTheme.courseNameColor,
                           ),
@@ -111,7 +111,6 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         SvgPicture.asset('assets/images/svgs/Vector 15.svg'),
                       ],
                     ),
-                    const SizedBox(height: 12),
                     Expanded(child: Container()),
                     Column(
                       children: [
@@ -168,27 +167,25 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 12),
-                    Center(
-                      child: CustomFilledButton(
-                        text: 'CONTINUAR',
-                        textColor: Colors.white,
-                        verticalPadding: 8,
-                        linearGradient: const LinearGradient(
-                          colors: [
-                            AppTheme.linearGradientLight,
-                            AppTheme.linearGradientDark
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          stops: [0.0, 1.0],
-                        ),
-                        onPressed: () {
-                          context.pushNamed(TeacherCommentScreen.name);
-                        },
+                    Expanded(child: Container()),
+                    CustomFilledButton(
+                      text: 'CONTINUAR',
+                      textColor: Colors.white,
+                      verticalPadding: 8,
+                      linearGradient: const LinearGradient(
+                        colors: [
+                          AppTheme.linearGradientLight,
+                          AppTheme.linearGradientDark
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: [0.0, 1.0],
                       ),
+                      onPressed: () {
+                        context.pushNamed(TeacherCommentScreen.name);
+                      },
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 20),
                   ]),
             ),
             Positioned(
@@ -245,7 +242,7 @@ class _ContinuousQualification extends State<ContinuousQualification> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
           children: [
             Row(
@@ -254,8 +251,7 @@ class _ContinuousQualification extends State<ContinuousQualification> {
               children: [
                 SvgPicture.asset(
                   'assets/images/svgs/${widget.asset}.svg',
-                  height: 15,
-                  width: 15,
+                  
                 ),
                 const SizedBox(width: 16),
                 Expanded(
@@ -268,7 +264,8 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                           textAlign: TextAlign.start,
                           style: TextStyle(
                             color: widget.color,
-                            fontSize: 11,
+                            fontSize: 13,
+                            fontFamily: 'SFProDisplay',
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -285,14 +282,14 @@ class _ContinuousQualification extends State<ContinuousQualification> {
 
               return SizedBox(
                 height: 24,
-                width: width * 0.99,
+                width: width ,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     for (int i = 0; i < widget.selectedRating.length; i++)
                       ElevatedButton(
                         onPressed: () {
-                          setState(() {                           
+                          setState(() {
                             for (int j = 0; j < isSelected.length; j++) {
                               isSelected[j] = (j == i);
                             }
@@ -300,9 +297,10 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                           widget.onSelected(i);
                         },
                         style: ButtonStyle(
-                          minimumSize:
+                          padding: MaterialStateProperty.all(const EdgeInsets.all(5)),
+                          fixedSize:
                               MaterialStateProperty.all(const Size(62, 24)),
-                          backgroundColor: MaterialStateProperty.all(                         
+                          backgroundColor: MaterialStateProperty.all(
                             isSelected[i]
                                 ? widget.color
                                 : const Color.fromRGBO(245, 245, 246, 1.000),
@@ -312,7 +310,7 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                           widget.selectedRating[i],
                           maxLines: 1,
                           style: TextStyle(
-                            fontSize: 9,
+                            fontSize: 11,
                             fontFamily: 'Inter',
                             color: isSelected[i] ? Colors.white : Colors.black,
                           ),
