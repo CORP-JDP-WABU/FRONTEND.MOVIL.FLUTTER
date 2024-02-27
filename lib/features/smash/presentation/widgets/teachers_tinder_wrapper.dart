@@ -30,7 +30,7 @@ class TeachersTinderWrapper extends StatelessWidget {
                   const TeachersTinderHeaderButtons(),
                   const SizedBox(height: 16),
                   Expanded(child: content),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: 24),
                 ],
               ),
             ),
