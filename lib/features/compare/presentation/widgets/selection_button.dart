@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class SelectionButton extends StatefulWidget {
-  const SelectionButton({super.key});
+  const SelectionButton({
+    super.key,
+    required this.onSelect,
+    required this.onUnselect,
+  });
+
+  final void Function() onSelect;
+  final void Function() onUnselect;
 
   @override
   State<SelectionButton> createState() => _SelectionButtonState();
@@ -20,6 +27,12 @@ class _SelectionButtonState extends State<SelectionButton> {
         padding: EdgeInsets.zero,
       ),
       onPressed: () {
+        if (isSelected) {
+          widget.onUnselect();
+        } else {
+          widget.onSelect();
+        }
+
         setState(() {
           isSelected = !isSelected;
         });

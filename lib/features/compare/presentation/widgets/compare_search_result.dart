@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:wabu/common/widgets/teacher_required_qualification_indicator.dart';
-import 'package:wabu/features/compare/presentation/widgets/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wabu/common/widgets/widgets.dart';
+import 'package:wabu/features/compare/compare.dart';
+import 'package:wabu/features/search/domain/domain.dart';
+import 'package:wabu/utils/utils.dart';
 
-class CompareSearchResult extends StatelessWidget {
+class CompareSearchResult extends ConsumerWidget {
   const CompareSearchResult({
     super.key,
+    required this.teachersSearchResult,
   });
 
+  final TeachersSearchResult teachersSearchResult;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Stack(
       alignment: Alignment.topRight,
       clipBehavior: Clip.none,
@@ -20,52 +26,57 @@ class CompareSearchResult extends StatelessWidget {
             child: Column(
               children: [
                 Image.network(
-                  'https://uvn-brightspot.s3.amazonaws.com/assets/vixes/imj/imujer/5/5-tipos-de-profesores-que-nunca-vas-a-olvidar-2.jpg',
+                  teachersSearchResult.photoUrl ?? '',
                   height: 100,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
                 const SizedBox(height: 8),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Column(
                     children: [
                       Text(
-                        'Mariana Rondón',
+                        '${teachersSearchResult.firstName} ${teachersSearchResult.lastName}',
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
-                        maxLines: 1,
-                        style: TextStyle(
+                        maxLines: 2,
+                        style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF02336A),
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
                             child: TeacherRequiredQualificationIndicator(
-                              value: '2.4',
+                              value: (teachersSearchResult
+                                          .manyAverageQualifications ??
+                                      0)
+                                  .toStringAsFixed(1),
                               assetName: 'star',
-                              color: Color(0xFFFFC32A),
+                              color: const Color(0xFFFFC32A),
                             ),
                           ),
-                          SizedBox(width: 4),
+                          const SizedBox(width: 4),
                           Expanded(
                             child: TeacherRequiredQualificationIndicator(
-                              value: '12',
+                              value: HumanFormats.humanReadableNumber(
+                                  teachersSearchResult.manyComments ?? 0),
                               assetName: 'message',
-                              color: Color(0xFF2ACBFF),
+                              color: const Color(0xFF2ACBFF),
                             ),
                           ),
-                          SizedBox(width: 4),
+                          const SizedBox(width: 4),
                           Expanded(
                             child: TeacherRequiredQualificationIndicator(
-                              value: '27',
+                              value: HumanFormats.humanReadableNumber(
+                                  teachersSearchResult.manyQualifications ?? 0),
                               assetName: 'person',
-                              color: Color(0xFF646464),
+                              color: const Color(0xFF646464),
                             ),
                           ),
                         ],
@@ -78,12 +89,23 @@ class CompareSearchResult extends StatelessWidget {
             ),
           ),
         ),
-        const Positioned(
+        Positioned(
           top: -4,
           right: -4,
           height: 28,
           width: 28,
-          child: SelectionButton(),
+          child: SelectionButton(
+            onSelect: () {
+              ref
+                  .read(compareSearchControllerProvider.notifier)
+                  .selectTeacher(teachersSearchResult.idTeacher ?? '');
+            },
+            onUnselect: () {
+              ref
+                  .read(compareSearchControllerProvider.notifier)
+                  .unselectTeacher(teachersSearchResult.idTeacher ?? '');
+            },
+          ),
         ),
       ],
     );
