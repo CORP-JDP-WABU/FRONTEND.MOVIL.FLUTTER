@@ -59,7 +59,6 @@ class SearchController extends _$SearchController {
     try {
       state = state.copyWith(
         searchText: searchText,
-        page: 1,
         searchResultStatus: SearchResultStatus.loading,
       );
 
@@ -67,7 +66,7 @@ class SearchController extends _$SearchController {
 
       final response = await ref
           .watch(searchRepositoryProvider)
-          .getSearchResults(universityId, state.page, state.searchText);
+          .getSearchResults(universityId, 1, state.searchText);
 
       response.fold((Failure failure) {
         switch (failure.errorCode) {
@@ -81,7 +80,7 @@ class SearchController extends _$SearchController {
         state = state.copyWith(
           searchResult: searchResult,
           searchResultStatus: SearchResultStatus.loaded,
-          page: state.page + 1,
+          page: 1,
         );
       });
     } catch (e) {
@@ -103,7 +102,7 @@ class SearchController extends _$SearchController {
 
       final response = await ref
           .watch(searchRepositoryProvider)
-          .getSearchResults(universityId, state.page, state.searchText);
+          .getSearchResults(universityId, state.page + 1, state.searchText);
 
       response.fold((Failure failure) {
         switch (failure.errorCode) {
