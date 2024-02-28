@@ -133,6 +133,7 @@ class UpdateInfoController extends _$UpdateInfoController {
         cycles: <String?>[null],
       );
       state = state.copyWith(
+        univeristy: universityId,
         isInfoCompleted: validateInfoCompleted(),
       );
       return;
@@ -140,10 +141,11 @@ class UpdateInfoController extends _$UpdateInfoController {
 
     final universityCareers = state.universities
         .firstWhere((university) => university.idUniversity == universityId)
-        .careers;
+        .careers
+        .toList();
 
+    universityCareers.sort((a, b) => a.name.compareTo(b.name));
     careers.addAll(universityCareers);
-    careers.sort((a, b) => a.name.compareTo(b.name));
 
     state = state.copyWith(
       univeristy: universityId,
