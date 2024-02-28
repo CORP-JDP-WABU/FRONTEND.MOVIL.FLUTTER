@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wabu/common/widgets/custom_filled_button.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/constants/globals.dart';
@@ -485,13 +486,20 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
                                       ),
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () async {
-                                          bool? isTermsAccepted = await context
-                                              .push(TermsScreen.route);
-                                          ref
-                                              .read(updateInfoControllerProvider
-                                                  .notifier)
-                                              .acceptTerms(
-                                                  isTermsAccepted ?? false);
+                                          var url = Uri.parse(
+                                              'https://drive.google.com/file/d/1JCpA0nO3-mSyrNwnSLfM3gox21Grqxub/view?usp=sharing');
+                                               
+                                          if (await canLaunchUrl(url)) {
+                                            await launchUrl(url);
+                                          }
+
+                                          // bool? isTermsAccepted = await context
+                                          //     .push(TermsScreen.route);
+                                          // ref
+                                          //     .read(updateInfoControllerProvider
+                                          //         .notifier)
+                                          //     .acceptTerms(
+                                          //         isTermsAccepted ?? false);
                                         },
                                     ),
                                   ],
