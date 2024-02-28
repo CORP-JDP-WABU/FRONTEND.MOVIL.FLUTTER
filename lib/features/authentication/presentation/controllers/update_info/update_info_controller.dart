@@ -143,6 +143,7 @@ class UpdateInfoController extends _$UpdateInfoController {
         .careers;
 
     careers.addAll(universityCareers);
+    careers.sort((a, b) => a.name.compareTo(b.name));
 
     state = state.copyWith(
       univeristy: universityId,

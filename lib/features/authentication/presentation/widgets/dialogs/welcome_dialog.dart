@@ -56,8 +56,8 @@ class WelcomeDialog extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   child: Image.asset(
                     'assets/images/v3_wabu.png',
-                    height: 86,
-                    width: 86,
+                    height: 80,
+                    width: 80,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -77,8 +77,98 @@ class WelcomeDialog extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              const Text('"Mensaje del equipo\nMensaje del equipo'),
+              const Text(
+                '“Tras un tiempo de transición,\nde investigación y mejoras,\nhemos regresado para quedarnos. \nEsta es la nueva versión de Wabu.”',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontStyle: FontStyle.italic,
+                  fontSize: 14,
+                  height: 17 / 14,
+                ),
+              ),
               const SizedBox(height: 20),
+              RichText(
+                textAlign: TextAlign.center,
+                text: const TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Poco a poco iremos integrando ',
+                      style:
+                          TextStyle(fontSize: 14, 
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    TextSpan(
+                      text: 'todas\n las funcionalidades ',
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700),
+                    ),
+                    TextSpan(
+                      text: 'que tenemos para ti\n e iremos ',
+                      style:
+                          TextStyle(fontSize: 14, 
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    TextSpan(
+                      text: 'abriendo más universidades.',
+                      style: TextStyle(
+                          fontSize: 14,
+                     color: Colors.black,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              RichText(
+                textAlign: TextAlign.center,
+                text: const TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Como sabemos que estás en matrículas,\nya puedes acceder a ',
+                      style:
+                          TextStyle(fontSize: 14, 
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    TextSpan(
+                      text: 'calificar profesores \n',
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700),
+                    ),
+                    TextSpan(
+                      text: 'y ',
+                      style:
+                          TextStyle(fontSize: 14, 
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    TextSpan(
+                      text: 'buscar sus calificaciones.',
+                      style: TextStyle(
+                          fontSize: 14,
+                     color: Colors.black,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Te recomendamos:',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14,
+                  height: 17 / 14,
+                  color: AppTheme.student,
+                ),
+              ),
+              const SizedBox(height: 10),
               Row(
                 children: [
                   SvgPicture.asset(
@@ -94,7 +184,7 @@ class WelcomeDialog extends StatelessWidget {
                         children: [
                           TextSpan(
                             text:
-                                'Califica profesores usando nuestro sistema de ',
+                                'Calificar a tus profesores usando nuestro sistema de ',
                             style: TextStyle(
                               fontSize: 14,
                               height: 17 / 14,
@@ -128,7 +218,7 @@ class WelcomeDialog extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16),
-              Row(
+              /* Row(
                 children: [
                   SvgPicture.asset(
                     'assets/images/welcome_find.svg',
@@ -149,7 +239,7 @@ class WelcomeDialog extends StatelessWidget {
                   )
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 16),*/
               Row(
                 children: [
                   SvgPicture.asset(
@@ -165,7 +255,7 @@ class WelcomeDialog extends StatelessWidget {
                         children: [
                           TextSpan(
                             text:
-                                'Compara a los profesores que quieras para saber cuál te conviene más, usando el ',
+                                'Comparar profesores para que sepas cuál es el mejor para ti usando nuestro sistema de',
                             style: TextStyle(
                               fontSize: 14,
                               height: 17 / 14,
@@ -197,7 +287,7 @@ class WelcomeDialog extends StatelessWidget {
                   )
                 ],
               ),
-              const SizedBox(height: 16),
+              /* const SizedBox(height: 16),
               Row(
                 children: [
                   SvgPicture.asset(
@@ -218,7 +308,7 @@ class WelcomeDialog extends StatelessWidget {
                     ),
                   )
                 ],
-              ),
+              ),*/
               const SizedBox(height: 24),
               CustomFilledButton(
                 text: 'Usar WABU 3.0.1',
