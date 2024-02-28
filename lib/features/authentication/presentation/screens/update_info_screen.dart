@@ -66,7 +66,7 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
   @override
   void initState() {
     super.initState();
-    photoIndex = Random().nextInt(6) + 1;
+    photoIndex = Random().nextInt(20) + 1;
 
     firstNameController = TextEditingController();
     lastNameController = TextEditingController();
@@ -164,7 +164,7 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
                                   onPressed: () {
                                     setState(() {
                                       while (true) {
-                                        int newIndex = Random().nextInt(6) + 1;
+                                        int newIndex = Random().nextInt(20) + 1;
                                         if (newIndex != photoIndex) {
                                           photoIndex = newIndex;
                                           ref
