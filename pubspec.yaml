@@ -34,6 +34,7 @@ dependencies:
   carousel_slider: ^4.2.1
   smooth_page_indicator: ^1.1.0
   url_launcher: ^6.2.4
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   build_runner: ^2.4.8
@@ -47,10 +48,16 @@ dev_dependencies:
   riverpod_lint: ^2.3.7
   swipable_stack: ^2.0.0
 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/icon/icon.png"
+  min_sdk_android: 28
 
 flutter:
   assets:
     - assets/images/
+    - assets/images/icon/
     - assets/images/svgs/
     - assets/videos/
     - assets/lotties/
