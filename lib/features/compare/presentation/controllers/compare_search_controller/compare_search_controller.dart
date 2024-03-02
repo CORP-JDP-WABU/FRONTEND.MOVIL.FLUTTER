@@ -10,6 +10,12 @@ class CompareSearchController extends _$CompareSearchController {
   @override
   CompareSearchState build() => const CompareSearchState();
 
+  void onSearchTextChanged(String searchText) {
+    state = state.copyWith(
+      searchText: searchText,
+    );
+  }
+
   Future<void> search() async {
     try {
       state = state.copyWith(
@@ -20,8 +26,7 @@ class CompareSearchController extends _$CompareSearchController {
 
       final response = await ref
           .watch(compareRepositoryProvider)
-          // .getSearchResults(universityId, 1, state.searchText);
-          .getSearchResults(universityId, 1, 'carl');
+          .getSearchResults(universityId, 1, state.searchText);
 
       response.fold((Failure failure) {
         switch (failure.errorCode) {

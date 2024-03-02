@@ -8,9 +8,11 @@ import 'package:wabu/utils/utils.dart';
 class CompareSearchResult extends ConsumerWidget {
   const CompareSearchResult({
     super.key,
+    required this.isSelected,
     required this.teachersSearchResult,
   });
 
+  final bool isSelected;
   final TeachersSearchResult teachersSearchResult;
 
   @override
@@ -105,6 +107,7 @@ class CompareSearchResult extends ConsumerWidget {
                   .read(compareSearchControllerProvider.notifier)
                   .unselectTeacher(teachersSearchResult.idTeacher ?? '');
             },
+            isSelected: isSelected,
           ),
         ),
       ],

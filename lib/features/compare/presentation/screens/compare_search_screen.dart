@@ -34,17 +34,26 @@ class CompareSearchScreen extends ConsumerWidget {
   }
 }
 
-class _CompareSearchContent extends StatelessWidget {
+class _CompareSearchContent extends ConsumerWidget {
   const _CompareSearchContent();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(compareSearchControllerProvider);
+
     return Column(
       children: [
         const SizedBox(height: 20),
         CustomBackButton(color: Colors.white, onTap: () => context.pop()),
         const SizedBox(height: 20),
-        const CustomSearchBar(),
+        CustomSearchBar(
+          onChanged: (value) => ref
+              .read(compareSearchControllerProvider.notifier)
+              .onSearchTextChanged(value),
+          onSearch: () =>
+              ref.read(compareSearchControllerProvider.notifier).search(),
+          searchText: state.searchText,
+        ),
         const SizedBox(height: 16),
         const Expanded(child: _CompareSearchResults()),
         const SizedBox(height: 20),
@@ -59,6 +68,7 @@ class _CompareSearchResults extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(compareSearchControllerProvider);
+    final selectedTeacherIds = state.selectedTeacherIds;
     final selectedTeachersCount = state.selectedTeacherIds.length;
     final teachers = state.searchResult.teacher ?? [];
 
@@ -79,16 +89,18 @@ class _CompareSearchResults extends ConsumerWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                // if (selectedCount > 1)
-                CustomFilledButton(
-                  text: 'Comparar',
-                  textColor: Colors.white,
-                  linearGradient: primaryButtonLinearGradient,
-                  verticalPadding: 8,
-                  onPressed: () {
-                    ref.read(compareSearchControllerProvider.notifier).search();
-                  },
-                )
+                if (selectedTeachersCount > 1)
+                  CustomFilledButton(
+                    text: 'Comparar',
+                    textColor: Colors.white,
+                    linearGradient: primaryButtonLinearGradient,
+                    verticalPadding: 8,
+                    onPressed: () {
+                      ref
+                          .read(compareSearchControllerProvider.notifier)
+                          .search();
+                    },
+                  )
               ],
             ),
             const SizedBox(height: 20),
@@ -105,6 +117,7 @@ class _CompareSearchResults extends ConsumerWidget {
                 itemBuilder: (context, index) {
                   final teacher = teachers[index];
                   return CompareSearchResult(
+                    isSelected: selectedTeacherIds.contains(teacher.idTeacher),
                     teachersSearchResult: teacher,
                   );
                 },

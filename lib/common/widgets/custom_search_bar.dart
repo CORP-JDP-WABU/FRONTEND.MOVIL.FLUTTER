@@ -1,11 +1,37 @@
 import 'package:flutter/material.dart';
 
-class CustomSearchBar extends StatelessWidget {
-  const CustomSearchBar({super.key});
+class CustomSearchBar extends StatefulWidget {
+  const CustomSearchBar({
+    super.key,
+    required this.onChanged,
+    required this.onSearch,
+    required this.searchText,
+  });
+
+  final Function(String) onChanged;
+  final Function() onSearch;
+  final String searchText;
+
+  @override
+  State<CustomSearchBar> createState() => _CustomSearchBarState();
+}
+
+class _CustomSearchBarState extends State<CustomSearchBar> {
+  FocusNode searchBarFocusNode = FocusNode();
+  late TextEditingController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
+    controller.text = widget.searchText;
+
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
@@ -15,10 +41,11 @@ class CustomSearchBar extends StatelessWidget {
             const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
         fillColor: Colors.white,
         filled: true,
+        hintText: 'Busca un profesor o curso',
         suffixIcon: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
           child: GestureDetector(
-            onTap: () {},
+            onTap: widget.onSearch,
             child: Container(
               width: 40,
               height: 40,
@@ -41,6 +68,9 @@ class CustomSearchBar extends StatelessWidget {
           ),
         ),
       ),
+      focusNode: searchBarFocusNode,
+      onChanged: widget.onChanged,
+      onTapOutside: (event) => searchBarFocusNode.unfocus(),
       style: const TextStyle(
         fontSize: 16,
       ),

@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 
-class SelectionButton extends StatefulWidget {
+class SelectionButton extends StatelessWidget {
   const SelectionButton({
     super.key,
     required this.onSelect,
     required this.onUnselect,
+    required this.isSelected,
   });
 
   final void Function() onSelect;
   final void Function() onUnselect;
-
-  @override
-  State<SelectionButton> createState() => _SelectionButtonState();
-}
-
-class _SelectionButtonState extends State<SelectionButton> {
-  bool isSelected = false;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +23,10 @@ class _SelectionButtonState extends State<SelectionButton> {
       ),
       onPressed: () {
         if (isSelected) {
-          widget.onUnselect();
+          onUnselect();
         } else {
-          widget.onSelect();
+          onSelect();
         }
-
-        setState(() {
-          isSelected = !isSelected;
-        });
       },
       child: isSelected
           ? const Icon(
