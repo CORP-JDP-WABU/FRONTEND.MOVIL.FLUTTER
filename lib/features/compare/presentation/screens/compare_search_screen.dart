@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/features/compare/compare.dart';
+import 'package:wabu/features/search/domain/teachers_search_result/teachers_search_result.dart';
 
 class CompareSearchScreen extends ConsumerWidget {
   const CompareSearchScreen({super.key});
@@ -105,27 +106,75 @@ class _CompareSearchResults extends ConsumerWidget {
             ),
             const SizedBox(height: 20),
             Expanded(
-              child: GridView.builder(
-                itemCount: teachers.length,
-                padding: const EdgeInsets.only(top: 12, right: 6),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 20,
-                  childAspectRatio: 0.9,
-                ),
-                itemBuilder: (context, index) {
-                  final teacher = teachers[index];
-                  return CompareSearchResult(
-                    isSelected: selectedTeacherIds.contains(teacher.idTeacher),
-                    teachersSearchResult: teacher,
-                  );
-                },
+              child: _CompareSearchTeachers(
+                teachers: teachers,
+                selectedTeacherIds: selectedTeacherIds,
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _CompareSearchTeachers extends ConsumerStatefulWidget {
+  const _CompareSearchTeachers({
+    super.key,
+    required this.teachers,
+    required this.selectedTeacherIds,
+  });
+
+  final List<TeachersSearchResult> teachers;
+  final List<String> selectedTeacherIds;
+
+  @override
+  ConsumerState<_CompareSearchTeachers> createState() =>
+      _CompareSearchTeachersState();
+}
+
+class _CompareSearchTeachersState
+    extends ConsumerState<_CompareSearchTeachers> {
+  late ScrollController scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController = ScrollController();
+
+    scrollController.addListener(() {
+      if (scrollController.position.pixels >=
+          scrollController.position.maxScrollExtent) {
+        ref.read(compareSearchControllerProvider.notifier).loadNextPage();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      controller: scrollController,
+      itemCount: widget.teachers.length,
+      padding: const EdgeInsets.only(top: 12, right: 6),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 20,
+        childAspectRatio: 0.9,
+      ),
+      itemBuilder: (context, index) {
+        final teacher = widget.teachers[index];
+        return CompareSearchResult(
+          isSelected: widget.selectedTeacherIds.contains(teacher.idTeacher),
+          teachersSearchResult: teacher,
+        );
+      },
     );
   }
 }
