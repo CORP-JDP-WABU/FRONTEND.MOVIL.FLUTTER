@@ -1,4 +1,4 @@
-package com.example.wabu
+package com.tismart.wabuapp
 
 import io.flutter.embedding.android.FlutterActivity
 

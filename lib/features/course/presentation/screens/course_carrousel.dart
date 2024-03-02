@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -25,7 +24,7 @@ class CourseCarrousel extends ConsumerStatefulWidget {
 }
 
 class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
-  final CardSwiperController controller = CardSwiperController();
+  late CarouselController controller;
   var isSelected = false;
   String? selectedAsset;
   int activeIndex = 0;
@@ -33,15 +32,10 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
   @override
   void initState() {
     super.initState();
+    controller = CarouselController();
     ref
         .read(courseTeachersControllerProvider.notifier)
         .fetchData(widget.courseId);
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
   }
 
   @override
@@ -115,6 +109,7 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
                                     children: [
                                       teachers.isNotEmpty
                                           ? CarouselSlider.builder(
+                                              carouselController: controller,
                                               itemCount: teachers.length,
                                               itemBuilder:
                                                   (context, index, realIndex) {
@@ -125,9 +120,9 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
                                                 );
                                               },
                                               options: CarouselOptions(
+                                                enableInfiniteScroll: false,
                                                 clipBehavior: Clip.none,
                                                 height: screenHeigth * 1.2,
-                                                reverse: true,
                                                 onPageChanged: (index,
                                                         reason) =>
                                                     setState(() =>
@@ -206,6 +201,8 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
                                     'star',
                                     AppTheme.starColor,
                                     () {
+                                      setState(() =>
+                                                       controller.jumpToPage(0));
                                       ref
                                           .read(courseTeachersControllerProvider
                                               .notifier)
@@ -216,6 +213,8 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
                                     'brain',
                                     const Color.fromRGBO(78, 162, 255, 1.000),
                                     () {
+                                      setState(() =>
+                                                       controller.jumpToPage(0));
                                       ref
                                           .read(courseTeachersControllerProvider
                                               .notifier)
@@ -226,6 +225,8 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
                                     'parchment',
                                     const Color.fromRGBO(72, 194, 230, 1.000),
                                     () {
+                                      setState(() =>
+                                                       controller.jumpToPage(0));
                                       ref
                                           .read(courseTeachersControllerProvider
                                               .notifier)
@@ -236,6 +237,8 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
                                     'heart',
                                     const Color.fromRGBO(68, 217, 211, 1.000),
                                     () {
+                                      setState(() =>
+                                                       controller.jumpToPage(0));
                                       ref
                                           .read(courseTeachersControllerProvider
                                               .notifier)
@@ -270,21 +273,6 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
           ),
         ],
       ),
-
-      /*  body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromRGBO(54, 181, 236, 1.000),
-              Color.fromRGBO(47, 163, 240, 1.000),
-              Color.fromRGBO(38, 137, 245, 1.000),
-            ], // Cambia los colores según tu preferencia
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: 
-      ),*/
     );
   }
 
