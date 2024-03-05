@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wabu/common/widgets/bar_qualification.dart';
-import 'package:wabu/config/theme/app_theme.dart';
 
-class ContinuousQualificationObject extends StatelessWidget {
-  const ContinuousQualificationObject({
+class OptionalQualificationTag extends StatelessWidget {
+  const OptionalQualificationTag({
     super.key,
     required this.asset,
     required this.text,

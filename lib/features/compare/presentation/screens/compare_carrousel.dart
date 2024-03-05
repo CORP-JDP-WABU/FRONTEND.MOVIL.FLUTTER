@@ -81,186 +81,192 @@ class _CompareCarrousel extends ConsumerState<CompareCarrousel> {
                     Column(
                       children: [
                         SafeArea(
-                            child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CustomBackButton(
-                                color: Colors.white,
-                                onTap: () => context.pop(),
-                              ),
-                              const SizedBox(height: 16),
-                              Padding(
-                                padding: const EdgeInsets.all(5),
-                                child: Text(
-                                  course?.name ?? '',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'SFProDisplay',
-                                    fontSize: 17,
-                                    height: 31 / 23,
-                                    fontWeight: FontWeight.bold,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 16,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CustomBackButton(
+                                  color: Colors.white,
+                                  onTap: () => context.pop(),
+                                ),
+                                const SizedBox(height: 16),
+                                Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: Text(
+                                    course?.name ?? '',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'SFProDisplay',
+                                      fontSize: 17,
+                                      height: 31 / 23,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              LayoutBuilder(builder: (context, constraints) {
-                                return Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      teachers.isNotEmpty
-                                          ? CarouselSlider.builder(
-                                              itemCount: teachers.length,
-                                              itemBuilder:
-                                                  (context, index, realIndex) {
-                                                return CardViewCarrousel(
-                                                  courseTeacher:
-                                                      teachers[index],
-                                                  courseId: widget.courseId,
-                                                );
-                                              },
-                                              options: CarouselOptions(
-                                                clipBehavior: Clip.none,
-                                                height: screenHeigth * 1.2,
-                                                reverse: true,
-                                                onPageChanged: (index,
-                                                        reason) =>
-                                                    setState(() =>
-                                                        activeIndex = index),
-                                              ))
-                                          : Center(
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            16.0),
-                                                    child: SvgPicture.asset(
-                                                      'assets/images/svgs/emoji_sad_missing.svg',
-                                                    ),
-                                                  ),
-                                                  const Padding(
-                                                    padding:
-                                                        EdgeInsets.all(16.0),
-                                                    child: Text(
-                                                      'No hay profesores \n vinculados a este curso \n todavía',
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            191,
-                                                            191,
-                                                            191,
-                                                            1.000),
-                                                        fontFamily:
-                                                            'Gotham Rounded',
-                                                        fontSize: 24,
-                                                        height: 30 / 26,
-                                                        fontWeight:
-                                                            FontWeight.bold,
+                                LayoutBuilder(builder: (context, constraints) {
+                                  return Center(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        teachers.isNotEmpty
+                                            ? CarouselSlider.builder(
+                                                itemCount: teachers.length,
+                                                itemBuilder: (context, index,
+                                                    realIndex) {
+                                                  return CardViewCarrousel(
+                                                    courseTeacher:
+                                                        teachers[index],
+                                                    courseId: widget.courseId,
+                                                  );
+                                                },
+                                                options: CarouselOptions(
+                                                  clipBehavior: Clip.none,
+                                                  height: screenHeigth * 1.2,
+                                                  reverse: true,
+                                                  onPageChanged: (index,
+                                                          reason) =>
+                                                      setState(() =>
+                                                          activeIndex = index),
+                                                ))
+                                            : Center(
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              16.0),
+                                                      child: SvgPicture.asset(
+                                                        'assets/images/svgs/emoji_sad_missing.svg',
                                                       ),
                                                     ),
-                                                  ),
-                                                  const Padding(
-                                                    padding:
-                                                        EdgeInsets.all(16.0),
-                                                    child: Text(
-                                                      'Puedes sugerirlos en el \n botón arriba a la\n derecha',
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            191,
-                                                            191,
-                                                            191,
-                                                            1.000),
-                                                        fontFamily:
-                                                            'Gotham Rounded',
-                                                        fontSize: 24,
-                                                        height: 30 / 26,
-                                                        fontWeight:
-                                                            FontWeight.bold,
+                                                    const Padding(
+                                                      padding:
+                                                          EdgeInsets.all(16.0),
+                                                      child: Text(
+                                                        'No hay profesores \n vinculados a este curso \n todavía',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                          color: Color.fromRGBO(
+                                                              191,
+                                                              191,
+                                                              191,
+                                                              1.000),
+                                                          fontFamily:
+                                                              'Gotham Rounded',
+                                                          fontSize: 24,
+                                                          height: 30 / 26,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
                                                       ),
                                                     ),
-                                                  )
-                                                ],
+                                                    const Padding(
+                                                      padding:
+                                                          EdgeInsets.all(16.0),
+                                                      child: Text(
+                                                        'Puedes sugerirlos en el \n botón arriba a la\n derecha',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                          color: Color.fromRGBO(
+                                                              191,
+                                                              191,
+                                                              191,
+                                                              1.000),
+                                                          fontFamily:
+                                                              'Gotham Rounded',
+                                                          fontSize: 24,
+                                                          height: 30 / 26,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                    ],
-                                  ),
-                                );
-                              }),
-                              const SizedBox(height: 30),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  _buildCircularButton(
-                                    'star',
-                                    AppTheme.starColor,
-                                    () {
-                                      ref
-                                          .read(courseTeachersControllerProvider
-                                              .notifier)
-                                          .orderByQualification();
-                                    },
-                                  ),
-                                  _buildCircularButton(
-                                    'brain',
-                                    const Color.fromRGBO(78, 162, 255, 1.000),
-                                    () {
-                                      ref
-                                          .read(courseTeachersControllerProvider
-                                              .notifier)
-                                          .orderByLearnQualification();
-                                    },
-                                  ),
-                                  _buildCircularButton(
-                                    'parchment',
-                                    const Color.fromRGBO(72, 194, 230, 1.000),
-                                    () {
-                                      ref
-                                          .read(courseTeachersControllerProvider
-                                              .notifier)
-                                          .orderByHighQualification();
-                                    },
-                                  ),
-                                  _buildCircularButton(
-                                    'heart',
-                                    const Color.fromRGBO(68, 217, 211, 1.000),
-                                    () {
-                                      ref
-                                          .read(courseTeachersControllerProvider
-                                              .notifier)
-                                          .orderByGoodQualification();
-                                    },
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  _buildDescriptionText("Mejor calificación"),
-                                  _buildDescriptionText(
-                                      "¿Qué tanto aprendiste?"),
-                                  _buildDescriptionText(
-                                      "¿Qué tan alto califica?"),
-                                  _buildDescriptionText(
-                                      "¿Qué tan buena gente es?"),
-                                ],
-                              ),
-                            ],
+                                      ],
+                                    ),
+                                  );
+                                }),
+                                const SizedBox(height: 30),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    _buildCircularButton(
+                                      'star',
+                                      AppTheme.starColor,
+                                      () {
+                                        ref
+                                            .read(
+                                                courseTeachersControllerProvider
+                                                    .notifier)
+                                            .orderByQualification();
+                                      },
+                                    ),
+                                    _buildCircularButton(
+                                      'brain',
+                                      const Color.fromRGBO(78, 162, 255, 1.000),
+                                      () {
+                                        ref
+                                            .read(
+                                                courseTeachersControllerProvider
+                                                    .notifier)
+                                            .orderByLearnQualification();
+                                      },
+                                    ),
+                                    _buildCircularButton(
+                                      'parchment',
+                                      const Color.fromRGBO(72, 194, 230, 1.000),
+                                      () {
+                                        ref
+                                            .read(
+                                                courseTeachersControllerProvider
+                                                    .notifier)
+                                            .orderByHighQualification();
+                                      },
+                                    ),
+                                    _buildCircularButton(
+                                      'heart',
+                                      const Color.fromRGBO(68, 217, 211, 1.000),
+                                      () {
+                                        ref
+                                            .read(
+                                                courseTeachersControllerProvider
+                                                    .notifier)
+                                            .orderByGoodQualification();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    _buildDescriptionText("Mejor calificación"),
+                                    _buildDescriptionText(
+                                        "¿Qué tanto aprendiste?"),
+                                    _buildDescriptionText(
+                                        "¿Qué tan alto califica?"),
+                                    _buildDescriptionText(
+                                        "¿Qué tan buena gente es?"),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        )),
+                        ),
                       ],
                     )
                   ],
@@ -270,21 +276,6 @@ class _CompareCarrousel extends ConsumerState<CompareCarrousel> {
           ),
         ],
       ),
-
-      /*  body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromRGBO(54, 181, 236, 1.000),
-              Color.fromRGBO(47, 163, 240, 1.000),
-              Color.fromRGBO(38, 137, 245, 1.000),
-            ], // Cambia los colores según tu preferencia
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: 
-      ),*/
     );
   }
 
