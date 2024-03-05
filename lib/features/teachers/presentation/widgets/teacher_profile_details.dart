@@ -14,22 +14,25 @@ class TeacherProfileDetails extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 12,
-        vertical: 24,
+        vertical: 2,
       ),
       child: Column(
         children: [
+               teacher?.information==''? const SizedBox.shrink():
           Text(
+       
             teacher?.information ??
-                'Est eu laborum dolore irure dolor commodo incididunt id irure dolore laborum consequat sint anim. Minim non sit aliqua in aliquip esse amet magna laborum voluptate elit proident officia. Dolore sint nulla duis voluptate ut mollit ea sint non. Sint aliquip est mollit consectetur veniam aliqua mollit ea sit quis.',
+                'No hay información del profesor disponible por el momento',
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 12,
               height: 14 / 12,
             ),
           ),
-          const SizedBox(height: 24),
+         teacher?.information==''? const SizedBox.shrink(): const SizedBox(height: 24),
+          teacher?.email==''? const SizedBox.shrink():
           Text(
-            teacher?.email ?? 'no - email',
+           teacher?.email ?? 'El profesor no tiene email disponible',
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 12,
