@@ -17,6 +17,7 @@ class SearchState with _$SearchState {
     @Default(SearchStatus.loading) SearchStatus searchStatus,
     @Default(SearchResultStatus.loading) SearchResultStatus searchResultStatus,
     @Default(false) bool isLexicographicallyOrdered,
+    @Default(false) bool isOrderedByQualification,
     @Default(1) int page,
   }) = _SearchState;
 }

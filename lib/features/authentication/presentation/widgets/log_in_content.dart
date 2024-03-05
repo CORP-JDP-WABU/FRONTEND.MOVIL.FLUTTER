@@ -22,7 +22,7 @@ class LogInContent extends ConsumerWidget {
       builder: (context) => AuthAlertDialog(
         title: '¡Bienvenido de vuelta!',
         content:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium nunc, ultricies integer. ¿Viverra tellus?',
+            'Estamos felices por que seas parte de esta experiencia nuevamente. ¡Wabu vuelve renovado! ¿Te animas a probarlo?',
         onAccept: () {
           context.go(UpdateInfoScreen.route);
         },

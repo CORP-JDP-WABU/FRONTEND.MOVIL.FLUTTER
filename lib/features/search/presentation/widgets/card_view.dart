@@ -35,17 +35,15 @@ class CardView extends StatelessWidget {
             child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        //'assets/images/svgs/person.svg',
+                      SvgPicture.asset(                    
                          candidate.imageAsset,
                         width: 308,
                         height: 333,
                       ),
-                      SizedBox(height: 10),
-                      Text(
-                        // 'Pardo Robles',
+                      const SizedBox(height: 10),
+                      Text(                      
                         candidate.apellido,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color.fromRGBO(2, 51, 106, 1.000),
                           fontFamily: 'SFProDisplay',
                           fontSize: 20,
@@ -53,10 +51,9 @@ class CardView extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(
-                        //'Liliana Maria',
+                      Text(                      
                          candidate.nombre,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color.fromRGBO(2, 51, 106, 1.000),
                           fontFamily: 'SFProDisplay',
                           fontSize: 20,
@@ -65,10 +62,10 @@ class CardView extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         child: Text(
                           candidate.curso,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color.fromRGBO(2, 51, 106, 1.000),
                             fontFamily: 'SFProDisplay',
                             fontSize: 17,
@@ -80,7 +77,6 @@ class CardView extends StatelessWidget {
                     ],
                   ),
           ),
-
         
         ],
       ),

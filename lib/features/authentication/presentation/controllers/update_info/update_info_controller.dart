@@ -30,6 +30,10 @@ class UpdateInfoController extends _$UpdateInfoController {
     return const UpdateInfoState();
   }
 
+  String getStudentPhotoUrl(int index) {
+    return 'https://wabu-production.s3.amazonaws.com/configurations/students/profiles/student_profile_0${index.toString().padLeft(2, '0')}.jpg';
+  }
+
   void fetchData() async {
     try {
       final getUniversitiesResponse =
@@ -44,11 +48,10 @@ class UpdateInfoController extends _$UpdateInfoController {
       universities.add(
           const University(idUniversity: '-1', name: 'No está mi universidad'));
 
-      int newIndex = Random().nextInt(6) + 1;
+      int newIndex = Random().nextInt(20) + 1;
 
       state = state.copyWith(
-        photo:
-            'https://wabu-development.s3.amazonaws.com/profile-student-avatar-00$newIndex.png',
+        photo: getStudentPhotoUrl(newIndex),
         universities: universities,
       );
       state = state.copyWith(
@@ -69,7 +72,7 @@ class UpdateInfoController extends _$UpdateInfoController {
           state = state.copyWith(
             photo: (student.profileUrl.isNotEmpty)
                 ? student.profileUrl
-                : 'https://wabu-development.s3.amazonaws.com/profile-student-avatar-00$newIndex.png',
+                : getStudentPhotoUrl(newIndex),
             firstName: student.firstName,
             lastName: student.lastName,
             aboutMe: student.information,
@@ -89,8 +92,7 @@ class UpdateInfoController extends _$UpdateInfoController {
 
   void onPhotoChanged(int value) {
     state = state.copyWith(
-      photo:
-          'https://wabu-development.s3.amazonaws.com/profile-student-avatar-00$value.png',
+      photo: getStudentPhotoUrl(value),
     );
     state = state.copyWith(
       isInfoCompleted: validateInfoCompleted(),
@@ -133,6 +135,7 @@ class UpdateInfoController extends _$UpdateInfoController {
         cycles: <String?>[null],
       );
       state = state.copyWith(
+        univeristy: universityId,
         isInfoCompleted: validateInfoCompleted(),
       );
       return;
@@ -140,8 +143,10 @@ class UpdateInfoController extends _$UpdateInfoController {
 
     final universityCareers = state.universities
         .firstWhere((university) => university.idUniversity == universityId)
-        .careers;
+        .careers
+        .toList();
 
+    universityCareers.sort((a, b) => a.name.compareTo(b.name));
     careers.addAll(universityCareers);
 
     state = state.copyWith(

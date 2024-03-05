@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:wabu/config/api/api.dart';
 import 'package:wabu/constants/constants.dart';
 import 'package:wabu/utils/utils.dart';
@@ -23,9 +24,12 @@ class ApiClientToken {
     };
 
     studentClient = TokenDioClient(baseUrl: apiConfig.studentBaseUrl).._init();
-    universityClient = TokenDioClient(baseUrl: apiConfig.universityBaseUrl).._init();
-    dashboardClient = TokenDioClient(baseUrl: apiConfig.dashboardBaseUrl).._init();
-    operationClient = TokenDioClient(baseUrl: apiConfig.operationBaseUrl).._init();
+    universityClient = TokenDioClient(baseUrl: apiConfig.universityBaseUrl)
+      .._init();
+    dashboardClient = TokenDioClient(baseUrl: apiConfig.dashboardBaseUrl)
+      .._init();
+    operationClient = TokenDioClient(baseUrl: apiConfig.operationBaseUrl)
+      .._init();
   }
 }
 
@@ -83,5 +87,10 @@ class TokenDioClient {
           },
         ),
       );
+
+    (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () =>
+        HttpClient()
+          ..badCertificateCallback =
+              (X509Certificate cert, String host, int port) => true;
   }
 }

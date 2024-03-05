@@ -46,146 +46,142 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
       builder: (context, contraints) {
         final maxHeight = contraints.maxHeight;
         final maxWidth = contraints.maxWidth;
-      
+
         return Stack(
-          alignment: Alignment.topCenter,
+          alignment: Alignment.bottomCenter,
           clipBehavior: Clip.none,
           children: [
-            Positioned(
-              top: 72,
-              child: Container(
-                height: maxHeight - 72,
-                width: maxWidth,
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 80),
-                    Text(
-                      smashSuggestion?.teacher?.lastName ?? '',
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Color.fromRGBO(2, 51, 106, 1.000),
-                        fontFamily: 'SFProDisplay',
-                        fontSize: 15,
-       
-                        fontWeight: FontWeight.bold,
+            Container(
+              height: maxHeight - 72,
+              width: maxWidth,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(25)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 80),
+                  Text(
+                    smashSuggestion?.teacher?.lastName ?? '',
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Color.fromRGBO(2, 51, 106, 1.000),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    smashSuggestion?.teacher?.firstName ?? '',
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Color.fromRGBO(2, 51, 106, 1.000),
+                      fontFamily: 'SFProDisplay',
+                      fontSize: 20,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    smashSuggestion?.course?.name ?? '',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Color(0xFF5A5A5A),
+                      fontFamily: 'SFProDisplay',
+                      fontSize: 16,
+                    ),
+                  ),
+                  Expanded(child: Container()),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset('assets/images/svgs/Vector 13.svg'),
+                      const Text(
+                        '  CALIFICA A TU PROFESOR  ',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: AppTheme.courseNameColor,
+                        ),
                       ),
-                    ),
-                    Text(
-                      smashSuggestion?.teacher?.firstName ?? '',
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Color.fromRGBO(2, 51, 106, 1.000),
-                        fontFamily: 'SFProDisplay',
-                        fontSize: 15,
-  
+                      SvgPicture.asset('assets/images/svgs/Vector 13.svg'),
+                    ],
+                  ),
+                  Expanded(child: Container()),
+                  Column(
+                    children: [
+                      SlidableDiscreteBar(
+                        asset: 'brain',
+                        text: '¿QUÉ TANTO APRENDISTE?',
+                        color: AppTheme.primaryStatsColor,
+                        value: 1,
+                        count: 5,
+                        onRatingUpdate: (rating) {
+                          ref
+                              .read(teachersTinderControllerProvider.notifier)
+                              .setLearn(rating);
+                        },
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      smashSuggestion?.course?.name ?? '',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Color(0xFF5A5A5A),
-                        fontFamily: 'SFProDisplay',
-                        fontSize: 13,
+                      SlidableDiscreteBar(
+                        asset: 'parchment',
+                        text: '¿QUÉ TAN ALTO CALIFICA?',
+                        color: AppTheme.secondaryStatsColor,
+                        value: 1,
+                        count: 5,
+                        onRatingUpdate: (rating) {
+                          ref
+                              .read(teachersTinderControllerProvider.notifier)
+                              .setHight(rating);
+                        },
                       ),
-                    ),
-                    const SizedBox(height: 16),
-                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset('assets/images/svgs/Vector 13.svg'),
-                        const Text(
-                          '  CALIFICA A TU PROFESOR  ',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w700,
-                            color: AppTheme.courseNameColor,
-                          ),
-                        ),
-                         SvgPicture.asset('assets/images/svgs/Vector 13.svg'),
-                      ],
-                    ),
-                     const SizedBox(height: 20),
-                    Expanded(child: Container()),
-                    Column(
-                      children: [
-                        SlidableDiscreteBar(
-                          asset: 'brain',
-                          text: '¿QUÉ TANTO APRENDISTE?',
-                          color: AppTheme.primaryStatsColor,
-                          value: 0,
-                          count: 5,
-                          onRatingUpdate: (rating) {
-                            ref
-                                .read(teachersTinderControllerProvider.notifier)
-                                .setLearn(rating);
-                          },
-                        ),
-                        SlidableDiscreteBar(
-                          asset: 'parchment',
-                          text: '¿QUÉ TAN ALTO CALIFICA?',
-                          color: AppTheme.secondaryStatsColor,
-                          value: 0,
-                          count: 5,
-                          onRatingUpdate: (rating) {
-                            ref
-                                .read(teachersTinderControllerProvider.notifier)
-                                .setHight(rating);
-                          },
-                        ),
-                        SlidableDiscreteBar(
-                          asset: 'heart',
-                          text: '¿QUÉ TAN BUENA GENTE ES?',
-                          color: AppTheme.tertiaryStatsColor,
-                          value: 0,
-                          count: 5,
-                          onRatingUpdate: (rating) {
-                            ref
-                                .read(teachersTinderControllerProvider.notifier)
-                                .setGoodPeople(rating);
-                          },
-                        ),
-                      ],
-                    ),
-                    Expanded(child: Container()),
-                    CustomFilledButton(
-                      text: 'CONTINUAR',
-                      textColor: Colors.white,
-                      verticalPadding: 7,
-                      backgroundColor:
-                          isButtonActive ? null : AppTheme.disabledButtonColor,
-                      linearGradient:
-                          isButtonActive ? primaryButtonLinearGradient : null,
-                      onPressed: () {
-                        if (!isButtonActive) return;
+                      SlidableDiscreteBar(
+                        asset: 'heart',
+                        text: '¿QUÉ TAN BUENA GENTE ES?',
+                        color: AppTheme.tertiaryStatsColor,
+                        value: 1,
+                        count: 5,
+                        onRatingUpdate: (rating) {
+                          ref
+                              .read(teachersTinderControllerProvider.notifier)
+                              .setGoodPeople(rating);
+                        },
+                      ),
+                    ],
+                  ),
+                  Expanded(child: Container()),
+                  CustomFilledButton(
+                    text: 'Continuar',
+                    textColor: Colors.white,
+                    minimumWidth: 186,
+                    verticalPadding: 16,
+                    backgroundColor:
+                        isButtonActive ? null : AppTheme.disabledButtonColor,
+                    linearGradient:
+                        isButtonActive ? primaryButtonLinearGradient : null,
+                    onPressed: () {
+                      if (!isButtonActive) return;
 
-                        context.pushNamed(TeacherRaitingStep2Screen.name);
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                  ],
-                ),
+                      context.pushNamed(TeacherRaitingStep2Screen.name);
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                ],
               ),
             ),
-            SolidCircleAvatar(
-              radius: 72,
-              borderWidth: 3,
-              borderColor: Colors.white,
-              imageProvider:
-                  NetworkImage(smashSuggestion?.teacher?.photoUrl ?? ''),
+            Positioned(
+              top: 0,
+              child: SolidCircleAvatar(
+                radius: 72,
+                borderWidth: 3,
+                borderColor: Colors.white,
+                imageProvider:
+                    NetworkImage(smashSuggestion?.teacher?.photoUrl ?? ''),
+              ),
             ),
           ],
         );
