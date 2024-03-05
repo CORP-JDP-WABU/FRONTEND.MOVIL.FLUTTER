@@ -178,7 +178,7 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
                                     });
                                   },
                                   child: const Icon(
-                                    Icons.photo_camera,
+                                    Icons.refresh_rounded,
                                     color: AppTheme.greenIconsColor,
                                   ),
                                 ),
