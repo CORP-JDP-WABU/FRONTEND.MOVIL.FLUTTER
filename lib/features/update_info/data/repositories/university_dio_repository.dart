@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:wabu/common/data/failure/failure.dart';
-import 'package:wabu/features/authentication/data/datasources/university_dio_datasource.dart';
-import 'package:wabu/features/authentication/data/repositories/university_repository.dart';
-import 'package:wabu/features/authentication/domain/models/university/university.dart';
+import 'package:wabu/common/data/data.dart';
+import 'package:wabu/features/update_info/update_info.dart';
 
 class UniversityDioRepository extends UniversityRepository {
   final UniversityDioDatasource universityRemoteDatasource;

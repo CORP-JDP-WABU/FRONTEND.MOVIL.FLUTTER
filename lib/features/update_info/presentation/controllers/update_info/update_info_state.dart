@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wabu/features/authentication/domain/models/career/career.dart';
-import 'package:wabu/features/authentication/domain/models/university/university.dart';
+import 'package:wabu/features/update_info/update_info.dart';
 
 part 'update_info_state.freezed.dart';
 
@@ -17,7 +16,7 @@ class UpdateInfoState with _$UpdateInfoState {
     @Default([]) List<University> universities,
     @Default([Career(name: 'Escoge tu carrera')]) List<Career> careers,
     @Default([null]) List<String?> cycles,
-    @Default(null) String? univeristy,
+    @Default(null) String? university,
     @Default(null) String? career,
     @Default(null) String? cycle,
     @Default(false) bool isTermsAccepted,

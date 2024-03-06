@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wabu/features/authentication/domain/models/career/career.dart';
+import 'package:wabu/features/update_info/update_info.dart';
 
 part 'university.freezed.dart';
 part 'university.g.dart';

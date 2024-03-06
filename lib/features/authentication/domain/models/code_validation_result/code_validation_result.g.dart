@@ -9,7 +9,7 @@ part of 'code_validation_result.dart';
 _$CodeValidationResultImpl _$$CodeValidationResultImplFromJson(
         Map<String, dynamic> json) =>
     _$CodeValidationResultImpl(
-      idStudent: json['idStudent'] as String?,
+      idStudent: json['idStudent'] as String? ?? null,
       isValid: json['isValid'] as bool,
     );
 

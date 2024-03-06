@@ -7,7 +7,7 @@ import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/authentication/presentation/controllers/log_in/log_in_controller.dart';
 import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_controller.dart';
 import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_state.dart';
-import 'package:wabu/features/authentication/presentation/screens/update_info_screen.dart';
+import 'package:wabu/features/update_info/update_info.dart';
 import 'package:wabu/features/authentication/presentation/widgets/dialogs/auth_alert_dialog.dart';
 import 'package:wabu/features/authentication/presentation/widgets/welcome_bottom_sheet_content.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
