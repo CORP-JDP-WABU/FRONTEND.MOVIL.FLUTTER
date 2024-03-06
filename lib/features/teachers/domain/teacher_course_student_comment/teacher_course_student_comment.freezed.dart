@@ -23,8 +23,10 @@ TeacherCourseStudentComment _$TeacherCourseStudentCommentFromJson(
 mixin _$TeacherCourseStudentComment {
   List<String>? get likes => throw _privateConstructorUsedError;
   List<String>? get dislikes => throw _privateConstructorUsedError;
+  String? get photoUrl => throw _privateConstructorUsedError;
   String? get fullName => throw _privateConstructorUsedError;
   String? get comment => throw _privateConstructorUsedError;
+  String? get createdAtString => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,8 +45,10 @@ abstract class $TeacherCourseStudentCommentCopyWith<$Res> {
   $Res call(
       {List<String>? likes,
       List<String>? dislikes,
+      String? photoUrl,
       String? fullName,
-      String? comment});
+      String? comment,
+      String? createdAtString});
 }
 
 /// @nodoc
@@ -63,8 +67,10 @@ class _$TeacherCourseStudentCommentCopyWithImpl<$Res,
   $Res call({
     Object? likes = freezed,
     Object? dislikes = freezed,
+    Object? photoUrl = freezed,
     Object? fullName = freezed,
     Object? comment = freezed,
+    Object? createdAtString = freezed,
   }) {
     return _then(_value.copyWith(
       likes: freezed == likes
@@ -75,6 +81,10 @@ class _$TeacherCourseStudentCommentCopyWithImpl<$Res,
           ? _value.dislikes
           : dislikes // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      photoUrl: freezed == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       fullName: freezed == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -82,6 +92,10 @@ class _$TeacherCourseStudentCommentCopyWithImpl<$Res,
       comment: freezed == comment
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAtString: freezed == createdAtString
+          ? _value.createdAtString
+          : createdAtString // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -99,8 +113,10 @@ abstract class _$$TeacherCourseStudentCommentImplCopyWith<$Res>
   $Res call(
       {List<String>? likes,
       List<String>? dislikes,
+      String? photoUrl,
       String? fullName,
-      String? comment});
+      String? comment,
+      String? createdAtString});
 }
 
 /// @nodoc
@@ -118,8 +134,10 @@ class __$$TeacherCourseStudentCommentImplCopyWithImpl<$Res>
   $Res call({
     Object? likes = freezed,
     Object? dislikes = freezed,
+    Object? photoUrl = freezed,
     Object? fullName = freezed,
     Object? comment = freezed,
+    Object? createdAtString = freezed,
   }) {
     return _then(_$TeacherCourseStudentCommentImpl(
       freezed == likes
@@ -130,6 +148,10 @@ class __$$TeacherCourseStudentCommentImplCopyWithImpl<$Res>
           ? _value._dislikes
           : dislikes // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      freezed == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       freezed == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -137,6 +159,10 @@ class __$$TeacherCourseStudentCommentImplCopyWithImpl<$Res>
       freezed == comment
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == createdAtString
+          ? _value.createdAtString
+          : createdAtString // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -146,8 +172,13 @@ class __$$TeacherCourseStudentCommentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TeacherCourseStudentCommentImpl
     implements _TeacherCourseStudentComment {
-  const _$TeacherCourseStudentCommentImpl(final List<String>? likes,
-      final List<String>? dislikes, this.fullName, this.comment)
+  const _$TeacherCourseStudentCommentImpl(
+      final List<String>? likes,
+      final List<String>? dislikes,
+      this.photoUrl,
+      this.fullName,
+      this.comment,
+      this.createdAtString)
       : _likes = likes,
         _dislikes = dislikes;
 
@@ -176,13 +207,17 @@ class _$TeacherCourseStudentCommentImpl
   }
 
   @override
+  final String? photoUrl;
+  @override
   final String? fullName;
   @override
   final String? comment;
+  @override
+  final String? createdAtString;
 
   @override
   String toString() {
-    return 'TeacherCourseStudentComment(likes: $likes, dislikes: $dislikes, fullName: $fullName, comment: $comment)';
+    return 'TeacherCourseStudentComment(likes: $likes, dislikes: $dislikes, photoUrl: $photoUrl, fullName: $fullName, comment: $comment, createdAtString: $createdAtString)';
   }
 
   @override
@@ -192,9 +227,13 @@ class _$TeacherCourseStudentCommentImpl
             other is _$TeacherCourseStudentCommentImpl &&
             const DeepCollectionEquality().equals(other._likes, _likes) &&
             const DeepCollectionEquality().equals(other._dislikes, _dislikes) &&
+            (identical(other.photoUrl, photoUrl) ||
+                other.photoUrl == photoUrl) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
-            (identical(other.comment, comment) || other.comment == comment));
+            (identical(other.comment, comment) || other.comment == comment) &&
+            (identical(other.createdAtString, createdAtString) ||
+                other.createdAtString == createdAtString));
   }
 
   @JsonKey(ignore: true)
@@ -203,8 +242,10 @@ class _$TeacherCourseStudentCommentImpl
       runtimeType,
       const DeepCollectionEquality().hash(_likes),
       const DeepCollectionEquality().hash(_dislikes),
+      photoUrl,
       fullName,
-      comment);
+      comment,
+      createdAtString);
 
   @JsonKey(ignore: true)
   @override
@@ -226,8 +267,10 @@ abstract class _TeacherCourseStudentComment
   const factory _TeacherCourseStudentComment(
       final List<String>? likes,
       final List<String>? dislikes,
+      final String? photoUrl,
       final String? fullName,
-      final String? comment) = _$TeacherCourseStudentCommentImpl;
+      final String? comment,
+      final String? createdAtString) = _$TeacherCourseStudentCommentImpl;
 
   factory _TeacherCourseStudentComment.fromJson(Map<String, dynamic> json) =
       _$TeacherCourseStudentCommentImpl.fromJson;
@@ -237,9 +280,13 @@ abstract class _TeacherCourseStudentComment
   @override
   List<String>? get dislikes;
   @override
+  String? get photoUrl;
+  @override
   String? get fullName;
   @override
   String? get comment;
+  @override
+  String? get createdAtString;
   @override
   @JsonKey(ignore: true)
   _$$TeacherCourseStudentCommentImplCopyWith<_$TeacherCourseStudentCommentImpl>

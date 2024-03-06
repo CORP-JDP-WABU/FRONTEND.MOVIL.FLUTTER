@@ -21,11 +21,10 @@ class TeacherCommentItem extends StatelessWidget {
         alignment: Alignment.centerLeft,
         children: [
           _TeacherCommentCard(comment: comment),
-          const GradientCircleAvatar(
+          GradientCircleAvatar(
             borderWidth: 3,
             radius: 32,
-            imageProvider:
-            NetworkImage('https://wabu-development.s3.amazonaws.com/profile-student-avatar-001.png'),
+            imageProvider: NetworkImage(comment.photoUrl ?? ''),
           ),
         ],
       ),
@@ -89,7 +88,11 @@ class _CommentCardContent extends StatelessWidget {
         const SizedBox(height: 2),
         _CommentCardContentBody(comment: comment),
         const SizedBox(height: 4),
-        _CommentCardContentFooter(liked: liked, disliked: disliked),
+        _CommentCardContentFooter(
+          createdAt: comment.createdAtString ?? '',
+          liked: liked,
+          disliked: disliked,
+        ),
       ],
     );
   }
@@ -143,10 +146,12 @@ class _CommentCardContentBody extends StatelessWidget {
 
 class _CommentCardContentFooter extends StatelessWidget {
   const _CommentCardContentFooter({
+    required this.createdAt,
     required this.liked,
     required this.disliked,
   });
 
+  final String createdAt;
   final bool liked;
   final bool disliked;
 
@@ -154,9 +159,9 @@ class _CommentCardContentFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text(
-          '22/08/23',
-          style: TextStyle(
+        Text(
+          createdAt,
+          style: const TextStyle(
             fontSize: 10,
             height: 14 / 10,
             color: AppTheme.teacherCommentBodyColor,
