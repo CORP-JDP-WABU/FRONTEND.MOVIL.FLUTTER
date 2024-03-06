@@ -11,8 +11,10 @@ _$TeacherCourseStudentCommentImpl _$$TeacherCourseStudentCommentImplFromJson(
     _$TeacherCourseStudentCommentImpl(
       (json['likes'] as List<dynamic>?)?.map((e) => e as String).toList(),
       (json['dislikes'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      json['photoUrl'] as String?,
       json['fullName'] as String?,
       json['comment'] as String?,
+      json['createdAtString'] as String?,
     );
 
 Map<String, dynamic> _$$TeacherCourseStudentCommentImplToJson(
@@ -20,6 +22,8 @@ Map<String, dynamic> _$$TeacherCourseStudentCommentImplToJson(
     <String, dynamic>{
       'likes': instance.likes,
       'dislikes': instance.dislikes,
+      'photoUrl': instance.photoUrl,
       'fullName': instance.fullName,
       'comment': instance.comment,
+      'createdAtString': instance.createdAtString,
     };
