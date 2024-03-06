@@ -109,7 +109,7 @@ class TeachersTinderController extends _$TeachersTinderController {
     );
   }
 
-  void submitQualification() async {
+  void submitQualification(bool shouldSubmitComment) async {
     try {
       final courseId = state.selectedSmashSuggestion?.course?.idCourse ?? '';
       final teacherId = state.selectedSmashSuggestion?.teacher?.idTeacher ?? '';
@@ -131,7 +131,7 @@ class TeachersTinderController extends _$TeachersTinderController {
           return;
         }
 
-        if (state.teacherComment.comment.isNotEmpty) {
+        if (state.teacherComment.comment.isNotEmpty && shouldSubmitComment) {
           submitComment();
           return;
         }

@@ -18,33 +18,30 @@ class TeacherProfileDetails extends StatelessWidget {
       ),
       child: Column(
         children: [
-               teacher?.information==''? const SizedBox.shrink():
-          Text(
-       
-            teacher?.information ??
-                'No hay información del profesor disponible por el momento',
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 12,
-              height: 14 / 12,
-            ),
-          ),
-         teacher?.information==''? const SizedBox.shrink(): const SizedBox(height: 24),
-          teacher?.email==''? const SizedBox.shrink():
-          Text(
-           teacher?.email ?? 'El profesor no tiene email disponible',
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 12,
-              height: 14 / 12,
-            ),
-          ),
-          // const CustomFilledButton(
-          //   text: 'Sugerir editar',
-          //   textColor: Colors.white,
-          //   verticalPadding: 8,
-          //   linearGradient: primaryButtonLinearGradient,
-          // ),
+          teacher?.information == ''
+              ? const SizedBox.shrink()
+              : Text(
+                  teacher?.information ??
+                      'No hay información del profesor disponible por el momento',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    height: 14 / 12,
+                  ),
+                ),
+          teacher?.information == ''
+              ? const SizedBox.shrink()
+              : const SizedBox(height: 24),
+          teacher?.email == ''
+              ? const SizedBox.shrink()
+              : Text(
+                  teacher?.email ?? 'El profesor no tiene email disponible',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    height: 14 / 12,
+                  ),
+                ),
         ],
       ),
     );

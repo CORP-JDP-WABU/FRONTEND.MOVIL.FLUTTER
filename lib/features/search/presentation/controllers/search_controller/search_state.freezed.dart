@@ -23,6 +23,7 @@ mixin _$SearchState {
   SearchResultStatus get searchResultStatus =>
       throw _privateConstructorUsedError;
   bool get isLexicographicallyOrdered => throw _privateConstructorUsedError;
+  bool get isOrderedByQualification => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -43,6 +44,7 @@ abstract class $SearchStateCopyWith<$Res> {
       SearchStatus searchStatus,
       SearchResultStatus searchResultStatus,
       bool isLexicographicallyOrdered,
+      bool isOrderedByQualification,
       int page});
 
   $HomeDashboardCopyWith<$Res> get homeDashboard;
@@ -68,6 +70,7 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
     Object? searchStatus = null,
     Object? searchResultStatus = null,
     Object? isLexicographicallyOrdered = null,
+    Object? isOrderedByQualification = null,
     Object? page = null,
   }) {
     return _then(_value.copyWith(
@@ -94,6 +97,10 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
       isLexicographicallyOrdered: null == isLexicographicallyOrdered
           ? _value.isLexicographicallyOrdered
           : isLexicographicallyOrdered // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isOrderedByQualification: null == isOrderedByQualification
+          ? _value.isOrderedByQualification
+          : isOrderedByQualification // ignore: cast_nullable_to_non_nullable
               as bool,
       page: null == page
           ? _value.page
@@ -134,6 +141,7 @@ abstract class _$$SearchStateImplCopyWith<$Res>
       SearchStatus searchStatus,
       SearchResultStatus searchResultStatus,
       bool isLexicographicallyOrdered,
+      bool isOrderedByQualification,
       int page});
 
   @override
@@ -159,6 +167,7 @@ class __$$SearchStateImplCopyWithImpl<$Res>
     Object? searchStatus = null,
     Object? searchResultStatus = null,
     Object? isLexicographicallyOrdered = null,
+    Object? isOrderedByQualification = null,
     Object? page = null,
   }) {
     return _then(_$SearchStateImpl(
@@ -186,6 +195,10 @@ class __$$SearchStateImplCopyWithImpl<$Res>
           ? _value.isLexicographicallyOrdered
           : isLexicographicallyOrdered // ignore: cast_nullable_to_non_nullable
               as bool,
+      isOrderedByQualification: null == isOrderedByQualification
+          ? _value.isOrderedByQualification
+          : isOrderedByQualification // ignore: cast_nullable_to_non_nullable
+              as bool,
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -204,6 +217,7 @@ class _$SearchStateImpl implements _SearchState {
       this.searchStatus = SearchStatus.loading,
       this.searchResultStatus = SearchResultStatus.loading,
       this.isLexicographicallyOrdered = false,
+      this.isOrderedByQualification = false,
       this.page = 1});
 
   @override
@@ -226,11 +240,14 @@ class _$SearchStateImpl implements _SearchState {
   final bool isLexicographicallyOrdered;
   @override
   @JsonKey()
+  final bool isOrderedByQualification;
+  @override
+  @JsonKey()
   final int page;
 
   @override
   String toString() {
-    return 'SearchState(homeDashboard: $homeDashboard, searchResult: $searchResult, searchText: $searchText, searchStatus: $searchStatus, searchResultStatus: $searchResultStatus, isLexicographicallyOrdered: $isLexicographicallyOrdered, page: $page)';
+    return 'SearchState(homeDashboard: $homeDashboard, searchResult: $searchResult, searchText: $searchText, searchStatus: $searchStatus, searchResultStatus: $searchResultStatus, isLexicographicallyOrdered: $isLexicographicallyOrdered, isOrderedByQualification: $isOrderedByQualification, page: $page)';
   }
 
   @override
@@ -252,6 +269,9 @@ class _$SearchStateImpl implements _SearchState {
                     isLexicographicallyOrdered) ||
                 other.isLexicographicallyOrdered ==
                     isLexicographicallyOrdered) &&
+            (identical(
+                    other.isOrderedByQualification, isOrderedByQualification) ||
+                other.isOrderedByQualification == isOrderedByQualification) &&
             (identical(other.page, page) || other.page == page));
   }
 
@@ -264,6 +284,7 @@ class _$SearchStateImpl implements _SearchState {
       searchStatus,
       searchResultStatus,
       isLexicographicallyOrdered,
+      isOrderedByQualification,
       page);
 
   @JsonKey(ignore: true)
@@ -281,6 +302,7 @@ abstract class _SearchState implements SearchState {
       final SearchStatus searchStatus,
       final SearchResultStatus searchResultStatus,
       final bool isLexicographicallyOrdered,
+      final bool isOrderedByQualification,
       final int page}) = _$SearchStateImpl;
 
   @override
@@ -295,6 +317,8 @@ abstract class _SearchState implements SearchState {
   SearchResultStatus get searchResultStatus;
   @override
   bool get isLexicographicallyOrdered;
+  @override
+  bool get isOrderedByQualification;
   @override
   int get page;
   @override

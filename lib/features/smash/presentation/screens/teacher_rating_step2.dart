@@ -23,8 +23,8 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
       content: const _TeacherRequiredRatingContent(),
     );
   }
+}
 
-}  
 class _TeacherRequiredRatingContent extends ConsumerWidget {
   const _TeacherRequiredRatingContent();
 
@@ -35,33 +35,27 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
         teacherQualificationRequired.goodPeople != 0;
   }
 
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(teachersTinderControllerProvider);
     final smashSuggestion = state.selectedSmashSuggestion;
-    final teacherQualificationRequired = state.teacherQualification.required;
-    final isButtonActive = hasAllRequired(teacherQualificationRequired);
 
     return LayoutBuilder(
       builder: (context, contraints) {
         final maxHeight = contraints.maxHeight;
         final maxWidth = contraints.maxWidth;
-      
+
         return Stack(
-          alignment: Alignment.topCenter,
+          alignment: Alignment.bottomCenter,
           clipBehavior: Clip.none,
           children: [
-            Positioned(
-              top: 72,
-              child: Container(
-                height: maxHeight - 72,
-                width: maxWidth,
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25)),
-                child: Column(
+            Container(
+              height: maxHeight - 72,
+              width: maxWidth,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(25)),
+              child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(height: 80),
@@ -73,8 +67,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       style: const TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
-                        fontSize: 15,
-       
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -86,8 +79,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       style: const TextStyle(
                         color: Color.fromRGBO(2, 51, 106, 1.000),
                         fontFamily: 'SFProDisplay',
-                        fontSize: 15,
-  
+                        fontSize: 20,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -99,11 +91,11 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                       style: const TextStyle(
                         color: Color(0xFF5A5A5A),
                         fontFamily: 'SFProDisplay',
-                        fontSize: 13,
+                        fontSize: 16,
                       ),
                     ),
-                    const SizedBox(height: 12),
-                      Row(
+                    Expanded(child: Container()),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset('assets/images/svgs/Vector 15.svg'),
@@ -111,17 +103,16 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                           '  LLENA LOS DATOS SI LOS RECUERDAS  ',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 13,
+                            fontSize: 16,
                             fontWeight: FontWeight.w700,
                             color: AppTheme.courseNameColor,
                           ),
                         ),
-                         SvgPicture.asset('assets/images/svgs/Vector 15.svg'),
+                        SvgPicture.asset('assets/images/svgs/Vector 15.svg'),
                       ],
-                    ),   
-                     const SizedBox(height: 12),
+                    ),
                     Expanded(child: Container()),
-             Column(
+                    Column(
                       children: [
                         ContinuousQualification(
                           asset: 'clip',
@@ -176,43 +167,42 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 12),
-                    Center(
-                      child: CustomFilledButton(
-                        text: 'CONTINUAR',
-                        textColor: Colors.white,
-                        verticalPadding: 8,
-                        linearGradient: const LinearGradient(
-                          colors: [
-                            AppTheme.linearGradientLight,
-                            AppTheme.linearGradientDark
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          stops: [0.0, 1.0],
-                        ),
-                        onPressed: () {
-                          context.pushNamed(TeacherCommentScreen.name);
-                        },
+                    Expanded(child: Container()),
+                    CustomFilledButton(
+                      text: 'CONTINUAR',
+                      textColor: Colors.white,
+                      verticalPadding: 8,
+                      linearGradient: const LinearGradient(
+                        colors: [
+                          AppTheme.linearGradientLight,
+                          AppTheme.linearGradientDark
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: [0.0, 1.0],
                       ),
+                      onPressed: () {
+                        context.pushNamed(TeacherCommentScreen.name);
+                      },
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 20),
                   ]),
-              ),
             ),
-            SolidCircleAvatar(
-              radius: 72,
-              borderWidth: 3,
-              borderColor: Colors.white,
-              imageProvider:
-                  NetworkImage(smashSuggestion?.teacher?.photoUrl ?? ''),
+            Positioned(
+              top: 0,
+              child: SolidCircleAvatar(
+                radius: 72,
+                borderWidth: 3,
+                borderColor: Colors.white,
+                imageProvider:
+                    NetworkImage(smashSuggestion?.teacher?.photoUrl ?? ''),
+              ),
             ),
           ],
         );
       },
     );
   }
- 
 }
 
 class ContinuousQualification extends StatefulWidget {
@@ -243,23 +233,26 @@ class _ContinuousQualification extends State<ContinuousQualification> {
   @override
   void initState() {
     super.initState();
-    // Inicializa el estado de cada botón como no seleccionado
+
     isSelected = List.generate(widget.selectedRating.length, (index) => false);
-    // Establece el estado inicial basado en el valor proporcionado
+
     isSelected[widget.value] = true;
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SvgPicture.asset('assets/images/svgs/${widget.asset}.svg', height: 15, width: 15,),
+                SvgPicture.asset(
+                  'assets/images/svgs/${widget.asset}.svg',
+                  
+                ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
@@ -271,7 +264,8 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                           textAlign: TextAlign.start,
                           style: TextStyle(
                             color: widget.color,
-                            fontSize: 11,
+                            fontSize: 13,
+                            fontFamily: 'SFProDisplay',
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -288,7 +282,7 @@ class _ContinuousQualification extends State<ContinuousQualification> {
 
               return SizedBox(
                 height: 24,
-                width: width * 0.99,
+                width: width ,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -296,7 +290,6 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                       ElevatedButton(
                         onPressed: () {
                           setState(() {
-                            // Actualiza el estado al seleccionar un botón específico
                             for (int j = 0; j < isSelected.length; j++) {
                               isSelected[j] = (j == i);
                             }
@@ -304,9 +297,10 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                           widget.onSelected(i);
                         },
                         style: ButtonStyle(
-                           minimumSize: MaterialStateProperty.all(const Size(62 , 24)),
+                          padding: MaterialStateProperty.all(const EdgeInsets.all(5)),
+                          fixedSize:
+                              MaterialStateProperty.all(const Size(62, 24)),
                           backgroundColor: MaterialStateProperty.all(
-                            // Cambia el color de fondo basado en el estado del botón
                             isSelected[i]
                                 ? widget.color
                                 : const Color.fromRGBO(245, 245, 246, 1.000),
@@ -316,7 +310,7 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                           widget.selectedRating[i],
                           maxLines: 1,
                           style: TextStyle(
-                            fontSize: 9,
+                            fontSize: 11,
                             fontFamily: 'Inter',
                             color: isSelected[i] ? Colors.white : Colors.black,
                           ),

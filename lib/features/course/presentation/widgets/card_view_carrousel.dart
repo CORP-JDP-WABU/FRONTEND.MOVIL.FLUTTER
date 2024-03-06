@@ -248,7 +248,7 @@ class CardViewCarrousel extends StatelessWidget {
                   child: Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                        padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -289,7 +289,7 @@ class CardViewCarrousel extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                        padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -330,7 +330,7 @@ class CardViewCarrousel extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                          padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                          padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

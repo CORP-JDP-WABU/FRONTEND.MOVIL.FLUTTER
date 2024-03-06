@@ -10,11 +10,11 @@ class ApiConfig {
   );
 
   static const prd = _ApiData(
-    securityBaseUrl: 'http://wabupro.com/security/api/',
-    studentBaseUrl: 'http://wabupro.com/student/api/',
-    universityBaseUrl: 'http://wabupro.com/university/api/',
-    dashboardBaseUrl: 'http://wabupro.com/dashboard/api/',
-    operationBaseUrl: 'http://wabupro.com/operation/api/',
+    securityBaseUrl: 'https://www.wabupro.com/security/api/',
+    studentBaseUrl: 'https://www.wabupro.com/student/api/',
+    universityBaseUrl: 'https://www.wabupro.com/university/api/',
+    dashboardBaseUrl: 'https://www.wabupro.com/dashboard/api/',
+    operationBaseUrl: 'https://www.wabupro.com/operation/api/',
   );
 }
 

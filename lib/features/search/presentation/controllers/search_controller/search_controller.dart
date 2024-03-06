@@ -17,6 +17,14 @@ class SearchController extends _$SearchController {
     return const SearchState();
   }
 
+  bool hasFetchedAllTeachers() =>
+      (state.searchResult.totalTeacher ?? 0) ==
+      (state.searchResult.teacher?.length ?? 0);
+
+  bool hasFetchedAllCourses() =>
+      (state.searchResult.totalCourse ?? 0) ==
+      (state.searchResult.course?.length ?? 0);
+
   Future<void> fetchData() async {
     try {
       String studentId = Globals.studentId ?? '';
@@ -51,7 +59,6 @@ class SearchController extends _$SearchController {
     try {
       state = state.copyWith(
         searchText: searchText,
-        page: 1,
         searchResultStatus: SearchResultStatus.loading,
       );
 
@@ -59,7 +66,7 @@ class SearchController extends _$SearchController {
 
       final response = await ref
           .watch(searchRepositoryProvider)
-          .getSearchResults(universityId, state.page, state.searchText);
+          .getSearchResults(universityId, 1, state.searchText);
 
       response.fold((Failure failure) {
         switch (failure.errorCode) {
@@ -73,7 +80,7 @@ class SearchController extends _$SearchController {
         state = state.copyWith(
           searchResult: searchResult,
           searchResultStatus: SearchResultStatus.loaded,
-          page: state.page + 1,
+          page: 1,
         );
       });
     } catch (e) {
@@ -85,20 +92,17 @@ class SearchController extends _$SearchController {
 
   Future<void> loadNextPage() async {
     try {
-      if ((state.searchResult.totalTeacher ?? 0) !=
-              (state.searchResult.teacher?.length ?? 0) ||
-          (state.searchResult.totalCourse ?? 0) !=
-              (state.searchResult.course?.length ?? 0)) {
-        state = state.copyWith(
-          searchResultStatus: SearchResultStatus.loading,
-        );
-      }
+      if (hasFetchedAllTeachers() && hasFetchedAllCourses()) return;
+
+      state = state.copyWith(
+        searchResultStatus: SearchResultStatus.loading,
+      );
 
       String universityId = Globals.universityId ?? '';
 
       final response = await ref
           .watch(searchRepositoryProvider)
-          .getSearchResults(universityId, state.page, state.searchText);
+          .getSearchResults(universityId, state.page + 1, state.searchText);
 
       response.fold((Failure failure) {
         switch (failure.errorCode) {
@@ -114,9 +118,16 @@ class SearchController extends _$SearchController {
         final teachers = state.searchResult.teacher?.toList();
         teachers?.addAll(searchResult.teacher ?? []);
 
+        if (state.isOrderedByQualification) {
+          teachers?.sort((a, b) => (b.manyAverageQualifications ?? 0)
+              .compareTo(a.manyAverageQualifications ?? 0));
+        }
+
         state = state.copyWith(
-          searchResult:
-              state.searchResult.copyWith(course: courses, teacher: teachers),
+          searchResult: state.searchResult.copyWith(
+            course: courses,
+            teacher: teachers,
+          ),
           searchResultStatus: SearchResultStatus.loaded,
           page: state.page + 1,
         );
@@ -152,6 +163,7 @@ class SearchController extends _$SearchController {
 
     state = state.copyWith(
       searchResult: state.searchResult.copyWith(teacher: teachers),
+      isOrderedByQualification: true,
     );
   }
 }
