@@ -30,7 +30,7 @@ class TeacherProfileComments extends StatelessWidget {
           elevation: 5,
           child: Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: 32,
+              horizontal: 17,
               vertical: 12,
             ),
             child: Row(

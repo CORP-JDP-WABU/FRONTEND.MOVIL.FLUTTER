@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wabu/common/widgets/continuous_bar_qualification.dart';
+import 'package:wabu/common/widgets/continuous_qualification_object.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/teachers/domain/entities.dart';
@@ -26,22 +26,25 @@ class OptionalQualifications extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ContinuousBarQualification(
+        OptionalQualificationTag(
           asset: 'clip',
           text: 'Carga Académica',
           color: AppTheme.secondary1Color,
+          selectedRating: const [' - ', 'Nunca', 'A veces', 'Siempre'],
           value: getQualificationValueByCode(4),
         ),
-        ContinuousBarQualification(
+        OptionalQualificationTag(
           asset: 'clock',
           text: 'Exigencia',
-          color: AppTheme.secondary2Color,
+          color: AppTheme.secondary1Color,
+          selectedRating: const [' - ', 'Nunca', 'A veces', 'Siempre'],
           value: getQualificationValueByCode(5),
         ),
-        ContinuousBarQualification(
+        OptionalQualificationTag(
           asset: 'pencil',
           text: 'Toma de asistencia',
-          color: AppTheme.secondary3Color,
+          color: AppTheme.secondary1Color,
+          selectedRating: const [' - ', 'Nunca', 'A veces', 'Siempre'],
           value: getQualificationValueByCode(6),
         ),
       ],
