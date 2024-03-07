@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wabu/utils/utils.dart';
 
 class SearchDashboardItem extends StatelessWidget {
   const SearchDashboardItem({
@@ -8,13 +7,13 @@ class SearchDashboardItem extends StatelessWidget {
     required this.linearGradient,
     required this.label,
     required this.iconAssetPath,
-    required this.value,
+    required this.child,
   });
 
   final Gradient linearGradient;
   final String label;
   final String iconAssetPath;
-  final int value;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -53,15 +52,7 @@ class SearchDashboardItem extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Center(
-                child: Text(
-                  HumanFormats.humanReadableNumber(value),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: child,
               )
             ],
           ),
