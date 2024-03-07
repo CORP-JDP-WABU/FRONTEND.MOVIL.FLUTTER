@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/features/home/domain/domain.dart';
 import 'package:wabu/features/search/presentation/presentation.dart';
-import 'package:wabu/utils/human_formats.dart';
+import 'package:wabu/utils/utils.dart';
 
 class SearchViewContent extends ConsumerWidget {
   const SearchViewContent({
