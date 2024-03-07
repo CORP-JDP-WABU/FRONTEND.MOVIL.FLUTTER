@@ -5,12 +5,7 @@ import 'package:wabu/common/data/failure/failure.dart';
 import 'package:wabu/common/enums/form_status.dart';
 import 'package:wabu/common/inputs/email.dart';
 import 'package:wabu/constants/globals.dart';
-import 'package:wabu/features/authentication/data/providers.dart';
-import 'package:wabu/features/authentication/domain/models/auth_keys/auth_keys.dart';
-import 'package:wabu/features/authentication/domain/models/encrypted_form/encrypted_form.dart';
-import 'package:wabu/features/authentication/presentation/controllers/forgot_password/forgot_password_state.dart';
-import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_controller.dart';
-import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_state.dart';
+import 'package:wabu/features/authentication/authentication.dart';
 import 'package:wabu/utils/cipher.dart';
 
 part 'forgot_password_controller.g.dart';
@@ -66,7 +61,13 @@ class ForgotPasswordController extends _$ForgotPasswordController {
                   formStatus: FormStatus.invalid,
                 );
                 setPageIdle();
-
+                break;
+              case 'UNIVERSITY_NOT_FOUND':
+                state = state.copyWith(
+                  formStatus: FormStatus.invalid,
+                  forgotPasswordStatus: ForgotPasswordStatus.noUniversity,
+                );
+                setPageIdle();
                 break;
               default:
                 setPageError();
@@ -87,6 +88,7 @@ class ForgotPasswordController extends _$ForgotPasswordController {
           });
         });
       } catch (error) {
+        print(error);
         setPageError();
       }
     }

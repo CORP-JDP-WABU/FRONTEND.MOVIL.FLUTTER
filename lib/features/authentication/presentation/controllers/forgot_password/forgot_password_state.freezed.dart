@@ -19,6 +19,8 @@ mixin _$ForgotPasswordState {
   Email get email => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
   FormStatus get formStatus => throw _privateConstructorUsedError;
+  ForgotPasswordStatus get forgotPasswordStatus =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ForgotPasswordStateCopyWith<ForgotPasswordState> get copyWith =>
@@ -31,7 +33,11 @@ abstract class $ForgotPasswordStateCopyWith<$Res> {
           ForgotPasswordState value, $Res Function(ForgotPasswordState) then) =
       _$ForgotPasswordStateCopyWithImpl<$Res, ForgotPasswordState>;
   @useResult
-  $Res call({Email email, bool isValid, FormStatus formStatus});
+  $Res call(
+      {Email email,
+      bool isValid,
+      FormStatus formStatus,
+      ForgotPasswordStatus forgotPasswordStatus});
 }
 
 /// @nodoc
@@ -50,6 +56,7 @@ class _$ForgotPasswordStateCopyWithImpl<$Res, $Val extends ForgotPasswordState>
     Object? email = null,
     Object? isValid = null,
     Object? formStatus = null,
+    Object? forgotPasswordStatus = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -64,6 +71,10 @@ class _$ForgotPasswordStateCopyWithImpl<$Res, $Val extends ForgotPasswordState>
           ? _value.formStatus
           : formStatus // ignore: cast_nullable_to_non_nullable
               as FormStatus,
+      forgotPasswordStatus: null == forgotPasswordStatus
+          ? _value.forgotPasswordStatus
+          : forgotPasswordStatus // ignore: cast_nullable_to_non_nullable
+              as ForgotPasswordStatus,
     ) as $Val);
   }
 }
@@ -76,7 +87,11 @@ abstract class _$$ForgotPasswordStateImplCopyWith<$Res>
       __$$ForgotPasswordStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Email email, bool isValid, FormStatus formStatus});
+  $Res call(
+      {Email email,
+      bool isValid,
+      FormStatus formStatus,
+      ForgotPasswordStatus forgotPasswordStatus});
 }
 
 /// @nodoc
@@ -93,6 +108,7 @@ class __$$ForgotPasswordStateImplCopyWithImpl<$Res>
     Object? email = null,
     Object? isValid = null,
     Object? formStatus = null,
+    Object? forgotPasswordStatus = null,
   }) {
     return _then(_$ForgotPasswordStateImpl(
       email: null == email
@@ -107,6 +123,10 @@ class __$$ForgotPasswordStateImplCopyWithImpl<$Res>
           ? _value.formStatus
           : formStatus // ignore: cast_nullable_to_non_nullable
               as FormStatus,
+      forgotPasswordStatus: null == forgotPasswordStatus
+          ? _value.forgotPasswordStatus
+          : forgotPasswordStatus // ignore: cast_nullable_to_non_nullable
+              as ForgotPasswordStatus,
     ));
   }
 }
@@ -117,7 +137,8 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
   const _$ForgotPasswordStateImpl(
       {required this.email,
       this.isValid = false,
-      this.formStatus = FormStatus.empty});
+      this.formStatus = FormStatus.empty,
+      this.forgotPasswordStatus = ForgotPasswordStatus.initial});
 
   @override
   final Email email;
@@ -127,10 +148,13 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
   @override
   @JsonKey()
   final FormStatus formStatus;
+  @override
+  @JsonKey()
+  final ForgotPasswordStatus forgotPasswordStatus;
 
   @override
   String toString() {
-    return 'ForgotPasswordState(email: $email, isValid: $isValid, formStatus: $formStatus)';
+    return 'ForgotPasswordState(email: $email, isValid: $isValid, formStatus: $formStatus, forgotPasswordStatus: $forgotPasswordStatus)';
   }
 
   @override
@@ -141,11 +165,14 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.isValid, isValid) || other.isValid == isValid) &&
             (identical(other.formStatus, formStatus) ||
-                other.formStatus == formStatus));
+                other.formStatus == formStatus) &&
+            (identical(other.forgotPasswordStatus, forgotPasswordStatus) ||
+                other.forgotPasswordStatus == forgotPasswordStatus));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, isValid, formStatus);
+  int get hashCode => Object.hash(
+      runtimeType, email, isValid, formStatus, forgotPasswordStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -157,9 +184,11 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
 
 abstract class _ForgotPasswordState implements ForgotPasswordState {
   const factory _ForgotPasswordState(
-      {required final Email email,
-      final bool isValid,
-      final FormStatus formStatus}) = _$ForgotPasswordStateImpl;
+          {required final Email email,
+          final bool isValid,
+          final FormStatus formStatus,
+          final ForgotPasswordStatus forgotPasswordStatus}) =
+      _$ForgotPasswordStateImpl;
 
   @override
   Email get email;
@@ -167,6 +196,8 @@ abstract class _ForgotPasswordState implements ForgotPasswordState {
   bool get isValid;
   @override
   FormStatus get formStatus;
+  @override
+  ForgotPasswordStatus get forgotPasswordStatus;
   @override
   @JsonKey(ignore: true)
   _$$ForgotPasswordStateImplCopyWith<_$ForgotPasswordStateImpl> get copyWith =>

@@ -4,12 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/common/enums/form_status.dart';
 import 'package:wabu/common/widgets/custom_text_form_field.dart';
 import 'package:wabu/constants/globals.dart';
-import 'package:wabu/features/authentication/presentation/controllers/log_in/log_in_controller.dart';
-import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_controller.dart';
-import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_state.dart';
+import 'package:wabu/features/authentication/authentication.dart';
+import 'package:wabu/features/university/university.dart';
 import 'package:wabu/features/update_info/update_info.dart';
-import 'package:wabu/features/authentication/presentation/widgets/dialogs/auth_alert_dialog.dart';
-import 'package:wabu/features/authentication/presentation/widgets/welcome_bottom_sheet_content.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 
 class LogInContent extends ConsumerWidget {
@@ -37,6 +34,11 @@ class LogInContent extends ConsumerWidget {
     final password = logInState.password;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (logInState.loginStatus == LoginStatus.noUniversity) {
+        context.pushNamed(AddUniversityScreen.name);
+        return;
+      }
+
       if (Globals.isFirstLogin == true) {
         context.go(HomeView.route);
         // context.go(TeacherProfileView.route);
