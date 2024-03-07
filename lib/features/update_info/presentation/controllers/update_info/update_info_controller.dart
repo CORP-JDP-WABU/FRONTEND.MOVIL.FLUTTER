@@ -4,21 +4,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wabu/common/data/failure/failure.dart';
 import 'package:wabu/constants/globals.dart';
-import 'package:wabu/features/authentication/data/providers.dart';
-import 'package:wabu/features/authentication/domain/models/auth_keys/auth_keys.dart';
-import 'package:wabu/features/authentication/domain/models/career/career.dart';
-import 'package:wabu/features/authentication/domain/models/encrypted_form/encrypted_form.dart';
-import 'package:wabu/features/authentication/domain/models/token/token.dart';
-import 'package:wabu/features/authentication/domain/models/university/university.dart';
-import 'package:wabu/features/authentication/domain/models/update_info_form/update_info_form.dart';
-import 'package:wabu/features/authentication/domain/models/update_info_form_result/update_info_form_result.dart';
-import 'package:wabu/features/authentication/presentation/controllers/update_info/update_info_state.dart';
-import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_controller.dart';
-import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_state.dart';
+import 'package:wabu/features/authentication/authentication.dart'
+    hide Student, accountRepositoryProvider, UpdateInfoFormResult;
+import 'package:wabu/features/update_info/update_info.dart';
 import 'package:wabu/features/student/data/repositories/providers.dart';
 import 'package:wabu/features/student/domain/student/student.dart';
-import 'package:wabu/utils/cipher.dart';
-import 'package:wabu/utils/logger.dart';
+import 'package:wabu/utils/utils.dart';
 
 part 'update_info_controller.g.dart';
 
@@ -76,7 +67,7 @@ class UpdateInfoController extends _$UpdateInfoController {
             firstName: student.firstName,
             lastName: student.lastName,
             aboutMe: student.information,
-            univeristy:
+            university:
                 (student.idUniversity.isEmpty) ? null : student.idUniversity,
           );
         });
@@ -131,12 +122,12 @@ class UpdateInfoController extends _$UpdateInfoController {
 
     if (universityId == null || universityId == '-1') {
       state = state.copyWith(
+        university: universityId,
+        career: null,
+        cycle: null,
         careers: careers,
         cycles: <String?>[null],
-      );
-      state = state.copyWith(
-        univeristy: universityId,
-        isInfoCompleted: validateInfoCompleted(),
+        isInfoCompleted: false,
       );
       return;
     }
@@ -150,11 +141,11 @@ class UpdateInfoController extends _$UpdateInfoController {
     careers.addAll(universityCareers);
 
     state = state.copyWith(
-      univeristy: universityId,
+      university: universityId,
+      career: null,
+      cycle: null,
       careers: careers,
-    );
-    state = state.copyWith(
-      isInfoCompleted: validateInfoCompleted(),
+      isInfoCompleted: false,
     );
   }
 
@@ -163,10 +154,10 @@ class UpdateInfoController extends _$UpdateInfoController {
 
     if (careerId == null) {
       state = state.copyWith(
+        career: careerId,
+        cycle: null,
         cycles: cycles,
-      );
-      state = state.copyWith(
-        isInfoCompleted: validateInfoCompleted(),
+        isInfoCompleted: false,
       );
       return;
     }
@@ -179,9 +170,8 @@ class UpdateInfoController extends _$UpdateInfoController {
     state = state.copyWith(
       career: careerId,
       cycles: cycles,
-    );
-    state = state.copyWith(
-      isInfoCompleted: validateInfoCompleted(),
+      cycle: null,
+      isInfoCompleted: false,
     );
   }
 
@@ -207,7 +197,7 @@ class UpdateInfoController extends _$UpdateInfoController {
     return state.photo.isNotEmpty &&
         state.firstName.isNotEmpty &&
         state.lastName.isNotEmpty &&
-        state.univeristy != null &&
+        (state.university != null && state.university != '-1') &&
         state.career != null &&
         state.cycle != null &&
         state.isTermsAccepted;
@@ -217,9 +207,9 @@ class UpdateInfoController extends _$UpdateInfoController {
     final repository = ref.watch(accountRepositoryProvider);
 
     try {
-      ref
-          .read(welcomePageControllerProvider.notifier)
-          .setPageStatus(WelcomeStatus.posting);
+      state = state.copyWith(
+        status: Status.loading,
+      );
 
       final form = UpdateInfoForm(
         idStudent: Globals.studentId!,
@@ -227,7 +217,7 @@ class UpdateInfoController extends _$UpdateInfoController {
         firstName: state.firstName,
         lastName: state.lastName,
         information: state.aboutMe,
-        idUniversity: state.univeristy!,
+        idUniversity: state.university!,
         idCareer: state.career!,
         cicleName: state.cycle!,
         isAcceptedTermCoditions: state.isTermsAccepted,

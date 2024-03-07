@@ -1,9 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:wabu/common/data/failure/failure.dart';
-import 'package:wabu/common/data/response/response_dto.dart';
+import 'package:wabu/common/data/data.dart';
 import 'package:wabu/config/api/api.dart';
-import 'package:wabu/features/authentication/data/datasources/university_remote_datasource.dart';
-import 'package:wabu/features/authentication/domain/models/university/university.dart';
+import 'package:wabu/features/update_info/update_info.dart';
 
 class UniversityDioDatasource extends UniversityRemoteDatasource {
   final dio = ApiClient.instance.universityClient.dio;

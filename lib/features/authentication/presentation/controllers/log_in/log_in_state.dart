@@ -5,6 +5,14 @@ import 'package:wabu/common/inputs/password.dart';
 
 part 'log_in_state.freezed.dart';
 
+enum LoginStatus {
+  initial,
+  loading,
+  loaded,
+  noUniversity,
+  error,
+}
+
 @freezed
 class LogInState with _$LogInState {
   const factory LogInState({
@@ -13,5 +21,6 @@ class LogInState with _$LogInState {
     @Default(null) String? utilError,
     @Default(false) bool isValid,
     @Default(FormStatus.empty) FormStatus formStatus,
+    @Default(LoginStatus.initial) LoginStatus loginStatus,
   }) = _LogInState;
 }

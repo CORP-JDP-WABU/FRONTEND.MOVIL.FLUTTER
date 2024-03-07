@@ -3,9 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/common/enums/form_status.dart';
 import 'package:wabu/common/widgets/custom_text_form_field.dart';
-import 'package:wabu/features/authentication/presentation/controllers/forgot_password/forgot_password_controller.dart';
-import 'package:wabu/features/authentication/presentation/widgets/dialogs/auth_alert_dialog.dart';
-import 'package:wabu/features/authentication/presentation/widgets/welcome_bottom_sheet_content.dart';
+import 'package:wabu/features/authentication/authentication.dart';
+import 'package:wabu/features/university/university.dart';
 
 class ForgotPasswordContent extends ConsumerWidget {
   const ForgotPasswordContent({super.key});
@@ -30,6 +29,12 @@ class ForgotPasswordContent extends ConsumerWidget {
     final email = forgotPasswordState.email;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (forgotPasswordState.forgotPasswordStatus ==
+          ForgotPasswordStatus.noUniversity) {
+        context.pushNamed(AddUniversityScreen.name);
+        return;
+      }
+
       if (forgotPasswordState.formStatus == FormStatus.invalid) {
         openDialog(context);
       }
@@ -37,13 +42,16 @@ class ForgotPasswordContent extends ConsumerWidget {
 
     return WelcomeBottomSheetContent(
       title: '¿Olvidaste tu contraseña?',
-      body: '¡No te preocupes! Nos pasa a todos. Ingresa tu correo y te ayudaremos.',
+      body:
+          '¡No te preocupes! Nos pasa a todos. Ingresa tu correo y te ayudaremos.',
       textForms: [
         CustomTextFormField(
           obscureText: false,
           hint: 'Correo Electrónico',
           onChanged: (value) {
-            ref.read(forgotPasswordControllerProvider.notifier).emailChanged(value);
+            ref
+                .read(forgotPasswordControllerProvider.notifier)
+                .emailChanged(value);
           },
           errorMessage: email.getErrorMessage(),
         ),

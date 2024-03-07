@@ -23,7 +23,7 @@ mixin _$UpdateInfoState {
   List<University> get universities => throw _privateConstructorUsedError;
   List<Career> get careers => throw _privateConstructorUsedError;
   List<String?> get cycles => throw _privateConstructorUsedError;
-  String? get univeristy => throw _privateConstructorUsedError;
+  String? get university => throw _privateConstructorUsedError;
   String? get career => throw _privateConstructorUsedError;
   String? get cycle => throw _privateConstructorUsedError;
   bool get isTermsAccepted => throw _privateConstructorUsedError;
@@ -49,7 +49,7 @@ abstract class $UpdateInfoStateCopyWith<$Res> {
       List<University> universities,
       List<Career> careers,
       List<String?> cycles,
-      String? univeristy,
+      String? university,
       String? career,
       String? cycle,
       bool isTermsAccepted,
@@ -77,7 +77,7 @@ class _$UpdateInfoStateCopyWithImpl<$Res, $Val extends UpdateInfoState>
     Object? universities = null,
     Object? careers = null,
     Object? cycles = null,
-    Object? univeristy = freezed,
+    Object? university = freezed,
     Object? career = freezed,
     Object? cycle = freezed,
     Object? isTermsAccepted = null,
@@ -113,9 +113,9 @@ class _$UpdateInfoStateCopyWithImpl<$Res, $Val extends UpdateInfoState>
           ? _value.cycles
           : cycles // ignore: cast_nullable_to_non_nullable
               as List<String?>,
-      univeristy: freezed == univeristy
-          ? _value.univeristy
-          : univeristy // ignore: cast_nullable_to_non_nullable
+      university: freezed == university
+          ? _value.university
+          : university // ignore: cast_nullable_to_non_nullable
               as String?,
       career: freezed == career
           ? _value.career
@@ -157,7 +157,7 @@ abstract class _$$UpdateInfoStateImplCopyWith<$Res>
       List<University> universities,
       List<Career> careers,
       List<String?> cycles,
-      String? univeristy,
+      String? university,
       String? career,
       String? cycle,
       bool isTermsAccepted,
@@ -183,7 +183,7 @@ class __$$UpdateInfoStateImplCopyWithImpl<$Res>
     Object? universities = null,
     Object? careers = null,
     Object? cycles = null,
-    Object? univeristy = freezed,
+    Object? university = freezed,
     Object? career = freezed,
     Object? cycle = freezed,
     Object? isTermsAccepted = null,
@@ -219,9 +219,9 @@ class __$$UpdateInfoStateImplCopyWithImpl<$Res>
           ? _value._cycles
           : cycles // ignore: cast_nullable_to_non_nullable
               as List<String?>,
-      univeristy: freezed == univeristy
-          ? _value.univeristy
-          : univeristy // ignore: cast_nullable_to_non_nullable
+      university: freezed == university
+          ? _value.university
+          : university // ignore: cast_nullable_to_non_nullable
               as String?,
       career: freezed == career
           ? _value.career
@@ -258,7 +258,7 @@ class _$UpdateInfoStateImpl implements _UpdateInfoState {
       final List<University> universities = const [],
       final List<Career> careers = const [Career(name: 'Escoge tu carrera')],
       final List<String?> cycles = const [null],
-      this.univeristy = null,
+      this.university = null,
       this.career = null,
       this.cycle = null,
       this.isTermsAccepted = false,
@@ -309,7 +309,7 @@ class _$UpdateInfoStateImpl implements _UpdateInfoState {
 
   @override
   @JsonKey()
-  final String? univeristy;
+  final String? university;
   @override
   @JsonKey()
   final String? career;
@@ -328,7 +328,7 @@ class _$UpdateInfoStateImpl implements _UpdateInfoState {
 
   @override
   String toString() {
-    return 'UpdateInfoState(photo: $photo, firstName: $firstName, lastName: $lastName, aboutMe: $aboutMe, universities: $universities, careers: $careers, cycles: $cycles, univeristy: $univeristy, career: $career, cycle: $cycle, isTermsAccepted: $isTermsAccepted, status: $status, isInfoCompleted: $isInfoCompleted)';
+    return 'UpdateInfoState(photo: $photo, firstName: $firstName, lastName: $lastName, aboutMe: $aboutMe, universities: $universities, careers: $careers, cycles: $cycles, university: $university, career: $career, cycle: $cycle, isTermsAccepted: $isTermsAccepted, status: $status, isInfoCompleted: $isInfoCompleted)';
   }
 
   @override
@@ -346,8 +346,8 @@ class _$UpdateInfoStateImpl implements _UpdateInfoState {
                 .equals(other._universities, _universities) &&
             const DeepCollectionEquality().equals(other._careers, _careers) &&
             const DeepCollectionEquality().equals(other._cycles, _cycles) &&
-            (identical(other.univeristy, univeristy) ||
-                other.univeristy == univeristy) &&
+            (identical(other.university, university) ||
+                other.university == university) &&
             (identical(other.career, career) || other.career == career) &&
             (identical(other.cycle, cycle) || other.cycle == cycle) &&
             (identical(other.isTermsAccepted, isTermsAccepted) ||
@@ -367,7 +367,7 @@ class _$UpdateInfoStateImpl implements _UpdateInfoState {
       const DeepCollectionEquality().hash(_universities),
       const DeepCollectionEquality().hash(_careers),
       const DeepCollectionEquality().hash(_cycles),
-      univeristy,
+      university,
       career,
       cycle,
       isTermsAccepted,
@@ -391,7 +391,7 @@ abstract class _UpdateInfoState implements UpdateInfoState {
       final List<University> universities,
       final List<Career> careers,
       final List<String?> cycles,
-      final String? univeristy,
+      final String? university,
       final String? career,
       final String? cycle,
       final bool isTermsAccepted,
@@ -413,7 +413,7 @@ abstract class _UpdateInfoState implements UpdateInfoState {
   @override
   List<String?> get cycles;
   @override
-  String? get univeristy;
+  String? get university;
   @override
   String? get career;
   @override
