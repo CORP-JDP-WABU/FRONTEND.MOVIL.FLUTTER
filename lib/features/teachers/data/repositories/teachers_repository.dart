@@ -7,6 +7,6 @@ abstract class TeachersRepository {
       String teacherId, String courseId);
   Future<Either<Failure, TeacherCourseComments>> getCommentsOfTeacherCourse(String teacherId, String courseId);
   Future<Either<Failure, List<CareerTeacherCourse>>> getCareerTeachers(String careerId);
-  Future<Either<Failure, void>> getTeacherProfile(
+  Future<Either<Failure, TeacherProfile>> getTeacherProfile(
       String teacherId, String careerId);
 }

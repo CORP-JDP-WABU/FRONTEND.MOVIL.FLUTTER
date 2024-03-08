@@ -6,10 +6,7 @@ import 'package:wabu/features/home/presentation/views/home_view.dart';
 import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
 import 'package:wabu/features/search/presentation/presentation.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
-import 'package:wabu/features/teachers/domain/domain.dart';
-import 'package:wabu/features/teachers/domain/teacher_course_extra/teacher_course_extra.dart';
-import 'package:wabu/features/teachers/presentation/presentation.dart';
-import 'package:wabu/features/teachers/presentation/screens/teacher_profile_screen.dart';
+import 'package:wabu/features/teachers/teachers.dart';
 import 'package:wabu/features/university/university.dart';
 import 'package:wabu/features/update_info/update_info.dart';
 
@@ -141,13 +138,13 @@ final appRouter = GoRouter(
         );
       },
     ),
-     GoRoute(
+    GoRoute(
       name: TeacherProfileScreen.name,
       path: TeacherProfileScreen.route,
       builder: (context, state) {
-        final teacher = state.extra! as Teacher;
+        final teacherId = state.extra! as String;
         return TeacherProfileScreen(
-          teacher: teacher,
+          teacherId: teacherId,
         );
       },
     ),

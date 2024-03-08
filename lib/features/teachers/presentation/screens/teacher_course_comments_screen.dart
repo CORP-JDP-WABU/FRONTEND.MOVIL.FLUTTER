@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wabu/common/widgets/loader_transparent.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/teachers/presentation/controllers/controllers.dart';
-import 'package:wabu/features/teachers/presentation/widgets/widgets.dart';
+import 'package:wabu/features/teachers/teachers.dart';
 
 class TeacherCourseCommentsScreen extends ConsumerWidget {
   const TeacherCourseCommentsScreen({super.key});
@@ -13,7 +12,7 @@ class TeacherCourseCommentsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final teacher = ref.watch(teacherProfileControllerProvider).teacher;
+    final teacher = ref.watch(teacherCourseProfileControllerProvider).teacher;
     final state = ref.watch(teacherCourseCommentsControllerProvider);
     final teacherCourseComments = state.teacherCourseComments;
 
@@ -25,7 +24,7 @@ class TeacherCourseCommentsScreen extends ConsumerWidget {
                 Text('Ocurrión un problema. Vuelve a intentarlo más tarde.'),
           ),
         );
-        ref.read(teacherProfileControllerProvider.notifier).setPageIdle();
+        ref.read(teacherCourseProfileControllerProvider.notifier).setPageIdle();
       }
     });
 

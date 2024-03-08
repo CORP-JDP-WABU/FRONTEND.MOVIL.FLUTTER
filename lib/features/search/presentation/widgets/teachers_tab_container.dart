@@ -5,10 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/search/domain/teachers_search_result/teachers_search_result.dart';
-import 'package:wabu/features/teachers/domain/domain.dart';
-import 'package:wabu/features/teachers/domain/teacher_course_extra/teacher_course_extra.dart';
-import 'package:wabu/features/teachers/presentation/presentation.dart';
-import 'package:wabu/features/teachers/presentation/screens/teacher_profile_screen.dart';
+import 'package:wabu/features/teachers/teachers.dart';
+
 
 class TeachersTabContainer extends StatelessWidget {
   const TeachersTabContainer({
@@ -126,12 +124,10 @@ class TeachersTabContainer extends StatelessWidget {
       ),
       onTap: () {
         print(teacher.idTeacher);
-        context.pushNamed(TeacherProfileScreen.name,
-            extra: Teacher(
-                idTeacher: teacher.idTeacher,
-                firstName: teacher.firstName,
-                lastName: teacher.lastName,
-                profileUrl: teacher.photoUrl));
+        context.pushNamed(
+          TeacherProfileScreen.name,
+          extra: teacher.idTeacher ?? '',
+        );
       },
     );
   }

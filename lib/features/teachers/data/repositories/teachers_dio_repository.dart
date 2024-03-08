@@ -27,7 +27,7 @@ class TeachersDioRepository extends TeachersRepository {
   }
 
   @override
-  Future<Either<Failure, void>> getTeacherProfile(
+  Future<Either<Failure, TeacherProfile>> getTeacherProfile(
       String teacherId, String careerId) {
     return teachersRemoteDatasource.getTeacherProfile(teacherId, careerId);
   }

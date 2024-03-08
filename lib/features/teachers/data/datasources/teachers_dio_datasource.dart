@@ -11,7 +11,6 @@ class TeachersDioDatasource extends TeachersRemoteDatasource {
       String teacherId, String courseId) async {
     final response = await dio.get(
       'teacher/v1.0/$teacherId/course/$courseId/comment',
-    
     );
 
     if (response.statusCode != 200) {
@@ -69,9 +68,10 @@ class TeachersDioDatasource extends TeachersRemoteDatasource {
 
     return Right(getCareerTeachersResponse.data);
   }
-  
+
   @override
-  Future<Either<Failure, void>> getTeacherProfile(String teacherId, String careerId) async {
+  Future<Either<Failure, TeacherProfile>> getTeacherProfile(
+      String teacherId, String careerId) async {
     final response = await dio.get(
       'teacher/v1.0/$teacherId/career/$careerId',
     );
@@ -82,11 +82,11 @@ class TeachersDioDatasource extends TeachersRemoteDatasource {
       return Left(failureResponse);
     }
 
-    final getCareerTeachersResponse = ResponseDto.fromJson(
-        response.data,
-        (jsons) =>
-            CareerTeacherCourse.careerTeacherCoursesFromJson(jsons as List));
+    final getTeacherProfileResponse = ResponseDto.fromJson(
+      response.data,
+      (json) => TeacherProfile.fromJson(json as Map<String, dynamic>),
+    );
 
-    return Right(getCareerTeachersResponse.data);
+    return Right(getTeacherProfileResponse.data);
   }
 }

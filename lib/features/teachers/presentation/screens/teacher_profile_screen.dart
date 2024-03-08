@@ -1,53 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/teachers/domain/domain.dart';
-import 'package:wabu/features/teachers/presentation/widgets/teacher_profile_card_details.dart';
-import 'package:wabu/features/teachers/presentation/widgets/teacher_profile_card_header.dart';
-import 'package:wabu/features/teachers/presentation/widgets/teacher_profile_courses.dart';
-  import 'package:wabu/features/teachers/presentation/widgets/widgets.dart';
+import 'package:wabu/common/widgets/loader_transparent.dart';
+import 'package:wabu/features/teachers/teachers.dart';
 
 class TeacherProfileScreen extends ConsumerStatefulWidget {
   const TeacherProfileScreen({
     super.key,
-    required this.teacher,
+    required this.teacherId,
   });
 
   static const String name = "teacher_profile";
   static const String route = "/$name";
-  final Teacher teacher;
+  final String teacherId;
 
   @override
   ConsumerState<TeacherProfileScreen> createState() =>
       _TeacherProfileScreenState();
 }
 
-class _TeacherProfileScreenState
-    extends ConsumerState<TeacherProfileScreen> {
+class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
   @override
   void initState() {
     super.initState();
-   /* ref.read(teacherProfileControllerProvider.notifier).fetchData(
-          widget.teacher.idTeacher ?? ''
-        );*/
+    ref
+        .read(teacherProfileControllerProvider.notifier)
+        .getTeacherProfile(widget.teacherId);
   }
 
   @override
   Widget build(BuildContext context) {
-    final teacher = widget.teacher;
-  /*  final state = ref.watch(teacherProfileControllerProvider);
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (state.pageStatus == TeacherCourseProfileStatus.error) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content:
-                Text('Ocurrión un problema. Vuelve a intentarlo más tarde.'),
-          ),
-        );
-        ref.read(teacherProfileControllerProvider.notifier).setPageIdle();
-      }
-    });*/
+    final state = ref.watch(teacherProfileControllerProvider);
+    final teacherProfile = state.teacherProfile;
+    final teacher = teacherProfile.teacher;
+    final isLoading =
+        state.teacherProfileStatus == TeacherProfileStatus.loading;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -57,14 +43,67 @@ class _TeacherProfileScreenState
             child: Column(
               children: [
                 TeacherProfileCardHeader(teacher: teacher),
-                TeacherProfileDetails(teacher: teacher),
-                 TeacherProfileCardDetails(teacher: teacher),
-                TeacherProfileCourses(teacher: teacher),
+                TeacherProfileDetails(
+                  teacher: Teacher(
+                    idTeacher: teacher.id,
+                    firstName: teacher.firstName,
+                    lastName: teacher.lastName,
+                    email: teacher.email,
+                    information: teacher.information,
+                  ),
+                ),
+                TeacherProfileCardDetails(
+                  teacher: teacher,
+                ),
+                const SizedBox(height: 16),
+                if (teacherProfile.courseInCareer.isNotEmpty) ...[
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Cursos en tu carrera',
+                        style: TextStyle(
+                          color: Color(0xFF02336A),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  TeacherProfileCourses(
+                    teacherCourses: teacherProfile.courseInCareer,
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  )
+                ],
+                if (teacherProfile.courseInOtherCareer.isNotEmpty) ...[
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Cursos en otras carreras',
+                        style: TextStyle(
+                          color: Color(0xFF02336A),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  TeacherProfileCourses(
+                    teacherCourses: teacherProfile.courseInOtherCareer,
+                  ),
+                  const SizedBox(
+                    height: 36,
+                  )
+                ],
               ],
             ),
           ),
-          /*if (state.pageStatus == TeacherCourseProfileStatus.loading)
-            const LoaderTransparent(),*/
+          if (isLoading) const LoaderTransparent(),
         ],
       ),
     );

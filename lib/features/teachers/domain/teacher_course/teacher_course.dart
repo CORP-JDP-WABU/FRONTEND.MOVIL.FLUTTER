@@ -14,7 +14,6 @@ class TeacherCourse with _$TeacherCourse {
     int? manyComments,
     List<TeacherCourseQualificationOptional>? optionalQualifications,
     List<TeacherCourseQualificationRequired>? requiredQualifications,
-
   }) = _TeacherCourse;
 
   factory TeacherCourse.fromJson(Map<String, dynamic> json) => _$TeacherCourseFromJson(json);

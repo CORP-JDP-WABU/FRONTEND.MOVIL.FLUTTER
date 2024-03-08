@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/custom_back_button.dart';
 import 'package:wabu/common/widgets/profile_clipper.dart';
-import 'package:wabu/features/teachers/domain/domain.dart';
+import 'package:wabu/features/teachers/teachers.dart';
 
 class TeacherProfileCardHeader extends StatelessWidget {
   const TeacherProfileCardHeader({
@@ -10,7 +10,7 @@ class TeacherProfileCardHeader extends StatelessWidget {
     required this.teacher,
   });
 
-  final Teacher? teacher;
+  final TeacherV2 teacher;
 
   @override
   Widget build(BuildContext context) {
@@ -28,19 +28,18 @@ class TeacherProfileCardHeader extends StatelessWidget {
         ClipPath(
           clipper: ProfileClipper(),
           child: Container(
-                          height: 400,
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromRGBO(54, 181, 236, 1.000),
-                                Color.fromRGBO(47, 163, 240, 1.000),
-                                Color.fromRGBO(38, 137, 245, 1.000),
-                              ], // Cambia los colores según tu preferencia
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            ),
-                          ),
-                        
+            height: 400,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromRGBO(54, 181, 236, 1.000),
+                  Color.fromRGBO(47, 163, 240, 1.000),
+                  Color.fromRGBO(38, 137, 245, 1.000),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
             child: SafeArea(
               child: _TeacherProfileCardHeaderContent(teacher: teacher),
             ),
@@ -56,7 +55,7 @@ class _TeacherProfileCardHeaderContent extends StatelessWidget {
     required this.teacher,
   });
 
-  final Teacher? teacher;
+  final TeacherV2 teacher;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +72,6 @@ class _TeacherProfileCardHeaderContent extends StatelessWidget {
             color: Colors.white,
             onTap: () => context.pop(),
           ),
-          
           const SizedBox(height: 16),
           Material(
             shape: const CircleBorder(
@@ -84,12 +82,12 @@ class _TeacherProfileCardHeaderContent extends StatelessWidget {
             ),
             child: CircleAvatar(
               radius: 72,
-              backgroundImage: NetworkImage(teacher?.profileUrl ?? ''),
+              backgroundImage: NetworkImage(teacher.photoUrl),
             ),
           ),
           const SizedBox(height: 16),
           Text(
-            teacher?.lastName ?? 'no-last-name',
+            teacher.lastName,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 20,
@@ -98,7 +96,7 @@ class _TeacherProfileCardHeaderContent extends StatelessWidget {
             ),
           ),
           Text(
-            teacher?.firstName ?? 'no-first-name',
+            teacher.firstName,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 20,
