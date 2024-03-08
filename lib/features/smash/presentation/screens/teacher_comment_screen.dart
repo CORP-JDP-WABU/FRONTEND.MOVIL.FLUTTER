@@ -263,6 +263,7 @@ class _TeacherRequiredRatingContentState
         );
       },
     ).then((value) {
+      if (ModalRoute.of(context)?.settings.name == SmashView.name) return;
       context.pop();
       if (ModalRoute.of(context)?.settings.name == SmashView.name) return;
       context.pop();
