@@ -49,7 +49,7 @@ class SignUpContent extends ConsumerWidget {
         CustomTextFormField(
           initialValue: Globals.newEmail,
           obscureText: false,
-          hint: 'Correo Electrónico',
+          hint: 'Correo Electrónico Personal',
           onChanged: (value) {
             ref.read(signUpControllerProvider.notifier).emailChanged(value);
           },
