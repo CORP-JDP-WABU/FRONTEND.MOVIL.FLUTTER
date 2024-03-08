@@ -8,10 +8,14 @@ import 'package:wabu/features/smash/domain/domain.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
 
 class TeacherRequiredRatingScreen extends ConsumerWidget {
-  const TeacherRequiredRatingScreen({super.key});
+  const TeacherRequiredRatingScreen({
+    super.key,
+    required this.smashSuggestion,
+  });
 
   static const String name = "teacher_required_rating";
   static const String route = "/$name";
+  final SmashSuggestion smashSuggestion;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

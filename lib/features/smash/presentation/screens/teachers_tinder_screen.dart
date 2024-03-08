@@ -80,10 +80,18 @@ class _TeacheresTinderScreenContentState
         }
         break;
       case CardSwiperDirection.right:
+        final teacherSuggestion = widget.state.smashSuggestions?[previousIndex];
+
+        if (teacherSuggestion == null) break;
+
         ref
             .read(teachersTinderControllerProvider.notifier)
-            .selectSmashSuggestion(previousIndex);
-        context.pushNamed(TeacherRequiredRatingScreen.name);
+            .selectSmashSuggestion(teacherSuggestion);
+
+        context.pushNamed(
+          TeacherRequiredRatingScreen.name,
+          extra: teacherSuggestion,
+        );
         break;
       default:
         break;
@@ -145,7 +153,7 @@ class TeachersCardSwiper extends StatelessWidget {
           context: context,
           builder: (context) => AlertDialog(
             content: Center(
-              child: Column(  
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
@@ -168,7 +176,6 @@ class TeachersCardSwiper extends StatelessWidget {
                       ),
                     ),
                   ),
-                  
                 ],
               ),
             ),

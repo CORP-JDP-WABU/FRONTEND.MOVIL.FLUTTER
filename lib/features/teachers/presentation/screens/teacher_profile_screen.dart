@@ -72,6 +72,7 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
                     ),
                   ),
                   TeacherProfileCourses(
+                    teacher: teacher,
                     teacherCourses: teacherProfile.courseInCareer,
                   ),
                   const SizedBox(
@@ -94,6 +95,7 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
                     ),
                   ),
                   TeacherProfileCourses(
+                    teacher: teacher,
                     teacherCourses: teacherProfile.courseInOtherCareer,
                   ),
                   const SizedBox(

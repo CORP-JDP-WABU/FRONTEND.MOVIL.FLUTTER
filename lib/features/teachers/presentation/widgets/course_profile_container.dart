@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/elevated_circle_button.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
+import 'package:wabu/features/smash/domain/domain.dart';
+import 'package:wabu/features/smash/presentation/presentation.dart';
 import 'package:wabu/features/teachers/domain/domain.dart';
 
-class CourseProfileContainer extends StatelessWidget {
+class CourseProfileContainer extends ConsumerWidget {
   const CourseProfileContainer({
     super.key,
+    required this.teacher,
     required this.course,
   });
 
+  final TeacherV2 teacher;
   final TeacherCourseV2 course;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       children: [
         Expanded(
@@ -106,7 +111,28 @@ class CourseProfileContainer extends StatelessWidget {
         ElevatedCircleButton(
           backgroundColor: AppTheme.smashTeacherBackgroundButton,
           padding: 0,
-          onPressed: () {},
+          onPressed: () {
+            final teacherSuggestion = SmashSuggestion(
+              course: SmashSuggestionCourse(
+                idCourse: course.id,
+                name: course.name,
+              ),
+              teacher: SmashSuggestionTeacher(
+                idTeacher: teacher.id,
+                firstName: teacher.firstName,
+                lastName: teacher.lastName,
+                photoUrl: teacher.photoUrl,
+              ),
+            );
+            ref
+                .read(teachersTinderControllerProvider.notifier)
+                .selectSmashSuggestion(teacherSuggestion);
+
+            context.pushNamed(
+              TeacherRequiredRatingScreen.name,
+              extra: teacherSuggestion,
+            );
+          },
           child: SvgPicture.asset(
             'assets/images/svgs/smash_button.svg',
             width: 17,

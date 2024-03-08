@@ -5,6 +5,7 @@ import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
 import 'package:wabu/features/search/presentation/presentation.dart';
+import 'package:wabu/features/smash/domain/domain.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
 import 'package:wabu/features/teachers/teachers.dart';
 import 'package:wabu/features/university/university.dart';
@@ -118,7 +119,10 @@ final appRouter = GoRouter(
       name: TeacherRequiredRatingScreen.name,
       path: TeacherRequiredRatingScreen.route,
       builder: (context, state) {
-        return const TeacherRequiredRatingScreen();
+        final smashSuggestion = state.extra! as SmashSuggestion;
+        return TeacherRequiredRatingScreen(
+          smashSuggestion: smashSuggestion,
+        );
       },
     ),
     GoRoute(

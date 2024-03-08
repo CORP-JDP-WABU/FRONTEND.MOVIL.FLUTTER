@@ -7,7 +7,7 @@ import 'package:wabu/features/smash/presentation/presentation.dart';
 
 part 'teachers_tinder_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class TeachersTinderController extends _$TeachersTinderController {
   @override
   TeachersTinderState build() => const TeachersTinderState();
@@ -70,11 +70,12 @@ class TeachersTinderController extends _$TeachersTinderController {
     }
   }
 
-  void selectSmashSuggestion(int index) {
+  void selectSmashSuggestion(SmashSuggestion smashSuggestion) {
     state = state.copyWith(
-      selectedSmashSuggestion: state.smashSuggestions?[index],
+      selectedSmashSuggestion: smashSuggestion,
       teacherQualification: const TeacherQualification(),
       teacherComment: const TeacherComment(),
+      pageStatus: TeachersTinderStatus.loaded,
     );
   }
 

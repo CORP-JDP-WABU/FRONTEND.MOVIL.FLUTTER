@@ -5,9 +5,11 @@ import 'course_profile_container.dart';
 class TeacherProfileCourses extends StatelessWidget {
   const TeacherProfileCourses({
     super.key,
+    required this.teacher,
     required this.teacherCourses,
   });
 
+  final TeacherV2 teacher;
   final List<TeacherCourseV2> teacherCourses;
 
   @override
@@ -18,6 +20,7 @@ class TeacherProfileCourses extends StatelessWidget {
       itemCount: teacherCourses.length,
       itemBuilder: (context, index) {
         return CourseProfileContainer(
+          teacher: teacher,
           course: teacherCourses[index],
         );
       },
