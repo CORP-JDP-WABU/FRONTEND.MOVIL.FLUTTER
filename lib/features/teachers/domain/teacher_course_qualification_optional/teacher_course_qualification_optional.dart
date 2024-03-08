@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/features/teachers/domain/domain.dart';
 
 part 'teacher_course_qualification_optional.freezed.dart';
 part 'teacher_course_qualification_optional.g.dart';

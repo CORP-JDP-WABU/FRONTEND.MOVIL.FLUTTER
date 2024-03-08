@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/features/teachers/domain/domain.dart';
 
 import 'course_profile_container.dart';
 

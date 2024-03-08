@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/features/teachers/domain/domain.dart';
 import 'package:wabu/features/teachers/presentation/widgets/teacher_profile_card_details.dart';
 import 'package:wabu/features/teachers/presentation/widgets/teacher_profile_card_header.dart';
 import 'package:wabu/features/teachers/presentation/widgets/teacher_profile_courses.dart';

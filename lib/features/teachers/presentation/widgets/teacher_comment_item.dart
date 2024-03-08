@@ -3,7 +3,7 @@ import 'package:wabu/common/widgets/gradient_circle_avatar.dart';
 import 'package:wabu/common/widgets/selected_button.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/constants/globals.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/features/teachers/domain/domain.dart';
 
 class TeacherCommentItem extends StatelessWidget {
   const TeacherCommentItem({
