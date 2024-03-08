@@ -21,6 +21,7 @@ mixin _$LogInState {
   String? get utilError => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
   FormStatus get formStatus => throw _privateConstructorUsedError;
+  LoginStatus get loginStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LogInStateCopyWith<LogInState> get copyWith =>
@@ -38,7 +39,8 @@ abstract class $LogInStateCopyWith<$Res> {
       Password password,
       String? utilError,
       bool isValid,
-      FormStatus formStatus});
+      FormStatus formStatus,
+      LoginStatus loginStatus});
 }
 
 /// @nodoc
@@ -59,6 +61,7 @@ class _$LogInStateCopyWithImpl<$Res, $Val extends LogInState>
     Object? utilError = freezed,
     Object? isValid = null,
     Object? formStatus = null,
+    Object? loginStatus = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -81,6 +84,10 @@ class _$LogInStateCopyWithImpl<$Res, $Val extends LogInState>
           ? _value.formStatus
           : formStatus // ignore: cast_nullable_to_non_nullable
               as FormStatus,
+      loginStatus: null == loginStatus
+          ? _value.loginStatus
+          : loginStatus // ignore: cast_nullable_to_non_nullable
+              as LoginStatus,
     ) as $Val);
   }
 }
@@ -98,7 +105,8 @@ abstract class _$$LogInStateImplCopyWith<$Res>
       Password password,
       String? utilError,
       bool isValid,
-      FormStatus formStatus});
+      FormStatus formStatus,
+      LoginStatus loginStatus});
 }
 
 /// @nodoc
@@ -117,6 +125,7 @@ class __$$LogInStateImplCopyWithImpl<$Res>
     Object? utilError = freezed,
     Object? isValid = null,
     Object? formStatus = null,
+    Object? loginStatus = null,
   }) {
     return _then(_$LogInStateImpl(
       email: null == email
@@ -139,6 +148,10 @@ class __$$LogInStateImplCopyWithImpl<$Res>
           ? _value.formStatus
           : formStatus // ignore: cast_nullable_to_non_nullable
               as FormStatus,
+      loginStatus: null == loginStatus
+          ? _value.loginStatus
+          : loginStatus // ignore: cast_nullable_to_non_nullable
+              as LoginStatus,
     ));
   }
 }
@@ -151,7 +164,8 @@ class _$LogInStateImpl implements _LogInState {
       required this.password,
       this.utilError = null,
       this.isValid = false,
-      this.formStatus = FormStatus.empty});
+      this.formStatus = FormStatus.empty,
+      this.loginStatus = LoginStatus.initial});
 
   @override
   final Email email;
@@ -166,10 +180,13 @@ class _$LogInStateImpl implements _LogInState {
   @override
   @JsonKey()
   final FormStatus formStatus;
+  @override
+  @JsonKey()
+  final LoginStatus loginStatus;
 
   @override
   String toString() {
-    return 'LogInState(email: $email, password: $password, utilError: $utilError, isValid: $isValid, formStatus: $formStatus)';
+    return 'LogInState(email: $email, password: $password, utilError: $utilError, isValid: $isValid, formStatus: $formStatus, loginStatus: $loginStatus)';
   }
 
   @override
@@ -184,12 +201,14 @@ class _$LogInStateImpl implements _LogInState {
                 other.utilError == utilError) &&
             (identical(other.isValid, isValid) || other.isValid == isValid) &&
             (identical(other.formStatus, formStatus) ||
-                other.formStatus == formStatus));
+                other.formStatus == formStatus) &&
+            (identical(other.loginStatus, loginStatus) ||
+                other.loginStatus == loginStatus));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, utilError, isValid, formStatus);
+  int get hashCode => Object.hash(runtimeType, email, password, utilError,
+      isValid, formStatus, loginStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -204,7 +223,8 @@ abstract class _LogInState implements LogInState {
       required final Password password,
       final String? utilError,
       final bool isValid,
-      final FormStatus formStatus}) = _$LogInStateImpl;
+      final FormStatus formStatus,
+      final LoginStatus loginStatus}) = _$LogInStateImpl;
 
   @override
   Email get email;
@@ -216,6 +236,8 @@ abstract class _LogInState implements LogInState {
   bool get isValid;
   @override
   FormStatus get formStatus;
+  @override
+  LoginStatus get loginStatus;
   @override
   @JsonKey(ignore: true)
   _$$LogInStateImplCopyWith<_$LogInStateImpl> get copyWith =>

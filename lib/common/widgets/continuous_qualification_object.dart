@@ -72,7 +72,6 @@ class _ContinuousBar extends StatelessWidget {
               maxLines: 1,
               style: const TextStyle(
                 fontSize: 9,
-                fontFamily: 'Inter',
                 color: Colors.white,
               ),
             ),

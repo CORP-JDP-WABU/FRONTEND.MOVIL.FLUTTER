@@ -8,8 +8,10 @@ class TeacherCourseStudentComment with _$TeacherCourseStudentComment {
   const factory TeacherCourseStudentComment(
     List<String>? likes,
     List<String>? dislikes,
+    String? photoUrl,
     String? fullName,
     String? comment,
+    String? createdAtString,
   ) = _TeacherCourseStudentComment;
 
   factory TeacherCourseStudentComment.fromJson(Map<String, dynamic> json) =>

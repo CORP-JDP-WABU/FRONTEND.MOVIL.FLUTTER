@@ -6,7 +6,7 @@ import 'package:wabu/common/enums/form_status.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/authentication/presentation/controllers/code_validation/code_validation_controller.dart';
-import 'package:wabu/features/authentication/presentation/screens/update_info_screen.dart';
+import 'package:wabu/features/update_info/update_info.dart';
 import 'package:wabu/features/authentication/presentation/widgets/welcome_bottom_sheet_content.dart';
 
 class CodeValidationContent extends ConsumerWidget {

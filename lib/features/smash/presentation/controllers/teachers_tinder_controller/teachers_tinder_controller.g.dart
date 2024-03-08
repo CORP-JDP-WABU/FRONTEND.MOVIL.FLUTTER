@@ -7,7 +7,7 @@ part of 'teachers_tinder_controller.dart';
 // **************************************************************************
 
 String _$teachersTinderControllerHash() =>
-    r'33354dea2fee3d2e3d8d2a5ff4750c3e505ce8ca';
+    r'4e3436583ef91078180b28412f972bbfc64b0066';
 
 /// See also [TeachersTinderController].
 @ProviderFor(TeachersTinderController)

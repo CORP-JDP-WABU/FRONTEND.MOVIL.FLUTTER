@@ -6,13 +6,7 @@ import 'package:wabu/common/enums/form_status.dart';
 import 'package:wabu/common/inputs/email.dart';
 import 'package:wabu/common/inputs/new_password.dart';
 import 'package:wabu/constants/globals.dart';
-import 'package:wabu/features/authentication/data/providers.dart';
-import 'package:wabu/features/authentication/domain/models/auth_keys/auth_keys.dart';
-import 'package:wabu/features/authentication/domain/models/encrypted_form/encrypted_form.dart';
-import 'package:wabu/features/authentication/domain/models/student/student.dart';
-import 'package:wabu/features/authentication/presentation/controllers/sign_up/sign_up_state.dart';
-import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_controller.dart';
-import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_state.dart';
+import 'package:wabu/features/authentication/authentication.dart';
 import 'package:wabu/utils/cipher.dart';
 
 part 'sign_up_controller.g.dart';

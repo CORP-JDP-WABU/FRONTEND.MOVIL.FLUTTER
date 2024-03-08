@@ -1,7 +1,5 @@
 import 'package:go_router/go_router.dart';
 import 'package:wabu/features/authentication/presentation/screens/splash_screen.dart';
-import 'package:wabu/features/authentication/presentation/screens/terms_screen.dart';
-import 'package:wabu/features/authentication/presentation/screens/update_info_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
@@ -12,6 +10,8 @@ import 'package:wabu/features/teachers/domain/entities.dart';
 import 'package:wabu/features/teachers/domain/teacher_course_extra/teacher_course_extra.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
 import 'package:wabu/features/teachers/presentation/screens/teacher_profile_screen.dart';
+import 'package:wabu/features/university/university.dart';
+import 'package:wabu/features/update_info/update_info.dart';
 
 final appRouter = GoRouter(
   initialLocation: SplashScreen.route,
@@ -35,6 +35,13 @@ final appRouter = GoRouter(
       path: UpdateInfoScreen.route,
       builder: (context, state) {
         return const UpdateInfoScreen();
+      },
+    ),
+    GoRoute(
+      name: AddUniversityScreen.name,
+      path: AddUniversityScreen.route,
+      builder: (context, state) {
+        return const AddUniversityScreen();
       },
     ),
     GoRoute(

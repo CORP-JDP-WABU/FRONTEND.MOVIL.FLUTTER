@@ -7,13 +7,7 @@ import 'package:wabu/common/enums/form_status.dart';
 import 'package:wabu/common/inputs/email.dart';
 import 'package:wabu/common/inputs/password.dart';
 import 'package:wabu/constants/globals.dart';
-import 'package:wabu/features/authentication/data/providers.dart';
-import 'package:wabu/features/authentication/domain/models/auth_keys/auth_keys.dart';
-import 'package:wabu/features/authentication/domain/models/encrypted_form/encrypted_form.dart';
-import 'package:wabu/features/authentication/domain/models/token/token.dart';
-import 'package:wabu/features/authentication/presentation/controllers/log_in/log_in_state.dart';
-import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_controller.dart';
-import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_state.dart';
+import 'package:wabu/features/authentication/authentication.dart';
 import 'package:wabu/utils/cipher.dart';
 
 part 'log_in_controller.g.dart';
@@ -59,10 +53,6 @@ class LogInController extends _$LogInController {
           .read(welcomePageControllerProvider.notifier)
           .setPageStatus(WelcomeStatus.posting);
 
-//   final studentExample = {
-//     'email': 'majosga_19@hotmail.com',
-//     'password': 'chugaroil19',
-//   };
       try {
         final authRepository = ref.watch(authRepositoryProvider);
         final getKeysResult = await authRepository.getKeys();
@@ -75,7 +65,7 @@ class LogInController extends _$LogInController {
 
           logInResult.fold((Failure failure) {
             switch (failure.errorCode) {
-              case "LOGIN_EMAIL_FAILED":
+              case 'LOGIN_EMAIL_FAILED':
                 state = state.copyWith(
                   formStatus: FormStatus.invalid,
                 );
@@ -86,11 +76,18 @@ class LogInController extends _$LogInController {
                     .addPage(WelcomePage.signUp);
                 setPageIdle();
                 break;
-              case "LOGIN_PASSWORD_FAILED":
+              case 'LOGIN_PASSWORD_FAILED':
                 state = state.copyWith(
                   utilError:
                       'Parece que esta contraseña no es la correcta \u26A0',
                   formStatus: FormStatus.invalid,
+                );
+                setPageIdle();
+                break;
+              case 'UNIVERSITY_NOT_FOUND':
+                state = state.copyWith(
+                  formStatus: FormStatus.invalid,
+                  loginStatus: LoginStatus.noUniversity,
                 );
                 setPageIdle();
                 break;
