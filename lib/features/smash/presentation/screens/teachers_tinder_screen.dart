@@ -85,7 +85,7 @@ class _TeacheresTinderScreenContentState
         if (teacherSuggestion == null) break;
 
         ref
-            .read(teachersTinderControllerProvider.notifier)
+            .read(teachersQualificationControllerProvider.notifier)
             .selectSmashSuggestion(teacherSuggestion);
 
         context.pushNamed(

@@ -19,18 +19,25 @@ class TeacherRequiredRatingScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(teachersTinderControllerProvider);
-    final isLoading = state.pageStatus == TeachersTinderStatus.loading;
+    final state = ref.watch(teachersQualificationControllerProvider);
+    final isLoading =
+        state.teacherQualificationStatus == TeacherQualificationStatus.loading;
 
     return TeachersTinderWrapper(
       isLoading: isLoading,
-      content: const _TeacherRequiredRatingContent(),
+      content: _TeacherRequiredRatingContent(
+        smashSuggestion: smashSuggestion,
+      ),
     );
   }
 }
 
 class _TeacherRequiredRatingContent extends ConsumerWidget {
-  const _TeacherRequiredRatingContent();
+  const _TeacherRequiredRatingContent({
+    required this.smashSuggestion,
+  });
+
+  final SmashSuggestion smashSuggestion;
 
   bool hasAllRequired(
       TeacherQualificationRequired teacherQualificationRequired) {
@@ -41,8 +48,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(teachersTinderControllerProvider);
-    final smashSuggestion = state.selectedSmashSuggestion;
+    final state = ref.watch(teachersQualificationControllerProvider);
     final teacherQualificationRequired = state.teacherQualification.required;
     final isButtonActive = hasAllRequired(teacherQualificationRequired);
 
@@ -66,7 +72,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                 children: [
                   const SizedBox(height: 80),
                   Text(
-                    smashSuggestion?.teacher?.lastName ?? '',
+                    smashSuggestion.teacher?.lastName ?? '',
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -77,7 +83,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                     ),
                   ),
                   Text(
-                    smashSuggestion?.teacher?.firstName ?? '',
+                    smashSuggestion.teacher?.firstName ?? '',
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -89,7 +95,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    smashSuggestion?.course?.name ?? '',
+                    smashSuggestion.course?.name ?? '',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
@@ -127,7 +133,8 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         count: 5,
                         onRatingUpdate: (rating) {
                           ref
-                              .read(teachersTinderControllerProvider.notifier)
+                              .read(teachersQualificationControllerProvider
+                                  .notifier)
                               .setLearn(rating);
                         },
                       ),
@@ -139,7 +146,8 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         count: 5,
                         onRatingUpdate: (rating) {
                           ref
-                              .read(teachersTinderControllerProvider.notifier)
+                              .read(teachersQualificationControllerProvider
+                                  .notifier)
                               .setHight(rating);
                         },
                       ),
@@ -151,7 +159,8 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         count: 5,
                         onRatingUpdate: (rating) {
                           ref
-                              .read(teachersTinderControllerProvider.notifier)
+                              .read(teachersQualificationControllerProvider
+                                  .notifier)
                               .setGoodPeople(rating);
                         },
                       ),
@@ -170,6 +179,11 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                     onPressed: () {
                       if (!isButtonActive) return;
 
+                      ref
+                          .read(
+                              teachersQualificationControllerProvider.notifier)
+                          .selectSmashSuggestion(smashSuggestion);
+
                       context.pushNamed(TeacherRaitingStep2Screen.name);
                     },
                   ),
@@ -184,7 +198,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                 borderWidth: 3,
                 borderColor: Colors.white,
                 imageProvider:
-                    NetworkImage(smashSuggestion?.teacher?.photoUrl ?? ''),
+                    NetworkImage(smashSuggestion.teacher?.photoUrl ?? ''),
               ),
             ),
           ],

@@ -1,2 +1,4 @@
 export 'teachers_tinder_controller/teachers_tinder_controller.dart';
 export 'teachers_tinder_controller/teachers_tinder_state.dart';
+export 'teachers_qualification_controller/teachers_qualification_controller.dart';
+export 'teachers_qualification_controller/teachers_qualification_state.dart';

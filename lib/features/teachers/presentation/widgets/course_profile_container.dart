@@ -124,9 +124,6 @@ class CourseProfileContainer extends ConsumerWidget {
                 photoUrl: teacher.photoUrl,
               ),
             );
-            ref
-                .read(teachersTinderControllerProvider.notifier)
-                .selectSmashSuggestion(teacherSuggestion);
 
             context.pushNamed(
               TeacherRequiredRatingScreen.name,
