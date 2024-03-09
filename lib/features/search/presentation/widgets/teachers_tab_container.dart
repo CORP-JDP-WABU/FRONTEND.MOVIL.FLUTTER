@@ -23,9 +23,13 @@ class TeachersTabContainer extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
             child: Image.network(
+              alignment: Alignment.topCenter,
               teacher.photoUrl ?? '',
               height: 100,
-              fit: BoxFit.contain,
+              width: double.infinity,
+             fit: BoxFit.cover
+             
+             ,
             ),
           ),
           SizedBox(height: 8),
