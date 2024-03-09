@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:wabu/utils/human_formats.dart';
+import 'package:countup/countup.dart';
 
 class HomeDashboardItem extends StatelessWidget {
   const HomeDashboardItem({
@@ -149,14 +149,17 @@ class _DashboardItemIndicator extends StatelessWidget {
           percent: 1,
           circularStrokeCap: CircularStrokeCap.round,
         ),
-        Text(
-          HumanFormats.humanReadableNumber(value),
+        Countup(
+          begin: 0,
+          end: value.toDouble(),
+          duration: const Duration(seconds: 3),
+          separator: ',',
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
             color: color,
           ),
-        ),
+        )
       ],
     );
   }
