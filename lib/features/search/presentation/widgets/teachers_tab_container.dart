@@ -7,7 +7,6 @@ import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/search/domain/teachers_search_result/teachers_search_result.dart';
 import 'package:wabu/features/teachers/teachers.dart';
 
-
 class TeachersTabContainer extends StatelessWidget {
   const TeachersTabContainer({
     super.key,
@@ -27,9 +26,11 @@ class TeachersTabContainer extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
               child: Image.network(
+                alignment: Alignment.topCenter,
                 teacher.photoUrl ?? '',
                 height: 100,
-                fit: BoxFit.contain,
+                width: double.infinity,
+                fit: BoxFit.cover,
               ),
             ),
             SizedBox(height: 8),
