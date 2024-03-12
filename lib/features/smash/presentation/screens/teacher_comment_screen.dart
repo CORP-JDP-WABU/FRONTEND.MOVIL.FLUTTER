@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
+import 'package:wabu/features/teachers/teachers.dart';
 
 class TeacherCommentScreen extends ConsumerWidget {
   const TeacherCommentScreen({super.key});
@@ -16,8 +16,9 @@ class TeacherCommentScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(teachersTinderControllerProvider);
-    final isLoading = state.pageStatus == TeachersTinderStatus.loading;
+    final state = ref.watch(teachersQualificationControllerProvider);
+    final isLoading =
+        state.teacherQualificationStatus == TeacherQualificationStatus.loading;
 
     return TeachersTinderWrapper(
       isLoading: isLoading,
@@ -53,14 +54,25 @@ class _TeacherRequiredRatingContentState
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(teachersTinderControllerProvider);
+    final state = ref.watch(teachersQualificationControllerProvider);
     final smashSuggestion = state.selectedSmashSuggestion;
 
     commentController.text = state.teacherComment.comment;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (state.qualificationStatus == TeacherQualificationStatus.loaded) {
+      if (state.teacherQualificationStatus ==
+          TeacherQualificationStatus.loaded) {
         showConfirmationDialog(context);
+      }
+
+      if (state.teacherQualificationStatus ==
+          TeacherQualificationStatus.error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content:
+                Text('Ocurrió un problema. Vuelve a intentarlo más tarde.'),
+          ),
+        );
       }
     });
 
@@ -161,8 +173,9 @@ class _TeacherRequiredRatingContentState
                               },
                               onChanged: (value) {
                                 ref
-                                    .read(teachersTinderControllerProvider
-                                        .notifier)
+                                    .read(
+                                        teachersQualificationControllerProvider
+                                            .notifier)
                                     .setComment(value);
                               },
                             ),
@@ -187,8 +200,8 @@ class _TeacherRequiredRatingContentState
                             ),
                             onTap: () {
                               ref
-                                  .read(
-                                      teachersTinderControllerProvider.notifier)
+                                  .read(teachersQualificationControllerProvider
+                                      .notifier)
                                   .submitQualification(false);
                             }),
                         CustomFilledButton(
@@ -206,7 +219,8 @@ class _TeacherRequiredRatingContentState
                           ),
                           onPressed: () {
                             ref
-                                .read(teachersTinderControllerProvider.notifier)
+                                .read(teachersQualificationControllerProvider
+                                    .notifier)
                                 .submitQualification(true);
                           },
                         ),
@@ -237,6 +251,7 @@ class _TeacherRequiredRatingContentState
     showDialog(
       context: context,
       builder: (BuildContext context) {
+        print('Dialog');
         return AlertDialog(
           content: Column(
             mainAxisSize: MainAxisSize.min,
@@ -263,11 +278,13 @@ class _TeacherRequiredRatingContentState
         );
       },
     ).then((value) {
-      context.pop();
-      if (ModalRoute.of(context)?.settings.name == SmashView.name) return;
-      context.pop();
-      if (ModalRoute.of(context)?.settings.name == SmashView.name) return;
-      context.pop();
+      Navigator.popUntil(
+        context,
+        (route) {
+          return ModalRoute.withName(TeacherProfileScreen.name).call(route) ||
+              ModalRoute.withName(TeachersTinderScreen.name).call(route);
+        },
+      );
     });
   }
 }

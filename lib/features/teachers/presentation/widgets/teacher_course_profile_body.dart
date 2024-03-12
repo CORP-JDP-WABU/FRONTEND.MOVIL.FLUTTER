@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wabu/common/widgets/no_qualifications_found_widget.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/features/teachers/domain/domain.dart';
 import 'package:wabu/features/teachers/presentation/widgets/widgets.dart';
 
 class TeacherProfileBody extends StatelessWidget {
