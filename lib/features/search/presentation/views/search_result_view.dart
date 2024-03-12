@@ -113,7 +113,7 @@ class _SearchResultViewState extends ConsumerState<SearchResultView>
                           },
                           icon:
                               SvgPicture.asset('assets/images/svgs/search.svg'),
-                        )
+                        ),
                       ],
                     ),
                   ),

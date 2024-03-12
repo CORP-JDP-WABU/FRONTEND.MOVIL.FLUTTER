@@ -1,14 +1,12 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:wabu/common/data/failure/failure.dart';
+import 'package:wabu/common/data/data.dart';
 import 'package:wabu/constants/globals.dart';
-import 'package:wabu/features/teachers/data/providers.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
-import 'package:wabu/features/teachers/presentation/controllers/controllers.dart';
+import 'package:wabu/features/teachers/teachers.dart';
 
 part 'teacher_course_profile_controller.g.dart';
 
 @riverpod
-class TeacherProfileController extends _$TeacherProfileController {
+class TeacherCourseProfileController extends _$TeacherCourseProfileController {
   @override
   TeacherCourseProfileState build() => const TeacherCourseProfileState();
 

@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wabu/common/data/failure/failure.dart';
 import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/teachers/data/providers.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/features/teachers/domain/domain.dart';
 import 'package:wabu/features/teachers/presentation/controllers/controllers.dart';
 
 part 'career_teachers_controller.g.dart';

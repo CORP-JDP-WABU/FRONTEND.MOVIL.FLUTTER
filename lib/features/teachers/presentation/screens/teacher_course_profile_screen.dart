@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wabu/common/widgets/loader_transparent.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/teachers/domain/teacher_course_extra/teacher_course_extra.dart';
-import 'package:wabu/features/teachers/presentation/controllers/controllers.dart';
-import 'package:wabu/features/teachers/presentation/widgets/widgets.dart';
+import 'package:wabu/features/teachers/teachers.dart';
 
 class TeacherCourseProfileScreen extends ConsumerStatefulWidget {
   const TeacherCourseProfileScreen({
@@ -26,7 +24,7 @@ class _TeacherCourseProfileScreenState
   @override
   void initState() {
     super.initState();
-    ref.read(teacherProfileControllerProvider.notifier).fetchData(
+    ref.read(teacherCourseProfileControllerProvider.notifier).fetchData(
           widget.teacherCourse.teacherId,
           widget.teacherCourse.courseId,
         );
@@ -34,7 +32,7 @@ class _TeacherCourseProfileScreenState
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(teacherProfileControllerProvider);
+    final state = ref.watch(teacherCourseProfileControllerProvider);
     final teacher = state.teacher;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -45,7 +43,7 @@ class _TeacherCourseProfileScreenState
                 Text('Ocurrión un problema. Vuelve a intentarlo más tarde.'),
           ),
         );
-        ref.read(teacherProfileControllerProvider.notifier).setPageIdle();
+        ref.read(teacherCourseProfileControllerProvider.notifier).setPageIdle();
       }
     });
 

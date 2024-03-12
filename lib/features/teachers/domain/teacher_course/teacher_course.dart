@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/features/teachers/domain/domain.dart';
 
 part 'teacher_course.freezed.dart';
 part 'teacher_course.g.dart';
@@ -14,7 +14,6 @@ class TeacherCourse with _$TeacherCourse {
     int? manyComments,
     List<TeacherCourseQualificationOptional>? optionalQualifications,
     List<TeacherCourseQualificationRequired>? requiredQualifications,
-
   }) = _TeacherCourse;
 
   factory TeacherCourse.fromJson(Map<String, dynamic> json) => _$TeacherCourseFromJson(json);

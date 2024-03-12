@@ -1,9 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:wabu/common/data/failure/failure.dart';
-import 'package:wabu/common/data/response/response_dto.dart';
+import 'package:wabu/common/data/data.dart';
 import 'package:wabu/config/api/api.dart';
-import 'package:wabu/features/teachers/data/datasources/teachers_remote_datasource.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/features/teachers/teachers.dart';
 
 class TeachersDioDatasource extends TeachersRemoteDatasource {
   final dio = ApiClientToken.instance.universityClient.dio;
@@ -13,7 +11,6 @@ class TeachersDioDatasource extends TeachersRemoteDatasource {
       String teacherId, String courseId) async {
     final response = await dio.get(
       'teacher/v1.0/$teacherId/course/$courseId/comment',
-    
     );
 
     if (response.statusCode != 200) {
@@ -70,5 +67,26 @@ class TeachersDioDatasource extends TeachersRemoteDatasource {
             CareerTeacherCourse.careerTeacherCoursesFromJson(jsons as List));
 
     return Right(getCareerTeachersResponse.data);
+  }
+
+  @override
+  Future<Either<Failure, TeacherProfile>> getTeacherProfile(
+      String teacherId, String careerId) async {
+    final response = await dio.get(
+      'teacher/v1.0/$teacherId/career/$careerId',
+    );
+
+    if (response.statusCode != 200) {
+      final failureResponse = Failure.fromJson(response.data);
+
+      return Left(failureResponse);
+    }
+
+    final getTeacherProfileResponse = ResponseDto.fromJson(
+      response.data,
+      (json) => TeacherProfile.fromJson(json as Map<String, dynamic>),
+    );
+
+    return Right(getTeacherProfileResponse.data);
   }
 }

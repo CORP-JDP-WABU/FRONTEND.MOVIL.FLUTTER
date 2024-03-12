@@ -2,12 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:wabu/common/data/data.dart';
 import 'package:wabu/config/api/api.dart';
 import 'package:wabu/constants/status_code.dart';
-import 'package:wabu/features/authentication/data/datasources/account_remote_datasource.dart';
-import 'package:wabu/features/authentication/domain/models/code_validation_result/code_validation_result.dart';
-import 'package:wabu/features/authentication/domain/models/encrypted_form/encrypted_form.dart';
-import 'package:wabu/features/authentication/domain/models/student/student.dart';
-import 'package:wabu/features/authentication/domain/models/update_info_form/update_info_form.dart';
-import 'package:wabu/features/authentication/domain/models/update_info_form_result/update_info_form_result.dart';
+import 'package:wabu/features/authentication/authentication.dart';
 
 class AccountDioDataSource extends AccountRemoteDatasource {
   final dio = ApiClient.instance.securityClient.dio;
@@ -31,28 +26,6 @@ class AccountDioDataSource extends AccountRemoteDatasource {
             (json as Map<String, dynamic>)['messageId']));
 
     return Right(registerResponse.data);
-  }
-
-  @override
-  Future<Either<Failure, UpdateInfoFormResult>> updateRegistrationInfo(
-      UpdateInfoForm updateInfoForm) async {
-    final response = await dio.patch(
-      'account/v1.0/register',
-      data: updateInfoForm.toJson(),
-    );
-
-    if (response.statusCode != 200) {
-      final failureResponse = Failure.fromJson(response.data);
-
-      return Left(failureResponse);
-    }
-
-    final updateRegistrationInfoResult =
-        ResponseDto.fromJson(response.data, (json) {
-      return UpdateInfoFormResult.fromJson((json as Map<String, dynamic>));
-    });
-
-    return Right(updateRegistrationInfoResult.data);
   }
 
   @override

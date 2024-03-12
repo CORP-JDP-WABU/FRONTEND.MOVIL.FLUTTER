@@ -15,8 +15,9 @@ class TeacherRaitingStep2Screen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(teachersTinderControllerProvider);
-    final isLoading = state.pageStatus == TeachersTinderStatus.loading;
+    final state = ref.watch(teachersQualificationControllerProvider);
+    final isLoading =
+        state.teacherQualificationStatus == TeacherQualificationStatus.loading;
 
     return TeachersTinderWrapper(
       isLoading: isLoading,
@@ -37,7 +38,7 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(teachersTinderControllerProvider);
+    final state = ref.watch(teachersQualificationControllerProvider);
     final smashSuggestion = state.selectedSmashSuggestion;
 
     return LayoutBuilder(
@@ -127,7 +128,8 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                           value: 0,
                           onSelected: (index) {
                             ref
-                                .read(teachersTinderControllerProvider.notifier)
+                                .read(teachersQualificationControllerProvider
+                                    .notifier)
                                 .setWorked(index + 1);
                           },
                         ),
@@ -144,7 +146,8 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                           value: 0,
                           onSelected: (index) {
                             ref
-                                .read(teachersTinderControllerProvider.notifier)
+                                .read(teachersQualificationControllerProvider
+                                    .notifier)
                                 .setLate(index + 1);
                           },
                         ),
@@ -161,7 +164,8 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                           value: 0,
                           onSelected: (index) {
                             ref
-                                .read(teachersTinderControllerProvider.notifier)
+                                .read(teachersQualificationControllerProvider
+                                    .notifier)
                                 .setAssistance(index + 1);
                           },
                         ),
@@ -251,7 +255,6 @@ class _ContinuousQualification extends State<ContinuousQualification> {
               children: [
                 SvgPicture.asset(
                   'assets/images/svgs/${widget.asset}.svg',
-                  
                 ),
                 const SizedBox(width: 16),
                 Expanded(
@@ -282,7 +285,7 @@ class _ContinuousQualification extends State<ContinuousQualification> {
 
               return SizedBox(
                 height: 24,
-                width: width ,
+                width: width,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -297,7 +300,8 @@ class _ContinuousQualification extends State<ContinuousQualification> {
                           widget.onSelected(i);
                         },
                         style: ButtonStyle(
-                          padding: MaterialStateProperty.all(const EdgeInsets.all(5)),
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(5)),
                           fixedSize:
                               MaterialStateProperty.all(const Size(62, 24)),
                           backgroundColor: MaterialStateProperty.all(

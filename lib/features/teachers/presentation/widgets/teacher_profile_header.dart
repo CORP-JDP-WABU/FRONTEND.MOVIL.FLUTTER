@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/custom_back_button.dart';
 import 'package:wabu/common/widgets/profile_clipper.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/features/teachers/domain/domain.dart';
 
 class TeacherProfileHeader extends StatelessWidget {
   const TeacherProfileHeader({

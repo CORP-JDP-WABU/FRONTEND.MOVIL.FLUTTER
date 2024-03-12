@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/features/home/domain/domain.dart';
 import 'package:wabu/features/search/presentation/presentation.dart';
+import 'package:wabu/utils/utils.dart';
 
 class SearchViewContent extends ConsumerWidget {
   const SearchViewContent({
@@ -140,14 +141,27 @@ class _SearchDashboard extends StatelessWidget {
           linearGradient: teachersDashboardLinearGradient,
           label: 'Calificaciones a profesores',
           iconAssetPath: 'assets/images/svgs/teachers_dashboard.svg',
-          value: dashboard.kpis?.manyQualificationTeacher ?? 0,
+          child: Text(
+            HumanFormats.humanReadableNumber(
+                dashboard.kpis?.manyQualificationTeacher ?? 0),
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         const SizedBox(width: 16),
         SearchDashboardItem(
           linearGradient: documentsDashboardLinearGradient,
           label: 'Documentos subidos',
           iconAssetPath: 'assets/images/svgs/documents_dashboard.svg',
-          value: dashboard.kpis?.manySharedDocument ?? 0,
+          child: Image.asset(
+            'assets/images/pngs/coming_soon.png',
+            height: 48,
+            fit: BoxFit.fitHeight,
+          ),
         ),
       ],
     );

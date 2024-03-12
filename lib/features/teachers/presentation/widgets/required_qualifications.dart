@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wabu/common/widgets/discrete_bar_qualification.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/constants/globals.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/features/teachers/domain/domain.dart';
 
 class RequiredQualifications extends StatelessWidget {
   const RequiredQualifications({

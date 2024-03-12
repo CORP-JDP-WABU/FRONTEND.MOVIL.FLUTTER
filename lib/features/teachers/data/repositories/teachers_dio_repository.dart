@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:wabu/common/data/failure/failure.dart';
-import 'package:wabu/features/teachers/data/datasources/teachers_remote_datasource.dart';
-import 'package:wabu/features/teachers/data/repositories/teachers_repository.dart';
-import 'package:wabu/features/teachers/domain/entities.dart';
+import 'package:wabu/common/data/data.dart';
+import 'package:wabu/features/teachers/teachers.dart';
 
 class TeachersDioRepository extends TeachersRepository {
   final TeachersRemoteDatasource teachersRemoteDatasource;
@@ -26,5 +24,11 @@ class TeachersDioRepository extends TeachersRepository {
   Future<Either<Failure, List<CareerTeacherCourse>>> getCareerTeachers(
       String careerId) {
     return teachersRemoteDatasource.getCareerTeachers(careerId);
+  }
+
+  @override
+  Future<Either<Failure, TeacherProfile>> getTeacherProfile(
+      String teacherId, String careerId) {
+    return teachersRemoteDatasource.getTeacherProfile(teacherId, careerId);
   }
 }
