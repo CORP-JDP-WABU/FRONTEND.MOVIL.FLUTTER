@@ -27,9 +27,7 @@ class TeachersTabContainer extends StatelessWidget {
               teacher.photoUrl ?? '',
               height: 100,
               width: double.infinity,
-             fit: BoxFit.cover
-             
-             ,
+              fit: BoxFit.cover,
             ),
           ),
           SizedBox(height: 8),
