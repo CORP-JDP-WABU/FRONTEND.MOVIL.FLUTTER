@@ -5,4 +5,7 @@ import 'package:wabu/features/compare/compare.dart';
 abstract class CompareRepository {
   Future<Either<Failure, SearchResult>> getSearchResults(
       String universityId, int skipe, String searchText);
+      
+  Future<Either<Failure, List<CompareTeacher>>> compareTeachers(
+      String universityId, List<String> teacherIds);
 }

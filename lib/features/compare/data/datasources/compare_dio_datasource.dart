@@ -24,9 +24,32 @@ class CompareDioDatasource extends CompareRemoteDatasource {
 
     final getSearchResultResponse = ResponseDto.fromJson(
       response.data,
-      (jsons) => SearchResult.fromJson(jsons as Map<String, dynamic>),
+      (json) => SearchResult.fromJson(json as Map<String, dynamic>),
     );
 
     return Right(getSearchResultResponse.data);
+  }
+  
+  @override
+  Future<Either<Failure, List<CompareTeacher>>> compareTeachers(String universityId, List<String> teacherIds) async {
+    final response = await dio.post(
+      'teacher/v1.0/university/$universityId/compare',
+      data: {
+        "idTeachers": teacherIds,
+      },
+    );
+
+    if (response.statusCode != 201) {
+      final failureResponse = Failure.fromJson(response.data);
+
+      return Left(failureResponse);
+    }
+
+    final compareTeachersResponse = ResponseDto.fromJson(
+      response.data,
+      (jsons) => CompareTeacher.compareTeachersFromJson(jsons as List),
+    );
+
+    return Right(compareTeachersResponse.data);
   }
 }

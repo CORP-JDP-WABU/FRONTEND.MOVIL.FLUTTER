@@ -5,8 +5,8 @@ import 'package:wabu/features/compare/compare.dart';
 import 'package:wabu/features/search/domain/domain.dart';
 import 'package:wabu/utils/utils.dart';
 
-class CompareSearchResult extends ConsumerWidget {
-  const CompareSearchResult({
+class CompareSearchTeacher extends ConsumerWidget {
+  const CompareSearchTeacher({
     super.key,
     required this.isSelected,
     required this.teachersSearchResult,
@@ -97,6 +97,7 @@ class CompareSearchResult extends ConsumerWidget {
           height: 28,
           width: 28,
           child: SelectionButton(
+            isSelected: isSelected,
             onSelect: () {
               ref
                   .read(compareSearchControllerProvider.notifier)
@@ -107,7 +108,6 @@ class CompareSearchResult extends ConsumerWidget {
                   .read(compareSearchControllerProvider.notifier)
                   .unselectTeacher(teachersSearchResult.idTeacher ?? '');
             },
-            isSelected: isSelected,
           ),
         ),
       ],

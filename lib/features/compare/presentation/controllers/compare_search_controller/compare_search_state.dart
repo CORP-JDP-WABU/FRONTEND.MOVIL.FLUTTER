@@ -3,7 +3,13 @@ import 'package:wabu/features/compare/domain/domain.dart';
 
 part 'compare_search_state.freezed.dart';
 
-enum SearchStatus { initial, loading, loaded, error }
+enum SearchStatus {
+  initial,
+  idle,
+  loading,
+  loaded,
+  error,
+}
 
 @freezed
 class CompareSearchState with _$CompareSearchState {

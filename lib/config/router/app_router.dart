@@ -167,5 +167,15 @@ final appRouter = GoRouter(
         return const CompareSearchScreen();
       },
     ),
+    GoRoute(
+      name: CompareTeachers.name,
+      path: CompareTeachers.route,
+      builder: (context, state) {
+        final selectedTeacherIds = state.extra! as List<String>;
+        return CompareTeachers(
+          selectedTeacherIds: selectedTeacherIds,
+        );
+      },
+    ),
   ],
 );

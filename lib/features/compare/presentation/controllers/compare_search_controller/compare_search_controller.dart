@@ -113,4 +113,10 @@ class CompareSearchController extends _$CompareSearchController {
       selectedTeacherIds: selectedTeacherIds,
     );
   }
+
+  void setPageIdle() {
+    state = state.copyWith(
+      searchStatus: SearchStatus.idle,
+    );
+  }
 }

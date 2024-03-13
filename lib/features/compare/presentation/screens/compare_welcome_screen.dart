@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/widgets.dart';
-import 'package:wabu/features/compare/presentation/presentation.dart';
+import 'package:wabu/features/compare/compare.dart';
 
 class CompareWelcomeScreen extends StatelessWidget {
   const CompareWelcomeScreen({super.key});

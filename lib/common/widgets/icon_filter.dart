@@ -4,14 +4,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 class IconFilter extends StatefulWidget {
   const IconFilter({
     super.key,
-    this.isEnabled = false,
     required this.assetName,
     required this.label,
+    this.isEnabled = false,
+    this.onPressed,
   });
 
   final bool isEnabled;
   final String assetName;
   final String label;
+  final Function()? onPressed;
 
   @override
   State<IconFilter> createState() => _IconFilterState();
@@ -33,10 +35,11 @@ class _IconFilterState extends State<IconFilter> {
               backgroundColor: MaterialStatePropertyAll(Colors.white),
               minimumSize: MaterialStatePropertyAll(Size(56, 56)),
             ),
-            onPressed: widget.isEnabled
+            onPressed: widget.isEnabled && widget.onPressed != null
                 ? () {
                     setState(() {
                       isActive = !isActive;
+                      widget.onPressed!();
                     });
                   }
                 : null,

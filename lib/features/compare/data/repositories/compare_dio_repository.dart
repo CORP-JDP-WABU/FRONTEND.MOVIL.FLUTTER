@@ -13,4 +13,10 @@ class CompareDioRepository extends CompareRepository {
     return compareRemoteDatasource.getSearchResults(
         universityId, skipe, searchText);
   }
+
+  @override
+  Future<Either<Failure, List<CompareTeacher>>> compareTeachers(
+      String universityId, List<String> teacherIds) {
+    return compareRemoteDatasource.compareTeachers(universityId, teacherIds);
+  }
 }
