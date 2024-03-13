@@ -159,14 +159,14 @@ class _CommentCardContentFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          createdAt,
-          style: const TextStyle(
-            fontSize: 10,
-            height: 14 / 10,
-            color: AppTheme.teacherCommentBodyColor,
-          ),
-        ),
+        // Text(
+        //   createdAt,
+        //   style: const TextStyle(
+        //     fontSize: 10,
+        //     height: 14 / 10,
+        //     color: AppTheme.teacherCommentBodyColor,
+        //   ),
+        // ),
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
