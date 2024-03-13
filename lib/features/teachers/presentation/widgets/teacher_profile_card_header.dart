@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/custom_back_button.dart';
+// ignore: unused_import
 import 'package:wabu/common/widgets/profile_clipper.dart';
 import 'package:wabu/features/teachers/teachers.dart';
 

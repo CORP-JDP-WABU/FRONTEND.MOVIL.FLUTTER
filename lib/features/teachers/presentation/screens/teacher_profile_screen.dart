@@ -41,58 +41,58 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
-        children: [        
-        Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16),
-          child: Container(
-            height: 360,
-            decoration: const BoxDecoration(
-              color: Colors.white,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16),
+            child: Container(
+              height: 360,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+              ),
             ),
           ),
-        ),
-        ClipPath(
-          clipper: ProfileClipper(),
-          child: Container(
-            height: 400,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color.fromRGBO(54, 181, 236, 1.000),
-                  Color.fromRGBO(47, 163, 240, 1.000),
-                  Color.fromRGBO(38, 137, 245, 1.000),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),   
-            child: Container()        
+          ClipPath(
+            clipper: ProfileClipper(),
+            child: Container(
+                height: 400,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromRGBO(54, 181, 236, 1.000),
+                      Color.fromRGBO(47, 163, 240, 1.000),
+                      Color.fromRGBO(38, 137, 245, 1.000),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+                child: Container()),
           ),
-        ),
-    
           SafeArea(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                 child: Column(
-                  children: [   
+                  children: [
                     TeacherProfileCardDetails(
                       teacher: teacher,
                     ),
                     const SizedBox(height: 16),
                     if (teacherProfile.courseInCareer.isNotEmpty) ...[
-                       Row(
-                         children: [
+                      Row(
+                        children: [
                           Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: SvgPicture.asset(
-                                  'assets/images/svgs/course_icon.svg',
-                                  height: 15,
-                                  width: 15,
-                                ),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: SvgPicture.asset(
+                              'assets/images/svgs/course_icon.svg',
+                              height: 15,
+                              width: 15,
                             ),
-                           const Padding(
-                            padding:EdgeInsets.symmetric(horizontal: 16),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 16),
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
@@ -104,9 +104,9 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
                                 ),
                               ),
                             ),
-                                                 ),
-                         ],
-                       ),
+                          ),
+                        ],
+                      ),
                       TeacherProfileCourses(
                         teacher: teacher,
                         teacherCourses: teacherProfile.courseInCareer,
@@ -114,18 +114,61 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
                       const SizedBox(
                         height: 16,
                       )
+                    ] else ...[
+                      Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: SvgPicture.asset(
+                                'assets/images/svgs/emoji_sad_missing.svg',
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text(
+                                'No hay cursos vinculados a\n este profesor todavía',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color.fromRGBO(191, 191, 191, 1.000),
+                                  fontFamily: 'Gotham Rounded',
+                                  fontSize: 24,
+                                  height: 30 / 26,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text(
+                                '!Puedes sugerirlos en el botón \n arriba a la derecha',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color.fromRGBO(191, 191, 191, 1.000),
+                                  fontFamily: 'Gotham Rounded',
+                                  fontSize: 24,
+                                  height: 30 / 26,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
                     ],
                     if (teacherProfile.courseInOtherCareer.isNotEmpty) ...[
                       Row(
                         children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: SvgPicture.asset(
-                                  'assets/images/svgs/course_icon_alter.svg',
-                                  height: 15,
-                                  width: 15,
-                                ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: SvgPicture.asset(
+                              'assets/images/svgs/course_icon_alter.svg',
+                              height: 15,
+                              width: 15,
                             ),
+                          ),
                           const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 8),
                             child: Align(
@@ -148,6 +191,48 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
                       ),
                       const SizedBox(
                         height: 36,
+                      )
+                    ] else ...[
+                        Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: SvgPicture.asset(
+                                'assets/images/svgs/emoji_sad_missing.svg',
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text(
+                                'No hay cursos vinculados a\n este profesor todavía',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color.fromRGBO(191, 191, 191, 1.000),
+                                  fontFamily: 'Gotham Rounded',
+                                  fontSize: 24,
+                                  height: 30 / 26,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text(
+                                '!Puedes sugerirlos en el botón \n arriba a la derecha',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color.fromRGBO(191, 191, 191, 1.000),
+                                  fontFamily: 'Gotham Rounded',
+                                  fontSize: 24,
+                                  height: 30 / 26,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ],
