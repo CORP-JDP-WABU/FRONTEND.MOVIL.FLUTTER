@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wabu/common/widgets/loader_transparent.dart';
@@ -43,7 +42,7 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Container(
               height: 360,
               decoration: const BoxDecoration(
@@ -81,27 +80,27 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
                     const SizedBox(height: 16),
                     if (teacherProfile.courseInCareer.isNotEmpty) ...[
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: SvgPicture.asset(
-                              'assets/images/svgs/course_icon.svg',
-                              height: 15,
-                              width: 15,
-                            ),
+                          const SizedBox(
+                            width: 8.0,
+                          ),
+                          SvgPicture.asset(
+                            'assets/images/svgs/course_icon.svg',
+                            height: 15,
+                            width: 15,
+                          ),
+                          const SizedBox(
+                            width: 8.0,
                           ),
                           const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 16),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                'Cursos en tu carrera',
-                                style: TextStyle(
-                                  color: Color(0xFF02336A),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            child: Text(
+                              'Cursos en tu carrera',
+                              style: TextStyle(
+                                color: Color(0xFF02336A),
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -115,59 +114,25 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
                         height: 16,
                       )
                     ] else ...[
-                      Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: SvgPicture.asset(
-                                'assets/images/svgs/emoji_sad_missing.svg',
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Text(
-                                'No hay cursos vinculados a\n este profesor todavía',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color.fromRGBO(191, 191, 191, 1.000),
-                                  fontFamily: 'Gotham Rounded',
-                                  fontSize: 24,
-                                  height: 30 / 26,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Text(
-                                '!Puedes sugerirlos en el botón \n arriba a la derecha',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color.fromRGBO(191, 191, 191, 1.000),
-                                  fontFamily: 'Gotham Rounded',
-                                  fontSize: 24,
-                                  height: 30 / 26,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
+                      const UnhappyPath(
+                          texto1:
+                              'No hay cursos vinculados a\n este profesor todavía',
+                          texto2:
+                              '!Puedes sugerirlos en el botón \n arriba a la derecha')
                     ],
                     if (teacherProfile.courseInOtherCareer.isNotEmpty) ...[
                       Row(
                         children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: SvgPicture.asset(
-                              'assets/images/svgs/course_icon_alter.svg',
-                              height: 15,
-                              width: 15,
-                            ),
+                          const SizedBox(
+                            width: 8.0,
+                          ),
+                          SvgPicture.asset(
+                            'assets/images/svgs/course_icon_alter.svg',
+                            height: 15,
+                            width: 15,
+                          ),
+                          const SizedBox(
+                            width: 8.0,
                           ),
                           const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 8),
@@ -193,47 +158,11 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
                         height: 36,
                       )
                     ] else ...[
-                        Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: SvgPicture.asset(
-                                'assets/images/svgs/emoji_sad_missing.svg',
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Text(
-                                'No hay cursos vinculados a\n este profesor todavía',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color.fromRGBO(191, 191, 191, 1.000),
-                                  fontFamily: 'Gotham Rounded',
-                                  fontSize: 24,
-                                  height: 30 / 26,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Text(
-                                '!Puedes sugerirlos en el botón \n arriba a la derecha',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color.fromRGBO(191, 191, 191, 1.000),
-                                  fontFamily: 'Gotham Rounded',
-                                  fontSize: 24,
-                                  height: 30 / 26,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
+                      const UnhappyPath(
+                          texto1:
+                              'No hay cursos vinculados a\n este profesor todavía',
+                          texto2:
+                              '!Puedes sugerirlos en el botón \n arriba a la derecha')
                     ],
                   ],
                 ),
@@ -241,6 +170,58 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
             ),
           ),
           if (isLoading) const LoaderTransparent(),
+        ],
+      ),
+    );
+  }
+}
+
+class UnhappyPath extends StatelessWidget {
+  final String? texto1;
+  final String? texto2;
+
+  const UnhappyPath({super.key, required this.texto1, this.texto2});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SvgPicture.asset(
+              'assets/images/svgs/emoji_sad_missing.svg',
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              texto1 ?? '',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Color(0XFFBFBFBF),
+                fontFamily: 'Gotham Rounded',
+                fontSize: 24,
+                height: 30 / 26,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              texto2 ?? '',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Color(0XFFBFBFBF),
+                fontFamily: 'Gotham Rounded',
+                fontSize: 24,
+                height: 30 / 26,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
         ],
       ),
     );

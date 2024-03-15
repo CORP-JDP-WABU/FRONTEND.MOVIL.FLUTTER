@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/custom_back_button.dart';
+import 'package:wabu/common/widgets/gradient_circle_avatar.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/teachers/teachers.dart';
 
@@ -23,12 +24,11 @@ class TeacherProfileCardDetails extends StatelessWidget {
           color: Colors.white,
           onTap: () => context.pop(),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 32),
         Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(25), bottom: Radius.circular(25)),
+            borderRadius: BorderRadius.circular(25),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.3),
@@ -43,19 +43,12 @@ class TeacherProfileCardDetails extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 30),
             child: Column(
               children: [
-                Material(
-                  shape: const CircleBorder(
-                    side: BorderSide(
-                      color: Colors.blue,
-                      width: 3,
-                    ),
-                  ),
-                  child: CircleAvatar(
-                    radius: 72,
-                    backgroundImage: NetworkImage(teacher.photoUrl),
-                  ),
+                GradientCircleAvatar(
+                  borderWidth: 3,
+                  radius: 72,
+                  imageProvider: NetworkImage(teacher.photoUrl),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 32),
                 Text(
                   teacher.lastName,
                   style: const TextStyle(
@@ -94,8 +87,8 @@ class TeacherProfileCardDetails extends StatelessWidget {
                       ),
                       child: Container(
                         child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 9),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 20, vertical: 9),
                           child: Text(
                             'Sugerir Editar',
                             overflow: TextOverflow.ellipsis,
