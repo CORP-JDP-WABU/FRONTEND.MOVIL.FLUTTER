@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/features/compare/compare.dart';
+import 'package:wabu/features/compare/presentation/widgets/card_view_carrousel_compare.dart';
 import 'package:wabu/features/course/presentation/controllers/controllers.dart';
 import 'package:wabu/features/course/presentation/widgets/card_view_carrousel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -99,68 +100,67 @@ class _CompareTeachers extends ConsumerState<CompareTeachers> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              // teachers.isNotEmpty
-                              //     ? CarouselSlider.builder(
-                              //         itemCount: teachers.length,
-                              //         itemBuilder: (context, index, realIndex) {
-                              //           // return CardViewCarrousel(
-                              //           //   courseTeacher:
-                              //           //       teachers[index],
-                              //           //   courseId: widget.courseId,
-                              //           // );
-                              //           return const Placeholder();
-                              //         },
-                              //         options: CarouselOptions(
-                              //           clipBehavior: Clip.none,
-                              //           height: screenHeigth * 1.2,
-                              //           reverse: true,
-                              //           onPageChanged: (index, reason) =>
-                              //               setState(() => activeIndex = index),
-                              //         ))
-                              //     : Center(
-                              //         child: Column(
-                              //           mainAxisAlignment:
-                              //               MainAxisAlignment.center,
-                              //           children: [
-                              //             Padding(
-                              //               padding: const EdgeInsets.all(16.0),
-                              //               child: SvgPicture.asset(
-                              //                 'assets/images/svgs/emoji_sad_missing.svg',
-                              //               ),
-                              //             ),
-                              //             const Padding(
-                              //               padding: EdgeInsets.all(16.0),
-                              //               child: Text(
-                              //                 'No hay profesores \n vinculados a este curso \n todavía',
-                              //                 textAlign: TextAlign.center,
-                              //                 style: TextStyle(
-                              //                   color: Color.fromRGBO(
-                              //                       191, 191, 191, 1.000),
-                              //                   fontFamily: 'Gotham Rounded',
-                              //                   fontSize: 24,
-                              //                   height: 30 / 26,
-                              //                   fontWeight: FontWeight.bold,
-                              //                 ),
-                              //               ),
-                              //             ),
-                              //             const Padding(
-                              //               padding: EdgeInsets.all(16.0),
-                              //               child: Text(
-                              //                 'Puedes sugerirlos en el \n botón arriba a la\n derecha',
-                              //                 textAlign: TextAlign.center,
-                              //                 style: TextStyle(
-                              //                   color: Color.fromRGBO(
-                              //                       191, 191, 191, 1.000),
-                              //                   fontFamily: 'Gotham Rounded',
-                              //                   fontSize: 24,
-                              //                   height: 30 / 26,
-                              //                   fontWeight: FontWeight.bold,
-                              //                 ),
-                              //               ),
-                              //             )
-                              //           ],
-                              //         ),
-                              //       ),
+                               compareTeachers.isNotEmpty
+                                  ? CarouselSlider.builder(
+                                      itemCount: compareTeachers.length,
+                                      itemBuilder: (context, index, realIndex) {
+                               return CardViewCarrouselCompare(
+                                 compareTeacher:
+                                          compareTeachers[index],
+                                          courseId: widget.selectedTeacherIds[index],
+                                          );
+                                       },
+                                       options: CarouselOptions(
+                                         clipBehavior: Clip.none,
+                                         height: screenHeigth * 1.2,
+                                         reverse: true,
+                                         onPageChanged: (index, reason) =>
+                                             setState(() => activeIndex = index),
+                                       ))
+                                   : Center(
+                                       child: Column(
+                                         mainAxisAlignment:
+                                             MainAxisAlignment.center,
+                                         children: [
+                                           Padding(
+                                             padding: const EdgeInsets.all(16.0),
+                                             child: SvgPicture.asset(
+                                               'assets/images/svgs/emoji_sad_missing.svg',
+                                             ),
+                                           ),
+                                           const Padding(
+                                             padding: EdgeInsets.all(16.0),
+                                             child: Text(
+                                               'No hay profesores \n vinculados a este curso \n todavía',
+                                               textAlign: TextAlign.center,
+                                               style: TextStyle(
+                                                 color: Color.fromRGBO(
+                                                     191, 191, 191, 1.000),
+                                                 fontFamily: 'Gotham Rounded',
+                                                 fontSize: 24,
+                                                 height: 30 / 26,
+                                                 fontWeight: FontWeight.bold,
+                                               ),
+                                             ),
+                                           ),
+                                           const Padding(
+                                             padding: EdgeInsets.all(16.0),
+                                             child: Text(
+                                               'Puedes sugerirlos en el \n botón arriba a la\n derecha',
+                                               textAlign: TextAlign.center,
+                                               style: TextStyle(
+                                                 color: Color.fromRGBO(
+                                                     191, 191, 191, 1.000),
+                                                 fontFamily: 'Gotham Rounded',
+                                                 fontSize: 24,
+                                                 height: 30 / 26,
+                                                 fontWeight: FontWeight.bold,
+                                               ),
+                                             ),
+                                           )
+                                         ],
+                                       ),
+                                     ),
                             ],
                           ),
                         );
