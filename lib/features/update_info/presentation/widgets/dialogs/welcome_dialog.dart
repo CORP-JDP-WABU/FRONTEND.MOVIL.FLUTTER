@@ -5,6 +5,7 @@ import 'package:wabu/common/widgets/custom_filled_button.dart';
 import 'package:wabu/common/widgets/gradient_text.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
+import 'package:wabu/utils/utils.dart';
 
 class WelcomeDialog extends StatelessWidget {
   const WelcomeDialog({super.key});
@@ -315,7 +316,13 @@ class WelcomeDialog extends StatelessWidget {
                   end: Alignment.bottomCenter,
                   stops: [0.0, 1.0],
                 ),
-                onPressed: () => context.go(HomeView.route),
+                onPressed: () {
+                  FirebaseAnalyticsHandler.instance.logSelectContent(
+                    contentType: AnalyticsContentType.button.contentType,
+                    itemId: AnalyticsContentItemId.welcome.itemId,
+                  );
+                  context.go(HomeView.route);
+                },
               ),
             ],
           )),

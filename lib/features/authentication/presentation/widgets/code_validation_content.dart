@@ -8,6 +8,7 @@ import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/authentication/presentation/controllers/code_validation/code_validation_controller.dart';
 import 'package:wabu/features/update_info/update_info.dart';
 import 'package:wabu/features/authentication/presentation/widgets/welcome_bottom_sheet_content.dart';
+import 'package:wabu/utils/utils.dart';
 
 class CodeValidationContent extends ConsumerWidget {
   const CodeValidationContent({super.key});
@@ -66,10 +67,18 @@ class CodeValidationContent extends ConsumerWidget {
         utilError: codeValidationState.utilError,
         help: 'Reenviar código',
         onHelpTap: () {
+          FirebaseAnalyticsHandler.instance.logSelectContent(
+            contentType: AnalyticsContentType.button.contentType,
+            itemId: AnalyticsContentItemId.resendCode.itemId,
+          );
           ref.read(codeValidationControllerProvider.notifier).resendCode();
         },
         button: 'Continuar',
         onButtonTap: () {
+          FirebaseAnalyticsHandler.instance.logSelectContent(
+            contentType: AnalyticsContentType.button.contentType,
+            itemId: AnalyticsContentItemId.verifyCode.itemId,
+          );
           ref.read(codeValidationControllerProvider.notifier).onSubmit();
         });
   }

@@ -8,6 +8,7 @@ import 'package:wabu/features/course/presentation/controllers/controllers.dart';
 import 'package:wabu/features/course/presentation/widgets/card_view_carrousel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:wabu/utils/utils.dart';
 
 class CourseCarrousel extends ConsumerStatefulWidget {
   const CourseCarrousel({
@@ -201,8 +202,14 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
                                     'star',
                                     AppTheme.starColor,
                                     () {
-                                      setState(() =>
-                                                       controller.jumpToPage(0));
+                                      FirebaseAnalyticsHandler.instance
+                                          .logSelectContent(
+                                        contentType: AnalyticsContentType
+                                            .button.contentType,
+                                        itemId: AnalyticsContentItemId
+                                            .courseSearchRating.itemId,
+                                      );
+                                      setState(() => controller.jumpToPage(0));
                                       ref
                                           .read(courseTeachersControllerProvider
                                               .notifier)
@@ -213,8 +220,14 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
                                     'brain',
                                     const Color.fromRGBO(78, 162, 255, 1.000),
                                     () {
-                                      setState(() =>
-                                                       controller.jumpToPage(0));
+                                      FirebaseAnalyticsHandler.instance
+                                          .logSelectContent(
+                                        contentType: AnalyticsContentType
+                                            .button.contentType,
+                                        itemId: AnalyticsContentItemId
+                                            .courseSearchLearn.itemId,
+                                      );
+                                      setState(() => controller.jumpToPage(0));
                                       ref
                                           .read(courseTeachersControllerProvider
                                               .notifier)
@@ -225,8 +238,14 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
                                     'parchment',
                                     const Color.fromRGBO(72, 194, 230, 1.000),
                                     () {
-                                      setState(() =>
-                                                       controller.jumpToPage(0));
+                                      FirebaseAnalyticsHandler.instance
+                                          .logSelectContent(
+                                        contentType: AnalyticsContentType
+                                            .button.contentType,
+                                        itemId: AnalyticsContentItemId
+                                            .courseSearchHigh.itemId,
+                                      );
+                                      setState(() => controller.jumpToPage(0));
                                       ref
                                           .read(courseTeachersControllerProvider
                                               .notifier)
@@ -237,8 +256,14 @@ class _CourseCarrousel extends ConsumerState<CourseCarrousel> {
                                     'heart',
                                     const Color.fromRGBO(68, 217, 211, 1.000),
                                     () {
-                                      setState(() =>
-                                                       controller.jumpToPage(0));
+                                      FirebaseAnalyticsHandler.instance
+                                          .logSelectContent(
+                                        contentType: AnalyticsContentType
+                                            .button.contentType,
+                                        itemId: AnalyticsContentItemId
+                                            .courseSearchGood.itemId,
+                                      );
+                                      setState(() => controller.jumpToPage(0));
                                       ref
                                           .read(courseTeachersControllerProvider
                                               .notifier)

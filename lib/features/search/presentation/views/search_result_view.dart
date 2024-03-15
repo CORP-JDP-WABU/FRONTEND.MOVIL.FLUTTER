@@ -5,6 +5,7 @@ import 'package:wabu/common/widgets/loader_transparent.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/search/domain/domain.dart';
 import 'package:wabu/features/search/presentation/presentation.dart';
+import 'package:wabu/utils/utils.dart';
 
 class SearchResultView extends ConsumerStatefulWidget {
   const SearchResultView({super.key});
@@ -102,11 +103,26 @@ class _SearchResultViewState extends ConsumerState<SearchResultView>
                                 filled: true,
                                 fillColor: Colors.white,
                               ),
+                              onTap: () {
+                                FirebaseAnalyticsHandler.instance
+                                    .logSelectContent(
+                                  contentType: AnalyticsContentType
+                                      .searchBar.contentType,
+                                  itemId: AnalyticsContentItemId
+                                      .teacherCourseSearchBar.itemId,
+                                );
+                              },
                             ),
                           ),
                         ),
                         IconButton(
                           onPressed: () {
+                            FirebaseAnalyticsHandler.instance.logSelectContent(
+                              contentType:
+                                  AnalyticsContentType.searchBar.contentType,
+                              itemId: AnalyticsContentItemId
+                                  .teacherCourseSearch.itemId,
+                            );
                             ref
                                 .read(searchControllerProvider.notifier)
                                 .search(_controller.text);

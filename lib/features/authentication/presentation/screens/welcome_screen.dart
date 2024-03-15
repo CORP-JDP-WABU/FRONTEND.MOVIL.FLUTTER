@@ -7,6 +7,7 @@ import 'package:wabu/features/authentication/presentation/controllers/welcome_pa
 import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_state.dart';
 import 'package:wabu/features/authentication/presentation/widgets/video_background.dart';
 import 'package:wabu/features/authentication/presentation/widgets/welcome_bottom_sheet.dart';
+import 'package:wabu/utils/utils.dart';
 
 class WelcomeScreen extends ConsumerWidget {
   WelcomeScreen({super.key});
@@ -82,6 +83,10 @@ class _WelcomeScreenContent extends ConsumerWidget {
         const SizedBox(height: 60),
         CustomFilledButton(
           onPressed: () {
+            FirebaseAnalyticsHandler.instance.logSelectContent(
+              contentType: AnalyticsContentType.button.contentType,
+              itemId: AnalyticsContentItemId.logIn.itemId,
+            );
             ref
                 .read(welcomePageControllerProvider.notifier)
                 .addPage(WelcomePage.logIn);
@@ -91,7 +96,7 @@ class _WelcomeScreenContent extends ConsumerWidget {
           minimumWidth: 0.8 * screenWidth,
           textColor: AppTheme.primaryText,
           backgroundColor: const Color.fromRGBO(255, 255, 255, 0.9),
-          boxShadow:  [
+          boxShadow: [
             const BoxShadow(
               color: Colors.black,
               spreadRadius: -30,
@@ -99,16 +104,20 @@ class _WelcomeScreenContent extends ConsumerWidget {
               offset: Offset(0, 0),
             ),
             BoxShadow(
-                 color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 3,
-            blurRadius: 7,
-            offset: const Offset(0, 3),
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 3,
+              blurRadius: 7,
+              offset: const Offset(0, 3),
             )
           ],
         ),
         const SizedBox(height: 36),
         CustomFilledButton(
           onPressed: () {
+            FirebaseAnalyticsHandler.instance.logSelectContent(
+              contentType: AnalyticsContentType.button.contentType,
+              itemId: AnalyticsContentItemId.signUp.itemId,
+            );
             ref
                 .read(welcomePageControllerProvider.notifier)
                 .addPage(WelcomePage.signUp);

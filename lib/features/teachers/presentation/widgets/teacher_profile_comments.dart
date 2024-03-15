@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/teachers/domain/domain.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
+import 'package:wabu/utils/utils.dart';
 
 class TeacherProfileComments extends StatelessWidget {
   const TeacherProfileComments({
@@ -19,6 +20,11 @@ class TeacherProfileComments extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: GestureDetector(
         onTap: () {
+          FirebaseAnalyticsHandler.instance.logSelectContent(
+            contentType: AnalyticsContentType.button.contentType,
+            itemId: AnalyticsContentItemId.courseTeacherComments.itemId,
+          );
+
           final commentsQuantity = teacher?.course?.manyComments ?? 0;
 
           if (commentsQuantity <= 0) return;

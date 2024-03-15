@@ -8,6 +8,7 @@ import 'package:wabu/features/authentication/authentication.dart';
 import 'package:wabu/features/university/university.dart';
 import 'package:wabu/features/update_info/update_info.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
+import 'package:wabu/utils/utils.dart';
 
 class LogInContent extends ConsumerWidget {
   const LogInContent({super.key});
@@ -78,12 +79,20 @@ class LogInContent extends ConsumerWidget {
       utilError: logInState.utilError,
       help: '¿Olvidaste tu contraseña?',
       onHelpTap: () {
+        FirebaseAnalyticsHandler.instance.logSelectContent(
+          contentType: AnalyticsContentType.button.contentType,
+          itemId: AnalyticsContentItemId.forgotPassword.itemId,
+        );
         ref
             .read(welcomePageControllerProvider.notifier)
             .addPage(WelcomePage.forgotPassword);
       },
       button: 'Entrar',
       onButtonTap: () {
+        FirebaseAnalyticsHandler.instance.logSelectContent(
+          contentType: AnalyticsContentType.button.contentType,
+          itemId: AnalyticsContentItemId.enter.itemId,
+        );
         ref.read(logInControllerProvider.notifier).onSubmit();
       },
       secondaryHelp: '¿No tienes una cuenta?',
