@@ -5,6 +5,7 @@ import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/home/presentation/presentation.dart';
 import 'package:wabu/features/search/presentation/views/search_view.dart';
 import 'package:wabu/features/smash/presentation/views/smash_view.dart';
+import 'package:wabu/utils/utils.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -46,12 +47,24 @@ class _CustomNavigationBar extends StatelessWidget {
   void onItemTapped(BuildContext context, int index) {
     switch (index) {
       case 0:
+        FirebaseAnalyticsHandler.instance.logSelectContent(
+          contentType: AnalyticsContentType.button.contentType,
+          itemId: AnalyticsContentItemId.homeNavigation.itemId,
+        );
         context.go(HomeView.route);
         break;
       case 1:
+        FirebaseAnalyticsHandler.instance.logSelectContent(
+          contentType: AnalyticsContentType.button.contentType,
+          itemId: AnalyticsContentItemId.searchNavigation.itemId,
+        );
         context.go(SearchView.route);
         break;
       case 2:
+        FirebaseAnalyticsHandler.instance.logSelectContent(
+          contentType: AnalyticsContentType.button.contentType,
+          itemId: AnalyticsContentItemId.smashCard.itemId,
+        );
         context.go(SmashView.route);
         break;
       default:
@@ -102,7 +115,7 @@ class _CustomNavigationBar extends StatelessWidget {
           ),
           label: 'Smash',
         ),
-       /* BottomNavigationBarItem(
+        /* BottomNavigationBarItem(
           icon: SvgPicture.asset('assets/images/svgs/chat_bottom_bar.svg'),
           activeIcon: SvgPicture.asset(
             'assets/images/svgs/chat_bottom_bar.svg',

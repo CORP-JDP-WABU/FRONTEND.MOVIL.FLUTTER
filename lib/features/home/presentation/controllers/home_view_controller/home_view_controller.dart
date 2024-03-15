@@ -6,6 +6,7 @@ import 'package:wabu/features/home/domain/domain.dart';
 import 'package:wabu/features/home/presentation/presentation.dart';
 import 'package:wabu/features/student/domain/domain.dart';
 import 'package:wabu/features/student/data/repositories/providers.dart';
+import 'package:wabu/utils/utils.dart';
 
 part 'home_view_controller.g.dart';
 
@@ -33,6 +34,15 @@ class HomeViewController extends _$HomeViewController {
             break;
         }
       }, (Student student) async {
+        await FirebaseAnalyticsHandler.instance.setLoggedUserProperties(
+          firstName: student.firstName,
+          lastName: student.lastName,
+          studentId: student.idStudent,
+          university: student.university,
+          career: student.career,
+          cycle: student.cicle,
+        );
+
         Globals.universityId = student.idUniversity;
         Globals.careerId = student.idCareer;
 

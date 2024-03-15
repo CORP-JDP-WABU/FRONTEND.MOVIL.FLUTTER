@@ -11,6 +11,7 @@ import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/course/domain/course_teacher/course_teacher.dart';
 import 'package:wabu/features/teachers/domain/teacher_course_extra/teacher_course_extra.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
+import 'package:wabu/utils/utils.dart';
 
 const workQualification = ['-', 'No sé', 'Poco', 'Medio', 'Mucho'];
 const lateQualification = ['-', 'No sé', 'Nunca', 'A veces', 'Siempre'];
@@ -384,6 +385,10 @@ class CardViewCarrousel extends StatelessWidget {
             verticalPadding: 9,
             linearGradient: primaryButtonLinearGradient,
             onPressed: () {
+              FirebaseAnalyticsHandler.instance.logSelectContent(
+              contentType: AnalyticsContentType.button.contentType,
+              itemId: AnalyticsContentItemId.courseTeacherDetails.itemId,
+            );
               context.pushNamed(
                 TeacherCourseProfileScreen.name,
                 extra: TeacherCourseExtra(

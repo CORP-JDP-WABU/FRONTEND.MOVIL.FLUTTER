@@ -7,6 +7,7 @@ import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
 import 'package:wabu/features/teachers/teachers.dart';
+import 'package:wabu/utils/utils.dart';
 
 class TeacherCommentScreen extends ConsumerWidget {
   const TeacherCommentScreen({super.key});
@@ -199,6 +200,13 @@ class _TeacherRequiredRatingContentState
                                   fontFamily: 'GothamRounded'),
                             ),
                             onTap: () {
+                              FirebaseAnalyticsHandler.instance
+                                  .logSelectContent(
+                                contentType:
+                                    AnalyticsContentType.button.contentType,
+                                itemId: AnalyticsContentItemId
+                                    .teacherNoCommentQualification.itemId,
+                              );
                               ref
                                   .read(teachersQualificationControllerProvider
                                       .notifier)
@@ -218,6 +226,12 @@ class _TeacherRequiredRatingContentState
                             stops: [0.0, 1.0],
                           ),
                           onPressed: () {
+                            FirebaseAnalyticsHandler.instance.logSelectContent(
+                              contentType:
+                                  AnalyticsContentType.button.contentType,
+                              itemId: AnalyticsContentItemId
+                                  .teacherPublishQualification.itemId,
+                            );
                             ref
                                 .read(teachersQualificationControllerProvider
                                     .notifier)
