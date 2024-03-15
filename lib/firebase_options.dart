@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD2hIJeAngniq8NZy-UBMQa9PQCXsLt1is',
-    appId: '1:292627195153:android:15ed21fd4ab1b7bb4ed8b0',
-    messagingSenderId: '292627195153',
-    projectId: 'wabu-app-dev',
-    storageBucket: 'wabu-app-dev.appspot.com',
+    apiKey: 'AIzaSyCG088oAyrZ2B4cU2o0IB-m2yNUnjN0rh4',
+    appId: '1:936927222540:android:b6c7e862f6ec15bea14729',
+    messagingSenderId: '936927222540',
+    projectId: 'wabu-app',
+    storageBucket: 'wabu-app.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyALCoScp-xRJoPdaNEne-kv_Nj7gmtonNE',
-    appId: '1:292627195153:ios:56b92e69b21635804ed8b0',
-    messagingSenderId: '292627195153',
-    projectId: 'wabu-app-dev',
-    storageBucket: 'wabu-app-dev.appspot.com',
+    apiKey: 'AIzaSyBc3tKoOfSxVb8D1OJY7hQf2r4wVq7j64E',
+    appId: '1:936927222540:ios:9e9b096e72355fd5a14729',
+    messagingSenderId: '936927222540',
+    projectId: 'wabu-app',
+    storageBucket: 'wabu-app.appspot.com',
     iosBundleId: 'com.tismart.wabu.app-dev',
   );
 }

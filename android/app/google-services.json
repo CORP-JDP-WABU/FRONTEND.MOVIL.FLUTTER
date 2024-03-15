@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "292627195153",
-    "project_id": "wabu-app-dev",
-    "storage_bucket": "wabu-app-dev.appspot.com"
+    "project_number": "936927222540",
+    "project_id": "wabu-app",
+    "storage_bucket": "wabu-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:292627195153:android:15ed21fd4ab1b7bb4ed8b0",
+        "mobilesdk_app_id": "1:936927222540:android:b6c7e862f6ec15bea14729",
         "android_client_info": {
           "package_name": "com.tismart.wabuapp"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD2hIJeAngniq8NZy-UBMQa9PQCXsLt1is"
+          "current_key": "AIzaSyCG088oAyrZ2B4cU2o0IB-m2yNUnjN0rh4"
         }
       ],
       "services": {
