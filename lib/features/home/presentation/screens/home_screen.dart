@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
+import 'package:wabu/features/course/course.dart';
 import 'package:wabu/features/home/presentation/presentation.dart';
 import 'package:wabu/features/search/presentation/views/search_view.dart';
 import 'package:wabu/features/smash/presentation/views/smash_view.dart';
@@ -35,7 +36,7 @@ class _CustomNavigationBar extends StatelessWidget {
     switch (location) {
       case HomeView.route:
         return 0;
-      case SearchView.route:
+      case CourseProfileView.route:
         return 1;
       case SmashView.route:
         return 2;
@@ -58,7 +59,7 @@ class _CustomNavigationBar extends StatelessWidget {
           contentType: AnalyticsContentType.button.contentType,
           itemId: AnalyticsContentItemId.searchNavigation.itemId,
         );
-        context.go(SearchView.route);
+        context.go(CourseProfileView.route);
         break;
       case 2:
         FirebaseAnalyticsHandler.instance.logSelectContent(

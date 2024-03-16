@@ -15,5 +15,6 @@ export 'loader_transparent.dart';
 export 'no_qualifications_found_widget.dart';
 export 'package:wabu/common/widgets/slidable_discrete_bar.dart';
 export 'profile_clipper.dart';
+export 'profile_indicator.dart';
 export 'selected_button.dart';
 export 'solid_circle_avatar.dart';

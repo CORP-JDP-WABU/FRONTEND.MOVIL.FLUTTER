@@ -1,9 +1,10 @@
 import 'package:go_router/go_router.dart';
 import 'package:wabu/features/authentication/presentation/screens/splash_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
+import 'package:wabu/features/course/course.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
-import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
+// import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
 import 'package:wabu/features/search/presentation/presentation.dart';
 import 'package:wabu/features/smash/domain/domain.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
@@ -60,10 +61,10 @@ final appRouter = GoRouter(
           },
         ),
         GoRoute(
-          name: SearchView.name,
-          path: SearchView.route,
+          name: CourseProfileView.name,
+          path: CourseProfileView.route,
           builder: (context, state) {
-            return const SearchView();
+            return const CourseProfileView();
           },
           routes: [
             GoRoute(
@@ -73,6 +74,13 @@ final appRouter = GoRouter(
                 return const SearchResultView();
               },
             ),
+            // GoRoute(
+            //   name: CourseProfile.name,
+            //   path: CourseProfile.route,
+            //   builder: (context, state) {
+            //     return const CourseProfile();
+            //   },
+            // ),
           ],
         ),
         GoRoute(
