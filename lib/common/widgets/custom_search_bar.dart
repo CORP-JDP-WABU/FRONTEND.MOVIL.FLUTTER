@@ -71,9 +71,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
       focusNode: searchBarFocusNode,
       onChanged: widget.onChanged,
       onTapOutside: (event) => searchBarFocusNode.unfocus(),
-      style: const TextStyle(
-        fontSize: 16,
-      ),
+      style: const TextStyle(fontSize: 16),
     );
   }
 }

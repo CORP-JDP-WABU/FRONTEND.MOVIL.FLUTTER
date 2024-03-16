@@ -6,8 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/features/compare/compare.dart';
 import 'package:wabu/features/compare/presentation/widgets/card_view_carrousel_compare.dart';
-import 'package:wabu/features/course/presentation/controllers/controllers.dart';
-import 'package:wabu/features/course/presentation/widgets/card_view_carrousel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class CompareTeachers extends ConsumerStatefulWidget {
@@ -100,74 +98,96 @@ class _CompareTeachers extends ConsumerState<CompareTeachers> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                               compareTeachers.isNotEmpty
+                              compareTeachers.isNotEmpty
                                   ? CarouselSlider.builder(
                                       itemCount: compareTeachers.length,
                                       itemBuilder: (context, index, realIndex) {
-                               return CardViewCarrouselCompare(
-                                 compareTeacher:
-                                          compareTeachers[index],
-                                          courseId: widget.selectedTeacherIds[index],
-                                          );
-                                       },
-                                       options: CarouselOptions(
-                                         clipBehavior: Clip.none,
-                                         height: screenHeigth * 1.2,
-                                         reverse: true,
-                                         onPageChanged: (index, reason) =>
-                                             setState(() => activeIndex = index),
-                                       ))
-                                   : Center(
-                                       child: Column(
-                                         mainAxisAlignment:
-                                             MainAxisAlignment.center,
-                                         children: [
-                                           Padding(
-                                             padding: const EdgeInsets.all(16.0),
-                                             child: SvgPicture.asset(
-                                               'assets/images/svgs/emoji_sad_missing.svg',
-                                             ),
-                                           ),
-                                           const Padding(
-                                             padding: EdgeInsets.all(16.0),
-                                             child: Text(
-                                               'No hay profesores \n vinculados a este curso \n todavía',
-                                               textAlign: TextAlign.center,
-                                               style: TextStyle(
-                                                 color: Color.fromRGBO(
-                                                     191, 191, 191, 1.000),
-                                                 fontFamily: 'Gotham Rounded',
-                                                 fontSize: 24,
-                                                 height: 30 / 26,
-                                                 fontWeight: FontWeight.bold,
-                                               ),
-                                             ),
-                                           ),
-                                           const Padding(
-                                             padding: EdgeInsets.all(16.0),
-                                             child: Text(
-                                               'Puedes sugerirlos en el \n botón arriba a la\n derecha',
-                                               textAlign: TextAlign.center,
-                                               style: TextStyle(
-                                                 color: Color.fromRGBO(
-                                                     191, 191, 191, 1.000),
-                                                 fontFamily: 'Gotham Rounded',
-                                                 fontSize: 24,
-                                                 height: 30 / 26,
-                                                 fontWeight: FontWeight.bold,
-                                               ),
-                                             ),
-                                           )
-                                         ],
-                                       ),
-                                     ),
+                                        return CardViewCarrouselCompare(
+                                          compareTeacher:
+                                              compareTeachers[index],
+                                          courseId:
+                                              widget.selectedTeacherIds[index],
+                                        );
+                                      },
+                                      options: CarouselOptions(
+                                        clipBehavior: Clip.none,
+                                        height: screenHeigth * 1.2,
+                                        reverse: true,
+                                        onPageChanged: (index, reason) =>
+                                            setState(() => activeIndex = index),
+                                      ))
+                                  : Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: SvgPicture.asset(
+                                              'assets/images/svgs/emoji_sad_missing.svg',
+                                            ),
+                                          ),
+                                          const Padding(
+                                            padding: EdgeInsets.all(16.0),
+                                            child: Text(
+                                              'No hay profesores \n vinculados a este curso \n todavía',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Color.fromRGBO(
+                                                    191, 191, 191, 1.000),
+                                                fontFamily: 'Gotham Rounded',
+                                                fontSize: 24,
+                                                height: 30 / 26,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          const Padding(
+                                            padding: EdgeInsets.all(16.0),
+                                            child: Text(
+                                              'Puedes sugerirlos en el \n botón arriba a la\n derecha',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Color.fromRGBO(
+                                                    191, 191, 191, 1.000),
+                                                fontFamily: 'Gotham Rounded',
+                                                fontSize: 24,
+                                                height: 30 / 26,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
                             ],
                           ),
                         );
                       },
                     ),
                   ),
-                  const _FilterButtons(),
+                  CarrouselFilterButtons(
+                    onQualificationPressed: () {
+                      ref
+                          .read(compareTeachersControllerProvider.notifier)
+                          .orderByQualification();
+                    },
+                    onLearnPressed: () {
+                      ref
+                          .read(compareTeachersControllerProvider.notifier)
+                          .orderByLearnQualification();
+                    },
+                    onHighPressed: () {
+                      ref
+                          .read(compareTeachersControllerProvider.notifier)
+                          .orderByHighQualification();
+                    },
+                    onGoodPressed: () {
+                      ref
+                          .read(compareTeachersControllerProvider.notifier)
+                          .orderByGoodQualification();
+                    },
+                  ),
                 ],
               ),
             ),
@@ -177,66 +197,6 @@ class _CompareTeachers extends ConsumerState<CompareTeachers> {
             const LoaderTransparent()
         ],
       ),
-    );
-  }
-}
-
-class _FilterButtons extends ConsumerWidget {
-  const _FilterButtons();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      children: [
-        Expanded(
-          child: IconFilter(
-            assetName: 'star',
-            isEnabled: true,
-            label: 'MEJOR CALIFICACIÓN',
-            onPressed: () {
-              ref
-                  .read(compareTeachersControllerProvider.notifier)
-                  .orderByQualification();
-            },
-          ),
-        ),
-        Expanded(
-          child: IconFilter(
-            assetName: 'brain',
-            isEnabled: true,
-            label: '¿QUÉ TANTO APRENDISTE?',
-            onPressed: () {
-              ref
-                  .read(compareTeachersControllerProvider.notifier)
-                  .orderByLearnQualification();
-            },
-          ),
-        ),
-        Expanded(
-          child: IconFilter(
-            assetName: 'parchment',
-            isEnabled: true,
-            label: '¿QUÉ TAN ALTO CALIFICA?',
-            onPressed: () {
-              ref
-                  .read(compareTeachersControllerProvider.notifier)
-                  .orderByHighQualification();
-            },
-          ),
-        ),
-        Expanded(
-          child: IconFilter(
-            assetName: 'heart',
-            isEnabled: true,
-            label: '¿QUÉ TAN BUENA GENTE ES?',
-            onPressed: () {
-              ref
-                  .read(compareTeachersControllerProvider.notifier)
-                  .orderByGoodQualification();
-            },
-          ),
-        ),
-      ],
     );
   }
 }

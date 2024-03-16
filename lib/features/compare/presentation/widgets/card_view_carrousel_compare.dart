@@ -50,13 +50,13 @@ class CardViewCarrouselCompare extends StatelessWidget {
 
     switch (code) {
       case 4:
-        final index = optionalQualifications.worked;
+        final index = optionalQualifications.worked.floor();
         return workQualification[index];
       case 5:
-        final index = optionalQualifications.late;
+        final index = optionalQualifications.late.floor();
         return lateQualification[index];
       case 6:
-        final index = optionalQualifications.assistance;
+        final index = optionalQualifications.assistance.floor();
         return assistanceQualification[index];
     }
 

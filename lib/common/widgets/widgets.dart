@@ -1,7 +1,9 @@
 export 'bar_qualification.dart';
+export 'carrousel_filter_buttons.dart';
 export 'continuous_bar_qualification.dart';
 export 'custom_back_button.dart';
 export 'custom_filled_button.dart';
+export 'custom_search_bar.dart';
 export 'custom_text_form_field.dart';
 export 'discrete_bar_qualification.dart';
 export 'elevated_circle_button.dart';
@@ -16,7 +18,6 @@ export 'loader_transparent.dart';
 export 'no_qualifications_found_widget.dart';
 export 'package:wabu/common/widgets/slidable_discrete_bar.dart';
 export 'profile_clipper.dart';
-export 'custom_search_bar.dart';
 export 'selected_button.dart';
 export 'solid_circle_avatar.dart';
 export 'teacher_required_qualification_indicator.dart';

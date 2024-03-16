@@ -21,13 +21,7 @@ class SelectionButton extends StatelessWidget {
         elevation: 5,
         padding: EdgeInsets.zero,
       ),
-      onPressed: () {
-        if (isSelected) {
-          onUnselect();
-        } else {
-          onSelect();
-        }
-      },
+      onPressed: () => isSelected ? onUnselect() : onSelect(),
       child: isSelected
           ? const Icon(
               Icons.check_rounded,

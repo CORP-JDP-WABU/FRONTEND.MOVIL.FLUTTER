@@ -16,39 +16,10 @@ class CompareWelcomerBanner extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(25),
-          child: Stack(
+          child: const Stack(
             children: [
-              Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/pngs/compare_banner.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: 2.72,
-                    sigmaY: 2.72,
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.0),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color(0x8CFFFFFF),
-                      Color(0x8B5600FF),
-                    ],
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                  ),
-                ),
-              ),
+              _BlurredImage(),
+              _TransparentGradientCover(),
             ],
           ),
         ),
@@ -62,6 +33,53 @@ class CompareWelcomerBanner extends StatelessWidget {
           onPressed: () => context.pushNamed(CompareSearchScreen.name),
         )
       ],
+    );
+  }
+}
+
+class _BlurredImage extends StatelessWidget {
+  const _BlurredImage();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/pngs/compare_banner.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: 2.72,
+          sigmaY: 2.72,
+        ),
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Colors.transparent,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _TransparentGradientCover extends StatelessWidget {
+  const _TransparentGradientCover();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color(0x8CFFFFFF),
+            Color(0x8B5600FF),
+          ],
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+        ),
+      ),
     );
   }
 }

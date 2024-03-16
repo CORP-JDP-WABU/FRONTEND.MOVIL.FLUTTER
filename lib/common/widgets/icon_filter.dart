@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class IconFilter extends StatefulWidget {
+class IconFilter extends StatelessWidget {
   const IconFilter({
     super.key,
+    required this.activeColor,
     required this.assetName,
     required this.label,
-    this.isEnabled = false,
+    this.isEnabled = true,
+    this.isSelected = false,
     this.onPressed,
   });
 
+  final Color activeColor;
   final bool isEnabled;
+  final bool isSelected;
   final String assetName;
   final String label;
   final Function()? onPressed;
-
-  @override
-  State<IconFilter> createState() => _IconFilterState();
-}
-
-class _IconFilterState extends State<IconFilter> {
-  bool isActive = false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,34 +32,25 @@ class _IconFilterState extends State<IconFilter> {
               backgroundColor: MaterialStatePropertyAll(Colors.white),
               minimumSize: MaterialStatePropertyAll(Size(56, 56)),
             ),
-            onPressed: widget.isEnabled && widget.onPressed != null
-                ? () {
-                    setState(() {
-                      isActive = !isActive;
-                      widget.onPressed!();
-                    });
-                  }
-                : null,
+            onPressed: isEnabled ? onPressed : null,
             child: SvgPicture.asset(
-              'assets/images/svgs/${widget.assetName}.svg',
+              'assets/images/svgs/$assetName.svg',
               fit: BoxFit.contain,
-              colorFilter: !isActive
-                  ? const ColorFilter.mode(
-                      Color(0xFF9D9D9D),
-                      BlendMode.srcIn,
-                    )
-                  : null,
+              colorFilter: ColorFilter.mode(
+                isSelected ? activeColor : const Color(0xFF9D9D9D),
+                BlendMode.srcIn,
+              ),
             ),
           ),
           const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Text(
-              widget.label,
+              label,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 8,
-                color: Color(0xFF696969),
+                color: isSelected ? activeColor : const Color(0xFF696969),
               ),
             ),
           ),

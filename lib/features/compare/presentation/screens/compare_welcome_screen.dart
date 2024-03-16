@@ -57,44 +57,8 @@ class _CompareWelcomeContent extends StatelessWidget {
         const SizedBox(height: 20),
         const Expanded(child: CompareWelcomerBanner()),
         const SizedBox(height: 20),
-        const _FilterButtons(),
+        const CarrouselFilterButtons(isEnabled: false),
         const SizedBox(height: 24),
-      ],
-    );
-  }
-}
-
-class _FilterButtons extends StatelessWidget {
-  const _FilterButtons();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        Expanded(
-          child: IconFilter(
-            assetName: 'star',
-            label: 'MEJOR CALIFICACIÓN',
-          ),
-        ),
-        Expanded(
-          child: IconFilter(
-            assetName: 'brain',
-            label: '¿QUÉ TANTO APRENDISTE?',
-          ),
-        ),
-        Expanded(
-          child: IconFilter(
-            assetName: 'parchment',
-            label: '¿QUÉ TAN ALTO CALIFICA?',
-          ),
-        ),
-        Expanded(
-          child: IconFilter(
-            assetName: 'heart',
-            label: '¿QUÉ TAN BUENA GENTE ES?',
-          ),
-        ),
       ],
     );
   }
