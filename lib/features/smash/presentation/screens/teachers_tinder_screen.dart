@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:wabu/features/smash/domain/domain.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
+import 'package:wabu/utils/utils.dart';
 
 class TeachersTinderScreen extends ConsumerWidget {
   const TeachersTinderScreen({super.key});
@@ -65,6 +66,11 @@ class _TeacheresTinderScreenContentState
   ) {
     switch (direction) {
       case CardSwiperDirection.left:
+        FirebaseAnalyticsHandler.instance.logSelectContent(
+          contentType: AnalyticsContentType.action.contentType,
+          itemId: AnalyticsContentItemId.teacherIgnore.itemId,
+        );
+
         final teacherSuggestion = widget.state.smashSuggestions?[previousIndex];
         final courseId = teacherSuggestion?.course?.idCourse ?? '';
         final teacherId = teacherSuggestion?.teacher?.idTeacher ?? '';
@@ -80,6 +86,11 @@ class _TeacheresTinderScreenContentState
         }
         break;
       case CardSwiperDirection.right:
+        FirebaseAnalyticsHandler.instance.logSelectContent(
+          contentType: AnalyticsContentType.action.contentType,
+          itemId: AnalyticsContentItemId.teacherSmash.itemId,
+        );
+
         final teacherSuggestion = widget.state.smashSuggestions?[previousIndex];
 
         if (teacherSuggestion == null) break;

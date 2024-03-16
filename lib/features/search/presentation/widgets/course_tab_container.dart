@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/search/domain/courses_search_result/courses_search_result.dart';
 import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
+import 'package:wabu/utils/utils.dart';
 
 class CourseTabContainer extends StatelessWidget {
   const CourseTabContainer({
@@ -58,7 +59,6 @@ class CourseTabContainer extends StatelessWidget {
                                   color: AppTheme.courseNameColor,
                                   fontFamily: 'SFProDisplay',
                                   fontSize: 15,
-                            
                                   fontWeight: FontWeight.bold,
                                 )),
                           ),
@@ -77,7 +77,6 @@ class CourseTabContainer extends StatelessWidget {
                                   color: Color.fromRGBO(41, 146, 244, 1.000),
                                   fontFamily: 'SFProDisplay',
                                   fontSize: 15,
-                                 
                                   fontWeight: FontWeight.bold,
                                 )),
                           ),
@@ -100,6 +99,10 @@ class CourseTabContainer extends StatelessWidget {
         ),
       ),
       onTap: () {
+        FirebaseAnalyticsHandler.instance.logSelectContent(
+          contentType: AnalyticsContentType.card.contentType,
+          itemId: AnalyticsContentItemId.courseSearchCard.itemId,
+        );
         context.pushNamed(
           CourseCarrousel.name,
           extra: course.idCourse,

@@ -9,6 +9,7 @@ import 'package:wabu/features/authentication/presentation/controllers/welcome_pa
 import 'package:wabu/features/authentication/presentation/controllers/welcome_page/welcome_page_state.dart';
 import 'package:wabu/features/authentication/presentation/widgets/dialogs/auth_alert_dialog.dart';
 import 'package:wabu/features/authentication/presentation/widgets/welcome_bottom_sheet_content.dart';
+import 'package:wabu/utils/utils.dart';
 
 class SignUpContent extends ConsumerWidget {
   const SignUpContent({super.key});
@@ -22,7 +23,9 @@ class SignUpContent extends ConsumerWidget {
         content: 'Por favor usa el correo para iniciar sesión o crea uno nuevo',
         onAccept: () {
           context.pop();
-          ref.read(welcomePageControllerProvider.notifier).addPage(WelcomePage.logIn);
+          ref
+              .read(welcomePageControllerProvider.notifier)
+              .addPage(WelcomePage.logIn);
         },
       ),
     );
@@ -66,12 +69,18 @@ class SignUpContent extends ConsumerWidget {
       ],
       button: 'Crear cuenta',
       onButtonTap: () {
+        FirebaseAnalyticsHandler.instance.logSelectContent(
+          contentType: AnalyticsContentType.button.contentType,
+          itemId: AnalyticsContentItemId.createAccount.itemId,
+        );
         ref.read(signUpControllerProvider.notifier).onSubmit();
       },
       secondaryHelp: '¿Ya tienes una cuenta?',
       secondaryHighlightedHelp: 'Ingresa',
       onSecondaryHighlightedTap: () {
-        ref.read(welcomePageControllerProvider.notifier).addPage(WelcomePage.logIn);
+        ref
+            .read(welcomePageControllerProvider.notifier)
+            .addPage(WelcomePage.logIn);
       },
     );
   }

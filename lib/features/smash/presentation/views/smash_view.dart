@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/compare/presentation/presentation.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
+import 'package:wabu/utils/firebase_analytics/firebase_analytics_events.dart';
+import 'package:wabu/utils/firebase_analytics/firebase_analytics_handler.dart';
 
 class SmashView extends ConsumerWidget {
   const SmashView({super.key});
@@ -17,13 +19,25 @@ class SmashView extends ConsumerWidget {
     return Column(
       children: [
         _SmashCard(
-          onTap: () => context.pushNamed(TeachersTinderScreen.name),
+          onTap: () {
+            FirebaseAnalyticsHandler.instance.logSelectContent(
+              contentType: AnalyticsContentType.card.contentType,
+              itemId: AnalyticsContentItemId.smashCard.itemId,
+            );
+            context.pushNamed(TeachersTinderScreen.name);
+          },
           color: AppTheme.smashButtonBackgroundColor,
           asset: 'assets/images/svgs/smash.svg',
           text: 'SMASH',
         ),
         _SmashCard(
-          onTap: () => context.pushNamed(CompareWelcomeScreen.name),
+          onTap: () {
+            FirebaseAnalyticsHandler.instance.logSelectContent(
+              contentType: AnalyticsContentType.card.contentType,
+              itemId: AnalyticsContentItemId.compareCard.itemId,
+            );
+            context.pushNamed(CompareWelcomeScreen.name);
+          },
           color: AppTheme.compareButtonBackgroundColor,
           asset: 'assets/images/svgs/compare.svg',
           text: 'COMPARAR',

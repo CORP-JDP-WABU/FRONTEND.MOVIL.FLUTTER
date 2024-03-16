@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/search/domain/teachers_search_result/teachers_search_result.dart';
 import 'package:wabu/features/teachers/teachers.dart';
+import 'package:wabu/utils/utils.dart';
 
 class TeachersTabContainer extends StatelessWidget {
   const TeachersTabContainer({
@@ -124,6 +125,10 @@ class TeachersTabContainer extends StatelessWidget {
         ),
       ),
       onTap: () {
+        FirebaseAnalyticsHandler.instance.logSelectContent(
+          contentType: AnalyticsContentType.card.contentType,
+          itemId: AnalyticsContentItemId.teacherSearchCard.itemId,
+        );
         print(teacher.idTeacher);
         context.pushNamed(
           TeacherProfileScreen.name,

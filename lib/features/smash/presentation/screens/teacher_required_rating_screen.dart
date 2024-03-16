@@ -6,6 +6,7 @@ import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/smash/domain/domain.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
+import 'package:wabu/utils/utils.dart';
 
 class TeacherRequiredRatingScreen extends ConsumerWidget {
   const TeacherRequiredRatingScreen({
@@ -178,6 +179,11 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         isButtonActive ? primaryButtonLinearGradient : null,
                     onPressed: () {
                       if (!isButtonActive) return;
+
+                      FirebaseAnalyticsHandler.instance.logSelectContent(
+                        contentType: AnalyticsContentType.button.contentType,
+                        itemId: AnalyticsContentItemId.teacherRequiredQualification.itemId,
+                      );
 
                       ref
                           .read(
