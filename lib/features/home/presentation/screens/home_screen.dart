@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/home/presentation/presentation.dart';
+import 'package:wabu/features/profile/screens/my_profile_view.dart';
 import 'package:wabu/features/search/presentation/views/search_view.dart';
 import 'package:wabu/features/smash/presentation/views/smash_view.dart';
 import 'package:wabu/utils/utils.dart';
@@ -39,6 +40,8 @@ class _CustomNavigationBar extends StatelessWidget {
         return 1;
       case SmashView.route:
         return 2;
+      case MyProfileView.route:
+        return 3;  
       default:
         return 0;
     }
@@ -66,6 +69,9 @@ class _CustomNavigationBar extends StatelessWidget {
           itemId: AnalyticsContentItemId.smashCard.itemId,
         );
         context.go(SmashView.route);
+        break;
+      case 3:  
+        context.go(MyProfileView.route);
         break;
       default:
         context.go(HomeView.route);
@@ -125,7 +131,7 @@ class _CustomNavigationBar extends StatelessWidget {
             ),
           ),
           label: 'Chat',
-        ),
+        ),*/
         BottomNavigationBarItem(
           icon: SvgPicture.asset('assets/images/svgs/profile_bottom_bar.svg'),
           activeIcon: SvgPicture.asset(
@@ -136,7 +142,7 @@ class _CustomNavigationBar extends StatelessWidget {
             ),
           ),
           label: 'Perfil',
-        ),*/
+        ),
       ],
     );
   }
