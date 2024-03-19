@@ -4,6 +4,7 @@ import 'package:wabu/features/authentication/presentation/screens/welcome_screen
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
+import 'package:wabu/features/profile/screens/my_profile_view.dart';
 import 'package:wabu/features/search/presentation/presentation.dart';
 import 'package:wabu/features/smash/domain/domain.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
@@ -80,6 +81,13 @@ final appRouter = GoRouter(
           path: SmashView.route,
           builder: (context, state) {
             return const SmashView();
+          },
+        ),
+         GoRoute(
+          name: MyProfileView.name,
+          path: MyProfileView.route,
+          builder: (context, state) {
+            return const MyProfileView();
           },
         ),
       ],
