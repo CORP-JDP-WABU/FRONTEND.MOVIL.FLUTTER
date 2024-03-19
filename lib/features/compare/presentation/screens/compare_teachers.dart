@@ -14,7 +14,7 @@ class CompareTeachers extends ConsumerStatefulWidget {
     required this.selectedTeacherIds,
   });
 
-  static const String name = "compare_carrousel";
+  static const String name = "compare_teachers";
   static const String route = "/$name";
   final List<String> selectedTeacherIds;
 
@@ -23,7 +23,6 @@ class CompareTeachers extends ConsumerStatefulWidget {
 }
 
 class _CompareTeachers extends ConsumerState<CompareTeachers> {
-  final CardSwiperController controller = CardSwiperController();
   int activeIndex = 0;
 
   @override
@@ -33,7 +32,6 @@ class _CompareTeachers extends ConsumerState<CompareTeachers> {
 
   @override
   void dispose() {
-    controller.dispose();
     super.dispose();
   }
 
@@ -43,7 +41,7 @@ class _CompareTeachers extends ConsumerState<CompareTeachers> {
     final compareTeachersStatus = state.compareTeachersStatus;
     final compareTeachers = state.compareTeachers;
 
-    double screenHeigth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery.of(context).size.width;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (compareTeachersStatus == CompareTeachersStatus.initial) {
@@ -92,78 +90,74 @@ class _CompareTeachers extends ConsumerState<CompareTeachers> {
                     ),
                   ),
                   Expanded(
-                    child: LayoutBuilder(
-                      builder: (context, constraints) {
-                        return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              compareTeachers.isNotEmpty
-                                  ? CarouselSlider.builder(
-                                      itemCount: compareTeachers.length,
-                                      itemBuilder: (context, index, realIndex) {
-                                        return CardViewCarrouselCompare(
-                                          compareTeacher:
-                                              compareTeachers[index],
-                                          courseId:
-                                              widget.selectedTeacherIds[index],
-                                        );
-                                      },
-                                      options: CarouselOptions(
-                                        clipBehavior: Clip.none,
-                                        height: screenHeigth * 1.2,
-                                        reverse: true,
-                                        onPageChanged: (index, reason) =>
-                                            setState(() => activeIndex = index),
-                                      ))
-                                  : Center(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(16.0),
-                                            child: SvgPicture.asset(
-                                              'assets/images/svgs/emoji_sad_missing.svg',
-                                            ),
-                                          ),
-                                          const Padding(
-                                            padding: EdgeInsets.all(16.0),
-                                            child: Text(
-                                              'No hay profesores \n vinculados a este curso \n todavía',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: Color.fromRGBO(
-                                                    191, 191, 191, 1.000),
-                                                fontFamily: 'Gotham Rounded',
-                                                fontSize: 24,
-                                                height: 30 / 26,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          const Padding(
-                                            padding: EdgeInsets.all(16.0),
-                                            child: Text(
-                                              'Puedes sugerirlos en el \n botón arriba a la\n derecha',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: Color.fromRGBO(
-                                                    191, 191, 191, 1.000),
-                                                fontFamily: 'Gotham Rounded',
-                                                fontSize: 24,
-                                                height: 30 / 26,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          )
-                                        ],
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          compareTeachers.isNotEmpty
+                              ? CarouselSlider.builder(
+                                  itemCount: compareTeachers.length,
+                                  itemBuilder: (context, index, realIndex) {
+                                    return CardViewCarrouselCompare(
+                                      compareTeacher:
+                                          compareTeachers[index],
+                                      courseId:
+                                          widget.selectedTeacherIds[index],
+                                    );
+                                  },
+                                  options: CarouselOptions(
+                                    clipBehavior: Clip.none,
+                                    height: screenWidth * 1.2,
+                                    reverse: true,
+                                    onPageChanged: (index, reason) =>
+                                        setState(() => activeIndex = index),
+                                  ))
+                              : Center(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: SvgPicture.asset(
+                                          'assets/images/svgs/emoji_sad_missing.svg',
+                                        ),
                                       ),
-                                    ),
-                            ],
-                          ),
-                        );
-                      },
+                                      const Padding(
+                                        padding: EdgeInsets.all(16.0),
+                                        child: Text(
+                                          'No hay profesores \n vinculados a este curso \n todavía',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Color.fromRGBO(
+                                                191, 191, 191, 1.000),
+                                            fontFamily: 'Gotham Rounded',
+                                            fontSize: 24,
+                                            height: 30 / 26,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      const Padding(
+                                        padding: EdgeInsets.all(16.0),
+                                        child: Text(
+                                          'Puedes sugerirlos en el \n botón arriba a la\n derecha',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Color.fromRGBO(
+                                                191, 191, 191, 1.000),
+                                            fontFamily: 'Gotham Rounded',
+                                            fontSize: 24,
+                                            height: 30 / 26,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                        ],
+                      ),
                     ),
                   ),
                   CarrouselFilterButtons(
