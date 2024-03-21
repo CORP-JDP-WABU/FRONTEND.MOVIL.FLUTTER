@@ -1,17 +1,11 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wabu/common/widgets/custom_filled_button.dart';
-import 'package:wabu/common/widgets/discrete_bar_qualification.dart';
-import 'package:wabu/common/widgets/gradients/button_linear_gradient.dart';
 import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/compare/compare.dart';
 import 'package:wabu/features/compare/presentation/widgets/card_view_carrousel_optional_compare.dart';
-import 'package:wabu/features/course/domain/course_teacher/course_teacher.dart';
 import 'package:wabu/features/teachers/domain/teacher_course_extra/teacher_course_extra.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
 
@@ -99,7 +93,7 @@ class CardViewCarrouselCompare extends StatelessWidget {
                         borderWidth: 3,
                         borderColor: Colors.blue,
                         imageProvider: NetworkImage(
-                            compareTeacher.photoUrl ?? '',
+                            compareTeacher.photoUrl ,
                             scale: 60),
                       ),
                     )),
@@ -111,7 +105,7 @@ class CardViewCarrouselCompare extends StatelessWidget {
                           height: 20,
                         ),
                         Text(
-                          compareTeacher.firstName ?? '',
+                          compareTeacher.firstName,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
@@ -123,7 +117,7 @@ class CardViewCarrouselCompare extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          compareTeacher.lastName ?? '',
+                          compareTeacher.lastName,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
@@ -144,7 +138,7 @@ class CardViewCarrouselCompare extends StatelessWidget {
                               width: 4.0,
                             ),
                             Text(
-                                (compareTeacher.manyAverageQualifications ?? 0)
+                                (compareTeacher.manyAverageQualifications)
                                     .toStringAsFixed(2),
                                 style: const TextStyle(
                                   color: Color(0xFFFFC32A),
@@ -164,7 +158,7 @@ class CardViewCarrouselCompare extends StatelessWidget {
                             const SizedBox(
                               width: 8.0,
                             ),
-                            Text((compareTeacher.manyComments ?? 0).toString(),
+                            Text((compareTeacher.manyComments ).toString(),
                                 style: const TextStyle(
                                   color: Color(0xFF2acbff),
                                   fontFamily: 'SFProDisplay',
@@ -184,7 +178,7 @@ class CardViewCarrouselCompare extends StatelessWidget {
                               width: 8.0,
                             ),
                             Text(
-                                (compareTeacher.manyQualifications ?? 0)
+                                (compareTeacher.manyQualifications )
                                     .toString(),
                                 style: const TextStyle(
                                   color: AppTheme.student,
@@ -276,7 +270,7 @@ class CardViewCarrouselCompare extends StatelessWidget {
               context.pushNamed(
                 TeacherCourseProfileScreen.name,
                 extra: TeacherCourseExtra(
-                  teacherId: compareTeacher.idTeacher ?? '',
+                  teacherId: compareTeacher.idTeacher ,
                   courseId: courseId,
                 ),
               );

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/features/compare/compare.dart';
-import 'package:wabu/features/compare/presentation/widgets/card_view_carrousel_compare.dart';
+import 'package:wabu/features/compare/presentation/widgets/compare_carrousel_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class CompareTeachers extends ConsumerStatefulWidget {
