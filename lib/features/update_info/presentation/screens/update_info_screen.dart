@@ -54,7 +54,12 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => const WelcomeDialog(),
+      builder: (context) {
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.onBoardPopupNews,
+        );
+        return const WelcomeDialog();
+      },
     );
   }
 
