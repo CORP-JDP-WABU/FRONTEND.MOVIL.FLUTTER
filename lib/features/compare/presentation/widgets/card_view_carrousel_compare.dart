@@ -6,9 +6,11 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/custom_filled_button.dart';
 import 'package:wabu/common/widgets/discrete_bar_qualification.dart';
 import 'package:wabu/common/widgets/gradients/button_linear_gradient.dart';
+import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/compare/compare.dart';
+import 'package:wabu/features/compare/presentation/widgets/card_view_carrousel_optional_compare.dart';
 import 'package:wabu/features/course/domain/course_teacher/course_teacher.dart';
 import 'package:wabu/features/teachers/domain/teacher_course_extra/teacher_course_extra.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
@@ -82,8 +84,7 @@ class CardViewCarrouselCompare extends StatelessWidget {
                     offset: const Offset(0, 2),
                   )
                 ],
-                borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(25), bottom: Radius.circular(25))),
+                borderRadius: BorderRadius.circular(25)),
             child: Column(
               children: [
                 const SizedBox(height: 16),
@@ -93,17 +94,13 @@ class CardViewCarrouselCompare extends StatelessWidget {
                     Flexible(
                         child: Padding(
                       padding: const EdgeInsets.only(left: 5),
-                      child: Material(
-                        shape: const CircleBorder(
-                            side: BorderSide(
-                                color: Color.fromRGBO(38, 137, 245, 1.000),
-                                width: 3)),
-                        child: CircleAvatar(
-                          radius: 60,
-                          backgroundImage: NetworkImage(
-                              compareTeacher.photoUrl ?? '',
-                              scale: 60),
-                        ),
+                      child: SolidCircleAvatar(
+                        radius: 60,
+                        borderWidth: 3,
+                        borderColor: Colors.blue,
+                        imageProvider: NetworkImage(
+                            compareTeacher.photoUrl ?? '',
+                            scale: 60),
                       ),
                     )),
                     Flexible(
@@ -143,75 +140,69 @@ class CardViewCarrouselCompare extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 4.0, right: 2.0),
-                              child: Text(
-                                  (compareTeacher.manyAverageQualifications ??
-                                          0)
-                                      .toStringAsFixed(2),
-                                  style: const TextStyle(
-                                    color: Color.fromRGBO(255, 195, 42, 1.000),
-                                    fontFamily: 'SFProDisplay',
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.bold,
-                                  )),
+                            const SizedBox(
+                              width: 4.0,
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 2.0, right: 4.0),
-                              child: SvgPicture.asset(
-                                  'assets/images/svgs/star.svg',
-                                  height: 15,
-                                  width: 15,
-                                  color: const Color.fromRGBO(
-                                      255, 195, 42, 1.000)),
+                            Text(
+                                (compareTeacher.manyAverageQualifications ?? 0)
+                                    .toStringAsFixed(2),
+                                style: const TextStyle(
+                                  color: Color(0xFFFFC32A),
+                                  fontFamily: 'SFProDisplay',
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            const SizedBox(
+                              width: 4.0,
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 4.0, right: 2.0),
-                              child: Text(
-                                  (compareTeacher.manyComments ?? 0).toString(),
-                                  style: const TextStyle(
-                                    color: Color.fromRGBO(42, 203, 255, 1.000),
-                                    fontFamily: 'SFProDisplay',
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.bold,
-                                  )),
+                            SvgPicture.asset(
+                              'assets/images/svgs/star.svg',
+                              height: 15,
+                              width: 15,
+                              color: const Color(0xFFFFC32A),
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 2.0, right: 4.0),
-                              child: SvgPicture.asset(
-                                'assets/images/svgs/message.svg',
-                                height: 15,
-                                width: 15,
-                                color:
-                                    const Color.fromRGBO(42, 203, 255, 1.000),
-                              ),
+                            const SizedBox(
+                              width: 8.0,
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 4.0, right: 2.0),
-                              child: Text(
-                                  (compareTeacher.manyQualifications ?? 0)
-                                      .toString(),
-                                  style: const TextStyle(
-                                    color: AppTheme.student,
-                                    fontFamily: 'SFProDisplay',
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.bold,
-                                  )),
+                            Text((compareTeacher.manyComments ?? 0).toString(),
+                                style: const TextStyle(
+                                  color: Color(0xFF2acbff),
+                                  fontFamily: 'SFProDisplay',
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            const SizedBox(
+                              width: 4.0,
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 2.0, right: 4.0),
-                              child: SvgPicture.asset(
-                                'assets/images/svgs/person.svg',
-                                height: 15,
-                                width: 15,
-                                color: AppTheme.student,
-                              ),
+                            SvgPicture.asset(
+                              'assets/images/svgs/message.svg',
+                              height: 15,
+                              width: 15,
+                              color: const Color(0xFF2acbff),
+                            ),
+                            const SizedBox(
+                              width: 8.0,
+                            ),
+                            Text(
+                                (compareTeacher.manyQualifications ?? 0)
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: AppTheme.student,
+                                  fontFamily: 'SFProDisplay',
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            const SizedBox(
+                              width: 4.0,
+                            ),
+                            SvgPicture.asset(
+                              'assets/images/svgs/person.svg',
+                              height: 15,
+                              width: 15,
+                              color: AppTheme.student,
+                            ),
+                            const SizedBox(
+                              width: 4.0,
                             ),
                           ],
                         )
@@ -250,128 +241,23 @@ class CardViewCarrouselCompare extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 42, vertical: 3),
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Carga Académica',
-                              style: TextStyle(
-                                color: Color.fromRGBO(97, 20, 144, 1.000),
-                                fontFamily: 'SFProDisplay',
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Container(
-                                height: 16,
-                                width: 55,
-                                decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(25),
-                                      bottom: Radius.circular(25),
-                                    ),
-                                    border: Border.fromBorderSide(BorderSide(
-                                      color:
-                                          Color.fromRGBO(139, 48, 194, 1.000),
-                                    ))),
-                                child: Text(
-                                  getOptionalQualificationValueByCode(4),
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    color: Color.fromRGBO(97, 20, 144, 1.000),
-                                    fontFamily: 'SFProDisplay',
-                                    fontSize: 12,
-                                    height: 16 / 15,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ))
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Exigencia',
-                              style: TextStyle(
-                                color: Color.fromRGBO(139, 48, 194, 1.000),
-                                fontFamily: 'SFProDisplay',
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Container(
-                                height: 16,
-                                width: 55,
-                                decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(25),
-                                      bottom: Radius.circular(25),
-                                    ),
-                                    border: Border.fromBorderSide(BorderSide(
-                                      color:
-                                          Color.fromRGBO(139, 48, 194, 1.000),
-                                    ))),
-                                child: Text(
-                                  getOptionalQualificationValueByCode(4),
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    color: Color.fromRGBO(97, 20, 144, 1.000),
-                                    fontFamily: 'SFProDisplay',
-                                    height: 16 / 15,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ))
-                          ],
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                'Toma Asistencia',
-                                style: TextStyle(
-                                  color: Color.fromRGBO(193, 91, 255, 1.000),
-                                  fontFamily: 'SFProDisplay',
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              Container(
-                                  height: 16,
-                                  width: 55,
-                                  decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.vertical(
-                                        top: Radius.circular(25),
-                                        bottom: Radius.circular(25),
-                                      ),
-                                      border: Border.fromBorderSide(BorderSide(
-                                        color:
-                                            Color.fromRGBO(139, 48, 194, 1.000),
-                                      ))),
-                                  child: Text(
-                                    getOptionalQualificationValueByCode(6),
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: Color.fromRGBO(97, 20, 144, 1.000),
-                                      fontFamily: 'SFProDisplay',
-                                      fontSize: 12,
-                                      height: 16 / 15,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ))
-                            ],
-                          ))
+                      const SizedBox(width: 4.0,),
+                      CardViewCarrouselOptionalCompare(
+                        text:  'Carga Académica', 
+                        getOptionalQualificationValueByCode: getOptionalQualificationValueByCode(4),
+                        color: const Color(0xFF611490)),
+                      const SizedBox(height: 10.0,),
+                       CardViewCarrouselOptionalCompare(
+                        text:  'Exigencia', 
+                        getOptionalQualificationValueByCode: getOptionalQualificationValueByCode(5),
+                        color: const Color(0xFF611490)),
+                      
+                      const SizedBox(height: 10.0,),
+                        CardViewCarrouselOptionalCompare(
+                        text:  'Toma Asistencia', 
+                        getOptionalQualificationValueByCode: getOptionalQualificationValueByCode(6),
+                        color: const Color(0xFF611490)),                 
+                      const SizedBox(height: 5.0,),
                     ],
                   ),
                 ),
