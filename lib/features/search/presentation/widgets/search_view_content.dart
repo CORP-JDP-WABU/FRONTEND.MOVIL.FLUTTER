@@ -93,11 +93,26 @@ class SearchViewContent extends ConsumerWidget {
                                 filled: true,
                                 fillColor: Colors.white,
                               ),
+                              onTap: () {
+                                FirebaseAnalyticsHandler.instance
+                                    .logSelectContent(
+                                  contentType: AnalyticsContentType
+                                      .searchBar.contentType,
+                                  itemId: AnalyticsContentItemId
+                                      .teacherCourseSearchBar.itemId,
+                                );
+                              },
                             ),
                           ),
                         ),
                         IconButton(
                           onPressed: () {
+                            FirebaseAnalyticsHandler.instance.logSelectContent(
+                              contentType:
+                                  AnalyticsContentType.searchBar.contentType,
+                              itemId: AnalyticsContentItemId
+                                  .teacherCourseSearch.itemId,
+                            );
                             ref
                                 .read(searchControllerProvider.notifier)
                                 .search(controller.text);

@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wabu/features/search/domain/teachers_search_result/teachers_search_result.dart';
 import 'package:wabu/features/search/presentation/controllers/controllers.dart';
 import 'package:wabu/features/search/presentation/widgets/teachers_tab_container.dart';
+import 'package:wabu/utils/utils.dart';
 
 class TeachersTab extends ConsumerStatefulWidget {
   const TeachersTab({
@@ -63,6 +64,12 @@ class TeachersTabState extends ConsumerState<TeachersTab> {
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                           onPressed: () {
+                            FirebaseAnalyticsHandler.instance.logSelectContent(
+                              contentType:
+                                  AnalyticsContentType.button.contentType,
+                              itemId: AnalyticsContentItemId
+                                  .teacherSearchRating.itemId,
+                            );
                             ref
                                 .read(searchControllerProvider.notifier)
                                 .orderTeachersListByQualification();
@@ -82,6 +89,12 @@ class TeachersTabState extends ConsumerState<TeachersTab> {
                         thumbIcon: thumbIcon,
                         value: state.isLexicographicallyOrdered,
                         onChanged: (bool value) {
+                          FirebaseAnalyticsHandler.instance.logSelectContent(
+                            contentType:
+                                AnalyticsContentType.button.contentType,
+                            itemId: AnalyticsContentItemId
+                                .teacherSearchOrder.itemId,
+                          );
                           ref
                               .read(searchControllerProvider.notifier)
                               .orderLexicographicallyTeachersList();

@@ -6,6 +6,7 @@ import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/smash/domain/domain.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
+import 'package:wabu/utils/utils.dart';
 
 class TeacherRaitingStep2Screen extends ConsumerWidget {
   const TeacherRaitingStep2Screen({super.key});
@@ -186,6 +187,10 @@ class _TeacherRequiredRatingContent extends ConsumerWidget {
                         stops: [0.0, 1.0],
                       ),
                       onPressed: () {
+                        FirebaseAnalyticsHandler.instance.logSelectContent(
+                          contentType: AnalyticsContentType.button.contentType,
+                          itemId: AnalyticsContentItemId.teacherOptionalQualification.itemId,
+                        );
                         context.pushNamed(TeacherCommentScreen.name);
                       },
                     ),

@@ -11,6 +11,7 @@ import 'package:wabu/constants/globals.dart';
 import 'package:wabu/features/authentication/presentation/screens/loader_screen.dart';
 import 'package:wabu/features/update_info/update_info.dart';
 import 'package:wabu/features/university/university.dart';
+import 'package:wabu/utils/utils.dart';
 
 class UpdateInfoScreen extends ConsumerStatefulWidget {
   const UpdateInfoScreen({super.key});
@@ -291,6 +292,13 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
                               return DropdownMenuItem(
                                 onTap: (university.idUniversity == '-1')
                                     ? () {
+                                        FirebaseAnalyticsHandler.instance
+                                            .logSelectContent(
+                                          contentType: AnalyticsContentType
+                                              .option.contentType,
+                                          itemId: AnalyticsContentItemId
+                                              .noUniversity.itemId,
+                                        );
                                         context.pushNamed(
                                             AddUniversityScreen.name);
                                       }
@@ -373,6 +381,13 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
                                         ),
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () async {
+                                            FirebaseAnalyticsHandler.instance
+                                                .logSelectContent(
+                                              contentType: AnalyticsContentType
+                                                  .button.contentType,
+                                              itemId: AnalyticsContentItemId
+                                                  .seeTerms.itemId,
+                                            );
                                             var url = Uri.parse(
                                                 'https://drive.google.com/file/d/1JCpA0nO3-mSyrNwnSLfM3gox21Grqxub/view?usp=sharing');
 
@@ -400,10 +415,19 @@ class _UpdateInfoScreenState extends ConsumerState<UpdateInfoScreen> {
                             alignment: Alignment.center,
                             child: CustomFilledButton(
                               onPressed: (state.isInfoCompleted)
-                                  ? () => ref
-                                      .read(
-                                          updateInfoControllerProvider.notifier)
-                                      .submitUpdatedInfo()
+                                  ? () {
+                                      FirebaseAnalyticsHandler.instance
+                                          .logSelectContent(
+                                        contentType: AnalyticsContentType
+                                            .button.contentType,
+                                        itemId: AnalyticsContentItemId
+                                            .saveInfo.itemId,
+                                      );
+                                      ref
+                                          .read(updateInfoControllerProvider
+                                              .notifier)
+                                          .submitUpdatedInfo();
+                                    }
                                   : null,
                               text: 'Guardar y continuar',
                               minimumWidth: 220,

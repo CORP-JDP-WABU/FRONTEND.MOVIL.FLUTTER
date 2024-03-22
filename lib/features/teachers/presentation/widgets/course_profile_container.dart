@@ -8,6 +8,7 @@ import 'package:wabu/features/course/presentation/screens/course_carrousel.dart'
 import 'package:wabu/features/smash/domain/domain.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
 import 'package:wabu/features/teachers/domain/domain.dart';
+import 'package:wabu/utils/utils.dart';
 
 class CourseProfileContainer extends ConsumerWidget {
   const CourseProfileContainer({
@@ -98,6 +99,10 @@ class CourseProfileContainer extends ConsumerWidget {
                   ],
                 ),
                 onTap: () {
+                  FirebaseAnalyticsHandler.instance.logSelectContent(
+                    contentType: AnalyticsContentType.card.contentType,
+                    itemId: AnalyticsContentItemId.teacherProfileCourse.itemId,
+                  );
                   context.pushNamed(
                     CourseCarrousel.name,
                     extra: course.id,
@@ -111,6 +116,11 @@ class CourseProfileContainer extends ConsumerWidget {
           backgroundColor: AppTheme.smashTeacherBackgroundButton,
           padding: 0,
           onPressed: () {
+            FirebaseAnalyticsHandler.instance.logSelectContent(
+              contentType: AnalyticsContentType.button.contentType,
+              itemId: AnalyticsContentItemId.teacherProfileSmash.itemId,
+            );
+
             final teacherSuggestion = SmashSuggestion(
               course: SmashSuggestionCourse(
                 idCourse: course.id,
