@@ -41,15 +41,6 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Container(
-              height: 360,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-            ),
-          ),
           ClipPath(
             clipper: ProfileClipper(),
             child: Container(
@@ -91,18 +82,18 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
                             width: 15,
                           ),
                           const SizedBox(
-                            width: 8.0,
+                            width: 16.0,
                           ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16),
-                            child: Text(
-                              'Cursos en tu carrera',
-                              style: TextStyle(
-                                color: Color(0xFF02336A),
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          const Text(
+                            'Cursos en tu carrera',
+                            style: TextStyle(
+                              color: Color(0xFF02336A),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
+                          ),
+                          const SizedBox(
+                            width: 8.0,
                           ),
                         ],
                       ),
@@ -113,13 +104,12 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
                       const SizedBox(
                         height: 16,
                       )
-                    ] else ...[
+                    ] else
                       const UnhappyPath(
                           texto1:
                               'No hay cursos vinculados a\n este profesor todavía',
                           texto2:
-                              '!Puedes sugerirlos en el botón \n arriba a la derecha')
-                    ],
+                              '!Puedes sugerirlos en el botón \n arriba a la derecha'),
                     if (teacherProfile.courseInOtherCareer.isNotEmpty) ...[
                       Row(
                         children: [
@@ -157,13 +147,12 @@ class _TeacherProfileScreenState extends ConsumerState<TeacherProfileScreen> {
                       const SizedBox(
                         height: 36,
                       )
-                    ] else ...[
+                    ] else
                       const UnhappyPath(
                           texto1:
                               'No hay cursos vinculados a\n este profesor todavía',
                           texto2:
-                              '!Puedes sugerirlos en el botón \n arriba a la derecha')
-                    ],
+                              '!Puedes sugerirlos en el botón \n arriba a la derecha'),
                   ],
                 ),
               ),

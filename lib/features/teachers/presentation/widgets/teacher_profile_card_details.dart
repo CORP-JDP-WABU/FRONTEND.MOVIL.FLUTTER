@@ -67,42 +67,7 @@ class TeacherProfileCardDetails extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const SizedBox(height: 8),
-                MaterialButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25)),
-                  padding: EdgeInsets.zero,
-                  child: Ink(
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [
-                            AppTheme.linearGradientLight,
-                            AppTheme.linearGradientDark
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          stops: [0.0, 1.0],
-                        ),
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Container(
-                        child: const Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 20, vertical: 9),
-                          child: Text(
-                            'Sugerir Editar',
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      )),
-                  onPressed: () => context.pop(true),
-                ),
+                const SizedBox(height: 8),               
                 const SizedBox(height: 8),
                 TeacherProfileDetails(
                   teacher: Teacher(
