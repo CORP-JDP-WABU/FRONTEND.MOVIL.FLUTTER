@@ -16,7 +16,7 @@ class CourseProfileView extends StatelessWidget {
         child: Column(
           children: [
             CourseProfileHeader(),
-            CourseProfileBody(),
+            _CourseProfileBody(),
           ],
         ),
       ),
@@ -34,7 +34,9 @@ class CourseProfileHeader extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          color: Colors.blue,
+        decoration: const BoxDecoration(
+          gradient: primaryButtonLinearGradient,
+        ),
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
@@ -59,10 +61,8 @@ class CourseProfileHeader extends StatelessWidget {
   }
 }
 
-class CourseProfileBody extends StatelessWidget {
-  const CourseProfileBody({
-    super.key,
-  });
+class _CourseProfileBody extends StatelessWidget {
+  const _CourseProfileBody();
 
   @override
   Widget build(BuildContext context) {

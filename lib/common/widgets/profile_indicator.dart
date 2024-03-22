@@ -5,15 +5,13 @@ class ProfileIndicator extends StatelessWidget {
   const ProfileIndicator({
     super.key,
     required this.color,
-    required this.iconSize,
-    required this.textSize,
-    this.fontWeight
+    required this.text,
+    required this.asset,
   });
 
   final Color color;
-  final double iconSize;
-  final double textSize;
-  final FontWeight ? fontWeight;
+  final String text;
+  final String asset;
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +19,19 @@ class ProfileIndicator extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          '3.00',
+          text,
           style: TextStyle(
             color: color,
-            fontSize: textSize,
+            fontSize: 12,
             fontFamily: 'SFProDisplay',
-            fontWeight: fontWeight
+            fontWeight: FontWeight.bold
           ),
         ),
         const SizedBox(width: 4),
         SvgPicture.asset(
-          'assets/images/svgs/star.svg',
-          height: iconSize,
-          width: iconSize,
+          asset,
+          height: 12,
+          width: 12,
           colorFilter: ColorFilter.mode(
             color,
             BlendMode.srcIn,

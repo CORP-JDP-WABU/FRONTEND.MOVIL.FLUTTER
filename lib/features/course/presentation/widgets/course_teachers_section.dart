@@ -17,19 +17,19 @@ class CourseTeachersSection extends StatelessWidget {
             const Text('Profesores',
                 style: TextStyle(
                   color: Color(0XFF6889AB),
-                  fontFamily: 'SFProDisplay',
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 )),
             GestureDetector(
               onTap: () {},
-              child: const Text('Ver todos >',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontFamily: 'SFProDisplay',
-                    fontSize: 11,
-                    fontWeight: FontWeight.w400,
-                  )),
+              child: const GradientText(
+                text: 'Ver todos >',
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w400,
+                ),
+                gradient: primaryButtonLinearGradient,
+              ),
             )
           ],
         ),
@@ -56,7 +56,7 @@ class _CourseTeacherCard extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(25)),
+          borderRadius:  BorderRadius.circular(25),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
@@ -72,7 +72,7 @@ class _CourseTeacherCard extends StatelessWidget {
           child: Column(
             children: [
               ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(25)),
+                borderRadius: BorderRadius.circular(17),
                 child: Image.network(
                   alignment: Alignment.topCenter,
                   'https://vietnamteachingjobs.com/wp-content/uploads/2023/07/why-do-you-want-to-be-a-teacher-1.jpg',
@@ -82,19 +82,18 @@ class _CourseTeacherCard extends StatelessWidget {
                 ),
               ),
               const Text('Enrique Paolo',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: Colors.black,
-                    fontFamily: 'SFProDisplay',
                     fontSize: 11,
                     fontWeight: FontWeight.w700,
                   )),
               const ProfileIndicator(
-                color: AppTheme.starColor,
-                iconSize: 12,
-                textSize: 12,
-                fontWeight: FontWeight.bold
-                
-              ),
+                  color: AppTheme.starColor,
+                  text: '3.00',
+                  asset: 'assets/images/svgs/star.svg',
+                  ),
             ],
           ),
         ),

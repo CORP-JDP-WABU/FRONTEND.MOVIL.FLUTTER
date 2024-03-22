@@ -14,18 +14,26 @@ class CourseDocumentsSection extends StatelessWidget {
         Text('Documentos',
             style: TextStyle(
               color: Color(0XFF6889AB),
-              fontFamily: 'SFProDisplay',
               fontSize: 16,
               fontWeight: FontWeight.bold,
             )),
         SizedBox(height: 8),
         Column(
           children: [
-            _CourseDocumentCard(),
+            _CourseDocumentCard(
+              text: 'Ver Todos',
+              value: '10,523 Documentos',
+            ),
             SizedBox(height: 4),
-            _CourseDocumentCard(),
+            _CourseDocumentCard(
+              text: 'Ver Todos',
+              value: '10,523 Documentos',
+            ),
             SizedBox(height: 4),
-            _CourseDocumentCard(),
+            _CourseDocumentCard(
+              text: 'Ver Todos',
+              value: '10,523 Documentos',
+            ),
           ],
         ),
       ],
@@ -34,14 +42,15 @@ class CourseDocumentsSection extends StatelessWidget {
 }
 
 class _CourseDocumentCard extends StatelessWidget {
-  const _CourseDocumentCard();
-
+  const _CourseDocumentCard({required this.text, required this.value});
+  final String text;
+  final String value;
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 64,
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(15)),
+        borderRadius: BorderRadius.circular(15),
         color: Colors.white,
         boxShadow: [
           BoxShadow(
@@ -61,10 +70,10 @@ class _CourseDocumentCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Text('Ver Todos',
-                      style: TextStyle(
+                  Text(text,
+                      style: const TextStyle(
                         color: Color(0xFF064B96),
-                        fontFamily: 'Gotham Rounded',
+                        fontFamily: 'GothamRounded',
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
                       )),
@@ -76,10 +85,9 @@ class _CourseDocumentCard extends StatelessWidget {
                       const SizedBox(
                         width: 4,
                       ),
-                      const Text('10,523 Documentos',
-                          style: TextStyle(
+                      Text(value,
+                          style: const TextStyle(
                             color: Color(0xFF6B6A6A),
-                            fontFamily: 'SFProDisplay',
                             fontSize: 11,
                             fontWeight: FontWeight.w400,
                           )),
