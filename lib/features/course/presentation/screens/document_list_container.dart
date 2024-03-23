@@ -1,52 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wabu/features/course/presentation/screens/document_list_screen.dart';
+import 'package:wabu/config/theme/app_theme.dart';
+import 'package:wabu/features/search/domain/courses_search_result/courses_search_result.dart';
+import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
+import 'package:wabu/utils/utils.dart';
 
-class CourseDocumentsSection extends StatelessWidget {
-  const CourseDocumentsSection({
+class DocumentListContainer extends StatelessWidget {
+  const DocumentListContainer({
     super.key,
+   // required this.course,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Documentos',
-            style: TextStyle(
-              color: Color(0XFF6889AB),
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            )),
-        SizedBox(height: 8),
-        Column(
-          children: [
-            _CourseDocumentCard(
-              text: 'Ver Todos',
-              value: '10,523 Documentos',
-            ),
-            SizedBox(height: 4),
-            _CourseDocumentCard(
-              text: 'Ver Todos',
-              value: '10,523 Documentos',
-            ),
-            SizedBox(height: 4),          
-            _CourseDocumentCard(
-              text: 'Ver Todos',
-              value: '10,523 Documentos',
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-}
+  // final CoursesSearchResult course;
 
-class _CourseDocumentCard extends StatelessWidget {
-  const _CourseDocumentCard({required this.text, required this.value});
-  final String text;
-  final String value;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -73,8 +40,8 @@ class _CourseDocumentCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(text,
-                        style: const TextStyle(
+                    const Text('Resumen Final de Prácticas',
+                        style: TextStyle(
                           color: Color(0xFF064B96),
                           fontFamily: 'GothamRounded',
                           fontSize: 14,
@@ -88,8 +55,8 @@ class _CourseDocumentCard extends StatelessWidget {
                         const SizedBox(
                           width: 4,
                         ),
-                        Text(value,
-                            style: const TextStyle(
+                        const Text('Profesor',
+                            style: TextStyle(
                               color: Color(0xFF6B6A6A),
                               fontSize: 11,
                               fontWeight: FontWeight.w400,
@@ -107,7 +74,7 @@ class _CourseDocumentCard extends StatelessWidget {
         ),
       ),
       onTap: () {
-        context.pushNamed(DocumentListScreen.name);
+        //context.pushNamed(DocumentListScreen.name);
       },
     );
   }

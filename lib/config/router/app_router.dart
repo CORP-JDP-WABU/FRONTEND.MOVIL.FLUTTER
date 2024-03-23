@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/features/authentication/presentation/screens/splash_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
 import 'package:wabu/features/course/course.dart';
+import 'package:wabu/features/course/presentation/screens/document_list_screen.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 // import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
@@ -158,6 +159,13 @@ final appRouter = GoRouter(
         return TeacherProfileScreen(
           teacherId: teacherId,
         );
+      },
+    ),
+     GoRoute(
+      name: DocumentListScreen.name,
+      path: DocumentListScreen.route,
+      builder: (context, state) {
+        return const DocumentListScreen();
       },
     ),
   ],
