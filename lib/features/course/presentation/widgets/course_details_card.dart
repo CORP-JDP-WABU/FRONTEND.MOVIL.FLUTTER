@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wabu/common/widgets/gradients/button_linear_gradient.dart';
+import 'package:wabu/common/widgets/widgets.dart';
+import 'package:wabu/features/course/course.dart';
 
 class CourseDetailsCard extends StatelessWidget {
-  const CourseDetailsCard({super.key});
+  const CourseDetailsCard({super.key, required this.courseProfile});
+
+  final CourseProfile courseProfile;
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +14,9 @@ class CourseDetailsCard extends StatelessWidget {
       elevation: 4.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
       child: Container(
-        height: 170,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(34),
-          gradient: primaryButtonLinearGradient,
+          gradient: headerLinearGradient,
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.2),
@@ -24,17 +26,15 @@ class CourseDetailsCard extends StatelessWidget {
             ),
           ],
         ),
-        child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Teoría de la Comunicación",
+                courseProfile.course,
                 textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 30,
                   fontFamily: 'GothamRounded',
@@ -42,24 +42,25 @@ class CourseDetailsCard extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _CourseDetailItem(
-                        asset: 'assets/images/svgs/star.svg',
-                        text: 'Calificacion',
-                        color: Colors.white,
-                        value: 4.2),
-                    SizedBox(width: 8),
-                    _CourseDetailItem(
-                        asset: 'assets/images/svgs/message.sv',
-                        text: 'Comentarios',
-                        color: Colors.white,
-                        value: 214),
-                  ],
-                ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _CourseDetailItem(
+                    asset: 'assets/images/svgs/star.svg',
+                    text: 'Calificacion',
+                    color: Colors.white,
+                    value:
+                        (courseProfile.averageQualification).toStringAsFixed(1),
+                  ),
+                  const SizedBox(width: 8),
+                  _CourseDetailItem(
+                    asset: 'assets/images/svgs/message.svg',
+                    text: 'Comentarios',
+                    color: Colors.white,
+                    value: (courseProfile.quantityComment).toString(),
+                  ),
+                ],
               ),
             ],
           ),
@@ -80,7 +81,7 @@ class _CourseDetailItem extends StatelessWidget {
   final String asset;
   final String text;
   final Color color;
-  final double value;
+  final String value;
 
   @override
   Widget build(BuildContext context) {
@@ -88,26 +89,32 @@ class _CourseDetailItem extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text(value.toString(),
-                style: TextStyle(
-                  color: color,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                )),
+            Text(
+              value,
+              style: TextStyle(
+                color: color,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(width: 4),
-            SvgPicture.asset(asset,
-                colorFilter: const ColorFilter.mode(
-                  Colors.white,
-                  BlendMode.srcIn,
-                )),
+            SvgPicture.asset(
+              asset,
+              colorFilter: const ColorFilter.mode(
+                Colors.white,
+                BlendMode.srcIn,
+              ),
+            ),
           ],
         ),
-        Text(text,
-            style: TextStyle(
-              color: color,
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            )),
+        Text(
+          text,
+          style: TextStyle(
+            color: color,
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
       ],
     );
   }

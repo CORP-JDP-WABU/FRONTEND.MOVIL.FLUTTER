@@ -1,5 +1,5 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:wabu/utils/logger.dart';
+import 'package:wabu/utils/utils.dart';
 
 enum AnalyticsUserPropertyEnum {
   firstName('FIRST_NAME'),
@@ -87,6 +87,19 @@ class FirebaseAnalyticsHandler {
       await _analytics.logSelectContent(
         contentType: contentType,
         itemId: itemId,
+      );
+    } catch (e) {
+      logger.e(e);
+    }
+  }
+
+  void logScreenView({
+    required AnalyticsScreen analyticsScreen,
+  }) async {
+    try {
+      await _analytics.logScreenView(
+        screenClass: analyticsScreen.name,
+        screenName: analyticsScreen.name,
       );
     } catch (e) {
       logger.e(e);

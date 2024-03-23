@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
+import 'package:wabu/features/compare/presentation/presentation.dart';
 import 'package:wabu/features/smash/presentation/presentation.dart';
 import 'package:wabu/utils/firebase_analytics/firebase_analytics_events.dart';
 import 'package:wabu/utils/firebase_analytics/firebase_analytics_handler.dart';
@@ -23,7 +24,7 @@ class SmashView extends ConsumerWidget {
               contentType: AnalyticsContentType.card.contentType,
               itemId: AnalyticsContentItemId.smashCard.itemId,
             );
-            context.push(TeachersTinderScreen.route);
+            context.pushNamed(TeachersTinderScreen.name);
           },
           color: AppTheme.smashButtonBackgroundColor,
           asset: 'assets/images/svgs/smash.svg',
@@ -35,6 +36,7 @@ class SmashView extends ConsumerWidget {
               contentType: AnalyticsContentType.card.contentType,
               itemId: AnalyticsContentItemId.compareCard.itemId,
             );
+            context.pushNamed(CompareWelcomeScreen.name);
           },
           color: AppTheme.compareButtonBackgroundColor,
           asset: 'assets/images/svgs/compare.svg',

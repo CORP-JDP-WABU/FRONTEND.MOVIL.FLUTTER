@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/config/theme/app_theme.dart';
+import 'package:wabu/features/course/course.dart';
 import 'package:wabu/features/search/domain/courses_search_result/courses_search_result.dart';
-import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
 import 'package:wabu/utils/utils.dart';
 
 class CourseTabContainer extends StatelessWidget {
@@ -103,8 +103,9 @@ class CourseTabContainer extends StatelessWidget {
           contentType: AnalyticsContentType.card.contentType,
           itemId: AnalyticsContentItemId.courseSearchCard.itemId,
         );
+
         context.pushNamed(
-          CourseCarrousel.name,
+          CourseProfileView.name,
           extra: course.idCourse,
         );
       },

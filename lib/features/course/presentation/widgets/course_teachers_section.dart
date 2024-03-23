@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/config/theme/app_theme.dart';
+import 'package:wabu/features/course/course.dart';
 
 class CourseTeachersSection extends StatelessWidget {
   const CourseTeachersSection({
     super.key,
+    required this.courseProfile,
   });
+
+  final CourseProfile courseProfile;
 
   @override
   Widget build(BuildContext context) {
+    final teachers = courseProfile.teachers;
+
     return Column(
       children: [
         Row(
@@ -21,26 +28,39 @@ class CourseTeachersSection extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 )),
             GestureDetector(
-              onTap: () {},
-              child: const GradientText(
-                text: 'Ver todos >',
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w400,
+              onTap: () {
+                context.pushNamed(
+                  CourseCarrousel.name,
+                  extra: courseProfile.idCourse,
+                );
+              },
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: GradientText(
+                  text: 'Ver todos >',
+                  style: TextStyle(
+                    fontSize: 11,
+                  ),
+                  gradient: primaryButtonLinearGradient,
                 ),
-                gradient: primaryButtonLinearGradient,
               ),
             )
           ],
         ),
         const SizedBox(height: 8),
-        const Row(
+        Row(
           children: [
-            _CourseTeacherCard(),
-            SizedBox(width: 12),
-            _CourseTeacherCard(),
-            SizedBox(width: 12),
-            _CourseTeacherCard(),
+            _CourseTeacherCard(
+              courseProfileTeacher: teachers[0],
+            ),
+            const SizedBox(width: 12),
+            _CourseTeacherCard(
+              courseProfileTeacher: teachers[1],
+            ),
+            const SizedBox(width: 12),
+            _CourseTeacherCard(
+              courseProfileTeacher: teachers[2],
+            ),
           ],
         )
       ],
@@ -49,14 +69,18 @@ class CourseTeachersSection extends StatelessWidget {
 }
 
 class _CourseTeacherCard extends StatelessWidget {
-  const _CourseTeacherCard();
+  const _CourseTeacherCard({
+    required this.courseProfileTeacher,
+  });
+
+  final CourseProfileTeacher courseProfileTeacher;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          borderRadius:  BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(25),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
@@ -74,26 +98,31 @@ class _CourseTeacherCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(17),
                 child: Image.network(
-                  alignment: Alignment.topCenter,
                   'https://vietnamteachingjobs.com/wp-content/uploads/2023/07/why-do-you-want-to-be-a-teacher-1.jpg',
+                  alignment: Alignment.topCenter,
                   height: 92,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),
-              const Text('Enrique Paolo',
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 11,
-                    fontWeight: FontWeight.w700,
-                  )),
-              const ProfileIndicator(
-                  color: AppTheme.starColor,
-                  text: '3.00',
-                  asset: 'assets/images/svgs/star.svg',
-                  ),
+              const SizedBox(height: 12),
+              Text(
+                courseProfileTeacher.firstName,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 4),
+              ProfileIndicator(
+                color: AppTheme.starColor,
+                text: courseProfileTeacher.averageQualification
+                    .toStringAsFixed(2),
+                asset: 'assets/images/svgs/star.svg',
+              ),
             ],
           ),
         ),
