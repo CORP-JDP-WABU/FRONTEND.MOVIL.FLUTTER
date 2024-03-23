@@ -100,13 +100,17 @@ final appRouter = GoRouter(
                 return const SearchResultView();
               },
             ),
-            // GoRoute(
-            //   name: CourseProfile.name,
-            //   path: CourseProfile.route,
-            //   builder: (context, state) {
-            //     return const CourseProfile();
-            //   },
-            // ),
+            GoRoute(
+              name: CourseProfileView.name,
+              path: CourseProfileView.route,
+              builder: (context, state) {
+                final courseId = state.extra! as String;
+
+                return CourseProfileView(
+                  courseId: courseId,
+                );
+              },
+            ),
           ],
         ),
         GoRoute(

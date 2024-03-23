@@ -5,4 +5,7 @@ import 'package:wabu/features/course/domain/domain.dart';
 abstract class CourseRepository {
   Future<Either<Failure, CourseTeachersResponse>> getCourseTeachers(
       String courseId);
+  Future<Either<Failure, CourseProfile>> getCourseProfile(
+    String courseId,
+  );
 }

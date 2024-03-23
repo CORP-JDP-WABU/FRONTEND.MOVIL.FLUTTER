@@ -1,9 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wabu/common/data/data.dart';
-import 'package:wabu/features/course/data/data.dart';
-import 'package:wabu/features/course/domain/course_teacher/course_teacher.dart';
-import 'package:wabu/features/course/domain/course_teachers_response/course_teachers_response.dart';
-import 'package:wabu/features/course/presentation/controllers/controllers.dart';
+import 'package:wabu/features/course/course.dart';
 
 part 'course_teachers_controller.g.dart';
 

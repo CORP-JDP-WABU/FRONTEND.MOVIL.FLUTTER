@@ -1,42 +1,70 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/features/course/course.dart';
 
-class CourseProfileView extends StatelessWidget {
-  static const String name = 'course-profile';
-  static const String route = '/$name';
+class CourseProfileView extends ConsumerWidget {
+  const CourseProfileView({
+    super.key,
+    required this.courseId,
+  });
 
-  const CourseProfileView({super.key});
+  static const String name = 'course-profile';
+  static const String route = name;
+  final String courseId;
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CourseProfileHeader(),
-            _CourseProfileBody(),
-          ],
-        ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(courseProfileControllerProvider);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (state.courseProfileStatus == CourseProfileStatus.initial) {
+        ref.read(courseProfileControllerProvider.notifier).fetchData(courseId);
+        return;
+      }
+
+      if (state.courseProfileStatus == CourseProfileStatus.error) {
+        return;
+      }
+    });
+
+    return Scaffold(
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                _CourseProfileHeader(
+                  courseProfile: state.courseProfile,
+                ),
+                _CourseProfileBody(
+                  courseProfile: state.courseProfile,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class CourseProfileHeader extends StatelessWidget {
-  const CourseProfileHeader({
-    super.key,
+class _CourseProfileHeader extends StatelessWidget {
+  const _CourseProfileHeader({
+    required this.courseProfile,
   });
+
+  final CourseProfile courseProfile;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-        decoration: const BoxDecoration(
-          gradient: primaryButtonLinearGradient,
-        ),
+          decoration: const BoxDecoration(
+            gradient: headerLinearGradient,
+          ),
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
@@ -47,9 +75,11 @@ class CourseProfileHeader extends StatelessWidget {
                     onTap: () => context.pop(),
                   ),
                   const SizedBox(height: 8),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    child: CourseDetailsCard(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: CourseDetailsCard(
+                      courseProfile: courseProfile,
+                    ),
                   ),
                 ],
               ),
@@ -62,17 +92,21 @@ class CourseProfileHeader extends StatelessWidget {
 }
 
 class _CourseProfileBody extends StatelessWidget {
-  const _CourseProfileBody();
+  const _CourseProfileBody({
+    required this.courseProfile,
+  });
+
+  final CourseProfile courseProfile;
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       child: Column(
         children: [
-          CourseTeachersSection(),
-          SizedBox(height: 12),
-          CourseDocumentsSection(),
+          CourseTeachersSection(courseProfile: courseProfile),
+          const SizedBox(height: 12),
+          const CourseDocumentsSection(),
         ],
       ),
     );

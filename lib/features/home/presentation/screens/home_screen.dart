@@ -59,7 +59,7 @@ class _CustomNavigationBar extends StatelessWidget {
           contentType: AnalyticsContentType.button.contentType,
           itemId: AnalyticsContentItemId.searchNavigation.itemId,
         );
-        context.go(CourseProfileView.route);
+        context.go(SearchView.route);
         break;
       case 2:
         FirebaseAnalyticsHandler.instance.logSelectContent(
