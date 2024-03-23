@@ -5,7 +5,6 @@ import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/config/theme/app_theme.dart';
 import 'package:wabu/features/compare/compare.dart';
 import 'package:wabu/features/compare/presentation/widgets/card_view_carrousel_optional_compare.dart';
-import 'package:wabu/features/teachers/domain/teacher_course_extra/teacher_course_extra.dart';
 import 'package:wabu/features/teachers/presentation/presentation.dart';
 
 const workQualification = ['-', 'No sé', 'Poco', 'Medio', 'Mucho'];
@@ -15,12 +14,10 @@ const assistanceQualification = ['-', 'No sé', 'Nunca', 'A veces', 'Siempre'];
 class CompareCarouselCard extends StatelessWidget {
   const CompareCarouselCard({
     super.key,
-    required this.courseId,
     required this.compareTeacher,
   });
 
   final CompareTeacher compareTeacher;
-  final String courseId;
 
   double getQualificationValueByCode(int code) {
     final requiredQualifications = compareTeacher.requiredQualification;
@@ -278,11 +275,8 @@ class CompareCarouselCard extends StatelessWidget {
             linearGradient: primaryButtonLinearGradient,
             onPressed: () {
               context.pushNamed(
-                TeacherCourseProfileScreen.name,
-                extra: TeacherCourseExtra(
-                  teacherId: compareTeacher.idTeacher,
-                  courseId: courseId,
-                ),
+                TeacherProfileScreen.name,
+                extra: compareTeacher.idTeacher,
               );
             },
           ),

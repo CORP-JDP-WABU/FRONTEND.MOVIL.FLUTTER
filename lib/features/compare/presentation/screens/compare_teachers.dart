@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/common/widgets/widgets.dart';
 import 'package:wabu/features/compare/compare.dart';
-import 'package:wabu/features/compare/presentation/widgets/compare_carrousel_card.dart';
+import 'package:wabu/features/compare/presentation/widgets/compare_carousel_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class CompareTeachers extends ConsumerStatefulWidget {
@@ -96,8 +96,6 @@ class _CompareTeachers extends ConsumerState<CompareTeachers> {
                                   itemBuilder: (context, index, realIndex) {
                                     return CompareCarouselCard(
                                       compareTeacher: compareTeachers[index],
-                                      courseId:
-                                          widget.selectedTeacherIds[index],
                                     );
                                   },
                                   options: CarouselOptions(
