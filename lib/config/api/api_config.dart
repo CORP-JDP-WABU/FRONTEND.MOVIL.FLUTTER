@@ -2,11 +2,11 @@ class ApiConfig {
   const ApiConfig._();
 
   static const dev = _ApiData(
-    securityBaseUrl: 'http://52.91.65.217:4000/api/',
-    studentBaseUrl: 'http://52.91.65.217:4003/api/',
-    universityBaseUrl: 'http://52.91.65.217:4002/api/',
-    dashboardBaseUrl: 'http://52.91.65.217:4001/api/',
-    operationBaseUrl: 'http://52.91.65.217:4004/api/',
+    securityBaseUrl: 'http://52.203.170.130:4000/api/',
+    studentBaseUrl: 'http://52.203.170.130:4003/api/',
+    universityBaseUrl: 'http://52.203.170.130:4002/api/',
+    dashboardBaseUrl: 'http://52.203.170.130:4001/api/',
+    operationBaseUrl: 'http://52.203.170.130:4004/api/',
   );
 
   static const prd = _ApiData(

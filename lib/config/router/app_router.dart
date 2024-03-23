@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/features/authentication/presentation/screens/splash_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
 import 'package:wabu/features/course/course.dart';
+import 'package:wabu/features/compare/presentation/presentation.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 // import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
@@ -11,6 +12,7 @@ import 'package:wabu/features/smash/presentation/presentation.dart';
 import 'package:wabu/features/teachers/teachers.dart';
 import 'package:wabu/features/university/university.dart';
 import 'package:wabu/features/update_info/update_info.dart';
+import 'package:wabu/utils/utils.dart';
 
 final appRouter = GoRouter(
   initialLocation: SplashScreen.route,
@@ -26,6 +28,10 @@ final appRouter = GoRouter(
       name: WelcomeScreen.name,
       path: WelcomeScreen.route,
       builder: (context, state) {
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.onBoardWelcome,
+        );
+
         return WelcomeScreen();
       },
     ),
@@ -33,6 +39,10 @@ final appRouter = GoRouter(
       name: UpdateInfoScreen.name,
       path: UpdateInfoScreen.route,
       builder: (context, state) {
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.onBoardUserInfo,
+        );
+
         return const UpdateInfoScreen();
       },
     ),
@@ -40,6 +50,10 @@ final appRouter = GoRouter(
       name: AddUniversityScreen.name,
       path: AddUniversityScreen.route,
       builder: (context, state) {
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.onBoardAddUniversity,
+        );
+
         return const AddUniversityScreen();
       },
     ),
@@ -57,20 +71,32 @@ final appRouter = GoRouter(
           name: HomeView.name,
           path: HomeView.route,
           builder: (context, state) {
+            FirebaseAnalyticsHandler.instance.logScreenView(
+              analyticsScreen: AnalyticsScreen.homeMainScreen,
+            );
+
             return const HomeView();
           },
         ),
         GoRoute(
-          name: CourseProfileView.name,
-          path: CourseProfileView.route,
+          name: SearchView.name,
+          path: SearchView.route,
           builder: (context, state) {
-            return const CourseProfileView();
+            FirebaseAnalyticsHandler.instance.logScreenView(
+              analyticsScreen: AnalyticsScreen.searchMainScreen,
+            );
+
+            return const SearchView();
           },
           routes: [
             GoRoute(
               name: SearchResultView.name,
               path: SearchResultView.route,
               builder: (context, state) {
+                FirebaseAnalyticsHandler.instance.logScreenView(
+                  analyticsScreen: AnalyticsScreen.searchTeacherList,
+                );
+
                 return const SearchResultView();
               },
             ),
@@ -87,6 +113,10 @@ final appRouter = GoRouter(
           name: SmashView.name,
           path: SmashView.route,
           builder: (context, state) {
+            FirebaseAnalyticsHandler.instance.logScreenView(
+              analyticsScreen: AnalyticsScreen.smashMainScreen,
+            );
+
             return const SmashView();
           },
         ),
@@ -96,6 +126,10 @@ final appRouter = GoRouter(
       name: TeacherRaitingStep2Screen.name,
       path: TeacherRaitingStep2Screen.route,
       builder: (context, state) {
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.smashStep2,
+        );
+
         return const TeacherRaitingStep2Screen();
       },
     ),
@@ -103,6 +137,10 @@ final appRouter = GoRouter(
       name: TeacherCommentScreen.name,
       path: TeacherCommentScreen.route,
       builder: (context, state) {
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.smashComment,
+        );
+
         return const TeacherCommentScreen();
       },
     ),
@@ -110,6 +148,10 @@ final appRouter = GoRouter(
       name: TeacherCourseProfileScreen.name,
       path: TeacherCourseProfileScreen.route,
       builder: (context, state) {
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.searchTeacherCourseProfile,
+        );
+
         final teacherCourse = state.extra! as TeacherCourseExtra;
         return TeacherCourseProfileScreen(
           teacherCourse: teacherCourse,
@@ -120,6 +162,10 @@ final appRouter = GoRouter(
       name: TeacherCourseCommentsScreen.name,
       path: TeacherCourseCommentsScreen.route,
       builder: (context, state) {
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.searchTeacherComments,
+        );
+
         return const TeacherCourseCommentsScreen();
       },
     ),
@@ -127,6 +173,10 @@ final appRouter = GoRouter(
       name: TeacherRequiredRatingScreen.name,
       path: TeacherRequiredRatingScreen.route,
       builder: (context, state) {
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.smashStep1,
+        );
+
         final smashSuggestion = state.extra! as SmashSuggestion;
         return TeacherRequiredRatingScreen(
           smashSuggestion: smashSuggestion,
@@ -137,6 +187,10 @@ final appRouter = GoRouter(
       name: TeachersTinderScreen.name,
       path: TeachersTinderScreen.route,
       builder: (context, state) {
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.smashTinderSwipe,
+        );
+
         return const TeachersTinderScreen();
       },
     ),
@@ -144,6 +198,10 @@ final appRouter = GoRouter(
       name: CourseCarrousel.name,
       path: CourseCarrousel.route,
       builder: (context, state) {
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.searchCourseCarrousel,
+        );
+
         final courseId = state.extra! as String;
         return CourseCarrousel(
           courseId: courseId,
@@ -154,9 +212,37 @@ final appRouter = GoRouter(
       name: TeacherProfileScreen.name,
       path: TeacherProfileScreen.route,
       builder: (context, state) {
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.searchTeacherProfile,
+        );
+
         final teacherId = state.extra! as String;
         return TeacherProfileScreen(
           teacherId: teacherId,
+        );
+      },
+    ),
+    GoRoute(
+      name: CompareWelcomeScreen.name,
+      path: CompareWelcomeScreen.route,
+      builder: (context, state) {
+        return const CompareWelcomeScreen();
+      },
+    ),
+    GoRoute(
+      name: CompareSearchScreen.name,
+      path: CompareSearchScreen.route,
+      builder: (context, state) {
+        return const CompareSearchScreen();
+      },
+    ),
+    GoRoute(
+      name: CompareTeachers.name,
+      path: CompareTeachers.route,
+      builder: (context, state) {
+        final selectedTeacherIds = state.extra! as List<String>;
+        return CompareTeachers(
+          selectedTeacherIds: selectedTeacherIds,
         );
       },
     ),
