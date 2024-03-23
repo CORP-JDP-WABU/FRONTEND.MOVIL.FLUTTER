@@ -7,9 +7,36 @@ import 'package:wabu/features/authentication/presentation/widgets/forgot_passwor
 import 'package:wabu/features/authentication/presentation/widgets/log_in_content.dart';
 import 'package:wabu/features/authentication/presentation/widgets/new_password_content.dart';
 import 'package:wabu/features/authentication/presentation/widgets/sign_up_content.dart';
+import 'package:wabu/utils/utils.dart';
 
 class WelcomeBottomSheet extends ConsumerWidget {
   const WelcomeBottomSheet({super.key});
+
+  Widget getContent(WelcomePage currentPage) {
+    switch (currentPage) {
+      case WelcomePage.signUp:
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.onBoardRegister,
+        );
+        return const SignUpContent();
+      case WelcomePage.logIn:
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.onBoardLogin,
+        );
+        return const LogInContent();
+      case WelcomePage.forgotPassword:
+        return const ForgotPasswordContent();
+      case WelcomePage.codeValidation:
+        FirebaseAnalyticsHandler.instance.logScreenView(
+          analyticsScreen: AnalyticsScreen.onBoardValidateEmail,
+        );
+        return const CodeValidationContent();
+      case WelcomePage.newPassword:
+        return const NewPasswordContent();
+      case WelcomePage.none:
+        return const SizedBox.shrink();
+    }
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,14 +58,7 @@ class WelcomeBottomSheet extends ConsumerWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: switch (welcomePageState.currentPage) {
-          WelcomePage.signUp => const SignUpContent(),
-          WelcomePage.logIn => const LogInContent(),
-          WelcomePage.forgotPassword => const ForgotPasswordContent(),
-          WelcomePage.codeValidation => const CodeValidationContent(),
-          WelcomePage.newPassword => const NewPasswordContent(),
-          WelcomePage.none => const SizedBox.shrink(),
-        },
+        child: getContent(welcomePageState.currentPage),
       ),
     );
   }
