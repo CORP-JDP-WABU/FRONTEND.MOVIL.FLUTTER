@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:wabu/features/authentication/presentation/screens/splash_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
+import 'package:wabu/features/compare/presentation/presentation.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
@@ -210,6 +211,30 @@ final appRouter = GoRouter(
         final teacherId = state.extra! as String;
         return TeacherProfileScreen(
           teacherId: teacherId,
+        );
+      },
+    ),
+    GoRoute(
+      name: CompareWelcomeScreen.name,
+      path: CompareWelcomeScreen.route,
+      builder: (context, state) {
+        return const CompareWelcomeScreen();
+      },
+    ),
+    GoRoute(
+      name: CompareSearchScreen.name,
+      path: CompareSearchScreen.route,
+      builder: (context, state) {
+        return const CompareSearchScreen();
+      },
+    ),
+    GoRoute(
+      name: CompareTeachers.name,
+      path: CompareTeachers.route,
+      builder: (context, state) {
+        final selectedTeacherIds = state.extra! as List<String>;
+        return CompareTeachers(
+          selectedTeacherIds: selectedTeacherIds,
         );
       },
     ),
