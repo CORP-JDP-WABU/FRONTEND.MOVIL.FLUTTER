@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -13,8 +12,8 @@ const workQualification = ['-', 'No sé', 'Poco', 'Medio', 'Mucho'];
 const lateQualification = ['-', 'No sé', 'Nunca', 'A veces', 'Siempre'];
 const assistanceQualification = ['-', 'No sé', 'Nunca', 'A veces', 'Siempre'];
 
-class CardViewCarrouselCompare extends StatelessWidget {
-  const CardViewCarrouselCompare({
+class CompareCarouselCard extends StatelessWidget {
+  const CompareCarouselCard({
     super.key,
     required this.courseId,
     required this.compareTeacher,
@@ -86,17 +85,17 @@ class CardViewCarrouselCompare extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Flexible(
-                        child: Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: SolidCircleAvatar(
-                        radius: 60,
-                        borderWidth: 3,
-                        borderColor: Colors.blue,
-                        imageProvider: NetworkImage(
-                            compareTeacher.photoUrl ,
-                            scale: 60),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: SolidCircleAvatar(
+                          radius: 60,
+                          borderWidth: 3,
+                          borderColor: Colors.blue,
+                          imageProvider:
+                              NetworkImage(compareTeacher.photoUrl, scale: 60),
+                        ),
                       ),
-                    )),
+                    ),
                     Flexible(
                         child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -158,7 +157,7 @@ class CardViewCarrouselCompare extends StatelessWidget {
                             const SizedBox(
                               width: 8.0,
                             ),
-                            Text((compareTeacher.manyComments ).toString(),
+                            Text((compareTeacher.manyComments).toString(),
                                 style: const TextStyle(
                                   color: Color(0xFF2acbff),
                                   fontFamily: 'SFProDisplay',
@@ -177,9 +176,7 @@ class CardViewCarrouselCompare extends StatelessWidget {
                             const SizedBox(
                               width: 8.0,
                             ),
-                            Text(
-                                (compareTeacher.manyQualifications )
-                                    .toString(),
+                            Text((compareTeacher.manyQualifications).toString(),
                                 style: const TextStyle(
                                   color: AppTheme.student,
                                   fontFamily: 'SFProDisplay',
@@ -235,23 +232,36 @@ class CardViewCarrouselCompare extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 42, vertical: 3),
                   child: Column(
                     children: [
-                      const SizedBox(width: 4.0,),
+                      const SizedBox(
+                        width: 4.0,
+                      ),
                       CardViewCarrouselOptionalCompare(
-                        text:  'Carga Académica', 
-                        getOptionalQualificationValueByCode: getOptionalQualificationValueByCode(4),
-                        color: const Color(0xFF611490)),
-                      const SizedBox(height: 10.0,),
-                       CardViewCarrouselOptionalCompare(
-                        text:  'Exigencia', 
-                        getOptionalQualificationValueByCode: getOptionalQualificationValueByCode(5),
-                        color: const Color(0xFF611490)),
-                      
-                      const SizedBox(height: 10.0,),
-                        CardViewCarrouselOptionalCompare(
-                        text:  'Toma Asistencia', 
-                        getOptionalQualificationValueByCode: getOptionalQualificationValueByCode(6),
-                        color: const Color(0xFF611490)),                 
-                      const SizedBox(height: 5.0,),
+                        text: 'Carga Académica',
+                        getOptionalQualificationValueByCode:
+                            getOptionalQualificationValueByCode(4),
+                        color: const Color(0xFF611490),
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      CardViewCarrouselOptionalCompare(
+                        text: 'Exigencia',
+                        getOptionalQualificationValueByCode:
+                            getOptionalQualificationValueByCode(5),
+                        color: const Color(0xFF611490),
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      CardViewCarrouselOptionalCompare(
+                        text: 'Toma Asistencia',
+                        getOptionalQualificationValueByCode:
+                            getOptionalQualificationValueByCode(6),
+                        color: const Color(0xFF611490),
+                      ),
+                      const SizedBox(
+                        height: 5.0,
+                      ),
                     ],
                   ),
                 ),
@@ -270,7 +280,7 @@ class CardViewCarrouselCompare extends StatelessWidget {
               context.pushNamed(
                 TeacherCourseProfileScreen.name,
                 extra: TeacherCourseExtra(
-                  teacherId: compareTeacher.idTeacher ,
+                  teacherId: compareTeacher.idTeacher,
                   courseId: courseId,
                 ),
               );

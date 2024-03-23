@@ -22,16 +22,12 @@ class CompareTeachers extends ConsumerStatefulWidget {
 }
 
 class _CompareTeachers extends ConsumerState<CompareTeachers> {
-
+  late CarouselController controller;
 
   @override
   void initState() {
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    controller = CarouselController();
   }
 
   @override
@@ -95,9 +91,10 @@ class _CompareTeachers extends ConsumerState<CompareTeachers> {
                         children: [
                           compareTeachers.isNotEmpty
                               ? CarouselSlider.builder(
+                                  carouselController: controller,
                                   itemCount: compareTeachers.length,
                                   itemBuilder: (context, index, realIndex) {
-                                    return CardViewCarrouselCompare(
+                                    return CompareCarouselCard(
                                       compareTeacher: compareTeachers[index],
                                       courseId:
                                           widget.selectedTeacherIds[index],
@@ -108,29 +105,34 @@ class _CompareTeachers extends ConsumerState<CompareTeachers> {
                                     height: screenWidth * 1.2,
                                     reverse: false,
                                     enableInfiniteScroll: false,
-                                  ))
+                                  ),
+                                )
                               : const UnhappyPathCompare(),
-                            ],
-                          ),
-                        ),
+                        ],
                       ),
+                    ),
+                  ),
                   CarrouselFilterButtons(
                     onQualificationPressed: () {
+                      controller.jumpToPage(0);
                       ref
                           .read(compareTeachersControllerProvider.notifier)
                           .orderByQualification();
                     },
                     onLearnPressed: () {
+                      controller.jumpToPage(0);
                       ref
                           .read(compareTeachersControllerProvider.notifier)
                           .orderByLearnQualification();
                     },
                     onHighPressed: () {
+                      controller.jumpToPage(0);
                       ref
                           .read(compareTeachersControllerProvider.notifier)
                           .orderByHighQualification();
                     },
                     onGoodPressed: () {
+                      controller.jumpToPage(0);
                       ref
                           .read(compareTeachersControllerProvider.notifier)
                           .orderByGoodQualification();
@@ -149,52 +151,51 @@ class _CompareTeachers extends ConsumerState<CompareTeachers> {
   }
 }
 
-class UnhappyPathCompare extends StatelessWidget{
+class UnhappyPathCompare extends StatelessWidget {
   const UnhappyPathCompare({super.key});
 
   @override
   Widget build(BuildContext context) {
-  return Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(16.0),
-                                        child: SvgPicture.asset(
-                                          'assets/images/svgs/emoji_sad_missing.svg',
-                                        ),
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.all(16.0),
-                                        child: Text(
-                                          'No hay profesores \n vinculados a este curso \n todavía',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Color(0XFFbfbfbf),
-                                            fontFamily: 'Gotham Rounded',
-                                            fontSize: 24,
-                                            height: 30 / 26,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.all(16.0),
-                                        child: Text(
-                                          'Puedes sugerirlos en el \n botón arriba a la\n derecha',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Color(0XFFbfbfbf),
-                                            fontFamily: 'Gotham Rounded',
-                                            fontSize: 24,
-                                            height: 30 / 26,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                );
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SvgPicture.asset(
+              'assets/images/svgs/emoji_sad_missing.svg',
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'No hay profesores \n vinculados a este curso \n todavía',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color(0XFFbfbfbf),
+                fontFamily: 'Gotham Rounded',
+                fontSize: 24,
+                height: 30 / 26,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Puedes sugerirlos en el \n botón arriba a la\n derecha',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color(0XFFbfbfbf),
+                fontFamily: 'Gotham Rounded',
+                fontSize: 24,
+                height: 30 / 26,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
-
 }

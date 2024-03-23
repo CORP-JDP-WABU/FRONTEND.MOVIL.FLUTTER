@@ -22,6 +22,7 @@ class TeacherRequiredQualificationIndicator extends StatelessWidget {
           value,
           style: TextStyle(
             color: color,
+            fontSize: 12,
             fontWeight: FontWeight.bold,
           ),
         ),

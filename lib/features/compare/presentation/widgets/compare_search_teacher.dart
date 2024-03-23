@@ -29,6 +29,7 @@ class CompareSearchTeacher extends ConsumerWidget {
               children: [
                 Image.network(
                   teachersSearchResult.photoUrl ?? '',
+                  alignment: Alignment.topCenter,
                   height: 100,
                   width: double.infinity,
                   fit: BoxFit.cover,
