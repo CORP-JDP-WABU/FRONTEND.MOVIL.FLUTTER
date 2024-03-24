@@ -44,6 +44,9 @@ class CourseProfileView extends ConsumerWidget {
               ],
             ),
           ),
+          if (state.courseProfileStatus == CourseProfileStatus.initial ||
+              state.courseProfileStatus == CourseProfileStatus.loading)
+            const LoaderTransparent(),
         ],
       ),
     );
