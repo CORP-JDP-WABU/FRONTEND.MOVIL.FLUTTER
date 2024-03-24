@@ -1,42 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wabu/features/course/course.dart';
 import 'package:wabu/features/course/presentation/screens/document_list_screen.dart';
 
 class CourseDocumentsSection extends StatelessWidget {
   const CourseDocumentsSection({
     super.key,
+    required this.documents,
   });
+
+  final List<CourseProfileDocument> documents;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Documentos',
-            style: TextStyle(
-              color: Color(0XFF6889AB),
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            )),
-        SizedBox(height: 8),
-        Column(
-          children: [
-            _CourseDocumentCard(
-              text: 'Ver Todos',
-              value: '10,523 Documentos',
-            ),
-            SizedBox(height: 4),
-            _CourseDocumentCard(
-              text: 'Ver Todos',
-              value: '10,523 Documentos',
-            ),
-            SizedBox(height: 4),          
-            _CourseDocumentCard(
-              text: 'Ver Todos',
-              value: '10,523 Documentos',
-            ),
-          ],
+        const Text(
+          'Documentos',
+          style: TextStyle(
+            color: Color(0XFF6889AB),
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 8),
+        ListView.builder(
+          padding: EdgeInsets.zero,
+          itemCount: documents.length,
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            final document = documents[index];
+
+            return _CourseDocumentCard(
+              documentsCategory: document.name,
+              documentsCount:
+                  '${document.quantity} ${(document.quantity == 1) ? 'Documento' : 'Documentos'}',
+            );
+          },
         ),
       ],
     );
@@ -44,14 +47,23 @@ class CourseDocumentsSection extends StatelessWidget {
 }
 
 class _CourseDocumentCard extends StatelessWidget {
-  const _CourseDocumentCard({required this.text, required this.value});
-  final String text;
-  final String value;
+  const _CourseDocumentCard({
+    required this.documentsCategory,
+    required this.documentsCount,
+  });
+
+  final String documentsCategory;
+  final String documentsCount;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: () {
+        context.pushNamed(DocumentListScreen.name);
+      },
       child: Container(
         height: 64,
+        margin: const EdgeInsets.symmetric(vertical: 2),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: Colors.white,
@@ -73,27 +85,29 @@ class _CourseDocumentCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(text,
-                        style: const TextStyle(
-                          color: Color(0xFF064B96),
-                          fontFamily: 'GothamRounded',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                        )),
+                    Text(
+                      documentsCategory,
+                      style: const TextStyle(
+                        color: Color(0xFF064B96),
+                        fontFamily: 'GothamRounded',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                     Row(
                       children: [
                         SvgPicture.asset(
                           'assets/images/svgs/document_gradient_small.svg',
                         ),
-                        const SizedBox(
-                          width: 4,
+                        const SizedBox(width: 4),
+                        Text(
+                          documentsCount,
+                          style: const TextStyle(
+                            color: Color(0xFF6B6A6A),
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
-                        Text(value,
-                            style: const TextStyle(
-                              color: Color(0xFF6B6A6A),
-                              fontSize: 11,
-                              fontWeight: FontWeight.w400,
-                            )),
                       ],
                     ),
                   ],
@@ -106,9 +120,6 @@ class _CourseDocumentCard extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () {
-        context.pushNamed(DocumentListScreen.name);
-      },
     );
   }
 }

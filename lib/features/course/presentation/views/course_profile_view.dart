@@ -109,7 +109,7 @@ class _CourseProfileBody extends StatelessWidget {
         children: [
           CourseTeachersSection(courseProfile: courseProfile),
           const SizedBox(height: 12),
-          const CourseDocumentsSection(),
+          CourseDocumentsSection(documents: courseProfile.documents),
         ],
       ),
     );
