@@ -84,6 +84,8 @@ class _CourseProfileHeader extends StatelessWidget {
                       courseProfile: courseProfile,
                     ),
                   ),
+                  const SizedBox(
+                      height: 32), // TODO: Changed this to convex curve
                 ],
               ),
             ),
@@ -109,7 +111,10 @@ class _CourseProfileBody extends StatelessWidget {
         children: [
           CourseTeachersSection(courseProfile: courseProfile),
           const SizedBox(height: 12),
-          CourseDocumentsSection(documents: courseProfile.documents),
+          CourseDocumentsSection(
+            courseId: courseProfile.idCourse,
+            documents: courseProfile.documents,
+          ),
         ],
       ),
     );

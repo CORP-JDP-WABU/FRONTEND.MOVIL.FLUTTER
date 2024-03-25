@@ -75,6 +75,7 @@ class _CompareSearchContent extends ConsumerWidget {
               .onSearchTextChanged(value),
           onSearch: () =>
               ref.read(compareSearchControllerProvider.notifier).search(),
+          hintText: 'Busca un profesor o curso',
           searchText: state.searchText,
         ),
         const SizedBox(height: 16),

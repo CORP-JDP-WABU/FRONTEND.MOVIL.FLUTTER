@@ -5,11 +5,13 @@ class CustomSearchBar extends StatefulWidget {
     super.key,
     required this.onChanged,
     required this.onSearch,
+    required this.hintText,
     required this.searchText,
   });
 
   final Function(String) onChanged;
   final Function() onSearch;
+  final String hintText;
   final String searchText;
 
   @override
@@ -41,7 +43,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
             const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
         fillColor: Colors.white,
         filled: true,
-        hintText: 'Busca un profesor o curso',
+        hintText: widget.hintText,
         suffixIcon: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
           child: GestureDetector(

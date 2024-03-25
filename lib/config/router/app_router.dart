@@ -2,8 +2,9 @@ import 'package:go_router/go_router.dart';
 import 'package:wabu/features/authentication/presentation/screens/splash_screen.dart';
 import 'package:wabu/features/authentication/presentation/screens/welcome_screen.dart';
 import 'package:wabu/features/course/course.dart';
-import 'package:wabu/features/course/presentation/screens/document_list_screen.dart';
+import 'package:wabu/features/documents/documents.dart';
 import 'package:wabu/features/compare/presentation/presentation.dart';
+import 'package:wabu/features/documents/domain/course_documents_parameters/course_documents_parameters.dart';
 import 'package:wabu/features/home/presentation/screens/home_screen.dart';
 import 'package:wabu/features/home/presentation/views/home_view.dart';
 // import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
@@ -109,6 +110,16 @@ final appRouter = GoRouter(
 
                 return CourseProfileView(
                   courseId: courseId,
+                );
+              },
+            ),
+            GoRoute(
+              name: CourseDocumentsView.name,
+              path: CourseDocumentsView.route,
+              builder: (context, state) {
+                final courseDocumentsParameters = state.extra! as CourseDocumentsParameters;
+                return CourseDocumentsView(
+                  courseDocumentsParameters: courseDocumentsParameters,
                 );
               },
             ),
@@ -225,13 +236,6 @@ final appRouter = GoRouter(
         return TeacherProfileScreen(
           teacherId: teacherId,
         );
-      },
-    ),
-     GoRoute(
-      name: DocumentListScreen.name,
-      path: DocumentListScreen.route,
-      builder: (context, state) {
-        return const DocumentListScreen();
       },
     ),
     GoRoute(

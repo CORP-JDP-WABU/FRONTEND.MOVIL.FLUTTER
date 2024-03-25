@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:wabu/config/theme/app_theme.dart';
-import 'package:wabu/features/search/domain/courses_search_result/courses_search_result.dart';
-import 'package:wabu/features/course/presentation/screens/course_carrousel.dart';
-import 'package:wabu/utils/utils.dart';
 
 class DocumentListContainer extends StatelessWidget {
   const DocumentListContainer({

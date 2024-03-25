@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wabu/features/course/course.dart';
-import 'package:wabu/features/course/presentation/screens/document_list_screen.dart';
+import 'package:wabu/features/documents/documents.dart';
 
 class CourseDocumentsSection extends StatelessWidget {
   const CourseDocumentsSection({
     super.key,
+    required this.courseId,
     required this.documents,
   });
 
+  final String courseId;
   final List<CourseProfileDocument> documents;
 
   @override
@@ -38,6 +40,15 @@ class CourseDocumentsSection extends StatelessWidget {
               documentsCategory: document.name,
               documentsCount:
                   '${document.quantity} ${(document.quantity == 1) ? 'Documento' : 'Documentos'}',
+              onTap: () {
+                context.pushNamed(
+                  CourseDocumentsView.name,
+                  extra: CourseDocumentsParameters(
+                    courseId: courseId,
+                    documentType: document.typeDocument,
+                  ),
+                );
+              },
             );
           },
         ),
@@ -50,17 +61,17 @@ class _CourseDocumentCard extends StatelessWidget {
   const _CourseDocumentCard({
     required this.documentsCategory,
     required this.documentsCount,
+    required this.onTap,
   });
 
   final String documentsCategory;
   final String documentsCount;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        context.pushNamed(DocumentListScreen.name);
-      },
+      onTap: onTap,
       child: Container(
         height: 64,
         margin: const EdgeInsets.symmetric(vertical: 2),
